@@ -1,1 +1,806 @@
-[{"Tables_in_allsportskhelo":"academies"},{"Tables_in_allsportskhelo":"academy_achievements"},{"Tables_in_allsportskhelo":"academy_addons"},{"Tables_in_allsportskhelo":"academy_admin_permissions"},{"Tables_in_allsportskhelo":"academy_amenities"},{"Tables_in_allsportskhelo":"academy_bookings"},{"Tables_in_allsportskhelo":"academy_claim_docs"},{"Tables_in_allsportskhelo":"academy_claim_logs"},{"Tables_in_allsportskhelo":"academy_claim_notes"},{"Tables_in_allsportskhelo":"academy_claim_report_docs"},{"Tables_in_allsportskhelo":"academy_claim_report_logs"},{"Tables_in_allsportskhelo":"academy_claim_report_notes"},{"Tables_in_allsportskhelo":"academy_claim_reports"},{"Tables_in_allsportskhelo":"academy_claims"},{"Tables_in_allsportskhelo":"academy_coaches"},{"Tables_in_allsportskhelo":"academy_courts"},{"Tables_in_allsportskhelo":"academy_delete_request_logs"},{"Tables_in_allsportskhelo":"academy_delete_requests"},{"Tables_in_allsportskhelo":"academy_details"},{"Tables_in_allsportskhelo":"academy_features"},{"Tables_in_allsportskhelo":"academy_galleries"},{"Tables_in_allsportskhelo":"academy_holidays"},{"Tables_in_allsportskhelo":"academy_images"},{"Tables_in_allsportskhelo":"academy_info"},{"Tables_in_allsportskhelo":"academy_inquiries"},{"Tables_in_allsportskhelo":"academy_inquiry_follow_ups"},{"Tables_in_allsportskhelo":"academy_inquiry_logs"},{"Tables_in_allsportskhelo":"academy_inquiry_notes"},{"Tables_in_allsportskhelo":"academy_list_requests"},{"Tables_in_allsportskhelo":"academy_listing_logs"},{"Tables_in_allsportskhelo":"academy_logs"},{"Tables_in_allsportskhelo":"academy_players"},{"Tables_in_allsportskhelo":"academy_program_users"},{"Tables_in_allsportskhelo":"academy_programs"},{"Tables_in_allsportskhelo":"academy_ratings"},{"Tables_in_allsportskhelo":"academy_reported_reviews"},{"Tables_in_allsportskhelo":"academy_review_replies"},{"Tables_in_allsportskhelo":"academy_rooms"},{"Tables_in_allsportskhelo":"academy_rules"},{"Tables_in_allsportskhelo":"academy_seo_content_settings"},{"Tables_in_allsportskhelo":"academy_seo_contents"},{"Tables_in_allsportskhelo":"academy_sports"},{"Tables_in_allsportskhelo":"academy_timings"},{"Tables_in_allsportskhelo":"academy_urls"},{"Tables_in_allsportskhelo":"add_ons"},{"Tables_in_allsportskhelo":"add_ons_prices"},{"Tables_in_allsportskhelo":"admin_emulates"},{"Tables_in_allsportskhelo":"advertisement_locations"},{"Tables_in_allsportskhelo":"advertisment_clients"},{"Tables_in_allsportskhelo":"advertisment_details"},{"Tables_in_allsportskhelo":"advertisments"},{"Tables_in_allsportskhelo":"age_groups"},{"Tables_in_allsportskhelo":"aita_acceptance_list_entries"},{"Tables_in_allsportskhelo":"aita_calendars"},{"Tables_in_allsportskhelo":"aita_claim_logs"},{"Tables_in_allsportskhelo":"aita_profile_claim_follow_ups"},{"Tables_in_allsportskhelo":"aita_profile_claims"},{"Tables_in_allsportskhelo":"aita_profile_docs"},{"Tables_in_allsportskhelo":"aita_profile_notes"},{"Tables_in_allsportskhelo":"aita_profile_report_docs"},{"Tables_in_allsportskhelo":"aita_profile_report_logs"},{"Tables_in_allsportskhelo":"aita_profile_report_notes"},{"Tables_in_allsportskhelo":"aita_profile_reports"},{"Tables_in_allsportskhelo":"aita_rank_sync_events"},{"Tables_in_allsportskhelo":"app_media"},{"Tables_in_allsportskhelo":"app_services"},{"Tables_in_allsportskhelo":"assocation_achievements"},{"Tables_in_allsportskhelo":"assocation_album_images"},{"Tables_in_allsportskhelo":"assocation_albums"},{"Tables_in_allsportskhelo":"assocation_contents"},{"Tables_in_allsportskhelo":"assocations"},{"Tables_in_allsportskhelo":"auth_otp_requests"},{"Tables_in_allsportskhelo":"auto_messages"},{"Tables_in_allsportskhelo":"ball_boys"},{"Tables_in_allsportskhelo":"become_partner"},{"Tables_in_allsportskhelo":"booking_add_ons_prices"},{"Tables_in_allsportskhelo":"booking_payments"},{"Tables_in_allsportskhelo":"booking_rooms"},{"Tables_in_allsportskhelo":"booking_slots"},{"Tables_in_allsportskhelo":"bookings"},{"Tables_in_allsportskhelo":"bounced_emails"},{"Tables_in_allsportskhelo":"broadcasts"},{"Tables_in_allsportskhelo":"chair_umpire_requests"},{"Tables_in_allsportskhelo":"challenge_chats"},{"Tables_in_allsportskhelo":"challenge_results"},{"Tables_in_allsportskhelo":"cities"},{"Tables_in_allsportskhelo":"coach_amenities"},{"Tables_in_allsportskhelo":"coach_booking_refunds"},{"Tables_in_allsportskhelo":"coach_booking_slots"},{"Tables_in_allsportskhelo":"coach_bookings"},{"Tables_in_allsportskhelo":"coach_gallery_images"},{"Tables_in_allsportskhelo":"coach_inquiries"},{"Tables_in_allsportskhelo":"coach_reported_reviews"},{"Tables_in_allsportskhelo":"coach_requests"},{"Tables_in_allsportskhelo":"coach_review_replies"},{"Tables_in_allsportskhelo":"coach_reviews_ratings"},{"Tables_in_allsportskhelo":"coach_settings"},{"Tables_in_allsportskhelo":"coach_social_media"},{"Tables_in_allsportskhelo":"coach_timings"},{"Tables_in_allsportskhelo":"coaches"},{"Tables_in_allsportskhelo":"contact_books"},{"Tables_in_allsportskhelo":"contact_groups"},{"Tables_in_allsportskhelo":"contact_tags"},{"Tables_in_allsportskhelo":"contacts"},{"Tables_in_allsportskhelo":"control_access_logs"},{"Tables_in_allsportskhelo":"conversations"},{"Tables_in_allsportskhelo":"countries"},{"Tables_in_allsportskhelo":"country_availables"},{"Tables_in_allsportskhelo":"court_rules"},{"Tables_in_allsportskhelo":"court_timings"},{"Tables_in_allsportskhelo":"custom_notification_reads"},{"Tables_in_allsportskhelo":"custom_notifications"},{"Tables_in_allsportskhelo":"customize_tournament"},{"Tables_in_allsportskhelo":"customize_tournament_logs"},{"Tables_in_allsportskhelo":"data_delete_logs"},{"Tables_in_allsportskhelo":"default_amenities"},{"Tables_in_allsportskhelo":"default_otp_users"},{"Tables_in_allsportskhelo":"default_rules"},{"Tables_in_allsportskhelo":"delete_account_requests"},{"Tables_in_allsportskhelo":"delete_accounts"},{"Tables_in_allsportskhelo":"draw_players"},{"Tables_in_allsportskhelo":"dummy_matches"},{"Tables_in_allsportskhelo":"email_default_templates"},{"Tables_in_allsportskhelo":"email_logs"},{"Tables_in_allsportskhelo":"email_templates"},{"Tables_in_allsportskhelo":"face_app_process_logs"},{"Tables_in_allsportskhelo":"failed_jobs"},{"Tables_in_allsportskhelo":"fcm_tokens"},{"Tables_in_allsportskhelo":"galleries"},{"Tables_in_allsportskhelo":"google_fit"},{"Tables_in_allsportskhelo":"group_contacts"},{"Tables_in_allsportskhelo":"groups"},{"Tables_in_allsportskhelo":"help_and_support_follow_ups"},{"Tables_in_allsportskhelo":"help_and_support_logs"},{"Tables_in_allsportskhelo":"help_and_support_notes"},{"Tables_in_allsportskhelo":"help_and_supports"},{"Tables_in_allsportskhelo":"itf_calendar"},{"Tables_in_allsportskhelo":"itf_claim_logs"},{"Tables_in_allsportskhelo":"itf_profile_claims"},{"Tables_in_allsportskhelo":"itf_profile_notes"},{"Tables_in_allsportskhelo":"itf_profile_report_logs"},{"Tables_in_allsportskhelo":"itf_profile_report_notes"},{"Tables_in_allsportskhelo":"itf_profile_reports"},{"Tables_in_allsportskhelo":"jobs"},{"Tables_in_allsportskhelo":"league_challenge_score_reports"},{"Tables_in_allsportskhelo":"league_challenge_scores"},{"Tables_in_allsportskhelo":"league_challenges"},{"Tables_in_allsportskhelo":"league_lefts"},{"Tables_in_allsportskhelo":"league_permission_requests"},{"Tables_in_allsportskhelo":"league_players"},{"Tables_in_allsportskhelo":"league_rankings"},{"Tables_in_allsportskhelo":"league_requests"},{"Tables_in_allsportskhelo":"leagues"},{"Tables_in_allsportskhelo":"lms_inquiries"},{"Tables_in_allsportskhelo":"lms_inquiry_details"},{"Tables_in_allsportskhelo":"local_profile_claims"},{"Tables_in_allsportskhelo":"messages"},{"Tables_in_allsportskhelo":"migrations"},{"Tables_in_allsportskhelo":"notification_settings"},{"Tables_in_allsportskhelo":"notifications"},{"Tables_in_allsportskhelo":"organization_ranking_settings"},{"Tables_in_allsportskhelo":"organization_rankings"},{"Tables_in_allsportskhelo":"organization_tiers"},{"Tables_in_allsportskhelo":"organizer_achievements"},{"Tables_in_allsportskhelo":"organizer_contents"},{"Tables_in_allsportskhelo":"organizer_galleries"},{"Tables_in_allsportskhelo":"organizer_gallery_images"},{"Tables_in_allsportskhelo":"organizer_team_members"},{"Tables_in_allsportskhelo":"organizers"},{"Tables_in_allsportskhelo":"other_services"},{"Tables_in_allsportskhelo":"parent_childrens"},{"Tables_in_allsportskhelo":"parents"},{"Tables_in_allsportskhelo":"partner_docs"},{"Tables_in_allsportskhelo":"partner_logs"},{"Tables_in_allsportskhelo":"partner_notes"},{"Tables_in_allsportskhelo":"password_reset_requests"},{"Tables_in_allsportskhelo":"password_resets"},{"Tables_in_allsportskhelo":"payment_transaction"},{"Tables_in_allsportskhelo":"payments"},{"Tables_in_allsportskhelo":"payouts"},{"Tables_in_allsportskhelo":"personal_access_tokens"},{"Tables_in_allsportskhelo":"phone_contacts"},{"Tables_in_allsportskhelo":"platform_fees"},{"Tables_in_allsportskhelo":"player_achievement_galleries"},{"Tables_in_allsportskhelo":"player_achievement_verification_logs"},{"Tables_in_allsportskhelo":"player_achievements"},{"Tables_in_allsportskhelo":"player_aita_profile_logs"},{"Tables_in_allsportskhelo":"player_aita_profiles"},{"Tables_in_allsportskhelo":"player_aita_ranks"},{"Tables_in_allsportskhelo":"player_all_rankings"},{"Tables_in_allsportskhelo":"player_connection_match_requests"},{"Tables_in_allsportskhelo":"player_connections"},{"Tables_in_allsportskhelo":"player_invite"},{"Tables_in_allsportskhelo":"player_itf_profiles"},{"Tables_in_allsportskhelo":"player_itf_rankings"},{"Tables_in_allsportskhelo":"player_matrix_featured_matches"},{"Tables_in_allsportskhelo":"player_matrix_match_details"},{"Tables_in_allsportskhelo":"player_matrix_matches"},{"Tables_in_allsportskhelo":"player_matrix_teams"},{"Tables_in_allsportskhelo":"player_profile_aita_verification_logs"},{"Tables_in_allsportskhelo":"player_profile_local_verification_logs"},{"Tables_in_allsportskhelo":"player_self_assessments"},{"Tables_in_allsportskhelo":"player_seo_contents"},{"Tables_in_allsportskhelo":"player_seo_templates"},{"Tables_in_allsportskhelo":"player_social_media"},{"Tables_in_allsportskhelo":"player_sports"},{"Tables_in_allsportskhelo":"player_summary"},{"Tables_in_allsportskhelo":"player_video_urls"},{"Tables_in_allsportskhelo":"playing_information"},{"Tables_in_allsportskhelo":"point_table_admin_logs"},{"Tables_in_allsportskhelo":"point_table_logs"},{"Tables_in_allsportskhelo":"program_services"},{"Tables_in_allsportskhelo":"promotion_banners"},{"Tables_in_allsportskhelo":"promotion_contacts"},{"Tables_in_allsportskhelo":"recent_matches"},{"Tables_in_allsportskhelo":"recent_matches_verification_logs"},{"Tables_in_allsportskhelo":"recent_searches"},{"Tables_in_allsportskhelo":"refund_bookings"},{"Tables_in_allsportskhelo":"refunds"},{"Tables_in_allsportskhelo":"registration_requests"},{"Tables_in_allsportskhelo":"report_recent_match"},{"Tables_in_allsportskhelo":"report_recent_match_logs"},{"Tables_in_allsportskhelo":"report_recent_match_notes"},{"Tables_in_allsportskhelo":"roles"},{"Tables_in_allsportskhelo":"score"},{"Tables_in_allsportskhelo":"sent_documents"},{"Tables_in_allsportskhelo":"signup_requests"},{"Tables_in_allsportskhelo":"sponsor_contents"},{"Tables_in_allsportskhelo":"sponsor_customer_inquiry"},{"Tables_in_allsportskhelo":"sponsor_customer_inquiry_log"},{"Tables_in_allsportskhelo":"sponsor_customer_inquiry_notes"},{"Tables_in_allsportskhelo":"sponsor_galleries"},{"Tables_in_allsportskhelo":"sponsor_inquiries"},{"Tables_in_allsportskhelo":"sponsor_inquiry_docs"},{"Tables_in_allsportskhelo":"sponsor_inquiry_logs"},{"Tables_in_allsportskhelo":"sponsor_inquiry_notes"},{"Tables_in_allsportskhelo":"sponsor_locations"},{"Tables_in_allsportskhelo":"sponsor_logs"},{"Tables_in_allsportskhelo":"sponsor_owner_logs"},{"Tables_in_allsportskhelo":"sponsor_owners"},{"Tables_in_allsportskhelo":"sponsor_service_categories"},{"Tables_in_allsportskhelo":"sponsors"},{"Tables_in_allsportskhelo":"sports"},{"Tables_in_allsportskhelo":"staff_details"},{"Tables_in_allsportskhelo":"staff_draw"},{"Tables_in_allsportskhelo":"state"},{"Tables_in_allsportskhelo":"states"},{"Tables_in_allsportskhelo":"subscription_logs"},{"Tables_in_allsportskhelo":"subscription_plan_perks"},{"Tables_in_allsportskhelo":"subscription_plans"},{"Tables_in_allsportskhelo":"subscriptions"},{"Tables_in_allsportskhelo":"super_fcm_tokens"},{"Tables_in_allsportskhelo":"super_role_permissions"},{"Tables_in_allsportskhelo":"super_whatsapp_logs"},{"Tables_in_allsportskhelo":"supers"},{"Tables_in_allsportskhelo":"system_settings"},{"Tables_in_allsportskhelo":"team_players"},{"Tables_in_allsportskhelo":"team_spots"},{"Tables_in_allsportskhelo":"template_languages"},{"Tables_in_allsportskhelo":"templates"},{"Tables_in_allsportskhelo":"tournament_age_groups"},{"Tables_in_allsportskhelo":"tournament_categories"},{"Tables_in_allsportskhelo":"tournament_contents"},{"Tables_in_allsportskhelo":"tournament_decided_rounds"},{"Tables_in_allsportskhelo":"tournament_details"},{"Tables_in_allsportskhelo":"tournament_draw_matches"},{"Tables_in_allsportskhelo":"tournament_draws"},{"Tables_in_allsportskhelo":"tournaments"}]
+[
+    {
+        "Tables_in_allsportskhelo": "academies"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_achievements"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_addons"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_admin_permissions"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_amenities"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_bookings"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claim_docs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claim_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claim_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claim_report_docs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claim_report_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claim_report_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claim_reports"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_claims"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_coaches"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_courts"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_delete_request_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_delete_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_details"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_features"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_galleries"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_holidays"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_images"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_info"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_inquiries"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_inquiry_follow_ups"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_inquiry_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_inquiry_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_list_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_listing_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_players"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_program_users"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_programs"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_ratings"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_reported_reviews"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_review_replies"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_rooms"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_rules"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_seo_content_settings"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_seo_contents"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_sports"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_timings"
+    },
+    {
+        "Tables_in_allsportskhelo": "academy_urls"
+    },
+    {
+        "Tables_in_allsportskhelo": "add_ons"
+    },
+    {
+        "Tables_in_allsportskhelo": "add_ons_prices"
+    },
+    {
+        "Tables_in_allsportskhelo": "admin_emulates"
+    },
+    {
+        "Tables_in_allsportskhelo": "advertisement_locations"
+    },
+    {
+        "Tables_in_allsportskhelo": "advertisment_clients"
+    },
+    {
+        "Tables_in_allsportskhelo": "advertisment_details"
+    },
+    {
+        "Tables_in_allsportskhelo": "advertisments"
+    },
+    {
+        "Tables_in_allsportskhelo": "age_groups"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_acceptance_list_entries"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_calendars"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_claim_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_claim_follow_ups"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_claims"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_docs"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_report_docs"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_report_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_report_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_profile_reports"
+    },
+    {
+        "Tables_in_allsportskhelo": "aita_rank_sync_events"
+    },
+    {
+        "Tables_in_allsportskhelo": "app_media"
+    },
+    {
+        "Tables_in_allsportskhelo": "app_services"
+    },
+    {
+        "Tables_in_allsportskhelo": "assocation_achievements"
+    },
+    {
+        "Tables_in_allsportskhelo": "assocation_album_images"
+    },
+    {
+        "Tables_in_allsportskhelo": "assocation_albums"
+    },
+    {
+        "Tables_in_allsportskhelo": "assocation_contents"
+    },
+    {
+        "Tables_in_allsportskhelo": "assocations"
+    },
+    {
+        "Tables_in_allsportskhelo": "auth_otp_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "auto_messages"
+    },
+    {
+        "Tables_in_allsportskhelo": "ball_boys"
+    },
+    {
+        "Tables_in_allsportskhelo": "become_partner"
+    },
+    {
+        "Tables_in_allsportskhelo": "booking_add_ons_prices"
+    },
+    {
+        "Tables_in_allsportskhelo": "booking_payments"
+    },
+    {
+        "Tables_in_allsportskhelo": "booking_rooms"
+    },
+    {
+        "Tables_in_allsportskhelo": "booking_slots"
+    },
+    {
+        "Tables_in_allsportskhelo": "bookings"
+    },
+    {
+        "Tables_in_allsportskhelo": "bounced_emails"
+    },
+    {
+        "Tables_in_allsportskhelo": "broadcasts"
+    },
+    {
+        "Tables_in_allsportskhelo": "chair_umpire_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "challenge_chats"
+    },
+    {
+        "Tables_in_allsportskhelo": "challenge_results"
+    },
+    {
+        "Tables_in_allsportskhelo": "cities"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_amenities"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_booking_refunds"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_booking_slots"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_bookings"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_gallery_images"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_inquiries"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_reported_reviews"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_review_replies"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_reviews_ratings"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_settings"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_social_media"
+    },
+    {
+        "Tables_in_allsportskhelo": "coach_timings"
+    },
+    {
+        "Tables_in_allsportskhelo": "coaches"
+    },
+    {
+        "Tables_in_allsportskhelo": "contact_books"
+    },
+    {
+        "Tables_in_allsportskhelo": "contact_groups"
+    },
+    {
+        "Tables_in_allsportskhelo": "contact_tags"
+    },
+    {
+        "Tables_in_allsportskhelo": "contacts"
+    },
+    {
+        "Tables_in_allsportskhelo": "control_access_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "conversations"
+    },
+    {
+        "Tables_in_allsportskhelo": "countries"
+    },
+    {
+        "Tables_in_allsportskhelo": "country_availables"
+    },
+    {
+        "Tables_in_allsportskhelo": "court_rules"
+    },
+    {
+        "Tables_in_allsportskhelo": "court_timings"
+    },
+    {
+        "Tables_in_allsportskhelo": "custom_notification_reads"
+    },
+    {
+        "Tables_in_allsportskhelo": "custom_notifications"
+    },
+    {
+        "Tables_in_allsportskhelo": "customize_tournament"
+    },
+    {
+        "Tables_in_allsportskhelo": "customize_tournament_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "data_delete_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "default_amenities"
+    },
+    {
+        "Tables_in_allsportskhelo": "default_otp_users"
+    },
+    {
+        "Tables_in_allsportskhelo": "default_rules"
+    },
+    {
+        "Tables_in_allsportskhelo": "delete_account_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "delete_accounts"
+    },
+    {
+        "Tables_in_allsportskhelo": "draw_players"
+    },
+    {
+        "Tables_in_allsportskhelo": "dummy_matches"
+    },
+    {
+        "Tables_in_allsportskhelo": "email_default_templates"
+    },
+    {
+        "Tables_in_allsportskhelo": "email_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "email_templates"
+    },
+    {
+        "Tables_in_allsportskhelo": "face_app_process_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "failed_jobs"
+    },
+    {
+        "Tables_in_allsportskhelo": "fcm_tokens"
+    },
+    {
+        "Tables_in_allsportskhelo": "galleries"
+    },
+    {
+        "Tables_in_allsportskhelo": "google_fit"
+    },
+    {
+        "Tables_in_allsportskhelo": "group_contacts"
+    },
+    {
+        "Tables_in_allsportskhelo": "groups"
+    },
+    {
+        "Tables_in_allsportskhelo": "help_and_support_follow_ups"
+    },
+    {
+        "Tables_in_allsportskhelo": "help_and_support_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "help_and_support_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "help_and_supports"
+    },
+    {
+        "Tables_in_allsportskhelo": "itf_calendar"
+    },
+    {
+        "Tables_in_allsportskhelo": "itf_claim_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "itf_profile_claims"
+    },
+    {
+        "Tables_in_allsportskhelo": "itf_profile_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "itf_profile_report_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "itf_profile_report_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "itf_profile_reports"
+    },
+    {
+        "Tables_in_allsportskhelo": "jobs"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_challenge_score_reports"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_challenge_scores"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_challenges"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_lefts"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_permission_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_players"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_rankings"
+    },
+    {
+        "Tables_in_allsportskhelo": "league_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "leagues"
+    },
+    {
+        "Tables_in_allsportskhelo": "lms_inquiries"
+    },
+    {
+        "Tables_in_allsportskhelo": "lms_inquiry_details"
+    },
+    {
+        "Tables_in_allsportskhelo": "local_profile_claims"
+    },
+    {
+        "Tables_in_allsportskhelo": "messages"
+    },
+    {
+        "Tables_in_allsportskhelo": "migrations"
+    },
+    {
+        "Tables_in_allsportskhelo": "notification_settings"
+    },
+    {
+        "Tables_in_allsportskhelo": "notifications"
+    },
+    {
+        "Tables_in_allsportskhelo": "organization_ranking_settings"
+    },
+    {
+        "Tables_in_allsportskhelo": "organization_rankings"
+    },
+    {
+        "Tables_in_allsportskhelo": "organization_tiers"
+    },
+    {
+        "Tables_in_allsportskhelo": "organizer_achievements"
+    },
+    {
+        "Tables_in_allsportskhelo": "organizer_contents"
+    },
+    {
+        "Tables_in_allsportskhelo": "organizer_galleries"
+    },
+    {
+        "Tables_in_allsportskhelo": "organizer_gallery_images"
+    },
+    {
+        "Tables_in_allsportskhelo": "organizer_team_members"
+    },
+    {
+        "Tables_in_allsportskhelo": "organizers"
+    },
+    {
+        "Tables_in_allsportskhelo": "other_services"
+    },
+    {
+        "Tables_in_allsportskhelo": "parent_childrens"
+    },
+    {
+        "Tables_in_allsportskhelo": "parents"
+    },
+    {
+        "Tables_in_allsportskhelo": "partner_docs"
+    },
+    {
+        "Tables_in_allsportskhelo": "partner_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "partner_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "password_reset_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "password_resets"
+    },
+    {
+        "Tables_in_allsportskhelo": "payment_transaction"
+    },
+    {
+        "Tables_in_allsportskhelo": "payments"
+    },
+    {
+        "Tables_in_allsportskhelo": "payouts"
+    },
+    {
+        "Tables_in_allsportskhelo": "personal_access_tokens"
+    },
+    {
+        "Tables_in_allsportskhelo": "phone_contacts"
+    },
+    {
+        "Tables_in_allsportskhelo": "platform_fees"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_achievement_galleries"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_achievement_verification_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_achievements"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_aita_profile_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_aita_profiles"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_aita_ranks"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_all_rankings"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_connection_match_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_connections"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_invite"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_itf_profiles"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_itf_rankings"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_matrix_featured_matches"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_matrix_match_details"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_matrix_matches"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_matrix_teams"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_profile_aita_verification_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_profile_local_verification_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_self_assessments"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_seo_contents"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_seo_templates"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_social_media"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_sports"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_summary"
+    },
+    {
+        "Tables_in_allsportskhelo": "player_video_urls"
+    },
+    {
+        "Tables_in_allsportskhelo": "playing_information"
+    },
+    {
+        "Tables_in_allsportskhelo": "point_table_admin_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "point_table_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "program_services"
+    },
+    {
+        "Tables_in_allsportskhelo": "promotion_banners"
+    },
+    {
+        "Tables_in_allsportskhelo": "promotion_contacts"
+    },
+    {
+        "Tables_in_allsportskhelo": "recent_matches"
+    },
+    {
+        "Tables_in_allsportskhelo": "recent_matches_verification_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "recent_searches"
+    },
+    {
+        "Tables_in_allsportskhelo": "refund_bookings"
+    },
+    {
+        "Tables_in_allsportskhelo": "refunds"
+    },
+    {
+        "Tables_in_allsportskhelo": "registration_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "report_recent_match"
+    },
+    {
+        "Tables_in_allsportskhelo": "report_recent_match_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "report_recent_match_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "roles"
+    },
+    {
+        "Tables_in_allsportskhelo": "score"
+    },
+    {
+        "Tables_in_allsportskhelo": "sent_documents"
+    },
+    {
+        "Tables_in_allsportskhelo": "signup_requests"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_contents"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_customer_inquiry"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_customer_inquiry_log"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_customer_inquiry_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_galleries"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_inquiries"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_inquiry_docs"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_inquiry_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_inquiry_notes"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_locations"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_owner_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_owners"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsor_service_categories"
+    },
+    {
+        "Tables_in_allsportskhelo": "sponsors"
+    },
+    {
+        "Tables_in_allsportskhelo": "sports"
+    },
+    {
+        "Tables_in_allsportskhelo": "staff_details"
+    },
+    {
+        "Tables_in_allsportskhelo": "staff_draw"
+    },
+    {
+        "Tables_in_allsportskhelo": "state"
+    },
+    {
+        "Tables_in_allsportskhelo": "states"
+    },
+    {
+        "Tables_in_allsportskhelo": "subscription_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "subscription_plan_perks"
+    },
+    {
+        "Tables_in_allsportskhelo": "subscription_plans"
+    },
+    {
+        "Tables_in_allsportskhelo": "subscriptions"
+    },
+    {
+        "Tables_in_allsportskhelo": "super_fcm_tokens"
+    },
+    {
+        "Tables_in_allsportskhelo": "super_role_permissions"
+    },
+    {
+        "Tables_in_allsportskhelo": "super_whatsapp_logs"
+    },
+    {
+        "Tables_in_allsportskhelo": "supers"
+    },
+    {
+        "Tables_in_allsportskhelo": "system_settings"
+    },
+    {
+        "Tables_in_allsportskhelo": "team_players"
+    },
+    {
+        "Tables_in_allsportskhelo": "team_spots"
+    },
+    {
+        "Tables_in_allsportskhelo": "template_languages"
+    },
+    {
+        "Tables_in_allsportskhelo": "templates"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournament_age_groups"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournament_categories"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournament_contents"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournament_decided_rounds"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournament_details"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournament_draw_matches"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournament_draws"
+    },
+    {
+        "Tables_in_allsportskhelo": "tournaments"
+    }
+]
