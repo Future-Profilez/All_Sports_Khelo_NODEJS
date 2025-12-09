@@ -1,12 +1,6 @@
 const prisma = require("../lib/prisma")
 const convertBigIntToString = require('../helper/convertBigInt')
 
-// const convertBigIntToString = (data) => {
-//   return JSON.parse(JSON.stringify(data, (_, value) =>
-//     typeof value === "bigint" ? value.toString() : value
-//   ));
-// };
-
 const fetchTournament = async (req, res) => {
     try {
         const tournament = await prisma.tournaments.findMany();
