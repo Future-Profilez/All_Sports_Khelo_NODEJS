@@ -2,7 +2,6 @@ const express = require('express');
 const dotenv = require('dotenv')
 const cors = require('cors')
 const prisma = require("./lib/prisma.js")
-const userRoutes = require("./routes/userRoutes.js")
 const tournamentRoutes = require('./routes/tournamentRoutes.js')
 const sportsRoutes = require('./routes/sportsRoutes.js')
 dotenv.config();
@@ -18,7 +17,7 @@ app.get('/', (req, res) => {
     res.json({ message: "Backend is running..." })
 })
 
-app.use('/api', userRoutes)
+
 app.use('/api', tournamentRoutes)
 app.use('/api', sportsRoutes)
 

@@ -1,0 +1,11 @@
+generator client {
+  provider         = "prisma-client-js"
+  output           = "../generated/prisma"
+  clientExtensions = "true"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+require("./models/tournaments.prisma)
