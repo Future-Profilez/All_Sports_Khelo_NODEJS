@@ -2,9 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv')
 const cors = require('cors')
 const prisma = require("./lib/prisma.js")
-const userRoutes = require("./routes/userRoutes.js")
 const tournamentRoutes = require('./routes/tournamentRoutes.js')
-const sportsRoutes = require('./routes/sportsRoutes.js')
+const sportsRoutes = require('./routes/sportsRoutes.js');
+const academyRoutes = require('./routes/academyRoutes.js');
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -18,9 +18,10 @@ app.get('/', (req, res) => {
     res.json({ message: "Backend is running..." })
 })
 
-app.use('/api', userRoutes)
-app.use('/api', tournamentRoutes)
+
+app.use('/api/tournament', tournamentRoutes)
 app.use('/api', sportsRoutes)
+app.use('/api',academyRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);

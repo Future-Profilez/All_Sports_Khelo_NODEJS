@@ -2,5 +2,7 @@
 /generated/prisma
 
 # Node Modules
-node_modules/
+/node_modules
 
+# DotEnv
+.env

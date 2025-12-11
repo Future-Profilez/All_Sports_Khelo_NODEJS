@@ -3748,7 +3748,7 @@ model sponsors {
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sports {
-  id         String        @id @db.Char(36)
+  id         String        @db.Char(36)
   super_id   BigInt?       @db.UnsignedBigInt
   slug       String?       @db.VarChar(255)
   name       String        @db.VarChar(255)
@@ -3758,6 +3758,8 @@ model sports {
   created_at DateTime?     @db.Timestamp(0)
   updated_at DateTime?     @db.Timestamp(0)
   deleted_at DateTime?     @db.Timestamp(0)
+
+  @@ignore
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -4075,9 +4077,9 @@ model tournament_categories {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model tournament_contents {
-  id            BigInt    @db.UnsignedBigInt
+  id            BigInt    @id @db.UnsignedBigInt
   uuid          String    @db.VarChar(255)
-  tournament_id BigInt    @db.UnsignedBigInt
+  tournament_id Int       @db.UnsignedInt
   name          String?   @db.VarChar(255)
   value         String?   @db.LongText
   extra         String?   @db.LongText
@@ -4085,7 +4087,7 @@ model tournament_contents {
   updated_at    DateTime? @db.Timestamp(0)
   deleted_at    DateTime? @db.Timestamp(0)
 
-  @@ignore
+  tournament tournaments @relation(fields: [tournament_id], references: [id])
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -4093,10 +4095,10 @@ model tournament_decided_rounds {
   id               BigInt                                     @db.UnsignedBigInt
   uuid             String                                     @db.Char(36)
   tournament_id    BigInt?                                    @db.UnsignedBigInt
-  is_qualifier     tournament_decided_rounds_is_qualifier     @default(dbgenerated("1"))
-  is_quarter_final tournament_decided_rounds_is_quarter_final @default(dbgenerated("1"))
-  is_semi_final    tournament_decided_rounds_is_semi_final    @default(dbgenerated("1"))
-  is_final         tournament_decided_rounds_is_final         @default(dbgenerated("1"))
+  is_qualifier     tournament_decided_rounds_is_qualifier     @default(YES)
+  is_quarter_final tournament_decided_rounds_is_quarter_final @default(YES)
+  is_semi_final    tournament_decided_rounds_is_semi_final    @default(YES)
+  is_final         tournament_decided_rounds_is_final         @default(YES)
   deleted_at       DateTime?                                  @db.Timestamp(0)
   created_at       DateTime?                                  @db.Timestamp(0)
   updated_at       DateTime?                                  @db.Timestamp(0)
@@ -4251,6 +4253,8 @@ model tournaments {
   is_registration_table_dynamic Boolean   @default(false)
   is_razorpay_payment_enable    Boolean   @default(false)
   deleted_at                    DateTime? @db.Timestamp(0)
+
+  contents tournament_contents[]
 }
 
 enum aita_acceptance_list_entries_draw_type {
