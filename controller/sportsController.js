@@ -1,9 +1,13 @@
-const prisma  = require('../lib/prisma')
+const prisma = require('../lib/prisma')
 const convertBigIntToString = require('../helper/convertBigInt')
 
 const fetchSports = async (Req, res) => {
     try {
-        const sport = await prisma.sports.findMany();
+        const sport = await prisma.sports.findMany({
+            where : { 
+                slug:"tennis"
+            }
+        });
         const data = convertBigIntToString(sport)
         return res.status(200).json({ message: "Sports fetch successfully!", data })
     } catch (error) {
