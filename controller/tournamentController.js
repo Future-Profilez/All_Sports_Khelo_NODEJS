@@ -1,7 +1,7 @@
 const prisma = require("../lib/prisma")
 const convertBigIntToString = require('../helper/convertBigInt')
 
-const fetchTournament = async (req, res) => {
+exports.tournament = async (req, res) => {
     try {
         const tournament = await prisma.tournaments.findMany();
         const tournaments = convertBigIntToString(tournament);
@@ -12,13 +12,19 @@ const fetchTournament = async (req, res) => {
     }
 }
 
-const fetchContent = async (req, res) => {
+exports.tournamentOverview = async (req, res) => {
     try {
         const slug = req.params.slug;
         const data = await prisma.tournaments.findFirst({
-            where: { slug_name: slug },
+            where: {
+                slug_name: slug,
+            },
             include: {
-                contents: true,
+                contents: {
+                    where:{
+                        name:"description",
+                    }
+                }
             },
         });
         if (!data) {
@@ -31,6 +37,3 @@ const fetchContent = async (req, res) => {
         return res.status(500).json({ message: "Internal server error", error });
     }
 };
-
-
-module.exports = { fetchTournament, fetchContent }

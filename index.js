@@ -18,8 +18,8 @@ app.get('/', (req, res) => {
     res.json({ message: "Backend is running..." })
 })
 
- 
-app.use('/api', tournamentRoutes)
+
+app.use('/api/tournament', tournamentRoutes)
 app.use('/api', sportsRoutes)
 app.use('/api',academyRoutes)
 
