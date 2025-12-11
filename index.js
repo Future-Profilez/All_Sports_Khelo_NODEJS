@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 })
 
 
-app.use('/api', tournamentRoutes)
+app.use('/api/tournament', tournamentRoutes)
 app.use('/api', sportsRoutes)
 
 app.listen(PORT, () => {
