@@ -37,14 +37,8 @@ model academies {
   morning            BigInt?
   evening            BigInt?
 
-  @@index([country_id], map: "academies_country_id")
-  @@index([city_id], map: "academy_city_id")
-  @@index([name], map: "academy_name")
-  @@index([slug_name], map: "academy_slug_name")
-  @@index([state_id, city_id], map: "academy_state_city_id")
-  @@index([state_id], map: "academy_state_id")
-  @@index([user_id], map: "academy_user_id")
-  @@index([uuid], map: "academy_uuid")
+  academy_seo_contents academy_seo_contents[] @relation("AcademySeoRelation")
+  academy_amenities academy_amenities[] @relation("AcademyAmentiesRelation")
 }
 
 model academy_achievements {
@@ -89,6 +83,7 @@ model academy_amenities {
   created_at   DateTime? @db.Timestamp(0)
   updated_at   DateTime? @db.Timestamp(0)
   deleted_at   DateTime? @db.Timestamp(0)
+  academies   academies? @relation("AcademyAmentiesRelation", fields: [academy_id], references: [id])
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -649,7 +644,10 @@ model academy_seo_contents {
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
   deleted_at DateTime? @db.Timestamp(0)
+
+  academies academies @relation("AcademySeoRelation", fields: [academy_id], references: [id])
 }
+
 
 model academy_sports {
   id         String    @id @db.Char(36)

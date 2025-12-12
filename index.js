@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/tournament', tournamentRoutes)
 app.use('/api', sportsRoutes)
-app.use('/api',academyRoutes)
+app.use('/api/academies',academyRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);

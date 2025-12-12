@@ -34,17 +34,32 @@ exports.academies = async (req, res) => {
     }
 }
 
+
 exports.academyDetails = async(req,res) => {
     try{
         const slug = req.params.slug;
-        const academy = await prisma.academies.findFirst({
-            where:{
-                slug:slug_name
+        const data = await prisma.academies.findFirst({
+            where: { slug_name: slug },
+            include: {
+                academy_seo_contents: {
+                    where: { name: "description" }
+                },
+                academy_amenities :  true
             }
-        })
-        if(!academy){
-            r
+        });
+
+        if(!data){
+            return res.status(200).json({
+                status:false,
+                message:"Academy not found"
+            })
         }
+        const content = convertBigIntToString(data);
+        return res.status(200).json({
+            status:true,
+            message:"Academy details fetched succesfully",
+            academy:content
+        })
     }catch(error){
         console.log("error: ",error);
         return res.status(500).json({
@@ -55,28 +70,4 @@ exports.academyDetails = async(req,res) => {
     }
 }
 
-exports.tournamentOverview = async (req, res) => {
-    try {
-        const slug = req.params.slug;
-        const data = await prisma.tournaments.findFirst({
-            where: {
-                slug_name: slug,
-            },
-            include: {
-                contents: {
-                    where:{
-                        name:"description",
-                    }
-                }
-            },
-        });
-        if (!data) {
-            return res.status(404).json({ message: "Tournament not found", });
-        }
-        const content = convertBigIntToString(data);
-        return res.status(200).json({ message: "Tournament content fetched successfully!", content: content, });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: "Internal server error", error });
-    }
-};
+
