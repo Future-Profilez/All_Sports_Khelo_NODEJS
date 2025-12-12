@@ -2795,6 +2795,19 @@ exports.Prisma.Player_matrix_featured_matchesScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.SportsScalarFieldEnum = {
+  id: 'id',
+  super_id: 'super_id',
+  slug: 'slug',
+  name: 'name',
+  icon_sm: 'icon_sm',
+  icon_md: 'icon_md',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.Tournament_contentsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -4353,6 +4366,14 @@ exports.Prisma.player_itf_profilesOrderByRelevanceFieldEnum = {
   seo_content: 'seo_content'
 };
 
+exports.Prisma.sportsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  name: 'name',
+  icon_sm: 'icon_sm',
+  icon_md: 'icon_md'
+};
+
 exports.Prisma.tournament_contentsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   name: 'name',
@@ -4660,6 +4681,12 @@ exports.player_connections_status = exports.$Enums.player_connections_status = {
   cancelled: 'cancelled'
 };
 
+exports.sports_status = exports.$Enums.sports_status = {
+  active: 'active',
+  inactive: 'inactive',
+  archived: 'archived'
+};
+
 exports.Prisma.ModelName = {
   academies: 'academies',
   academy_achievements: 'academy_achievements',
@@ -4855,6 +4882,7 @@ exports.Prisma.ModelName = {
   player_invite: 'player_invite',
   player_itf_profiles: 'player_itf_profiles',
   player_matrix_featured_matches: 'player_matrix_featured_matches',
+  sports: 'sports',
   tournament_contents: 'tournament_contents',
   tournaments: 'tournaments'
 };
