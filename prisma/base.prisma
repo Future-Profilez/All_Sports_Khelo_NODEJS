@@ -9,3 +9,4 @@ datasource db {
 }
 
 require("./models/tournaments.prisma)
+require("./models/sports.prisma)
