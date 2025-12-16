@@ -4256,6 +4256,32 @@ model tournaments {
   contents tournament_contents[]
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model tournament_galleries {
+  id                             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid                           String    @db.Char(36)
+  tournament_id                  BigInt?   @db.UnsignedBigInt
+  image                          String?   @db.VarChar(255)
+  tag_users                      String?   @db.LongText
+  tournament_galleries_folder_id BigInt?   @db.UnsignedBigInt
+  face_app_sync                  DateTime? @db.Timestamp(0)
+  created_at                     DateTime? @db.Timestamp(0)
+  updated_at                     DateTime? @db.Timestamp(0)
+  deleted_at                     DateTime? @db.Timestamp(0)
+
+  @@index([tournament_galleries_folder_id], map: "tournament_image_album_id")
+}
+
+model tournament_galleries_folders {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  folder_name   String    @db.VarChar(255)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+}
+
 enum aita_acceptance_list_entries_draw_type {
   MAIN_DRAW       @map("MAIN DRAW")
   QUALIFYING_DRAW @map("QUALIFYING DRAW")
