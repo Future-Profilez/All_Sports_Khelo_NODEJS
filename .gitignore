@@ -3,6 +3,8 @@
 
 # Node Modules
 /node_modules
-
+node_modules
+/lib/prisma.js
+lib/prisma.js
 # DotEnv
 .env
