@@ -29,3 +29,28 @@ model academies {
   academy_seo_contents academy_seo_contents[] @relation("AcademySeoRelation")
   academy_amenities academy_amenities[] @relation("AcademyAmentiesRelation")
 }
+
+model academy_seo_contents {
+  id         BigInt    @id @db.UnsignedBigInt
+  academy_id BigInt    @db.UnsignedBigInt
+  name       String?   @db.VarChar(255)
+  value      String?   @db.LongText
+  extra      String?   @db.LongText
+  updated_by BigInt?   @db.UnsignedBigInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  academies academies @relation("AcademySeoRelation", fields: [academy_id], references: [id])
+}
+
+model academy_amenities {
+  id           BigInt    @id @db.UnsignedBigInt
+  user_id      String?   @db.VarChar(255)
+  academy_id   BigInt?   @db.UnsignedBigInt
+  amenity_name String    @db.VarChar(255)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  deleted_at   DateTime? @db.Timestamp(0)
+  academies   academies? @relation("AcademyAmentiesRelation", fields: [academy_id], references: [id])
+}

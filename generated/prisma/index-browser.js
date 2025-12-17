@@ -149,6 +149,28 @@ exports.Prisma.AcademiesScalarFieldEnum = {
   evening: 'evening'
 };
 
+exports.Prisma.Academy_seo_contentsScalarFieldEnum = {
+  id: 'id',
+  academy_id: 'academy_id',
+  name: 'name',
+  value: 'value',
+  extra: 'extra',
+  updated_by: 'updated_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Academy_amenitiesScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  academy_id: 'academy_id',
+  amenity_name: 'amenity_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.Academy_achievementsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -176,16 +198,6 @@ exports.Prisma.Academy_admin_permissionsScalarFieldEnum = {
   permissions: 'permissions',
   extra: 'extra',
   modified_by: 'modified_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
-exports.Prisma.Academy_amenitiesScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  academy_id: 'academy_id',
-  amenity_name: 'amenity_name',
   created_at: 'created_at',
   updated_at: 'updated_at',
   deleted_at: 'deleted_at'
@@ -710,18 +722,6 @@ exports.Prisma.Academy_seo_content_settingsScalarFieldEnum = {
   deleted_at: 'deleted_at',
   created_at: 'created_at',
   updated_at: 'updated_at'
-};
-
-exports.Prisma.Academy_seo_contentsScalarFieldEnum = {
-  id: 'id',
-  academy_id: 'academy_id',
-  name: 'name',
-  value: 'value',
-  extra: 'extra',
-  updated_by: 'updated_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
 };
 
 exports.Prisma.Academy_sportsScalarFieldEnum = {
@@ -2923,6 +2923,17 @@ exports.Prisma.academiesOrderByRelevanceFieldEnum = {
   city_id: 'city_id'
 };
 
+exports.Prisma.academy_seo_contentsOrderByRelevanceFieldEnum = {
+  name: 'name',
+  value: 'value',
+  extra: 'extra'
+};
+
+exports.Prisma.academy_amenitiesOrderByRelevanceFieldEnum = {
+  user_id: 'user_id',
+  amenity_name: 'amenity_name'
+};
+
 exports.Prisma.academy_achievementsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   name: 'name',
@@ -2940,11 +2951,6 @@ exports.Prisma.academy_admin_permissionsOrderByRelevanceFieldEnum = {
   id: 'id',
   permissions: 'permissions',
   extra: 'extra'
-};
-
-exports.Prisma.academy_amenitiesOrderByRelevanceFieldEnum = {
-  user_id: 'user_id',
-  amenity_name: 'amenity_name'
 };
 
 exports.Prisma.academy_bookingsOrderByRelevanceFieldEnum = {
@@ -3239,12 +3245,6 @@ exports.Prisma.academy_rulesOrderByRelevanceFieldEnum = {
 
 exports.Prisma.academy_seo_content_settingsOrderByRelevanceFieldEnum = {
   id: 'id',
-  name: 'name',
-  value: 'value',
-  extra: 'extra'
-};
-
-exports.Prisma.academy_seo_contentsOrderByRelevanceFieldEnum = {
   name: 'name',
   value: 'value',
   extra: 'extra'
@@ -4723,10 +4723,11 @@ exports.sports_status = exports.$Enums.sports_status = {
 
 exports.Prisma.ModelName = {
   academies: 'academies',
+  academy_seo_contents: 'academy_seo_contents',
+  academy_amenities: 'academy_amenities',
   academy_achievements: 'academy_achievements',
   academy_addons: 'academy_addons',
   academy_admin_permissions: 'academy_admin_permissions',
-  academy_amenities: 'academy_amenities',
   academy_bookings: 'academy_bookings',
   academy_claim_docs: 'academy_claim_docs',
   academy_claim_logs: 'academy_claim_logs',
@@ -4762,7 +4763,6 @@ exports.Prisma.ModelName = {
   academy_rooms: 'academy_rooms',
   academy_rules: 'academy_rules',
   academy_seo_content_settings: 'academy_seo_content_settings',
-  academy_seo_contents: 'academy_seo_contents',
   academy_sports: 'academy_sports',
   academy_timings: 'academy_timings',
   academy_urls: 'academy_urls',

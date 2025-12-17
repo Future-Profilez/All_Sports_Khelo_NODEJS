@@ -5,11 +5,11 @@ exports.academies = async (req, res) => {
     try {
         const list = await prisma.academies.findMany({
                 where: { status: 1 , is_active: 1 },
-                select: {
-                    id: true,
-                    slug_name: true,
-                    address: true,
-                }
+                // select: {
+                //     id: true,
+                //     slug_name: true,
+                //     address: true,
+                // }
             });
         const data = convertBigIntToString(list);
         console.log('no of academies :', data.length);
@@ -51,7 +51,8 @@ exports.academyDetails = async(req,res) => {
         if(!data){
             return res.status(200).json({
                 status:false,
-                message:"Academy not found"
+                message:"Academy not found",
+                error:data
             })
         }
         const content = convertBigIntToString(data);
