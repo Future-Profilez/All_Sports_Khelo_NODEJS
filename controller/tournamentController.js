@@ -65,7 +65,7 @@ exports.tournamentGalleryFolder = async (req, res) => {
                 slug_name: slug
             }
         })
-        const folder = await prisma.tournament_galleries_folders.findFirst({
+        const folder = await prisma.tournament_galleries_folders.findMany({
             where: {
                 tournament_id: tournament.id
             }
@@ -105,7 +105,7 @@ exports.tournamentGallery = async (req, res) => {
                 tournament_id: tournament.id
             }
         })
-        const gallery = await prisma.tournament_galleries.findFirst({
+        const gallery = await prisma.tournament_galleries.findMany({
             where: {
                 tournament_id: tournament.id,
                 tournament_galleries_folder_id: folder.id
