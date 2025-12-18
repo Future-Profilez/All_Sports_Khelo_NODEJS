@@ -1,8 +1,8 @@
 const express = require('express')
-const { academies, academyDetails } = require('../controller/academyController.js')
+const { academies, academyDetails, academyDetailsByType } = require('../controller/academyController.js')
 const router = express.Router()
 
 router.get('/',academies);
-router.get('/:slug',academyDetails);
+router.get('/:slug/:type',academyDetailsByType);
 
 module.exports = router 

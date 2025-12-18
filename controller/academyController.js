@@ -4,13 +4,13 @@ const convertBigIntToString = require('../helper/convertBigInt')
 exports.academies = async (req, res) => {
     try {
         const list = await prisma.academies.findMany({
-                where: { status: 1 , is_active: 1 },
-                // select: {
-                //     id: true,
-                //     slug_name: true,
-                //     address: true,
-                // }
-            });
+            where: { status: 1, is_active: 1 },
+            // select: {
+            //     id: true,
+            //     slug_name: true,
+            //     address: true,
+            // }
+        });
         const data = convertBigIntToString(list);
         console.log('no of academies :', data.length);
         if (data && data.length < 1) {
@@ -34,39 +34,118 @@ exports.academies = async (req, res) => {
     }
 }
 
+// exports.academyDetails = async(req,res) => {
+//     try{
+//         const slug = req.params.slug;
+//         const data = await prisma.academies.findFirst({
+//             where: { slug_name: slug },
+//             include: {
+//                 academy_seo_contents: {
+//                     where: { name: "page_description" }
+//                 },
+//                 academy_details: true,
+//                 academy_amenities:  true,
+//                 academy_timings: true
+//             }
+//         });
 
-exports.academyDetails = async(req,res) => {
-    try{
-        const slug = req.params.slug;
+
+//         if(!data){
+//             return res.status(200).json({
+//                 status:false,
+//                 message:"Academy not found",
+//                 error:data
+//             })
+//         }
+//         // Get all the social media handles of this academy
+//         const a_urls = await prisma.academy_urls.findFirst({
+//             where: { user_id: data?.user_id },
+//         });
+//         const academyurls = convertBigIntToString(a_urls);
+
+//         const content = convertBigIntToString(data);
+//         return res.status(200).json({
+//             status:true,
+//             message:"Academy details fetched succesfully",
+//             academy:{...content, academyurls: academyurls}
+//         })
+//     }catch(error){
+//         console.log("error: ",error);
+//         return res.status(500).json({
+//             status: false,
+//             message:"Something went wrong",
+//             error:error
+//         })
+//     }
+// }
+
+exports.academyDetailsByType = async (req, res) => {
+    try {
+        const baseInclude = {
+            academy_details: true,
+        };
+
+        const getAcademyIncludeByType = (type) => {
+            switch (type) {
+                case 'overview':
+                    return {
+                        academy_seo_contents: {
+                            where: { name: "page_description" }
+                        },
+                        academy_details: true,
+                        // academy_amenities: true,
+                        academy_timings: true,
+                    };
+                case 'programs':
+                    return {
+                        academy_programs: true,
+                    };
+                case 'coaches':
+                    return{
+                        academy_coaches: true,
+                    }
+                case 'basic':
+                    return {
+                        ...baseInclude,
+                    };
+                default:
+            }
+        };
+
+        const slug = req?.params?.slug;
+        const type = req?.params?.type;
+        const include = getAcademyIncludeByType(type);
         const data = await prisma.academies.findFirst({
             where: { slug_name: slug },
-            include: {
-                academy_seo_contents: {
-                    where: { name: "description" }
-                },
-                academy_amenities :  true
-            }
+            include
         });
-
-        if(!data){
+        if (!data) {
             return res.status(200).json({
-                status:false,
-                message:"Academy not found",
-                error:data
+                status: false,
+                message: "Academy not found",
+                error: data
             })
+        }
+        // Get all the social media handles of this academy
+        let academyurls;
+        if (type === 'overview') {
+            const a_urls = await prisma.academy_urls.findFirst({
+                where: { user_id: data?.user_id },
+            });
+            academyurls = convertBigIntToString(a_urls);
         }
         const content = convertBigIntToString(data);
         return res.status(200).json({
-            status:true,
-            message:"Academy details fetched succesfully",
-            academy:content
+            status: true,
+            message: "Academy details fetched succesfully",
+            academy: { ...content, academyurls: academyurls }
         })
-    }catch(error){
-        console.log("error: ",error);
+    } catch (error) {
+        console.log("error: ", error);
         return res.status(500).json({
             status: false,
-            message:"Something went wrong",
-            error:error
+            message: "Something went wrong",
+            error: error
         })
     }
 }
