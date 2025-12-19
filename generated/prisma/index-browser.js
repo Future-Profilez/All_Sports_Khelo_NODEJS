@@ -246,6 +246,19 @@ exports.Prisma.Academy_galleriesScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
+exports.Prisma.Academy_achievementsScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  name: 'name',
+  slug_name: 'slug_name',
+  achhievement_image: 'achhievement_image',
+  description: 'description',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  academy_id: 'academy_id',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.Academy_urlsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -259,19 +272,6 @@ exports.Prisma.Academy_urlsScalarFieldEnum = {
   other_url: 'other_url',
   created_at: 'created_at',
   updated_at: 'updated_at'
-};
-
-exports.Prisma.Academy_achievementsScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  name: 'name',
-  slug_name: 'slug_name',
-  achhievement_image: 'achhievement_image',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  academy_id: 'academy_id',
-  deleted_at: 'deleted_at'
 };
 
 exports.Prisma.Academy_addonsScalarFieldEnum = {
@@ -2983,6 +2983,14 @@ exports.Prisma.academy_galleriesOrderByRelevanceFieldEnum = {
   academy_images: 'academy_images'
 };
 
+exports.Prisma.academy_achievementsOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  name: 'name',
+  slug_name: 'slug_name',
+  achhievement_image: 'achhievement_image',
+  description: 'description'
+};
+
 exports.Prisma.academy_urlsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   insta_url: 'insta_url',
@@ -2992,14 +3000,6 @@ exports.Prisma.academy_urlsOrderByRelevanceFieldEnum = {
   linkedln_url: 'linkedln_url',
   website_url: 'website_url',
   other_url: 'other_url'
-};
-
-exports.Prisma.academy_achievementsOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  name: 'name',
-  slug_name: 'slug_name',
-  achhievement_image: 'achhievement_image',
-  description: 'description'
 };
 
 exports.Prisma.academy_addonsOrderByRelevanceFieldEnum = {
@@ -4730,8 +4730,8 @@ exports.Prisma.ModelName = {
   academy_programs: 'academy_programs',
   academy_coaches: 'academy_coaches',
   academy_galleries: 'academy_galleries',
-  academy_urls: 'academy_urls',
   academy_achievements: 'academy_achievements',
+  academy_urls: 'academy_urls',
   academy_addons: 'academy_addons',
   academy_admin_permissions: 'academy_admin_permissions',
   academy_bookings: 'academy_bookings',
