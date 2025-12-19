@@ -5,6 +5,13 @@ exports.academies = async (req, res) => {
     try {
         const list = await prisma.academies.findMany({
             where: { status: 1, is_active: 1 },
+            include: {
+                academy_details: {
+                    select: {
+                        img: true,
+                    },
+                },
+            }
             // select: {
             //     id: true,
             //     slug_name: true,
@@ -98,11 +105,17 @@ exports.academyDetailsByType = async (req, res) => {
                     };
                 case 'programs':
                     return {
+                        academy_details: true,
                         academy_programs: true,
                     };
                 case 'coaches':
-                    return{
+                    return {
+                        academy_details: true,
                         academy_coaches: true,
+                    }
+                case 'gallery':
+                    return{
+                        academy_galleries: true
                     }
                 case 'basic':
                     return {

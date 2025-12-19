@@ -232,6 +232,20 @@ exports.Prisma.Academy_coachesScalarFieldEnum = {
   phone_prefix: 'phone_prefix'
 };
 
+exports.Prisma.Academy_galleriesScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  academy_id: 'academy_id',
+  academy_name: 'academy_name',
+  slug_name: 'slug_name',
+  title: 'title',
+  academy_description: 'academy_description',
+  academy_images: 'academy_images',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.Academy_urlsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -491,20 +505,6 @@ exports.Prisma.Academy_featuresScalarFieldEnum = {
   updated_at: 'updated_at',
   deleted_at: 'deleted_at',
   phone_prefix: 'phone_prefix'
-};
-
-exports.Prisma.Academy_galleriesScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  academy_id: 'academy_id',
-  academy_name: 'academy_name',
-  slug_name: 'slug_name',
-  title: 'title',
-  academy_description: 'academy_description',
-  academy_images: 'academy_images',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
 };
 
 exports.Prisma.Academy_holidaysScalarFieldEnum = {
@@ -2974,6 +2974,15 @@ exports.Prisma.academy_coachesOrderByRelevanceFieldEnum = {
   phone_prefix: 'phone_prefix'
 };
 
+exports.Prisma.academy_galleriesOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  academy_name: 'academy_name',
+  slug_name: 'slug_name',
+  title: 'title',
+  academy_description: 'academy_description',
+  academy_images: 'academy_images'
+};
+
 exports.Prisma.academy_urlsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   insta_url: 'insta_url',
@@ -3130,15 +3139,6 @@ exports.Prisma.academy_featuresOrderByRelevanceFieldEnum = {
   email: 'email',
   avatar_image: 'avatar_image',
   phone_prefix: 'phone_prefix'
-};
-
-exports.Prisma.academy_galleriesOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  academy_name: 'academy_name',
-  slug_name: 'slug_name',
-  title: 'title',
-  academy_description: 'academy_description',
-  academy_images: 'academy_images'
 };
 
 exports.Prisma.academy_holidaysOrderByRelevanceFieldEnum = {
@@ -4729,6 +4729,7 @@ exports.Prisma.ModelName = {
   academy_timings: 'academy_timings',
   academy_programs: 'academy_programs',
   academy_coaches: 'academy_coaches',
+  academy_galleries: 'academy_galleries',
   academy_urls: 'academy_urls',
   academy_achievements: 'academy_achievements',
   academy_addons: 'academy_addons',
@@ -4746,7 +4747,6 @@ exports.Prisma.ModelName = {
   academy_delete_request_logs: 'academy_delete_request_logs',
   academy_delete_requests: 'academy_delete_requests',
   academy_features: 'academy_features',
-  academy_galleries: 'academy_galleries',
   academy_holidays: 'academy_holidays',
   academy_images: 'academy_images',
   academy_info: 'academy_info',

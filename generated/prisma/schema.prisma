@@ -42,6 +42,7 @@ model academies {
   academy_timings      academy_timings[]      @relation("AcademyTimingRelation")
   academy_programs     academy_programs[]     @relation("AcademyProgramsRelation")
   academy_coaches      academy_coaches[]      @relation("AcademyCoachesRelation")
+  academy_galleries    academy_galleries[]    @relation("AcademyGalleryRelation")
 }
 
 model academy_seo_contents {
@@ -135,6 +136,21 @@ model academy_coaches {
   deleted_at         DateTime?  @db.Timestamp(0)
   phone_prefix       String?    @default("91") @db.VarChar(255)
   academies          academies? @relation("AcademyCoachesRelation", fields: [academy_id], references: [id])
+}
+
+model academy_galleries {
+  id                  BigInt     @id @db.UnsignedBigInt
+  uuid                String     @db.Char(36)
+  academy_id          BigInt     @db.UnsignedBigInt
+  academy_name        String     @db.VarChar(255)
+  slug_name           String?    @db.VarChar(255)
+  title               String?    @db.VarChar(255)
+  academy_description String     @db.LongText
+  academy_images      String     @db.LongText
+  created_at          DateTime?  @db.Timestamp(0)
+  updated_at          DateTime?  @db.Timestamp(0)
+  deleted_at          DateTime?  @db.Timestamp(0)
+  academies           academies? @relation("AcademyGalleryRelation", fields: [academy_id], references: [id])
 }
 
 model academy_urls {
@@ -407,20 +423,6 @@ model academy_features {
   updated_at   DateTime? @db.Timestamp(0)
   deleted_at   DateTime? @db.Timestamp(0)
   phone_prefix String?   @default("91") @db.VarChar(255)
-}
-
-model academy_galleries {
-  id                  BigInt    @id @db.UnsignedBigInt
-  uuid                String    @db.Char(36)
-  academy_id          BigInt    @db.UnsignedBigInt
-  academy_name        String    @db.VarChar(255)
-  slug_name           String?   @db.VarChar(255)
-  title               String?   @db.VarChar(255)
-  academy_description String    @db.LongText
-  academy_images      String    @db.LongText
-  created_at          DateTime? @db.Timestamp(0)
-  updated_at          DateTime? @db.Timestamp(0)
-  deleted_at          DateTime? @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
