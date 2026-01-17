@@ -8,3 +8,4 @@ node_modules
 lib/prisma.js
 # DotEnv
 .env
+introspected.tmp.prisma
