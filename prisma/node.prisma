@@ -12,3 +12,48 @@ model ask_notes_detail {
   createdAt DateTime @default(now()) @db.Timestamp(0)
 }
 
+model ask_testing {
+  id            Int       @id @default(autoincrement())
+  title         String?   @db.VarChar(255)
+  description   String?   @db.VarChar(255)
+}
+
+model ask_test_sports {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(255)
+}
+
+model ask_testing1 {
+  id            Int       @id @default(autoincrement())
+  title         String?   @db.VarChar(255)
+  description   String?   @db.VarChar(255)
+}
+
+model asktournaments {
+  id                            Int       @id @default(autoincrement())
+  uuid                          String?   @unique @default(uuid()) @db.Char(36)
+  sport_id                      String?   @db.Char(36)
+  user_id                       BigInt?   @db.UnsignedBigInt
+  name                          String?   @db.VarChar(255)
+  slug_name                     String?   @unique @db.VarChar(255)
+  description                   String?   @db.VarChar(255)
+  content                       String?   @db.LongText
+  tournament_type               String?   @db.VarChar(255)
+  tourstartdate                 DateTime? 
+  tourenddate                   DateTime? 
+  address                       String?   @db.Text
+  country_id                    BigInt?   @db.UnsignedBigInt
+  state_id                      BigInt?   @db.UnsignedBigInt
+  city_id                       BigInt?   @db.UnsignedBigInt
+  tourbannerimage               String?   @db.VarChar(255)
+  tourthumbnail                 String?   @db.VarChar(255)
+  tourwebsite                   String?   @db.VarChar(255)
+  tourbrochure                  String?   @db.VarChar(255)
+  prizemoney                    String?   @db.VarChar(255)
+  tournament_fees               Decimal?  @db.Decimal(10, 2)
+  participation_limit           Int?      @db.Int
+  publish_status                Int       @default(0) @db.TinyInt
+  created_at                    DateTime? @db.Timestamp(0)
+  updated_at                    DateTime? @db.Timestamp(0)
+  deleted_at                    DateTime? @db.Timestamp(0)
+}

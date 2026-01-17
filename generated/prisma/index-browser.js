@@ -376,35 +376,6 @@ exports.Prisma.Tournament_galleries_foldersScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
-exports.Prisma.AsktournamentsScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  sport_id: 'sport_id',
-  name: 'name',
-  slug_name: 'slug_name',
-  description: 'description',
-  tournament_type: 'tournament_type',
-  user_id: 'user_id',
-  tourstartdate: 'tourstartdate',
-  tourenddate: 'tourenddate',
-  venue: 'venue',
-  tourbannerimage: 'tourbannerimage',
-  tourthumbnail: 'tourthumbnail',
-  tourwebsite: 'tourwebsite',
-  tourbrochure: 'tourbrochure',
-  prizemoney: 'prizemoney',
-  tournament_fees: 'tournament_fees',
-  country_id: 'country_id',
-  state_id: 'state_id',
-  city_id: 'city_id',
-  address: 'address',
-  participation_limit: 'participation_limit',
-  publish_status: 'publish_status',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
 exports.Prisma.Ask_my_notesScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -417,6 +388,52 @@ exports.Prisma.Ask_notes_detailScalarFieldEnum = {
   note_id: 'note_id',
   content: 'content',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.Ask_testingScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description'
+};
+
+exports.Prisma.Ask_test_sportsScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.Ask_testing1ScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description'
+};
+
+exports.Prisma.AsktournamentsScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  sport_id: 'sport_id',
+  user_id: 'user_id',
+  name: 'name',
+  slug_name: 'slug_name',
+  description: 'description',
+  content: 'content',
+  tournament_type: 'tournament_type',
+  tourstartdate: 'tourstartdate',
+  tourenddate: 'tourenddate',
+  address: 'address',
+  country_id: 'country_id',
+  state_id: 'state_id',
+  city_id: 'city_id',
+  tourbannerimage: 'tourbannerimage',
+  tourthumbnail: 'tourthumbnail',
+  tourwebsite: 'tourwebsite',
+  tourbrochure: 'tourbrochure',
+  prizemoney: 'prizemoney',
+  tournament_fees: 'tournament_fees',
+  participation_limit: 'participation_limit',
+  publish_status: 'publish_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -580,22 +597,6 @@ exports.Prisma.tournament_galleries_foldersOrderByRelevanceFieldEnum = {
   folder_name: 'folder_name'
 };
 
-exports.Prisma.asktournamentsOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  sport_id: 'sport_id',
-  name: 'name',
-  slug_name: 'slug_name',
-  description: 'description',
-  tournament_type: 'tournament_type',
-  venue: 'venue',
-  tourbannerimage: 'tourbannerimage',
-  tourthumbnail: 'tourthumbnail',
-  tourwebsite: 'tourwebsite',
-  tourbrochure: 'tourbrochure',
-  prizemoney: 'prizemoney',
-  address: 'address'
-};
-
 exports.Prisma.ask_my_notesOrderByRelevanceFieldEnum = {
   title: 'title',
   body: 'body'
@@ -603,6 +604,36 @@ exports.Prisma.ask_my_notesOrderByRelevanceFieldEnum = {
 
 exports.Prisma.ask_notes_detailOrderByRelevanceFieldEnum = {
   content: 'content'
+};
+
+exports.Prisma.ask_testingOrderByRelevanceFieldEnum = {
+  title: 'title',
+  description: 'description'
+};
+
+exports.Prisma.ask_test_sportsOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.ask_testing1OrderByRelevanceFieldEnum = {
+  title: 'title',
+  description: 'description'
+};
+
+exports.Prisma.asktournamentsOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  sport_id: 'sport_id',
+  name: 'name',
+  slug_name: 'slug_name',
+  description: 'description',
+  content: 'content',
+  tournament_type: 'tournament_type',
+  address: 'address',
+  tourbannerimage: 'tourbannerimage',
+  tourthumbnail: 'tourthumbnail',
+  tourwebsite: 'tourwebsite',
+  tourbrochure: 'tourbrochure',
+  prizemoney: 'prizemoney'
 };
 exports.sports_status = exports.$Enums.sports_status = {
   active: 'active',
@@ -626,9 +657,12 @@ exports.Prisma.ModelName = {
   tournament_contents: 'tournament_contents',
   tournament_galleries: 'tournament_galleries',
   tournament_galleries_folders: 'tournament_galleries_folders',
-  asktournaments: 'asktournaments',
   ask_my_notes: 'ask_my_notes',
-  ask_notes_detail: 'ask_notes_detail'
+  ask_notes_detail: 'ask_notes_detail',
+  ask_testing: 'ask_testing',
+  ask_test_sports: 'ask_test_sports',
+  ask_testing1: 'ask_testing1',
+  asktournaments: 'asktournaments'
 };
 
 /**
