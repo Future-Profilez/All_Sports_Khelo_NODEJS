@@ -9,7 +9,6 @@ npx prisma migrate diff ^ --from-config-datasource ^ --to-schema prisma ^ --scri
 
 npx prisma db execute --file prisma/sql/20260118_add_ask_notes.sql
 
-
 npx prisma generate
 
 -- to add relations 

@@ -1,13 +1,14 @@
-model ask_notes {
+model ask_my_notes {
   id        Int      @id @default(autoincrement())
   title     String   @db.VarChar(255)
   body      String?  @db.LongText
   createdAt DateTime @default(now()) @db.Timestamp(0)
 }
- 
-model ask_test_tournaments {
+
+model ask_notes_detail {
   id        Int      @id @default(autoincrement())
-  feature   String   @db.VarChar(255)
-  createdAt DateTime @default(now())
+  note_id    Int
+  content    String?  @db.LongText
+  createdAt DateTime @default(now()) @db.Timestamp(0)
 }
- 
+

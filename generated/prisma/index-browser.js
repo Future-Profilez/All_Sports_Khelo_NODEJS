@@ -287,48 +287,6 @@ exports.Prisma.SportsScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
-exports.Prisma.Tournament_contentsScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  tournament_id: 'tournament_id',
-  name: 'name',
-  value: 'value',
-  extra: 'extra',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
-exports.Prisma.Tournament_galleriesScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  tournament_id: 'tournament_id',
-  image: 'image',
-  tag_users: 'tag_users',
-  tournament_galleries_folder_id: 'tournament_galleries_folder_id',
-  face_app_sync: 'face_app_sync',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
-exports.Prisma.Tournament_galleries_foldersScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  tournament_id: 'tournament_id',
-  folder_name: 'folder_name',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
-exports.Prisma.Ask_notesScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  body: 'body',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.TournamentsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -381,6 +339,84 @@ exports.Prisma.TournamentsScalarFieldEnum = {
   is_registration_table_dynamic: 'is_registration_table_dynamic',
   is_razorpay_payment_enable: 'is_razorpay_payment_enable',
   deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Tournament_contentsScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  tournament_id: 'tournament_id',
+  name: 'name',
+  value: 'value',
+  extra: 'extra',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Tournament_galleriesScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  tournament_id: 'tournament_id',
+  image: 'image',
+  tag_users: 'tag_users',
+  tournament_galleries_folder_id: 'tournament_galleries_folder_id',
+  face_app_sync: 'face_app_sync',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Tournament_galleries_foldersScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  tournament_id: 'tournament_id',
+  folder_name: 'folder_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.AsktournamentsScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  sport_id: 'sport_id',
+  name: 'name',
+  slug_name: 'slug_name',
+  description: 'description',
+  tournament_type: 'tournament_type',
+  user_id: 'user_id',
+  tourstartdate: 'tourstartdate',
+  tourenddate: 'tourenddate',
+  venue: 'venue',
+  tourbannerimage: 'tourbannerimage',
+  tourthumbnail: 'tourthumbnail',
+  tourwebsite: 'tourwebsite',
+  tourbrochure: 'tourbrochure',
+  prizemoney: 'prizemoney',
+  tournament_fees: 'tournament_fees',
+  country_id: 'country_id',
+  state_id: 'state_id',
+  city_id: 'city_id',
+  address: 'address',
+  participation_limit: 'participation_limit',
+  publish_status: 'publish_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Ask_my_notesScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.Ask_notes_detailScalarFieldEnum = {
+  id: 'id',
+  note_id: 'note_id',
+  content: 'content',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -496,29 +532,6 @@ exports.Prisma.sportsOrderByRelevanceFieldEnum = {
   icon_md: 'icon_md'
 };
 
-exports.Prisma.tournament_contentsOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  name: 'name',
-  value: 'value',
-  extra: 'extra'
-};
-
-exports.Prisma.tournament_galleriesOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  image: 'image',
-  tag_users: 'tag_users'
-};
-
-exports.Prisma.tournament_galleries_foldersOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  folder_name: 'folder_name'
-};
-
-exports.Prisma.ask_notesOrderByRelevanceFieldEnum = {
-  title: 'title',
-  body: 'body'
-};
-
 exports.Prisma.tournamentsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   sport_id: 'sport_id',
@@ -548,6 +561,49 @@ exports.Prisma.tournamentsOrderByRelevanceFieldEnum = {
   address: 'address',
   organization_tier_id: 'organization_tier_id'
 };
+
+exports.Prisma.tournament_contentsOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  name: 'name',
+  value: 'value',
+  extra: 'extra'
+};
+
+exports.Prisma.tournament_galleriesOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  image: 'image',
+  tag_users: 'tag_users'
+};
+
+exports.Prisma.tournament_galleries_foldersOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  folder_name: 'folder_name'
+};
+
+exports.Prisma.asktournamentsOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  sport_id: 'sport_id',
+  name: 'name',
+  slug_name: 'slug_name',
+  description: 'description',
+  tournament_type: 'tournament_type',
+  venue: 'venue',
+  tourbannerimage: 'tourbannerimage',
+  tourthumbnail: 'tourthumbnail',
+  tourwebsite: 'tourwebsite',
+  tourbrochure: 'tourbrochure',
+  prizemoney: 'prizemoney',
+  address: 'address'
+};
+
+exports.Prisma.ask_my_notesOrderByRelevanceFieldEnum = {
+  title: 'title',
+  body: 'body'
+};
+
+exports.Prisma.ask_notes_detailOrderByRelevanceFieldEnum = {
+  content: 'content'
+};
 exports.sports_status = exports.$Enums.sports_status = {
   active: 'active',
   inactive: 'inactive',
@@ -566,11 +622,13 @@ exports.Prisma.ModelName = {
   academy_galleries: 'academy_galleries',
   academy_achievements: 'academy_achievements',
   sports: 'sports',
+  tournaments: 'tournaments',
   tournament_contents: 'tournament_contents',
   tournament_galleries: 'tournament_galleries',
   tournament_galleries_folders: 'tournament_galleries_folders',
-  ask_notes: 'ask_notes',
-  tournaments: 'tournaments'
+  asktournaments: 'asktournaments',
+  ask_my_notes: 'ask_my_notes',
+  ask_notes_detail: 'ask_notes_detail'
 };
 
 /**

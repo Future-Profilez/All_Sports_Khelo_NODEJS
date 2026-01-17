@@ -69,9 +69,13 @@ export type academy_achievements = $Result.DefaultSelection<Prisma.$academy_achi
  */
 export type sports = $Result.DefaultSelection<Prisma.$sportsPayload>
 /**
+ * Model tournaments
+ * 
+ */
+export type tournaments = $Result.DefaultSelection<Prisma.$tournamentsPayload>
+/**
  * Model tournament_contents
- * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
- * The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+ * 
  */
 export type tournament_contents = $Result.DefaultSelection<Prisma.$tournament_contentsPayload>
 /**
@@ -85,15 +89,20 @@ export type tournament_galleries = $Result.DefaultSelection<Prisma.$tournament_g
  */
 export type tournament_galleries_folders = $Result.DefaultSelection<Prisma.$tournament_galleries_foldersPayload>
 /**
- * Model ask_notes
+ * Model asktournaments
  * 
  */
-export type ask_notes = $Result.DefaultSelection<Prisma.$ask_notesPayload>
+export type asktournaments = $Result.DefaultSelection<Prisma.$asktournamentsPayload>
 /**
- * Model tournaments
+ * Model ask_my_notes
  * 
  */
-export type tournaments = $Result.DefaultSelection<Prisma.$tournamentsPayload>
+export type ask_my_notes = $Result.DefaultSelection<Prisma.$ask_my_notesPayload>
+/**
+ * Model ask_notes_detail
+ * 
+ */
+export type ask_notes_detail = $Result.DefaultSelection<Prisma.$ask_notes_detailPayload>
 
 /**
  * Enums
@@ -341,6 +350,16 @@ export class PrismaClient<
   get sports(): Prisma.sportsDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.tournaments`: Exposes CRUD operations for the **tournaments** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tournaments
+    * const tournaments = await prisma.tournaments.findMany()
+    * ```
+    */
+  get tournaments(): Prisma.tournamentsDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.tournament_contents`: Exposes CRUD operations for the **tournament_contents** model.
     * Example usage:
     * ```ts
@@ -371,24 +390,34 @@ export class PrismaClient<
   get tournament_galleries_folders(): Prisma.tournament_galleries_foldersDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.ask_notes`: Exposes CRUD operations for the **ask_notes** model.
+   * `prisma.asktournaments`: Exposes CRUD operations for the **asktournaments** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Ask_notes
-    * const ask_notes = await prisma.ask_notes.findMany()
+    * // Fetch zero or more Asktournaments
+    * const asktournaments = await prisma.asktournaments.findMany()
     * ```
     */
-  get ask_notes(): Prisma.ask_notesDelegate<ExtArgs, ClientOptions>;
+  get asktournaments(): Prisma.asktournamentsDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.tournaments`: Exposes CRUD operations for the **tournaments** model.
+   * `prisma.ask_my_notes`: Exposes CRUD operations for the **ask_my_notes** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Tournaments
-    * const tournaments = await prisma.tournaments.findMany()
+    * // Fetch zero or more Ask_my_notes
+    * const ask_my_notes = await prisma.ask_my_notes.findMany()
     * ```
     */
-  get tournaments(): Prisma.tournamentsDelegate<ExtArgs, ClientOptions>;
+  get ask_my_notes(): Prisma.ask_my_notesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.ask_notes_detail`: Exposes CRUD operations for the **ask_notes_detail** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Ask_notes_details
+    * const ask_notes_details = await prisma.ask_notes_detail.findMany()
+    * ```
+    */
+  get ask_notes_detail(): Prisma.ask_notes_detailDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -834,11 +863,13 @@ export namespace Prisma {
     academy_galleries: 'academy_galleries',
     academy_achievements: 'academy_achievements',
     sports: 'sports',
+    tournaments: 'tournaments',
     tournament_contents: 'tournament_contents',
     tournament_galleries: 'tournament_galleries',
     tournament_galleries_folders: 'tournament_galleries_folders',
-    ask_notes: 'ask_notes',
-    tournaments: 'tournaments'
+    asktournaments: 'asktournaments',
+    ask_my_notes: 'ask_my_notes',
+    ask_notes_detail: 'ask_notes_detail'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -854,7 +885,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_notes" | "tournaments"
+      modelProps: "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "asktournaments" | "ask_my_notes" | "ask_notes_detail"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1584,6 +1615,72 @@ export namespace Prisma {
           }
         }
       }
+      tournaments: {
+        payload: Prisma.$tournamentsPayload<ExtArgs>
+        fields: Prisma.tournamentsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.tournamentsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.tournamentsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+          }
+          findFirst: {
+            args: Prisma.tournamentsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.tournamentsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+          }
+          findMany: {
+            args: Prisma.tournamentsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>[]
+          }
+          create: {
+            args: Prisma.tournamentsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+          }
+          createMany: {
+            args: Prisma.tournamentsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.tournamentsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+          }
+          update: {
+            args: Prisma.tournamentsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+          }
+          deleteMany: {
+            args: Prisma.tournamentsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.tournamentsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.tournamentsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+          }
+          aggregate: {
+            args: Prisma.TournamentsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTournaments>
+          }
+          groupBy: {
+            args: Prisma.tournamentsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TournamentsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.tournamentsCountArgs<ExtArgs>
+            result: $Utils.Optional<TournamentsCountAggregateOutputType> | number
+          }
+        }
+      }
       tournament_contents: {
         payload: Prisma.$tournament_contentsPayload<ExtArgs>
         fields: Prisma.tournament_contentsFieldRefs
@@ -1782,135 +1879,201 @@ export namespace Prisma {
           }
         }
       }
-      ask_notes: {
-        payload: Prisma.$ask_notesPayload<ExtArgs>
-        fields: Prisma.ask_notesFieldRefs
+      asktournaments: {
+        payload: Prisma.$asktournamentsPayload<ExtArgs>
+        fields: Prisma.asktournamentsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ask_notesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload> | null
+            args: Prisma.asktournamentsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ask_notesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload>
+            args: Prisma.asktournamentsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
           }
           findFirst: {
-            args: Prisma.ask_notesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload> | null
+            args: Prisma.asktournamentsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ask_notesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload>
+            args: Prisma.asktournamentsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
           }
           findMany: {
-            args: Prisma.ask_notesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload>[]
+            args: Prisma.asktournamentsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>[]
           }
           create: {
-            args: Prisma.ask_notesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload>
+            args: Prisma.asktournamentsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
           }
           createMany: {
-            args: Prisma.ask_notesCreateManyArgs<ExtArgs>
+            args: Prisma.asktournamentsCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.ask_notesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload>
+            args: Prisma.asktournamentsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
           }
           update: {
-            args: Prisma.ask_notesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload>
+            args: Prisma.asktournamentsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
           }
           deleteMany: {
-            args: Prisma.ask_notesDeleteManyArgs<ExtArgs>
+            args: Prisma.asktournamentsDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ask_notesUpdateManyArgs<ExtArgs>
+            args: Prisma.asktournamentsUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.ask_notesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ask_notesPayload>
+            args: Prisma.asktournamentsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
           }
           aggregate: {
-            args: Prisma.Ask_notesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAsk_notes>
+            args: Prisma.AsktournamentsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAsktournaments>
           }
           groupBy: {
-            args: Prisma.ask_notesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Ask_notesGroupByOutputType>[]
+            args: Prisma.asktournamentsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AsktournamentsGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ask_notesCountArgs<ExtArgs>
-            result: $Utils.Optional<Ask_notesCountAggregateOutputType> | number
+            args: Prisma.asktournamentsCountArgs<ExtArgs>
+            result: $Utils.Optional<AsktournamentsCountAggregateOutputType> | number
           }
         }
       }
-      tournaments: {
-        payload: Prisma.$tournamentsPayload<ExtArgs>
-        fields: Prisma.tournamentsFieldRefs
+      ask_my_notes: {
+        payload: Prisma.$ask_my_notesPayload<ExtArgs>
+        fields: Prisma.ask_my_notesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.tournamentsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload> | null
+            args: Prisma.ask_my_notesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.tournamentsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+            args: Prisma.ask_my_notesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload>
           }
           findFirst: {
-            args: Prisma.tournamentsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload> | null
+            args: Prisma.ask_my_notesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.tournamentsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+            args: Prisma.ask_my_notesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload>
           }
           findMany: {
-            args: Prisma.tournamentsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>[]
+            args: Prisma.ask_my_notesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload>[]
           }
           create: {
-            args: Prisma.tournamentsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+            args: Prisma.ask_my_notesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload>
           }
           createMany: {
-            args: Prisma.tournamentsCreateManyArgs<ExtArgs>
+            args: Prisma.ask_my_notesCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.tournamentsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+            args: Prisma.ask_my_notesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload>
           }
           update: {
-            args: Prisma.tournamentsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+            args: Prisma.ask_my_notesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload>
           }
           deleteMany: {
-            args: Prisma.tournamentsDeleteManyArgs<ExtArgs>
+            args: Prisma.ask_my_notesDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.tournamentsUpdateManyArgs<ExtArgs>
+            args: Prisma.ask_my_notesUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.tournamentsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$tournamentsPayload>
+            args: Prisma.ask_my_notesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_my_notesPayload>
           }
           aggregate: {
-            args: Prisma.TournamentsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTournaments>
+            args: Prisma.Ask_my_notesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAsk_my_notes>
           }
           groupBy: {
-            args: Prisma.tournamentsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TournamentsGroupByOutputType>[]
+            args: Prisma.ask_my_notesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Ask_my_notesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.tournamentsCountArgs<ExtArgs>
-            result: $Utils.Optional<TournamentsCountAggregateOutputType> | number
+            args: Prisma.ask_my_notesCountArgs<ExtArgs>
+            result: $Utils.Optional<Ask_my_notesCountAggregateOutputType> | number
+          }
+        }
+      }
+      ask_notes_detail: {
+        payload: Prisma.$ask_notes_detailPayload<ExtArgs>
+        fields: Prisma.ask_notes_detailFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ask_notes_detailFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ask_notes_detailFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload>
+          }
+          findFirst: {
+            args: Prisma.ask_notes_detailFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ask_notes_detailFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload>
+          }
+          findMany: {
+            args: Prisma.ask_notes_detailFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload>[]
+          }
+          create: {
+            args: Prisma.ask_notes_detailCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload>
+          }
+          createMany: {
+            args: Prisma.ask_notes_detailCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ask_notes_detailDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload>
+          }
+          update: {
+            args: Prisma.ask_notes_detailUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload>
+          }
+          deleteMany: {
+            args: Prisma.ask_notes_detailDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ask_notes_detailUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ask_notes_detailUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_notes_detailPayload>
+          }
+          aggregate: {
+            args: Prisma.Ask_notes_detailAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAsk_notes_detail>
+          }
+          groupBy: {
+            args: Prisma.ask_notes_detailGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Ask_notes_detailGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ask_notes_detailCountArgs<ExtArgs>
+            result: $Utils.Optional<Ask_notes_detailCountAggregateOutputType> | number
           }
         }
       }
@@ -2017,11 +2180,13 @@ export namespace Prisma {
     academy_galleries?: academy_galleriesOmit
     academy_achievements?: academy_achievementsOmit
     sports?: sportsOmit
+    tournaments?: tournamentsOmit
     tournament_contents?: tournament_contentsOmit
     tournament_galleries?: tournament_galleriesOmit
     tournament_galleries_folders?: tournament_galleries_foldersOmit
-    ask_notes?: ask_notesOmit
-    tournaments?: tournamentsOmit
+    asktournaments?: asktournamentsOmit
+    ask_my_notes?: ask_my_notesOmit
+    ask_notes_detail?: ask_notes_detailOmit
   }
 
   /* Types for Logging */
@@ -14011,6 +14176,1553 @@ export namespace Prisma {
 
 
   /**
+   * Model tournaments
+   */
+
+  export type AggregateTournaments = {
+    _count: TournamentsCountAggregateOutputType | null
+    _avg: TournamentsAvgAggregateOutputType | null
+    _sum: TournamentsSumAggregateOutputType | null
+    _min: TournamentsMinAggregateOutputType | null
+    _max: TournamentsMaxAggregateOutputType | null
+  }
+
+  export type TournamentsAvgAggregateOutputType = {
+    id: number | null
+    created_by: number | null
+    user_id: number | null
+    academy_id: number | null
+    sets: number | null
+    country_id: number | null
+    state_id: number | null
+    city_id: number | null
+    winner_id: number | null
+    participation_limit: number | null
+    publish_status: number | null
+    is_old: number | null
+    is_verified: number | null
+    tournament_fees: Decimal | null
+  }
+
+  export type TournamentsSumAggregateOutputType = {
+    id: number | null
+    created_by: bigint | null
+    user_id: bigint | null
+    academy_id: number | null
+    sets: number | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    winner_id: number | null
+    participation_limit: number | null
+    publish_status: number | null
+    is_old: number | null
+    is_verified: number | null
+    tournament_fees: Decimal | null
+  }
+
+  export type TournamentsMinAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    sport_id: string | null
+    created_by: bigint | null
+    name: string | null
+    slug_name: string | null
+    locality: string | null
+    events_payload: string | null
+    match_type: string | null
+    description: string | null
+    type: string | null
+    tournament_type: string | null
+    user_id: bigint | null
+    academy_id: number | null
+    tourstartdate: Date | null
+    tourenddate: Date | null
+    sets: number | null
+    tournament_set: string | null
+    tourcategory: string | null
+    drawtype: string | null
+    agegroup: string | null
+    variationid: string | null
+    venue: string | null
+    official: string | null
+    tourimage: string | null
+    winnerprize: string | null
+    contestantprize: string | null
+    semifinalprize: string | null
+    quarterfinalprize: string | null
+    runnerupprize: string | null
+    long: string | null
+    lat: string | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    address: string | null
+    winner_id: number | null
+    organization_tier_id: string | null
+    status: boolean | null
+    participation_limit: number | null
+    publish_status: number | null
+    is_old: number | null
+    is_verified: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    is_whatsapp_message_allowed: boolean | null
+    tournament_fees: Decimal | null
+    is_event_fees: boolean | null
+    is_registration_table_dynamic: boolean | null
+    is_razorpay_payment_enable: boolean | null
+    deleted_at: Date | null
+  }
+
+  export type TournamentsMaxAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    sport_id: string | null
+    created_by: bigint | null
+    name: string | null
+    slug_name: string | null
+    locality: string | null
+    events_payload: string | null
+    match_type: string | null
+    description: string | null
+    type: string | null
+    tournament_type: string | null
+    user_id: bigint | null
+    academy_id: number | null
+    tourstartdate: Date | null
+    tourenddate: Date | null
+    sets: number | null
+    tournament_set: string | null
+    tourcategory: string | null
+    drawtype: string | null
+    agegroup: string | null
+    variationid: string | null
+    venue: string | null
+    official: string | null
+    tourimage: string | null
+    winnerprize: string | null
+    contestantprize: string | null
+    semifinalprize: string | null
+    quarterfinalprize: string | null
+    runnerupprize: string | null
+    long: string | null
+    lat: string | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    address: string | null
+    winner_id: number | null
+    organization_tier_id: string | null
+    status: boolean | null
+    participation_limit: number | null
+    publish_status: number | null
+    is_old: number | null
+    is_verified: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    is_whatsapp_message_allowed: boolean | null
+    tournament_fees: Decimal | null
+    is_event_fees: boolean | null
+    is_registration_table_dynamic: boolean | null
+    is_razorpay_payment_enable: boolean | null
+    deleted_at: Date | null
+  }
+
+  export type TournamentsCountAggregateOutputType = {
+    id: number
+    uuid: number
+    sport_id: number
+    created_by: number
+    name: number
+    slug_name: number
+    locality: number
+    events_payload: number
+    match_type: number
+    description: number
+    type: number
+    tournament_type: number
+    user_id: number
+    academy_id: number
+    tourstartdate: number
+    tourenddate: number
+    sets: number
+    tournament_set: number
+    tourcategory: number
+    drawtype: number
+    agegroup: number
+    variationid: number
+    venue: number
+    official: number
+    tourimage: number
+    winnerprize: number
+    contestantprize: number
+    semifinalprize: number
+    quarterfinalprize: number
+    runnerupprize: number
+    long: number
+    lat: number
+    country_id: number
+    state_id: number
+    city_id: number
+    address: number
+    winner_id: number
+    organization_tier_id: number
+    status: number
+    participation_limit: number
+    publish_status: number
+    is_old: number
+    is_verified: number
+    created_at: number
+    updated_at: number
+    is_whatsapp_message_allowed: number
+    tournament_fees: number
+    is_event_fees: number
+    is_registration_table_dynamic: number
+    is_razorpay_payment_enable: number
+    deleted_at: number
+    _all: number
+  }
+
+
+  export type TournamentsAvgAggregateInputType = {
+    id?: true
+    created_by?: true
+    user_id?: true
+    academy_id?: true
+    sets?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    winner_id?: true
+    participation_limit?: true
+    publish_status?: true
+    is_old?: true
+    is_verified?: true
+    tournament_fees?: true
+  }
+
+  export type TournamentsSumAggregateInputType = {
+    id?: true
+    created_by?: true
+    user_id?: true
+    academy_id?: true
+    sets?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    winner_id?: true
+    participation_limit?: true
+    publish_status?: true
+    is_old?: true
+    is_verified?: true
+    tournament_fees?: true
+  }
+
+  export type TournamentsMinAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    created_by?: true
+    name?: true
+    slug_name?: true
+    locality?: true
+    events_payload?: true
+    match_type?: true
+    description?: true
+    type?: true
+    tournament_type?: true
+    user_id?: true
+    academy_id?: true
+    tourstartdate?: true
+    tourenddate?: true
+    sets?: true
+    tournament_set?: true
+    tourcategory?: true
+    drawtype?: true
+    agegroup?: true
+    variationid?: true
+    venue?: true
+    official?: true
+    tourimage?: true
+    winnerprize?: true
+    contestantprize?: true
+    semifinalprize?: true
+    quarterfinalprize?: true
+    runnerupprize?: true
+    long?: true
+    lat?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    address?: true
+    winner_id?: true
+    organization_tier_id?: true
+    status?: true
+    participation_limit?: true
+    publish_status?: true
+    is_old?: true
+    is_verified?: true
+    created_at?: true
+    updated_at?: true
+    is_whatsapp_message_allowed?: true
+    tournament_fees?: true
+    is_event_fees?: true
+    is_registration_table_dynamic?: true
+    is_razorpay_payment_enable?: true
+    deleted_at?: true
+  }
+
+  export type TournamentsMaxAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    created_by?: true
+    name?: true
+    slug_name?: true
+    locality?: true
+    events_payload?: true
+    match_type?: true
+    description?: true
+    type?: true
+    tournament_type?: true
+    user_id?: true
+    academy_id?: true
+    tourstartdate?: true
+    tourenddate?: true
+    sets?: true
+    tournament_set?: true
+    tourcategory?: true
+    drawtype?: true
+    agegroup?: true
+    variationid?: true
+    venue?: true
+    official?: true
+    tourimage?: true
+    winnerprize?: true
+    contestantprize?: true
+    semifinalprize?: true
+    quarterfinalprize?: true
+    runnerupprize?: true
+    long?: true
+    lat?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    address?: true
+    winner_id?: true
+    organization_tier_id?: true
+    status?: true
+    participation_limit?: true
+    publish_status?: true
+    is_old?: true
+    is_verified?: true
+    created_at?: true
+    updated_at?: true
+    is_whatsapp_message_allowed?: true
+    tournament_fees?: true
+    is_event_fees?: true
+    is_registration_table_dynamic?: true
+    is_razorpay_payment_enable?: true
+    deleted_at?: true
+  }
+
+  export type TournamentsCountAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    created_by?: true
+    name?: true
+    slug_name?: true
+    locality?: true
+    events_payload?: true
+    match_type?: true
+    description?: true
+    type?: true
+    tournament_type?: true
+    user_id?: true
+    academy_id?: true
+    tourstartdate?: true
+    tourenddate?: true
+    sets?: true
+    tournament_set?: true
+    tourcategory?: true
+    drawtype?: true
+    agegroup?: true
+    variationid?: true
+    venue?: true
+    official?: true
+    tourimage?: true
+    winnerprize?: true
+    contestantprize?: true
+    semifinalprize?: true
+    quarterfinalprize?: true
+    runnerupprize?: true
+    long?: true
+    lat?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    address?: true
+    winner_id?: true
+    organization_tier_id?: true
+    status?: true
+    participation_limit?: true
+    publish_status?: true
+    is_old?: true
+    is_verified?: true
+    created_at?: true
+    updated_at?: true
+    is_whatsapp_message_allowed?: true
+    tournament_fees?: true
+    is_event_fees?: true
+    is_registration_table_dynamic?: true
+    is_razorpay_payment_enable?: true
+    deleted_at?: true
+    _all?: true
+  }
+
+  export type TournamentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which tournaments to aggregate.
+     */
+    where?: tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tournaments to fetch.
+     */
+    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned tournaments
+    **/
+    _count?: true | TournamentsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TournamentsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TournamentsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TournamentsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TournamentsMaxAggregateInputType
+  }
+
+  export type GetTournamentsAggregateType<T extends TournamentsAggregateArgs> = {
+        [P in keyof T & keyof AggregateTournaments]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTournaments[P]>
+      : GetScalarType<T[P], AggregateTournaments[P]>
+  }
+
+
+
+
+  export type tournamentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: tournamentsWhereInput
+    orderBy?: tournamentsOrderByWithAggregationInput | tournamentsOrderByWithAggregationInput[]
+    by: TournamentsScalarFieldEnum[] | TournamentsScalarFieldEnum
+    having?: tournamentsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TournamentsCountAggregateInputType | true
+    _avg?: TournamentsAvgAggregateInputType
+    _sum?: TournamentsSumAggregateInputType
+    _min?: TournamentsMinAggregateInputType
+    _max?: TournamentsMaxAggregateInputType
+  }
+
+  export type TournamentsGroupByOutputType = {
+    id: number
+    uuid: string
+    sport_id: string | null
+    created_by: bigint | null
+    name: string | null
+    slug_name: string | null
+    locality: string | null
+    events_payload: string | null
+    match_type: string | null
+    description: string | null
+    type: string | null
+    tournament_type: string | null
+    user_id: bigint | null
+    academy_id: number | null
+    tourstartdate: Date | null
+    tourenddate: Date | null
+    sets: number | null
+    tournament_set: string | null
+    tourcategory: string | null
+    drawtype: string | null
+    agegroup: string | null
+    variationid: string | null
+    venue: string | null
+    official: string | null
+    tourimage: string | null
+    winnerprize: string | null
+    contestantprize: string | null
+    semifinalprize: string | null
+    quarterfinalprize: string | null
+    runnerupprize: string | null
+    long: string | null
+    lat: string | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    address: string | null
+    winner_id: number | null
+    organization_tier_id: string | null
+    status: boolean
+    participation_limit: number
+    publish_status: number
+    is_old: number
+    is_verified: number
+    created_at: Date | null
+    updated_at: Date | null
+    is_whatsapp_message_allowed: boolean
+    tournament_fees: Decimal | null
+    is_event_fees: boolean
+    is_registration_table_dynamic: boolean
+    is_razorpay_payment_enable: boolean
+    deleted_at: Date | null
+    _count: TournamentsCountAggregateOutputType | null
+    _avg: TournamentsAvgAggregateOutputType | null
+    _sum: TournamentsSumAggregateOutputType | null
+    _min: TournamentsMinAggregateOutputType | null
+    _max: TournamentsMaxAggregateOutputType | null
+  }
+
+  type GetTournamentsGroupByPayload<T extends tournamentsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TournamentsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TournamentsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TournamentsGroupByOutputType[P]>
+            : GetScalarType<T[P], TournamentsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type tournamentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    uuid?: boolean
+    sport_id?: boolean
+    created_by?: boolean
+    name?: boolean
+    slug_name?: boolean
+    locality?: boolean
+    events_payload?: boolean
+    match_type?: boolean
+    description?: boolean
+    type?: boolean
+    tournament_type?: boolean
+    user_id?: boolean
+    academy_id?: boolean
+    tourstartdate?: boolean
+    tourenddate?: boolean
+    sets?: boolean
+    tournament_set?: boolean
+    tourcategory?: boolean
+    drawtype?: boolean
+    agegroup?: boolean
+    variationid?: boolean
+    venue?: boolean
+    official?: boolean
+    tourimage?: boolean
+    winnerprize?: boolean
+    contestantprize?: boolean
+    semifinalprize?: boolean
+    quarterfinalprize?: boolean
+    runnerupprize?: boolean
+    long?: boolean
+    lat?: boolean
+    country_id?: boolean
+    state_id?: boolean
+    city_id?: boolean
+    address?: boolean
+    winner_id?: boolean
+    organization_tier_id?: boolean
+    status?: boolean
+    participation_limit?: boolean
+    publish_status?: boolean
+    is_old?: boolean
+    is_verified?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    is_whatsapp_message_allowed?: boolean
+    tournament_fees?: boolean
+    is_event_fees?: boolean
+    is_registration_table_dynamic?: boolean
+    is_razorpay_payment_enable?: boolean
+    deleted_at?: boolean
+    contents?: boolean | tournaments$contentsArgs<ExtArgs>
+    _count?: boolean | TournamentsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tournaments"]>
+
+
+
+  export type tournamentsSelectScalar = {
+    id?: boolean
+    uuid?: boolean
+    sport_id?: boolean
+    created_by?: boolean
+    name?: boolean
+    slug_name?: boolean
+    locality?: boolean
+    events_payload?: boolean
+    match_type?: boolean
+    description?: boolean
+    type?: boolean
+    tournament_type?: boolean
+    user_id?: boolean
+    academy_id?: boolean
+    tourstartdate?: boolean
+    tourenddate?: boolean
+    sets?: boolean
+    tournament_set?: boolean
+    tourcategory?: boolean
+    drawtype?: boolean
+    agegroup?: boolean
+    variationid?: boolean
+    venue?: boolean
+    official?: boolean
+    tourimage?: boolean
+    winnerprize?: boolean
+    contestantprize?: boolean
+    semifinalprize?: boolean
+    quarterfinalprize?: boolean
+    runnerupprize?: boolean
+    long?: boolean
+    lat?: boolean
+    country_id?: boolean
+    state_id?: boolean
+    city_id?: boolean
+    address?: boolean
+    winner_id?: boolean
+    organization_tier_id?: boolean
+    status?: boolean
+    participation_limit?: boolean
+    publish_status?: boolean
+    is_old?: boolean
+    is_verified?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    is_whatsapp_message_allowed?: boolean
+    tournament_fees?: boolean
+    is_event_fees?: boolean
+    is_registration_table_dynamic?: boolean
+    is_razorpay_payment_enable?: boolean
+    deleted_at?: boolean
+  }
+
+  export type tournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "created_by" | "name" | "slug_name" | "locality" | "events_payload" | "match_type" | "description" | "type" | "tournament_type" | "user_id" | "academy_id" | "tourstartdate" | "tourenddate" | "sets" | "tournament_set" | "tourcategory" | "drawtype" | "agegroup" | "variationid" | "venue" | "official" | "tourimage" | "winnerprize" | "contestantprize" | "semifinalprize" | "quarterfinalprize" | "runnerupprize" | "long" | "lat" | "country_id" | "state_id" | "city_id" | "address" | "winner_id" | "organization_tier_id" | "status" | "participation_limit" | "publish_status" | "is_old" | "is_verified" | "created_at" | "updated_at" | "is_whatsapp_message_allowed" | "tournament_fees" | "is_event_fees" | "is_registration_table_dynamic" | "is_razorpay_payment_enable" | "deleted_at", ExtArgs["result"]["tournaments"]>
+  export type tournamentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contents?: boolean | tournaments$contentsArgs<ExtArgs>
+    _count?: boolean | TournamentsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $tournamentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "tournaments"
+    objects: {
+      contents: Prisma.$tournament_contentsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      uuid: string
+      sport_id: string | null
+      created_by: bigint | null
+      name: string | null
+      slug_name: string | null
+      locality: string | null
+      events_payload: string | null
+      match_type: string | null
+      description: string | null
+      type: string | null
+      tournament_type: string | null
+      user_id: bigint | null
+      academy_id: number | null
+      tourstartdate: Date | null
+      tourenddate: Date | null
+      sets: number | null
+      tournament_set: string | null
+      tourcategory: string | null
+      drawtype: string | null
+      agegroup: string | null
+      variationid: string | null
+      venue: string | null
+      official: string | null
+      tourimage: string | null
+      winnerprize: string | null
+      contestantprize: string | null
+      semifinalprize: string | null
+      quarterfinalprize: string | null
+      runnerupprize: string | null
+      long: string | null
+      lat: string | null
+      country_id: bigint | null
+      state_id: bigint | null
+      city_id: bigint | null
+      address: string | null
+      winner_id: number | null
+      organization_tier_id: string | null
+      status: boolean
+      participation_limit: number
+      publish_status: number
+      is_old: number
+      is_verified: number
+      created_at: Date | null
+      updated_at: Date | null
+      is_whatsapp_message_allowed: boolean
+      tournament_fees: Prisma.Decimal | null
+      is_event_fees: boolean
+      is_registration_table_dynamic: boolean
+      is_razorpay_payment_enable: boolean
+      deleted_at: Date | null
+    }, ExtArgs["result"]["tournaments"]>
+    composites: {}
+  }
+
+  type tournamentsGetPayload<S extends boolean | null | undefined | tournamentsDefaultArgs> = $Result.GetResult<Prisma.$tournamentsPayload, S>
+
+  type tournamentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<tournamentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TournamentsCountAggregateInputType | true
+    }
+
+  export interface tournamentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['tournaments'], meta: { name: 'tournaments' } }
+    /**
+     * Find zero or one Tournaments that matches the filter.
+     * @param {tournamentsFindUniqueArgs} args - Arguments to find a Tournaments
+     * @example
+     * // Get one Tournaments
+     * const tournaments = await prisma.tournaments.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends tournamentsFindUniqueArgs>(args: SelectSubset<T, tournamentsFindUniqueArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Tournaments that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {tournamentsFindUniqueOrThrowArgs} args - Arguments to find a Tournaments
+     * @example
+     * // Get one Tournaments
+     * const tournaments = await prisma.tournaments.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends tournamentsFindUniqueOrThrowArgs>(args: SelectSubset<T, tournamentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Tournaments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tournamentsFindFirstArgs} args - Arguments to find a Tournaments
+     * @example
+     * // Get one Tournaments
+     * const tournaments = await prisma.tournaments.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends tournamentsFindFirstArgs>(args?: SelectSubset<T, tournamentsFindFirstArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Tournaments that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tournamentsFindFirstOrThrowArgs} args - Arguments to find a Tournaments
+     * @example
+     * // Get one Tournaments
+     * const tournaments = await prisma.tournaments.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends tournamentsFindFirstOrThrowArgs>(args?: SelectSubset<T, tournamentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Tournaments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tournamentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tournaments
+     * const tournaments = await prisma.tournaments.findMany()
+     * 
+     * // Get first 10 Tournaments
+     * const tournaments = await prisma.tournaments.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tournamentsWithIdOnly = await prisma.tournaments.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends tournamentsFindManyArgs>(args?: SelectSubset<T, tournamentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Tournaments.
+     * @param {tournamentsCreateArgs} args - Arguments to create a Tournaments.
+     * @example
+     * // Create one Tournaments
+     * const Tournaments = await prisma.tournaments.create({
+     *   data: {
+     *     // ... data to create a Tournaments
+     *   }
+     * })
+     * 
+     */
+    create<T extends tournamentsCreateArgs>(args: SelectSubset<T, tournamentsCreateArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Tournaments.
+     * @param {tournamentsCreateManyArgs} args - Arguments to create many Tournaments.
+     * @example
+     * // Create many Tournaments
+     * const tournaments = await prisma.tournaments.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends tournamentsCreateManyArgs>(args?: SelectSubset<T, tournamentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Tournaments.
+     * @param {tournamentsDeleteArgs} args - Arguments to delete one Tournaments.
+     * @example
+     * // Delete one Tournaments
+     * const Tournaments = await prisma.tournaments.delete({
+     *   where: {
+     *     // ... filter to delete one Tournaments
+     *   }
+     * })
+     * 
+     */
+    delete<T extends tournamentsDeleteArgs>(args: SelectSubset<T, tournamentsDeleteArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Tournaments.
+     * @param {tournamentsUpdateArgs} args - Arguments to update one Tournaments.
+     * @example
+     * // Update one Tournaments
+     * const tournaments = await prisma.tournaments.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends tournamentsUpdateArgs>(args: SelectSubset<T, tournamentsUpdateArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Tournaments.
+     * @param {tournamentsDeleteManyArgs} args - Arguments to filter Tournaments to delete.
+     * @example
+     * // Delete a few Tournaments
+     * const { count } = await prisma.tournaments.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends tournamentsDeleteManyArgs>(args?: SelectSubset<T, tournamentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tournamentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tournaments
+     * const tournaments = await prisma.tournaments.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends tournamentsUpdateManyArgs>(args: SelectSubset<T, tournamentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Tournaments.
+     * @param {tournamentsUpsertArgs} args - Arguments to update or create a Tournaments.
+     * @example
+     * // Update or create a Tournaments
+     * const tournaments = await prisma.tournaments.upsert({
+     *   create: {
+     *     // ... data to create a Tournaments
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Tournaments we want to update
+     *   }
+     * })
+     */
+    upsert<T extends tournamentsUpsertArgs>(args: SelectSubset<T, tournamentsUpsertArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tournamentsCountArgs} args - Arguments to filter Tournaments to count.
+     * @example
+     * // Count the number of Tournaments
+     * const count = await prisma.tournaments.count({
+     *   where: {
+     *     // ... the filter for the Tournaments we want to count
+     *   }
+     * })
+    **/
+    count<T extends tournamentsCountArgs>(
+      args?: Subset<T, tournamentsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TournamentsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TournamentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TournamentsAggregateArgs>(args: Subset<T, TournamentsAggregateArgs>): Prisma.PrismaPromise<GetTournamentsAggregateType<T>>
+
+    /**
+     * Group by Tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tournamentsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends tournamentsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: tournamentsGroupByArgs['orderBy'] }
+        : { orderBy?: tournamentsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, tournamentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTournamentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the tournaments model
+   */
+  readonly fields: tournamentsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for tournaments.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__tournamentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    contents<T extends tournaments$contentsArgs<ExtArgs> = {}>(args?: Subset<T, tournaments$contentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tournament_contentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the tournaments model
+   */
+  interface tournamentsFieldRefs {
+    readonly id: FieldRef<"tournaments", 'Int'>
+    readonly uuid: FieldRef<"tournaments", 'String'>
+    readonly sport_id: FieldRef<"tournaments", 'String'>
+    readonly created_by: FieldRef<"tournaments", 'BigInt'>
+    readonly name: FieldRef<"tournaments", 'String'>
+    readonly slug_name: FieldRef<"tournaments", 'String'>
+    readonly locality: FieldRef<"tournaments", 'String'>
+    readonly events_payload: FieldRef<"tournaments", 'String'>
+    readonly match_type: FieldRef<"tournaments", 'String'>
+    readonly description: FieldRef<"tournaments", 'String'>
+    readonly type: FieldRef<"tournaments", 'String'>
+    readonly tournament_type: FieldRef<"tournaments", 'String'>
+    readonly user_id: FieldRef<"tournaments", 'BigInt'>
+    readonly academy_id: FieldRef<"tournaments", 'Int'>
+    readonly tourstartdate: FieldRef<"tournaments", 'DateTime'>
+    readonly tourenddate: FieldRef<"tournaments", 'DateTime'>
+    readonly sets: FieldRef<"tournaments", 'Int'>
+    readonly tournament_set: FieldRef<"tournaments", 'String'>
+    readonly tourcategory: FieldRef<"tournaments", 'String'>
+    readonly drawtype: FieldRef<"tournaments", 'String'>
+    readonly agegroup: FieldRef<"tournaments", 'String'>
+    readonly variationid: FieldRef<"tournaments", 'String'>
+    readonly venue: FieldRef<"tournaments", 'String'>
+    readonly official: FieldRef<"tournaments", 'String'>
+    readonly tourimage: FieldRef<"tournaments", 'String'>
+    readonly winnerprize: FieldRef<"tournaments", 'String'>
+    readonly contestantprize: FieldRef<"tournaments", 'String'>
+    readonly semifinalprize: FieldRef<"tournaments", 'String'>
+    readonly quarterfinalprize: FieldRef<"tournaments", 'String'>
+    readonly runnerupprize: FieldRef<"tournaments", 'String'>
+    readonly long: FieldRef<"tournaments", 'String'>
+    readonly lat: FieldRef<"tournaments", 'String'>
+    readonly country_id: FieldRef<"tournaments", 'BigInt'>
+    readonly state_id: FieldRef<"tournaments", 'BigInt'>
+    readonly city_id: FieldRef<"tournaments", 'BigInt'>
+    readonly address: FieldRef<"tournaments", 'String'>
+    readonly winner_id: FieldRef<"tournaments", 'Int'>
+    readonly organization_tier_id: FieldRef<"tournaments", 'String'>
+    readonly status: FieldRef<"tournaments", 'Boolean'>
+    readonly participation_limit: FieldRef<"tournaments", 'Int'>
+    readonly publish_status: FieldRef<"tournaments", 'Int'>
+    readonly is_old: FieldRef<"tournaments", 'Int'>
+    readonly is_verified: FieldRef<"tournaments", 'Int'>
+    readonly created_at: FieldRef<"tournaments", 'DateTime'>
+    readonly updated_at: FieldRef<"tournaments", 'DateTime'>
+    readonly is_whatsapp_message_allowed: FieldRef<"tournaments", 'Boolean'>
+    readonly tournament_fees: FieldRef<"tournaments", 'Decimal'>
+    readonly is_event_fees: FieldRef<"tournaments", 'Boolean'>
+    readonly is_registration_table_dynamic: FieldRef<"tournaments", 'Boolean'>
+    readonly is_razorpay_payment_enable: FieldRef<"tournaments", 'Boolean'>
+    readonly deleted_at: FieldRef<"tournaments", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * tournaments findUnique
+   */
+  export type tournamentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * Filter, which tournaments to fetch.
+     */
+    where: tournamentsWhereUniqueInput
+  }
+
+  /**
+   * tournaments findUniqueOrThrow
+   */
+  export type tournamentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * Filter, which tournaments to fetch.
+     */
+    where: tournamentsWhereUniqueInput
+  }
+
+  /**
+   * tournaments findFirst
+   */
+  export type tournamentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * Filter, which tournaments to fetch.
+     */
+    where?: tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tournaments to fetch.
+     */
+    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for tournaments.
+     */
+    cursor?: tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of tournaments.
+     */
+    distinct?: TournamentsScalarFieldEnum | TournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * tournaments findFirstOrThrow
+   */
+  export type tournamentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * Filter, which tournaments to fetch.
+     */
+    where?: tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tournaments to fetch.
+     */
+    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for tournaments.
+     */
+    cursor?: tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of tournaments.
+     */
+    distinct?: TournamentsScalarFieldEnum | TournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * tournaments findMany
+   */
+  export type tournamentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * Filter, which tournaments to fetch.
+     */
+    where?: tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tournaments to fetch.
+     */
+    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing tournaments.
+     */
+    cursor?: tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tournaments.
+     */
+    skip?: number
+    distinct?: TournamentsScalarFieldEnum | TournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * tournaments create
+   */
+  export type tournamentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a tournaments.
+     */
+    data: XOR<tournamentsCreateInput, tournamentsUncheckedCreateInput>
+  }
+
+  /**
+   * tournaments createMany
+   */
+  export type tournamentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many tournaments.
+     */
+    data: tournamentsCreateManyInput | tournamentsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * tournaments update
+   */
+  export type tournamentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a tournaments.
+     */
+    data: XOR<tournamentsUpdateInput, tournamentsUncheckedUpdateInput>
+    /**
+     * Choose, which tournaments to update.
+     */
+    where: tournamentsWhereUniqueInput
+  }
+
+  /**
+   * tournaments updateMany
+   */
+  export type tournamentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update tournaments.
+     */
+    data: XOR<tournamentsUpdateManyMutationInput, tournamentsUncheckedUpdateManyInput>
+    /**
+     * Filter which tournaments to update
+     */
+    where?: tournamentsWhereInput
+    /**
+     * Limit how many tournaments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * tournaments upsert
+   */
+  export type tournamentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the tournaments to update in case it exists.
+     */
+    where: tournamentsWhereUniqueInput
+    /**
+     * In case the tournaments found by the `where` argument doesn't exist, create a new tournaments with this data.
+     */
+    create: XOR<tournamentsCreateInput, tournamentsUncheckedCreateInput>
+    /**
+     * In case the tournaments was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<tournamentsUpdateInput, tournamentsUncheckedUpdateInput>
+  }
+
+  /**
+   * tournaments delete
+   */
+  export type tournamentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+    /**
+     * Filter which tournaments to delete.
+     */
+    where: tournamentsWhereUniqueInput
+  }
+
+  /**
+   * tournaments deleteMany
+   */
+  export type tournamentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which tournaments to delete
+     */
+    where?: tournamentsWhereInput
+    /**
+     * Limit how many tournaments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * tournaments.contents
+   */
+  export type tournaments$contentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournament_contents
+     */
+    select?: tournament_contentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournament_contents
+     */
+    omit?: tournament_contentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournament_contentsInclude<ExtArgs> | null
+    where?: tournament_contentsWhereInput
+    orderBy?: tournament_contentsOrderByWithRelationInput | tournament_contentsOrderByWithRelationInput[]
+    cursor?: tournament_contentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Tournament_contentsScalarFieldEnum | Tournament_contentsScalarFieldEnum[]
+  }
+
+  /**
+   * tournaments without action
+   */
+  export type tournamentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tournaments
+     */
+    select?: tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tournaments
+     */
+    omit?: tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tournamentsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model tournament_contents
    */
 
@@ -16943,40 +18655,1215 @@ export namespace Prisma {
 
 
   /**
-   * Model ask_notes
+   * Model asktournaments
    */
 
-  export type AggregateAsk_notes = {
-    _count: Ask_notesCountAggregateOutputType | null
-    _avg: Ask_notesAvgAggregateOutputType | null
-    _sum: Ask_notesSumAggregateOutputType | null
-    _min: Ask_notesMinAggregateOutputType | null
-    _max: Ask_notesMaxAggregateOutputType | null
+  export type AggregateAsktournaments = {
+    _count: AsktournamentsCountAggregateOutputType | null
+    _avg: AsktournamentsAvgAggregateOutputType | null
+    _sum: AsktournamentsSumAggregateOutputType | null
+    _min: AsktournamentsMinAggregateOutputType | null
+    _max: AsktournamentsMaxAggregateOutputType | null
   }
 
-  export type Ask_notesAvgAggregateOutputType = {
+  export type AsktournamentsAvgAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    tournament_fees: Decimal | null
+    country_id: number | null
+    state_id: number | null
+    city_id: number | null
+    participation_limit: number | null
+    publish_status: number | null
+  }
+
+  export type AsktournamentsSumAggregateOutputType = {
+    id: number | null
+    user_id: bigint | null
+    tournament_fees: Decimal | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    participation_limit: number | null
+    publish_status: number | null
+  }
+
+  export type AsktournamentsMinAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    sport_id: string | null
+    name: string | null
+    slug_name: string | null
+    description: string | null
+    tournament_type: string | null
+    user_id: bigint | null
+    tourstartdate: Date | null
+    tourenddate: Date | null
+    venue: string | null
+    tourbannerimage: string | null
+    tourthumbnail: string | null
+    tourwebsite: string | null
+    tourbrochure: string | null
+    prizemoney: string | null
+    tournament_fees: Decimal | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    address: string | null
+    participation_limit: number | null
+    publish_status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type AsktournamentsMaxAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    sport_id: string | null
+    name: string | null
+    slug_name: string | null
+    description: string | null
+    tournament_type: string | null
+    user_id: bigint | null
+    tourstartdate: Date | null
+    tourenddate: Date | null
+    venue: string | null
+    tourbannerimage: string | null
+    tourthumbnail: string | null
+    tourwebsite: string | null
+    tourbrochure: string | null
+    prizemoney: string | null
+    tournament_fees: Decimal | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    address: string | null
+    participation_limit: number | null
+    publish_status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type AsktournamentsCountAggregateOutputType = {
+    id: number
+    uuid: number
+    sport_id: number
+    name: number
+    slug_name: number
+    description: number
+    tournament_type: number
+    user_id: number
+    tourstartdate: number
+    tourenddate: number
+    venue: number
+    tourbannerimage: number
+    tourthumbnail: number
+    tourwebsite: number
+    tourbrochure: number
+    prizemoney: number
+    tournament_fees: number
+    country_id: number
+    state_id: number
+    city_id: number
+    address: number
+    participation_limit: number
+    publish_status: number
+    created_at: number
+    updated_at: number
+    deleted_at: number
+    _all: number
+  }
+
+
+  export type AsktournamentsAvgAggregateInputType = {
+    id?: true
+    user_id?: true
+    tournament_fees?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    participation_limit?: true
+    publish_status?: true
+  }
+
+  export type AsktournamentsSumAggregateInputType = {
+    id?: true
+    user_id?: true
+    tournament_fees?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    participation_limit?: true
+    publish_status?: true
+  }
+
+  export type AsktournamentsMinAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    name?: true
+    slug_name?: true
+    description?: true
+    tournament_type?: true
+    user_id?: true
+    tourstartdate?: true
+    tourenddate?: true
+    venue?: true
+    tourbannerimage?: true
+    tourthumbnail?: true
+    tourwebsite?: true
+    tourbrochure?: true
+    prizemoney?: true
+    tournament_fees?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    address?: true
+    participation_limit?: true
+    publish_status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type AsktournamentsMaxAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    name?: true
+    slug_name?: true
+    description?: true
+    tournament_type?: true
+    user_id?: true
+    tourstartdate?: true
+    tourenddate?: true
+    venue?: true
+    tourbannerimage?: true
+    tourthumbnail?: true
+    tourwebsite?: true
+    tourbrochure?: true
+    prizemoney?: true
+    tournament_fees?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    address?: true
+    participation_limit?: true
+    publish_status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type AsktournamentsCountAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    name?: true
+    slug_name?: true
+    description?: true
+    tournament_type?: true
+    user_id?: true
+    tourstartdate?: true
+    tourenddate?: true
+    venue?: true
+    tourbannerimage?: true
+    tourthumbnail?: true
+    tourwebsite?: true
+    tourbrochure?: true
+    prizemoney?: true
+    tournament_fees?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    address?: true
+    participation_limit?: true
+    publish_status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+    _all?: true
+  }
+
+  export type AsktournamentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which asktournaments to aggregate.
+     */
+    where?: asktournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of asktournaments to fetch.
+     */
+    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: asktournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` asktournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` asktournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned asktournaments
+    **/
+    _count?: true | AsktournamentsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AsktournamentsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AsktournamentsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AsktournamentsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AsktournamentsMaxAggregateInputType
+  }
+
+  export type GetAsktournamentsAggregateType<T extends AsktournamentsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAsktournaments]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAsktournaments[P]>
+      : GetScalarType<T[P], AggregateAsktournaments[P]>
+  }
+
+
+
+
+  export type asktournamentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: asktournamentsWhereInput
+    orderBy?: asktournamentsOrderByWithAggregationInput | asktournamentsOrderByWithAggregationInput[]
+    by: AsktournamentsScalarFieldEnum[] | AsktournamentsScalarFieldEnum
+    having?: asktournamentsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AsktournamentsCountAggregateInputType | true
+    _avg?: AsktournamentsAvgAggregateInputType
+    _sum?: AsktournamentsSumAggregateInputType
+    _min?: AsktournamentsMinAggregateInputType
+    _max?: AsktournamentsMaxAggregateInputType
+  }
+
+  export type AsktournamentsGroupByOutputType = {
+    id: number
+    uuid: string
+    sport_id: string | null
+    name: string | null
+    slug_name: string | null
+    description: string | null
+    tournament_type: string | null
+    user_id: bigint | null
+    tourstartdate: Date | null
+    tourenddate: Date | null
+    venue: string | null
+    tourbannerimage: string | null
+    tourthumbnail: string | null
+    tourwebsite: string | null
+    tourbrochure: string | null
+    prizemoney: string | null
+    tournament_fees: Decimal | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    address: string | null
+    participation_limit: number
+    publish_status: number
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+    _count: AsktournamentsCountAggregateOutputType | null
+    _avg: AsktournamentsAvgAggregateOutputType | null
+    _sum: AsktournamentsSumAggregateOutputType | null
+    _min: AsktournamentsMinAggregateOutputType | null
+    _max: AsktournamentsMaxAggregateOutputType | null
+  }
+
+  type GetAsktournamentsGroupByPayload<T extends asktournamentsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AsktournamentsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AsktournamentsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AsktournamentsGroupByOutputType[P]>
+            : GetScalarType<T[P], AsktournamentsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type asktournamentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    uuid?: boolean
+    sport_id?: boolean
+    name?: boolean
+    slug_name?: boolean
+    description?: boolean
+    tournament_type?: boolean
+    user_id?: boolean
+    tourstartdate?: boolean
+    tourenddate?: boolean
+    venue?: boolean
+    tourbannerimage?: boolean
+    tourthumbnail?: boolean
+    tourwebsite?: boolean
+    tourbrochure?: boolean
+    prizemoney?: boolean
+    tournament_fees?: boolean
+    country_id?: boolean
+    state_id?: boolean
+    city_id?: boolean
+    address?: boolean
+    participation_limit?: boolean
+    publish_status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }, ExtArgs["result"]["asktournaments"]>
+
+
+
+  export type asktournamentsSelectScalar = {
+    id?: boolean
+    uuid?: boolean
+    sport_id?: boolean
+    name?: boolean
+    slug_name?: boolean
+    description?: boolean
+    tournament_type?: boolean
+    user_id?: boolean
+    tourstartdate?: boolean
+    tourenddate?: boolean
+    venue?: boolean
+    tourbannerimage?: boolean
+    tourthumbnail?: boolean
+    tourwebsite?: boolean
+    tourbrochure?: boolean
+    prizemoney?: boolean
+    tournament_fees?: boolean
+    country_id?: boolean
+    state_id?: boolean
+    city_id?: boolean
+    address?: boolean
+    participation_limit?: boolean
+    publish_status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }
+
+  export type asktournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "name" | "slug_name" | "description" | "tournament_type" | "user_id" | "tourstartdate" | "tourenddate" | "venue" | "tourbannerimage" | "tourthumbnail" | "tourwebsite" | "tourbrochure" | "prizemoney" | "tournament_fees" | "country_id" | "state_id" | "city_id" | "address" | "participation_limit" | "publish_status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["asktournaments"]>
+
+  export type $asktournamentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "asktournaments"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      uuid: string
+      sport_id: string | null
+      name: string | null
+      slug_name: string | null
+      description: string | null
+      tournament_type: string | null
+      user_id: bigint | null
+      tourstartdate: Date | null
+      tourenddate: Date | null
+      venue: string | null
+      tourbannerimage: string | null
+      tourthumbnail: string | null
+      tourwebsite: string | null
+      tourbrochure: string | null
+      prizemoney: string | null
+      tournament_fees: Prisma.Decimal | null
+      country_id: bigint | null
+      state_id: bigint | null
+      city_id: bigint | null
+      address: string | null
+      participation_limit: number
+      publish_status: number
+      created_at: Date | null
+      updated_at: Date | null
+      deleted_at: Date | null
+    }, ExtArgs["result"]["asktournaments"]>
+    composites: {}
+  }
+
+  type asktournamentsGetPayload<S extends boolean | null | undefined | asktournamentsDefaultArgs> = $Result.GetResult<Prisma.$asktournamentsPayload, S>
+
+  type asktournamentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<asktournamentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AsktournamentsCountAggregateInputType | true
+    }
+
+  export interface asktournamentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['asktournaments'], meta: { name: 'asktournaments' } }
+    /**
+     * Find zero or one Asktournaments that matches the filter.
+     * @param {asktournamentsFindUniqueArgs} args - Arguments to find a Asktournaments
+     * @example
+     * // Get one Asktournaments
+     * const asktournaments = await prisma.asktournaments.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends asktournamentsFindUniqueArgs>(args: SelectSubset<T, asktournamentsFindUniqueArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Asktournaments that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {asktournamentsFindUniqueOrThrowArgs} args - Arguments to find a Asktournaments
+     * @example
+     * // Get one Asktournaments
+     * const asktournaments = await prisma.asktournaments.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends asktournamentsFindUniqueOrThrowArgs>(args: SelectSubset<T, asktournamentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Asktournaments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {asktournamentsFindFirstArgs} args - Arguments to find a Asktournaments
+     * @example
+     * // Get one Asktournaments
+     * const asktournaments = await prisma.asktournaments.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends asktournamentsFindFirstArgs>(args?: SelectSubset<T, asktournamentsFindFirstArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Asktournaments that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {asktournamentsFindFirstOrThrowArgs} args - Arguments to find a Asktournaments
+     * @example
+     * // Get one Asktournaments
+     * const asktournaments = await prisma.asktournaments.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends asktournamentsFindFirstOrThrowArgs>(args?: SelectSubset<T, asktournamentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Asktournaments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {asktournamentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Asktournaments
+     * const asktournaments = await prisma.asktournaments.findMany()
+     * 
+     * // Get first 10 Asktournaments
+     * const asktournaments = await prisma.asktournaments.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const asktournamentsWithIdOnly = await prisma.asktournaments.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends asktournamentsFindManyArgs>(args?: SelectSubset<T, asktournamentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Asktournaments.
+     * @param {asktournamentsCreateArgs} args - Arguments to create a Asktournaments.
+     * @example
+     * // Create one Asktournaments
+     * const Asktournaments = await prisma.asktournaments.create({
+     *   data: {
+     *     // ... data to create a Asktournaments
+     *   }
+     * })
+     * 
+     */
+    create<T extends asktournamentsCreateArgs>(args: SelectSubset<T, asktournamentsCreateArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Asktournaments.
+     * @param {asktournamentsCreateManyArgs} args - Arguments to create many Asktournaments.
+     * @example
+     * // Create many Asktournaments
+     * const asktournaments = await prisma.asktournaments.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends asktournamentsCreateManyArgs>(args?: SelectSubset<T, asktournamentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Asktournaments.
+     * @param {asktournamentsDeleteArgs} args - Arguments to delete one Asktournaments.
+     * @example
+     * // Delete one Asktournaments
+     * const Asktournaments = await prisma.asktournaments.delete({
+     *   where: {
+     *     // ... filter to delete one Asktournaments
+     *   }
+     * })
+     * 
+     */
+    delete<T extends asktournamentsDeleteArgs>(args: SelectSubset<T, asktournamentsDeleteArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Asktournaments.
+     * @param {asktournamentsUpdateArgs} args - Arguments to update one Asktournaments.
+     * @example
+     * // Update one Asktournaments
+     * const asktournaments = await prisma.asktournaments.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends asktournamentsUpdateArgs>(args: SelectSubset<T, asktournamentsUpdateArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Asktournaments.
+     * @param {asktournamentsDeleteManyArgs} args - Arguments to filter Asktournaments to delete.
+     * @example
+     * // Delete a few Asktournaments
+     * const { count } = await prisma.asktournaments.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends asktournamentsDeleteManyArgs>(args?: SelectSubset<T, asktournamentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Asktournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {asktournamentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Asktournaments
+     * const asktournaments = await prisma.asktournaments.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends asktournamentsUpdateManyArgs>(args: SelectSubset<T, asktournamentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Asktournaments.
+     * @param {asktournamentsUpsertArgs} args - Arguments to update or create a Asktournaments.
+     * @example
+     * // Update or create a Asktournaments
+     * const asktournaments = await prisma.asktournaments.upsert({
+     *   create: {
+     *     // ... data to create a Asktournaments
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Asktournaments we want to update
+     *   }
+     * })
+     */
+    upsert<T extends asktournamentsUpsertArgs>(args: SelectSubset<T, asktournamentsUpsertArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Asktournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {asktournamentsCountArgs} args - Arguments to filter Asktournaments to count.
+     * @example
+     * // Count the number of Asktournaments
+     * const count = await prisma.asktournaments.count({
+     *   where: {
+     *     // ... the filter for the Asktournaments we want to count
+     *   }
+     * })
+    **/
+    count<T extends asktournamentsCountArgs>(
+      args?: Subset<T, asktournamentsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AsktournamentsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Asktournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsktournamentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AsktournamentsAggregateArgs>(args: Subset<T, AsktournamentsAggregateArgs>): Prisma.PrismaPromise<GetAsktournamentsAggregateType<T>>
+
+    /**
+     * Group by Asktournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {asktournamentsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends asktournamentsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: asktournamentsGroupByArgs['orderBy'] }
+        : { orderBy?: asktournamentsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, asktournamentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsktournamentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the asktournaments model
+   */
+  readonly fields: asktournamentsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for asktournaments.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__asktournamentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the asktournaments model
+   */
+  interface asktournamentsFieldRefs {
+    readonly id: FieldRef<"asktournaments", 'Int'>
+    readonly uuid: FieldRef<"asktournaments", 'String'>
+    readonly sport_id: FieldRef<"asktournaments", 'String'>
+    readonly name: FieldRef<"asktournaments", 'String'>
+    readonly slug_name: FieldRef<"asktournaments", 'String'>
+    readonly description: FieldRef<"asktournaments", 'String'>
+    readonly tournament_type: FieldRef<"asktournaments", 'String'>
+    readonly user_id: FieldRef<"asktournaments", 'BigInt'>
+    readonly tourstartdate: FieldRef<"asktournaments", 'DateTime'>
+    readonly tourenddate: FieldRef<"asktournaments", 'DateTime'>
+    readonly venue: FieldRef<"asktournaments", 'String'>
+    readonly tourbannerimage: FieldRef<"asktournaments", 'String'>
+    readonly tourthumbnail: FieldRef<"asktournaments", 'String'>
+    readonly tourwebsite: FieldRef<"asktournaments", 'String'>
+    readonly tourbrochure: FieldRef<"asktournaments", 'String'>
+    readonly prizemoney: FieldRef<"asktournaments", 'String'>
+    readonly tournament_fees: FieldRef<"asktournaments", 'Decimal'>
+    readonly country_id: FieldRef<"asktournaments", 'BigInt'>
+    readonly state_id: FieldRef<"asktournaments", 'BigInt'>
+    readonly city_id: FieldRef<"asktournaments", 'BigInt'>
+    readonly address: FieldRef<"asktournaments", 'String'>
+    readonly participation_limit: FieldRef<"asktournaments", 'Int'>
+    readonly publish_status: FieldRef<"asktournaments", 'Int'>
+    readonly created_at: FieldRef<"asktournaments", 'DateTime'>
+    readonly updated_at: FieldRef<"asktournaments", 'DateTime'>
+    readonly deleted_at: FieldRef<"asktournaments", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * asktournaments findUnique
+   */
+  export type asktournamentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which asktournaments to fetch.
+     */
+    where: asktournamentsWhereUniqueInput
+  }
+
+  /**
+   * asktournaments findUniqueOrThrow
+   */
+  export type asktournamentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which asktournaments to fetch.
+     */
+    where: asktournamentsWhereUniqueInput
+  }
+
+  /**
+   * asktournaments findFirst
+   */
+  export type asktournamentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which asktournaments to fetch.
+     */
+    where?: asktournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of asktournaments to fetch.
+     */
+    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for asktournaments.
+     */
+    cursor?: asktournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` asktournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` asktournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of asktournaments.
+     */
+    distinct?: AsktournamentsScalarFieldEnum | AsktournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * asktournaments findFirstOrThrow
+   */
+  export type asktournamentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which asktournaments to fetch.
+     */
+    where?: asktournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of asktournaments to fetch.
+     */
+    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for asktournaments.
+     */
+    cursor?: asktournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` asktournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` asktournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of asktournaments.
+     */
+    distinct?: AsktournamentsScalarFieldEnum | AsktournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * asktournaments findMany
+   */
+  export type asktournamentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which asktournaments to fetch.
+     */
+    where?: asktournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of asktournaments to fetch.
+     */
+    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing asktournaments.
+     */
+    cursor?: asktournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` asktournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` asktournaments.
+     */
+    skip?: number
+    distinct?: AsktournamentsScalarFieldEnum | AsktournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * asktournaments create
+   */
+  export type asktournamentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a asktournaments.
+     */
+    data: XOR<asktournamentsCreateInput, asktournamentsUncheckedCreateInput>
+  }
+
+  /**
+   * asktournaments createMany
+   */
+  export type asktournamentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many asktournaments.
+     */
+    data: asktournamentsCreateManyInput | asktournamentsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * asktournaments update
+   */
+  export type asktournamentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a asktournaments.
+     */
+    data: XOR<asktournamentsUpdateInput, asktournamentsUncheckedUpdateInput>
+    /**
+     * Choose, which asktournaments to update.
+     */
+    where: asktournamentsWhereUniqueInput
+  }
+
+  /**
+   * asktournaments updateMany
+   */
+  export type asktournamentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update asktournaments.
+     */
+    data: XOR<asktournamentsUpdateManyMutationInput, asktournamentsUncheckedUpdateManyInput>
+    /**
+     * Filter which asktournaments to update
+     */
+    where?: asktournamentsWhereInput
+    /**
+     * Limit how many asktournaments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * asktournaments upsert
+   */
+  export type asktournamentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the asktournaments to update in case it exists.
+     */
+    where: asktournamentsWhereUniqueInput
+    /**
+     * In case the asktournaments found by the `where` argument doesn't exist, create a new asktournaments with this data.
+     */
+    create: XOR<asktournamentsCreateInput, asktournamentsUncheckedCreateInput>
+    /**
+     * In case the asktournaments was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<asktournamentsUpdateInput, asktournamentsUncheckedUpdateInput>
+  }
+
+  /**
+   * asktournaments delete
+   */
+  export type asktournamentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+    /**
+     * Filter which asktournaments to delete.
+     */
+    where: asktournamentsWhereUniqueInput
+  }
+
+  /**
+   * asktournaments deleteMany
+   */
+  export type asktournamentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which asktournaments to delete
+     */
+    where?: asktournamentsWhereInput
+    /**
+     * Limit how many asktournaments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * asktournaments without action
+   */
+  export type asktournamentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the asktournaments
+     */
+    select?: asktournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the asktournaments
+     */
+    omit?: asktournamentsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ask_my_notes
+   */
+
+  export type AggregateAsk_my_notes = {
+    _count: Ask_my_notesCountAggregateOutputType | null
+    _avg: Ask_my_notesAvgAggregateOutputType | null
+    _sum: Ask_my_notesSumAggregateOutputType | null
+    _min: Ask_my_notesMinAggregateOutputType | null
+    _max: Ask_my_notesMaxAggregateOutputType | null
+  }
+
+  export type Ask_my_notesAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type Ask_notesSumAggregateOutputType = {
+  export type Ask_my_notesSumAggregateOutputType = {
     id: number | null
   }
 
-  export type Ask_notesMinAggregateOutputType = {
+  export type Ask_my_notesMinAggregateOutputType = {
     id: number | null
     title: string | null
     body: string | null
     createdAt: Date | null
   }
 
-  export type Ask_notesMaxAggregateOutputType = {
+  export type Ask_my_notesMaxAggregateOutputType = {
     id: number | null
     title: string | null
     body: string | null
     createdAt: Date | null
   }
 
-  export type Ask_notesCountAggregateOutputType = {
+  export type Ask_my_notesCountAggregateOutputType = {
     id: number
     title: number
     body: number
@@ -16985,29 +19872,29 @@ export namespace Prisma {
   }
 
 
-  export type Ask_notesAvgAggregateInputType = {
+  export type Ask_my_notesAvgAggregateInputType = {
     id?: true
   }
 
-  export type Ask_notesSumAggregateInputType = {
+  export type Ask_my_notesSumAggregateInputType = {
     id?: true
   }
 
-  export type Ask_notesMinAggregateInputType = {
-    id?: true
-    title?: true
-    body?: true
-    createdAt?: true
-  }
-
-  export type Ask_notesMaxAggregateInputType = {
+  export type Ask_my_notesMinAggregateInputType = {
     id?: true
     title?: true
     body?: true
     createdAt?: true
   }
 
-  export type Ask_notesCountAggregateInputType = {
+  export type Ask_my_notesMaxAggregateInputType = {
+    id?: true
+    title?: true
+    body?: true
+    createdAt?: true
+  }
+
+  export type Ask_my_notesCountAggregateInputType = {
     id?: true
     title?: true
     body?: true
@@ -17015,281 +19902,281 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type Ask_notesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Ask_my_notesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ask_notes to aggregate.
+     * Filter which ask_my_notes to aggregate.
      */
-    where?: ask_notesWhereInput
+    where?: ask_my_notesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ask_notes to fetch.
+     * Determine the order of ask_my_notes to fetch.
      */
-    orderBy?: ask_notesOrderByWithRelationInput | ask_notesOrderByWithRelationInput[]
+    orderBy?: ask_my_notesOrderByWithRelationInput | ask_my_notesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ask_notesWhereUniqueInput
+    cursor?: ask_my_notesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ask_notes from the position of the cursor.
+     * Take `±n` ask_my_notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ask_notes.
+     * Skip the first `n` ask_my_notes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned ask_notes
+     * Count returned ask_my_notes
     **/
-    _count?: true | Ask_notesCountAggregateInputType
+    _count?: true | Ask_my_notesCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Ask_notesAvgAggregateInputType
+    _avg?: Ask_my_notesAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Ask_notesSumAggregateInputType
+    _sum?: Ask_my_notesSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Ask_notesMinAggregateInputType
+    _min?: Ask_my_notesMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Ask_notesMaxAggregateInputType
+    _max?: Ask_my_notesMaxAggregateInputType
   }
 
-  export type GetAsk_notesAggregateType<T extends Ask_notesAggregateArgs> = {
-        [P in keyof T & keyof AggregateAsk_notes]: P extends '_count' | 'count'
+  export type GetAsk_my_notesAggregateType<T extends Ask_my_notesAggregateArgs> = {
+        [P in keyof T & keyof AggregateAsk_my_notes]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAsk_notes[P]>
-      : GetScalarType<T[P], AggregateAsk_notes[P]>
+        : GetScalarType<T[P], AggregateAsk_my_notes[P]>
+      : GetScalarType<T[P], AggregateAsk_my_notes[P]>
   }
 
 
 
 
-  export type ask_notesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ask_notesWhereInput
-    orderBy?: ask_notesOrderByWithAggregationInput | ask_notesOrderByWithAggregationInput[]
-    by: Ask_notesScalarFieldEnum[] | Ask_notesScalarFieldEnum
-    having?: ask_notesScalarWhereWithAggregatesInput
+  export type ask_my_notesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_my_notesWhereInput
+    orderBy?: ask_my_notesOrderByWithAggregationInput | ask_my_notesOrderByWithAggregationInput[]
+    by: Ask_my_notesScalarFieldEnum[] | Ask_my_notesScalarFieldEnum
+    having?: ask_my_notesScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Ask_notesCountAggregateInputType | true
-    _avg?: Ask_notesAvgAggregateInputType
-    _sum?: Ask_notesSumAggregateInputType
-    _min?: Ask_notesMinAggregateInputType
-    _max?: Ask_notesMaxAggregateInputType
+    _count?: Ask_my_notesCountAggregateInputType | true
+    _avg?: Ask_my_notesAvgAggregateInputType
+    _sum?: Ask_my_notesSumAggregateInputType
+    _min?: Ask_my_notesMinAggregateInputType
+    _max?: Ask_my_notesMaxAggregateInputType
   }
 
-  export type Ask_notesGroupByOutputType = {
+  export type Ask_my_notesGroupByOutputType = {
     id: number
     title: string
     body: string | null
     createdAt: Date
-    _count: Ask_notesCountAggregateOutputType | null
-    _avg: Ask_notesAvgAggregateOutputType | null
-    _sum: Ask_notesSumAggregateOutputType | null
-    _min: Ask_notesMinAggregateOutputType | null
-    _max: Ask_notesMaxAggregateOutputType | null
+    _count: Ask_my_notesCountAggregateOutputType | null
+    _avg: Ask_my_notesAvgAggregateOutputType | null
+    _sum: Ask_my_notesSumAggregateOutputType | null
+    _min: Ask_my_notesMinAggregateOutputType | null
+    _max: Ask_my_notesMaxAggregateOutputType | null
   }
 
-  type GetAsk_notesGroupByPayload<T extends ask_notesGroupByArgs> = Prisma.PrismaPromise<
+  type GetAsk_my_notesGroupByPayload<T extends ask_my_notesGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Ask_notesGroupByOutputType, T['by']> &
+      PickEnumerable<Ask_my_notesGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Ask_notesGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof Ask_my_notesGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Ask_notesGroupByOutputType[P]>
-            : GetScalarType<T[P], Ask_notesGroupByOutputType[P]>
+              : GetScalarType<T[P], Ask_my_notesGroupByOutputType[P]>
+            : GetScalarType<T[P], Ask_my_notesGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ask_notesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ask_my_notesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     body?: boolean
     createdAt?: boolean
-  }, ExtArgs["result"]["ask_notes"]>
+  }, ExtArgs["result"]["ask_my_notes"]>
 
 
 
-  export type ask_notesSelectScalar = {
+  export type ask_my_notesSelectScalar = {
     id?: boolean
     title?: boolean
     body?: boolean
     createdAt?: boolean
   }
 
-  export type ask_notesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "body" | "createdAt", ExtArgs["result"]["ask_notes"]>
+  export type ask_my_notesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "body" | "createdAt", ExtArgs["result"]["ask_my_notes"]>
 
-  export type $ask_notesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ask_notes"
+  export type $ask_my_notesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ask_my_notes"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
       body: string | null
       createdAt: Date
-    }, ExtArgs["result"]["ask_notes"]>
+    }, ExtArgs["result"]["ask_my_notes"]>
     composites: {}
   }
 
-  type ask_notesGetPayload<S extends boolean | null | undefined | ask_notesDefaultArgs> = $Result.GetResult<Prisma.$ask_notesPayload, S>
+  type ask_my_notesGetPayload<S extends boolean | null | undefined | ask_my_notesDefaultArgs> = $Result.GetResult<Prisma.$ask_my_notesPayload, S>
 
-  type ask_notesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ask_notesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Ask_notesCountAggregateInputType | true
+  type ask_my_notesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ask_my_notesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Ask_my_notesCountAggregateInputType | true
     }
 
-  export interface ask_notesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ask_notes'], meta: { name: 'ask_notes' } }
+  export interface ask_my_notesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ask_my_notes'], meta: { name: 'ask_my_notes' } }
     /**
-     * Find zero or one Ask_notes that matches the filter.
-     * @param {ask_notesFindUniqueArgs} args - Arguments to find a Ask_notes
+     * Find zero or one Ask_my_notes that matches the filter.
+     * @param {ask_my_notesFindUniqueArgs} args - Arguments to find a Ask_my_notes
      * @example
-     * // Get one Ask_notes
-     * const ask_notes = await prisma.ask_notes.findUnique({
+     * // Get one Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ask_notesFindUniqueArgs>(args: SelectSubset<T, ask_notesFindUniqueArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ask_my_notesFindUniqueArgs>(args: SelectSubset<T, ask_my_notesFindUniqueArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Ask_notes that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Ask_my_notes that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ask_notesFindUniqueOrThrowArgs} args - Arguments to find a Ask_notes
+     * @param {ask_my_notesFindUniqueOrThrowArgs} args - Arguments to find a Ask_my_notes
      * @example
-     * // Get one Ask_notes
-     * const ask_notes = await prisma.ask_notes.findUniqueOrThrow({
+     * // Get one Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ask_notesFindUniqueOrThrowArgs>(args: SelectSubset<T, ask_notesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ask_my_notesFindUniqueOrThrowArgs>(args: SelectSubset<T, ask_my_notesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Ask_notes that matches the filter.
+     * Find the first Ask_my_notes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ask_notesFindFirstArgs} args - Arguments to find a Ask_notes
+     * @param {ask_my_notesFindFirstArgs} args - Arguments to find a Ask_my_notes
      * @example
-     * // Get one Ask_notes
-     * const ask_notes = await prisma.ask_notes.findFirst({
+     * // Get one Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ask_notesFindFirstArgs>(args?: SelectSubset<T, ask_notesFindFirstArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ask_my_notesFindFirstArgs>(args?: SelectSubset<T, ask_my_notesFindFirstArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Ask_notes that matches the filter or
+     * Find the first Ask_my_notes that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ask_notesFindFirstOrThrowArgs} args - Arguments to find a Ask_notes
+     * @param {ask_my_notesFindFirstOrThrowArgs} args - Arguments to find a Ask_my_notes
      * @example
-     * // Get one Ask_notes
-     * const ask_notes = await prisma.ask_notes.findFirstOrThrow({
+     * // Get one Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ask_notesFindFirstOrThrowArgs>(args?: SelectSubset<T, ask_notesFindFirstOrThrowArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ask_my_notesFindFirstOrThrowArgs>(args?: SelectSubset<T, ask_my_notesFindFirstOrThrowArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Ask_notes that matches the filter.
+     * Find zero or more Ask_my_notes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ask_notesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ask_my_notesFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Ask_notes
-     * const ask_notes = await prisma.ask_notes.findMany()
+     * // Get all Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.findMany()
      * 
-     * // Get first 10 Ask_notes
-     * const ask_notes = await prisma.ask_notes.findMany({ take: 10 })
+     * // Get first 10 Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const ask_notesWithIdOnly = await prisma.ask_notes.findMany({ select: { id: true } })
+     * const ask_my_notesWithIdOnly = await prisma.ask_my_notes.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends ask_notesFindManyArgs>(args?: SelectSubset<T, ask_notesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ask_my_notesFindManyArgs>(args?: SelectSubset<T, ask_my_notesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Ask_notes.
-     * @param {ask_notesCreateArgs} args - Arguments to create a Ask_notes.
+     * Create a Ask_my_notes.
+     * @param {ask_my_notesCreateArgs} args - Arguments to create a Ask_my_notes.
      * @example
-     * // Create one Ask_notes
-     * const Ask_notes = await prisma.ask_notes.create({
+     * // Create one Ask_my_notes
+     * const Ask_my_notes = await prisma.ask_my_notes.create({
      *   data: {
-     *     // ... data to create a Ask_notes
+     *     // ... data to create a Ask_my_notes
      *   }
      * })
      * 
      */
-    create<T extends ask_notesCreateArgs>(args: SelectSubset<T, ask_notesCreateArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ask_my_notesCreateArgs>(args: SelectSubset<T, ask_my_notesCreateArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Ask_notes.
-     * @param {ask_notesCreateManyArgs} args - Arguments to create many Ask_notes.
+     * Create many Ask_my_notes.
+     * @param {ask_my_notesCreateManyArgs} args - Arguments to create many Ask_my_notes.
      * @example
-     * // Create many Ask_notes
-     * const ask_notes = await prisma.ask_notes.createMany({
+     * // Create many Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends ask_notesCreateManyArgs>(args?: SelectSubset<T, ask_notesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ask_my_notesCreateManyArgs>(args?: SelectSubset<T, ask_my_notesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Ask_notes.
-     * @param {ask_notesDeleteArgs} args - Arguments to delete one Ask_notes.
+     * Delete a Ask_my_notes.
+     * @param {ask_my_notesDeleteArgs} args - Arguments to delete one Ask_my_notes.
      * @example
-     * // Delete one Ask_notes
-     * const Ask_notes = await prisma.ask_notes.delete({
+     * // Delete one Ask_my_notes
+     * const Ask_my_notes = await prisma.ask_my_notes.delete({
      *   where: {
-     *     // ... filter to delete one Ask_notes
+     *     // ... filter to delete one Ask_my_notes
      *   }
      * })
      * 
      */
-    delete<T extends ask_notesDeleteArgs>(args: SelectSubset<T, ask_notesDeleteArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ask_my_notesDeleteArgs>(args: SelectSubset<T, ask_my_notesDeleteArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Ask_notes.
-     * @param {ask_notesUpdateArgs} args - Arguments to update one Ask_notes.
+     * Update one Ask_my_notes.
+     * @param {ask_my_notesUpdateArgs} args - Arguments to update one Ask_my_notes.
      * @example
-     * // Update one Ask_notes
-     * const ask_notes = await prisma.ask_notes.update({
+     * // Update one Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17299,30 +20186,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends ask_notesUpdateArgs>(args: SelectSubset<T, ask_notesUpdateArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ask_my_notesUpdateArgs>(args: SelectSubset<T, ask_my_notesUpdateArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Ask_notes.
-     * @param {ask_notesDeleteManyArgs} args - Arguments to filter Ask_notes to delete.
+     * Delete zero or more Ask_my_notes.
+     * @param {ask_my_notesDeleteManyArgs} args - Arguments to filter Ask_my_notes to delete.
      * @example
-     * // Delete a few Ask_notes
-     * const { count } = await prisma.ask_notes.deleteMany({
+     * // Delete a few Ask_my_notes
+     * const { count } = await prisma.ask_my_notes.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends ask_notesDeleteManyArgs>(args?: SelectSubset<T, ask_notesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ask_my_notesDeleteManyArgs>(args?: SelectSubset<T, ask_my_notesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Ask_notes.
+     * Update zero or more Ask_my_notes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ask_notesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ask_my_notesUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Ask_notes
-     * const ask_notes = await prisma.ask_notes.updateMany({
+     * // Update many Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17332,56 +20219,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends ask_notesUpdateManyArgs>(args: SelectSubset<T, ask_notesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ask_my_notesUpdateManyArgs>(args: SelectSubset<T, ask_my_notesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Ask_notes.
-     * @param {ask_notesUpsertArgs} args - Arguments to update or create a Ask_notes.
+     * Create or update one Ask_my_notes.
+     * @param {ask_my_notesUpsertArgs} args - Arguments to update or create a Ask_my_notes.
      * @example
-     * // Update or create a Ask_notes
-     * const ask_notes = await prisma.ask_notes.upsert({
+     * // Update or create a Ask_my_notes
+     * const ask_my_notes = await prisma.ask_my_notes.upsert({
      *   create: {
-     *     // ... data to create a Ask_notes
+     *     // ... data to create a Ask_my_notes
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Ask_notes we want to update
+     *     // ... the filter for the Ask_my_notes we want to update
      *   }
      * })
      */
-    upsert<T extends ask_notesUpsertArgs>(args: SelectSubset<T, ask_notesUpsertArgs<ExtArgs>>): Prisma__ask_notesClient<$Result.GetResult<Prisma.$ask_notesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ask_my_notesUpsertArgs>(args: SelectSubset<T, ask_my_notesUpsertArgs<ExtArgs>>): Prisma__ask_my_notesClient<$Result.GetResult<Prisma.$ask_my_notesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Ask_notes.
+     * Count the number of Ask_my_notes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ask_notesCountArgs} args - Arguments to filter Ask_notes to count.
+     * @param {ask_my_notesCountArgs} args - Arguments to filter Ask_my_notes to count.
      * @example
-     * // Count the number of Ask_notes
-     * const count = await prisma.ask_notes.count({
+     * // Count the number of Ask_my_notes
+     * const count = await prisma.ask_my_notes.count({
      *   where: {
-     *     // ... the filter for the Ask_notes we want to count
+     *     // ... the filter for the Ask_my_notes we want to count
      *   }
      * })
     **/
-    count<T extends ask_notesCountArgs>(
-      args?: Subset<T, ask_notesCountArgs>,
+    count<T extends ask_my_notesCountArgs>(
+      args?: Subset<T, ask_my_notesCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Ask_notesCountAggregateOutputType>
+          : GetScalarType<T['select'], Ask_my_notesCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Ask_notes.
+     * Allows you to perform aggregations operations on a Ask_my_notes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Ask_notesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {Ask_my_notesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -17401,13 +20288,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Ask_notesAggregateArgs>(args: Subset<T, Ask_notesAggregateArgs>): Prisma.PrismaPromise<GetAsk_notesAggregateType<T>>
+    aggregate<T extends Ask_my_notesAggregateArgs>(args: Subset<T, Ask_my_notesAggregateArgs>): Prisma.PrismaPromise<GetAsk_my_notesAggregateType<T>>
 
     /**
-     * Group by Ask_notes.
+     * Group by Ask_my_notes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ask_notesGroupByArgs} args - Group by arguments.
+     * @param {ask_my_notesGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -17422,14 +20309,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ask_notesGroupByArgs,
+      T extends ask_my_notesGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ask_notesGroupByArgs['orderBy'] }
-        : { orderBy?: ask_notesGroupByArgs['orderBy'] },
+        ? { orderBy: ask_my_notesGroupByArgs['orderBy'] }
+        : { orderBy?: ask_my_notesGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -17478,20 +20365,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ask_notesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsk_notesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ask_my_notesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsk_my_notesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the ask_notes model
+   * Fields of the ask_my_notes model
    */
-  readonly fields: ask_notesFieldRefs;
+  readonly fields: ask_my_notesFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for ask_notes.
+   * The delegate class that acts as a "Promise-like" for ask_my_notes.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ask_notesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ask_my_notesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -17519,1212 +20406,686 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the ask_notes model
+   * Fields of the ask_my_notes model
    */
-  interface ask_notesFieldRefs {
-    readonly id: FieldRef<"ask_notes", 'Int'>
-    readonly title: FieldRef<"ask_notes", 'String'>
-    readonly body: FieldRef<"ask_notes", 'String'>
-    readonly createdAt: FieldRef<"ask_notes", 'DateTime'>
+  interface ask_my_notesFieldRefs {
+    readonly id: FieldRef<"ask_my_notes", 'Int'>
+    readonly title: FieldRef<"ask_my_notes", 'String'>
+    readonly body: FieldRef<"ask_my_notes", 'String'>
+    readonly createdAt: FieldRef<"ask_my_notes", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * ask_notes findUnique
+   * ask_my_notes findUnique
    */
-  export type ask_notesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * Filter, which ask_notes to fetch.
+     * Filter, which ask_my_notes to fetch.
      */
-    where: ask_notesWhereUniqueInput
+    where: ask_my_notesWhereUniqueInput
   }
 
   /**
-   * ask_notes findUniqueOrThrow
+   * ask_my_notes findUniqueOrThrow
    */
-  export type ask_notesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * Filter, which ask_notes to fetch.
+     * Filter, which ask_my_notes to fetch.
      */
-    where: ask_notesWhereUniqueInput
+    where: ask_my_notesWhereUniqueInput
   }
 
   /**
-   * ask_notes findFirst
+   * ask_my_notes findFirst
    */
-  export type ask_notesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * Filter, which ask_notes to fetch.
+     * Filter, which ask_my_notes to fetch.
      */
-    where?: ask_notesWhereInput
+    where?: ask_my_notesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ask_notes to fetch.
+     * Determine the order of ask_my_notes to fetch.
      */
-    orderBy?: ask_notesOrderByWithRelationInput | ask_notesOrderByWithRelationInput[]
+    orderBy?: ask_my_notesOrderByWithRelationInput | ask_my_notesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ask_notes.
+     * Sets the position for searching for ask_my_notes.
      */
-    cursor?: ask_notesWhereUniqueInput
+    cursor?: ask_my_notesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ask_notes from the position of the cursor.
+     * Take `±n` ask_my_notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ask_notes.
+     * Skip the first `n` ask_my_notes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ask_notes.
+     * Filter by unique combinations of ask_my_notes.
      */
-    distinct?: Ask_notesScalarFieldEnum | Ask_notesScalarFieldEnum[]
+    distinct?: Ask_my_notesScalarFieldEnum | Ask_my_notesScalarFieldEnum[]
   }
 
   /**
-   * ask_notes findFirstOrThrow
+   * ask_my_notes findFirstOrThrow
    */
-  export type ask_notesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * Filter, which ask_notes to fetch.
+     * Filter, which ask_my_notes to fetch.
      */
-    where?: ask_notesWhereInput
+    where?: ask_my_notesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ask_notes to fetch.
+     * Determine the order of ask_my_notes to fetch.
      */
-    orderBy?: ask_notesOrderByWithRelationInput | ask_notesOrderByWithRelationInput[]
+    orderBy?: ask_my_notesOrderByWithRelationInput | ask_my_notesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ask_notes.
+     * Sets the position for searching for ask_my_notes.
      */
-    cursor?: ask_notesWhereUniqueInput
+    cursor?: ask_my_notesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ask_notes from the position of the cursor.
+     * Take `±n` ask_my_notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ask_notes.
+     * Skip the first `n` ask_my_notes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ask_notes.
+     * Filter by unique combinations of ask_my_notes.
      */
-    distinct?: Ask_notesScalarFieldEnum | Ask_notesScalarFieldEnum[]
+    distinct?: Ask_my_notesScalarFieldEnum | Ask_my_notesScalarFieldEnum[]
   }
 
   /**
-   * ask_notes findMany
+   * ask_my_notes findMany
    */
-  export type ask_notesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * Filter, which ask_notes to fetch.
+     * Filter, which ask_my_notes to fetch.
      */
-    where?: ask_notesWhereInput
+    where?: ask_my_notesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ask_notes to fetch.
+     * Determine the order of ask_my_notes to fetch.
      */
-    orderBy?: ask_notesOrderByWithRelationInput | ask_notesOrderByWithRelationInput[]
+    orderBy?: ask_my_notesOrderByWithRelationInput | ask_my_notesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing ask_notes.
+     * Sets the position for listing ask_my_notes.
      */
-    cursor?: ask_notesWhereUniqueInput
+    cursor?: ask_my_notesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ask_notes from the position of the cursor.
+     * Take `±n` ask_my_notes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ask_notes.
+     * Skip the first `n` ask_my_notes.
      */
     skip?: number
-    distinct?: Ask_notesScalarFieldEnum | Ask_notesScalarFieldEnum[]
+    distinct?: Ask_my_notesScalarFieldEnum | Ask_my_notesScalarFieldEnum[]
   }
 
   /**
-   * ask_notes create
+   * ask_my_notes create
    */
-  export type ask_notesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * The data needed to create a ask_notes.
+     * The data needed to create a ask_my_notes.
      */
-    data: XOR<ask_notesCreateInput, ask_notesUncheckedCreateInput>
+    data: XOR<ask_my_notesCreateInput, ask_my_notesUncheckedCreateInput>
   }
 
   /**
-   * ask_notes createMany
+   * ask_my_notes createMany
    */
-  export type ask_notesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many ask_notes.
+     * The data used to create many ask_my_notes.
      */
-    data: ask_notesCreateManyInput | ask_notesCreateManyInput[]
+    data: ask_my_notesCreateManyInput | ask_my_notesCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * ask_notes update
+   * ask_my_notes update
    */
-  export type ask_notesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * The data needed to update a ask_notes.
+     * The data needed to update a ask_my_notes.
      */
-    data: XOR<ask_notesUpdateInput, ask_notesUncheckedUpdateInput>
+    data: XOR<ask_my_notesUpdateInput, ask_my_notesUncheckedUpdateInput>
     /**
-     * Choose, which ask_notes to update.
+     * Choose, which ask_my_notes to update.
      */
-    where: ask_notesWhereUniqueInput
+    where: ask_my_notesWhereUniqueInput
   }
 
   /**
-   * ask_notes updateMany
+   * ask_my_notes updateMany
    */
-  export type ask_notesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update ask_notes.
+     * The data used to update ask_my_notes.
      */
-    data: XOR<ask_notesUpdateManyMutationInput, ask_notesUncheckedUpdateManyInput>
+    data: XOR<ask_my_notesUpdateManyMutationInput, ask_my_notesUncheckedUpdateManyInput>
     /**
-     * Filter which ask_notes to update
+     * Filter which ask_my_notes to update
      */
-    where?: ask_notesWhereInput
+    where?: ask_my_notesWhereInput
     /**
-     * Limit how many ask_notes to update.
+     * Limit how many ask_my_notes to update.
      */
     limit?: number
   }
 
   /**
-   * ask_notes upsert
+   * ask_my_notes upsert
    */
-  export type ask_notesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * The filter to search for the ask_notes to update in case it exists.
+     * The filter to search for the ask_my_notes to update in case it exists.
      */
-    where: ask_notesWhereUniqueInput
+    where: ask_my_notesWhereUniqueInput
     /**
-     * In case the ask_notes found by the `where` argument doesn't exist, create a new ask_notes with this data.
+     * In case the ask_my_notes found by the `where` argument doesn't exist, create a new ask_my_notes with this data.
      */
-    create: XOR<ask_notesCreateInput, ask_notesUncheckedCreateInput>
+    create: XOR<ask_my_notesCreateInput, ask_my_notesUncheckedCreateInput>
     /**
-     * In case the ask_notes was found with the provided `where` argument, update it with this data.
+     * In case the ask_my_notes was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ask_notesUpdateInput, ask_notesUncheckedUpdateInput>
+    update: XOR<ask_my_notesUpdateInput, ask_my_notesUncheckedUpdateInput>
   }
 
   /**
-   * ask_notes delete
+   * ask_my_notes delete
    */
-  export type ask_notesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
     /**
-     * Filter which ask_notes to delete.
+     * Filter which ask_my_notes to delete.
      */
-    where: ask_notesWhereUniqueInput
+    where: ask_my_notesWhereUniqueInput
   }
 
   /**
-   * ask_notes deleteMany
+   * ask_my_notes deleteMany
    */
-  export type ask_notesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ask_notes to delete
+     * Filter which ask_my_notes to delete
      */
-    where?: ask_notesWhereInput
+    where?: ask_my_notesWhereInput
     /**
-     * Limit how many ask_notes to delete.
+     * Limit how many ask_my_notes to delete.
      */
     limit?: number
   }
 
   /**
-   * ask_notes without action
+   * ask_my_notes without action
    */
-  export type ask_notesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_my_notesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ask_notes
+     * Select specific fields to fetch from the ask_my_notes
      */
-    select?: ask_notesSelect<ExtArgs> | null
+    select?: ask_my_notesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ask_notes
+     * Omit specific fields from the ask_my_notes
      */
-    omit?: ask_notesOmit<ExtArgs> | null
+    omit?: ask_my_notesOmit<ExtArgs> | null
   }
 
 
   /**
-   * Model tournaments
+   * Model ask_notes_detail
    */
 
-  export type AggregateTournaments = {
-    _count: TournamentsCountAggregateOutputType | null
-    _avg: TournamentsAvgAggregateOutputType | null
-    _sum: TournamentsSumAggregateOutputType | null
-    _min: TournamentsMinAggregateOutputType | null
-    _max: TournamentsMaxAggregateOutputType | null
+  export type AggregateAsk_notes_detail = {
+    _count: Ask_notes_detailCountAggregateOutputType | null
+    _avg: Ask_notes_detailAvgAggregateOutputType | null
+    _sum: Ask_notes_detailSumAggregateOutputType | null
+    _min: Ask_notes_detailMinAggregateOutputType | null
+    _max: Ask_notes_detailMaxAggregateOutputType | null
   }
 
-  export type TournamentsAvgAggregateOutputType = {
+  export type Ask_notes_detailAvgAggregateOutputType = {
     id: number | null
-    created_by: number | null
-    user_id: number | null
-    academy_id: number | null
-    sets: number | null
-    country_id: number | null
-    state_id: number | null
-    city_id: number | null
-    winner_id: number | null
-    participation_limit: number | null
-    publish_status: number | null
-    is_old: number | null
-    is_verified: number | null
-    tournament_fees: Decimal | null
+    note_id: number | null
   }
 
-  export type TournamentsSumAggregateOutputType = {
+  export type Ask_notes_detailSumAggregateOutputType = {
     id: number | null
-    created_by: bigint | null
-    user_id: bigint | null
-    academy_id: number | null
-    sets: number | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    winner_id: number | null
-    participation_limit: number | null
-    publish_status: number | null
-    is_old: number | null
-    is_verified: number | null
-    tournament_fees: Decimal | null
+    note_id: number | null
   }
 
-  export type TournamentsMinAggregateOutputType = {
+  export type Ask_notes_detailMinAggregateOutputType = {
     id: number | null
-    uuid: string | null
-    sport_id: string | null
-    created_by: bigint | null
-    name: string | null
-    slug_name: string | null
-    locality: string | null
-    events_payload: string | null
-    match_type: string | null
-    description: string | null
-    type: string | null
-    tournament_type: string | null
-    user_id: bigint | null
-    academy_id: number | null
-    tourstartdate: Date | null
-    tourenddate: Date | null
-    sets: number | null
-    tournament_set: string | null
-    tourcategory: string | null
-    drawtype: string | null
-    agegroup: string | null
-    variationid: string | null
-    venue: string | null
-    official: string | null
-    tourimage: string | null
-    winnerprize: string | null
-    contestantprize: string | null
-    semifinalprize: string | null
-    quarterfinalprize: string | null
-    runnerupprize: string | null
-    long: string | null
-    lat: string | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    address: string | null
-    winner_id: number | null
-    organization_tier_id: string | null
-    status: boolean | null
-    participation_limit: number | null
-    publish_status: number | null
-    is_old: number | null
-    is_verified: number | null
-    created_at: Date | null
-    updated_at: Date | null
-    is_whatsapp_message_allowed: boolean | null
-    tournament_fees: Decimal | null
-    is_event_fees: boolean | null
-    is_registration_table_dynamic: boolean | null
-    is_razorpay_payment_enable: boolean | null
-    deleted_at: Date | null
+    note_id: number | null
+    content: string | null
+    createdAt: Date | null
   }
 
-  export type TournamentsMaxAggregateOutputType = {
+  export type Ask_notes_detailMaxAggregateOutputType = {
     id: number | null
-    uuid: string | null
-    sport_id: string | null
-    created_by: bigint | null
-    name: string | null
-    slug_name: string | null
-    locality: string | null
-    events_payload: string | null
-    match_type: string | null
-    description: string | null
-    type: string | null
-    tournament_type: string | null
-    user_id: bigint | null
-    academy_id: number | null
-    tourstartdate: Date | null
-    tourenddate: Date | null
-    sets: number | null
-    tournament_set: string | null
-    tourcategory: string | null
-    drawtype: string | null
-    agegroup: string | null
-    variationid: string | null
-    venue: string | null
-    official: string | null
-    tourimage: string | null
-    winnerprize: string | null
-    contestantprize: string | null
-    semifinalprize: string | null
-    quarterfinalprize: string | null
-    runnerupprize: string | null
-    long: string | null
-    lat: string | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    address: string | null
-    winner_id: number | null
-    organization_tier_id: string | null
-    status: boolean | null
-    participation_limit: number | null
-    publish_status: number | null
-    is_old: number | null
-    is_verified: number | null
-    created_at: Date | null
-    updated_at: Date | null
-    is_whatsapp_message_allowed: boolean | null
-    tournament_fees: Decimal | null
-    is_event_fees: boolean | null
-    is_registration_table_dynamic: boolean | null
-    is_razorpay_payment_enable: boolean | null
-    deleted_at: Date | null
+    note_id: number | null
+    content: string | null
+    createdAt: Date | null
   }
 
-  export type TournamentsCountAggregateOutputType = {
+  export type Ask_notes_detailCountAggregateOutputType = {
     id: number
-    uuid: number
-    sport_id: number
-    created_by: number
-    name: number
-    slug_name: number
-    locality: number
-    events_payload: number
-    match_type: number
-    description: number
-    type: number
-    tournament_type: number
-    user_id: number
-    academy_id: number
-    tourstartdate: number
-    tourenddate: number
-    sets: number
-    tournament_set: number
-    tourcategory: number
-    drawtype: number
-    agegroup: number
-    variationid: number
-    venue: number
-    official: number
-    tourimage: number
-    winnerprize: number
-    contestantprize: number
-    semifinalprize: number
-    quarterfinalprize: number
-    runnerupprize: number
-    long: number
-    lat: number
-    country_id: number
-    state_id: number
-    city_id: number
-    address: number
-    winner_id: number
-    organization_tier_id: number
-    status: number
-    participation_limit: number
-    publish_status: number
-    is_old: number
-    is_verified: number
-    created_at: number
-    updated_at: number
-    is_whatsapp_message_allowed: number
-    tournament_fees: number
-    is_event_fees: number
-    is_registration_table_dynamic: number
-    is_razorpay_payment_enable: number
-    deleted_at: number
+    note_id: number
+    content: number
+    createdAt: number
     _all: number
   }
 
 
-  export type TournamentsAvgAggregateInputType = {
+  export type Ask_notes_detailAvgAggregateInputType = {
     id?: true
-    created_by?: true
-    user_id?: true
-    academy_id?: true
-    sets?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    winner_id?: true
-    participation_limit?: true
-    publish_status?: true
-    is_old?: true
-    is_verified?: true
-    tournament_fees?: true
+    note_id?: true
   }
 
-  export type TournamentsSumAggregateInputType = {
+  export type Ask_notes_detailSumAggregateInputType = {
     id?: true
-    created_by?: true
-    user_id?: true
-    academy_id?: true
-    sets?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    winner_id?: true
-    participation_limit?: true
-    publish_status?: true
-    is_old?: true
-    is_verified?: true
-    tournament_fees?: true
+    note_id?: true
   }
 
-  export type TournamentsMinAggregateInputType = {
+  export type Ask_notes_detailMinAggregateInputType = {
     id?: true
-    uuid?: true
-    sport_id?: true
-    created_by?: true
-    name?: true
-    slug_name?: true
-    locality?: true
-    events_payload?: true
-    match_type?: true
-    description?: true
-    type?: true
-    tournament_type?: true
-    user_id?: true
-    academy_id?: true
-    tourstartdate?: true
-    tourenddate?: true
-    sets?: true
-    tournament_set?: true
-    tourcategory?: true
-    drawtype?: true
-    agegroup?: true
-    variationid?: true
-    venue?: true
-    official?: true
-    tourimage?: true
-    winnerprize?: true
-    contestantprize?: true
-    semifinalprize?: true
-    quarterfinalprize?: true
-    runnerupprize?: true
-    long?: true
-    lat?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    address?: true
-    winner_id?: true
-    organization_tier_id?: true
-    status?: true
-    participation_limit?: true
-    publish_status?: true
-    is_old?: true
-    is_verified?: true
-    created_at?: true
-    updated_at?: true
-    is_whatsapp_message_allowed?: true
-    tournament_fees?: true
-    is_event_fees?: true
-    is_registration_table_dynamic?: true
-    is_razorpay_payment_enable?: true
-    deleted_at?: true
+    note_id?: true
+    content?: true
+    createdAt?: true
   }
 
-  export type TournamentsMaxAggregateInputType = {
+  export type Ask_notes_detailMaxAggregateInputType = {
     id?: true
-    uuid?: true
-    sport_id?: true
-    created_by?: true
-    name?: true
-    slug_name?: true
-    locality?: true
-    events_payload?: true
-    match_type?: true
-    description?: true
-    type?: true
-    tournament_type?: true
-    user_id?: true
-    academy_id?: true
-    tourstartdate?: true
-    tourenddate?: true
-    sets?: true
-    tournament_set?: true
-    tourcategory?: true
-    drawtype?: true
-    agegroup?: true
-    variationid?: true
-    venue?: true
-    official?: true
-    tourimage?: true
-    winnerprize?: true
-    contestantprize?: true
-    semifinalprize?: true
-    quarterfinalprize?: true
-    runnerupprize?: true
-    long?: true
-    lat?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    address?: true
-    winner_id?: true
-    organization_tier_id?: true
-    status?: true
-    participation_limit?: true
-    publish_status?: true
-    is_old?: true
-    is_verified?: true
-    created_at?: true
-    updated_at?: true
-    is_whatsapp_message_allowed?: true
-    tournament_fees?: true
-    is_event_fees?: true
-    is_registration_table_dynamic?: true
-    is_razorpay_payment_enable?: true
-    deleted_at?: true
+    note_id?: true
+    content?: true
+    createdAt?: true
   }
 
-  export type TournamentsCountAggregateInputType = {
+  export type Ask_notes_detailCountAggregateInputType = {
     id?: true
-    uuid?: true
-    sport_id?: true
-    created_by?: true
-    name?: true
-    slug_name?: true
-    locality?: true
-    events_payload?: true
-    match_type?: true
-    description?: true
-    type?: true
-    tournament_type?: true
-    user_id?: true
-    academy_id?: true
-    tourstartdate?: true
-    tourenddate?: true
-    sets?: true
-    tournament_set?: true
-    tourcategory?: true
-    drawtype?: true
-    agegroup?: true
-    variationid?: true
-    venue?: true
-    official?: true
-    tourimage?: true
-    winnerprize?: true
-    contestantprize?: true
-    semifinalprize?: true
-    quarterfinalprize?: true
-    runnerupprize?: true
-    long?: true
-    lat?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    address?: true
-    winner_id?: true
-    organization_tier_id?: true
-    status?: true
-    participation_limit?: true
-    publish_status?: true
-    is_old?: true
-    is_verified?: true
-    created_at?: true
-    updated_at?: true
-    is_whatsapp_message_allowed?: true
-    tournament_fees?: true
-    is_event_fees?: true
-    is_registration_table_dynamic?: true
-    is_razorpay_payment_enable?: true
-    deleted_at?: true
+    note_id?: true
+    content?: true
+    createdAt?: true
     _all?: true
   }
 
-  export type TournamentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Ask_notes_detailAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which tournaments to aggregate.
+     * Filter which ask_notes_detail to aggregate.
      */
-    where?: tournamentsWhereInput
+    where?: ask_notes_detailWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tournaments to fetch.
+     * Determine the order of ask_notes_details to fetch.
      */
-    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    orderBy?: ask_notes_detailOrderByWithRelationInput | ask_notes_detailOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: tournamentsWhereUniqueInput
+    cursor?: ask_notes_detailWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tournaments from the position of the cursor.
+     * Take `±n` ask_notes_details from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tournaments.
+     * Skip the first `n` ask_notes_details.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned tournaments
+     * Count returned ask_notes_details
     **/
-    _count?: true | TournamentsCountAggregateInputType
+    _count?: true | Ask_notes_detailCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: TournamentsAvgAggregateInputType
+    _avg?: Ask_notes_detailAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: TournamentsSumAggregateInputType
+    _sum?: Ask_notes_detailSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TournamentsMinAggregateInputType
+    _min?: Ask_notes_detailMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TournamentsMaxAggregateInputType
+    _max?: Ask_notes_detailMaxAggregateInputType
   }
 
-  export type GetTournamentsAggregateType<T extends TournamentsAggregateArgs> = {
-        [P in keyof T & keyof AggregateTournaments]: P extends '_count' | 'count'
+  export type GetAsk_notes_detailAggregateType<T extends Ask_notes_detailAggregateArgs> = {
+        [P in keyof T & keyof AggregateAsk_notes_detail]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTournaments[P]>
-      : GetScalarType<T[P], AggregateTournaments[P]>
+        : GetScalarType<T[P], AggregateAsk_notes_detail[P]>
+      : GetScalarType<T[P], AggregateAsk_notes_detail[P]>
   }
 
 
 
 
-  export type tournamentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: tournamentsWhereInput
-    orderBy?: tournamentsOrderByWithAggregationInput | tournamentsOrderByWithAggregationInput[]
-    by: TournamentsScalarFieldEnum[] | TournamentsScalarFieldEnum
-    having?: tournamentsScalarWhereWithAggregatesInput
+  export type ask_notes_detailGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_notes_detailWhereInput
+    orderBy?: ask_notes_detailOrderByWithAggregationInput | ask_notes_detailOrderByWithAggregationInput[]
+    by: Ask_notes_detailScalarFieldEnum[] | Ask_notes_detailScalarFieldEnum
+    having?: ask_notes_detailScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TournamentsCountAggregateInputType | true
-    _avg?: TournamentsAvgAggregateInputType
-    _sum?: TournamentsSumAggregateInputType
-    _min?: TournamentsMinAggregateInputType
-    _max?: TournamentsMaxAggregateInputType
+    _count?: Ask_notes_detailCountAggregateInputType | true
+    _avg?: Ask_notes_detailAvgAggregateInputType
+    _sum?: Ask_notes_detailSumAggregateInputType
+    _min?: Ask_notes_detailMinAggregateInputType
+    _max?: Ask_notes_detailMaxAggregateInputType
   }
 
-  export type TournamentsGroupByOutputType = {
+  export type Ask_notes_detailGroupByOutputType = {
     id: number
-    uuid: string
-    sport_id: string | null
-    created_by: bigint | null
-    name: string | null
-    slug_name: string | null
-    locality: string | null
-    events_payload: string | null
-    match_type: string | null
-    description: string | null
-    type: string | null
-    tournament_type: string | null
-    user_id: bigint | null
-    academy_id: number | null
-    tourstartdate: Date | null
-    tourenddate: Date | null
-    sets: number | null
-    tournament_set: string | null
-    tourcategory: string | null
-    drawtype: string | null
-    agegroup: string | null
-    variationid: string | null
-    venue: string | null
-    official: string | null
-    tourimage: string | null
-    winnerprize: string | null
-    contestantprize: string | null
-    semifinalprize: string | null
-    quarterfinalprize: string | null
-    runnerupprize: string | null
-    long: string | null
-    lat: string | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    address: string | null
-    winner_id: number | null
-    organization_tier_id: string | null
-    status: boolean
-    participation_limit: number
-    publish_status: number
-    is_old: number
-    is_verified: number
-    created_at: Date | null
-    updated_at: Date | null
-    is_whatsapp_message_allowed: boolean
-    tournament_fees: Decimal | null
-    is_event_fees: boolean
-    is_registration_table_dynamic: boolean
-    is_razorpay_payment_enable: boolean
-    deleted_at: Date | null
-    _count: TournamentsCountAggregateOutputType | null
-    _avg: TournamentsAvgAggregateOutputType | null
-    _sum: TournamentsSumAggregateOutputType | null
-    _min: TournamentsMinAggregateOutputType | null
-    _max: TournamentsMaxAggregateOutputType | null
+    note_id: number
+    content: string | null
+    createdAt: Date
+    _count: Ask_notes_detailCountAggregateOutputType | null
+    _avg: Ask_notes_detailAvgAggregateOutputType | null
+    _sum: Ask_notes_detailSumAggregateOutputType | null
+    _min: Ask_notes_detailMinAggregateOutputType | null
+    _max: Ask_notes_detailMaxAggregateOutputType | null
   }
 
-  type GetTournamentsGroupByPayload<T extends tournamentsGroupByArgs> = Prisma.PrismaPromise<
+  type GetAsk_notes_detailGroupByPayload<T extends ask_notes_detailGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TournamentsGroupByOutputType, T['by']> &
+      PickEnumerable<Ask_notes_detailGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TournamentsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof Ask_notes_detailGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TournamentsGroupByOutputType[P]>
-            : GetScalarType<T[P], TournamentsGroupByOutputType[P]>
+              : GetScalarType<T[P], Ask_notes_detailGroupByOutputType[P]>
+            : GetScalarType<T[P], Ask_notes_detailGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type tournamentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ask_notes_detailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    uuid?: boolean
-    sport_id?: boolean
-    created_by?: boolean
-    name?: boolean
-    slug_name?: boolean
-    locality?: boolean
-    events_payload?: boolean
-    match_type?: boolean
-    description?: boolean
-    type?: boolean
-    tournament_type?: boolean
-    user_id?: boolean
-    academy_id?: boolean
-    tourstartdate?: boolean
-    tourenddate?: boolean
-    sets?: boolean
-    tournament_set?: boolean
-    tourcategory?: boolean
-    drawtype?: boolean
-    agegroup?: boolean
-    variationid?: boolean
-    venue?: boolean
-    official?: boolean
-    tourimage?: boolean
-    winnerprize?: boolean
-    contestantprize?: boolean
-    semifinalprize?: boolean
-    quarterfinalprize?: boolean
-    runnerupprize?: boolean
-    long?: boolean
-    lat?: boolean
-    country_id?: boolean
-    state_id?: boolean
-    city_id?: boolean
-    address?: boolean
-    winner_id?: boolean
-    organization_tier_id?: boolean
-    status?: boolean
-    participation_limit?: boolean
-    publish_status?: boolean
-    is_old?: boolean
-    is_verified?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    is_whatsapp_message_allowed?: boolean
-    tournament_fees?: boolean
-    is_event_fees?: boolean
-    is_registration_table_dynamic?: boolean
-    is_razorpay_payment_enable?: boolean
-    deleted_at?: boolean
-    contents?: boolean | tournaments$contentsArgs<ExtArgs>
-    _count?: boolean | TournamentsCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tournaments"]>
+    note_id?: boolean
+    content?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["ask_notes_detail"]>
 
 
 
-  export type tournamentsSelectScalar = {
+  export type ask_notes_detailSelectScalar = {
     id?: boolean
-    uuid?: boolean
-    sport_id?: boolean
-    created_by?: boolean
-    name?: boolean
-    slug_name?: boolean
-    locality?: boolean
-    events_payload?: boolean
-    match_type?: boolean
-    description?: boolean
-    type?: boolean
-    tournament_type?: boolean
-    user_id?: boolean
-    academy_id?: boolean
-    tourstartdate?: boolean
-    tourenddate?: boolean
-    sets?: boolean
-    tournament_set?: boolean
-    tourcategory?: boolean
-    drawtype?: boolean
-    agegroup?: boolean
-    variationid?: boolean
-    venue?: boolean
-    official?: boolean
-    tourimage?: boolean
-    winnerprize?: boolean
-    contestantprize?: boolean
-    semifinalprize?: boolean
-    quarterfinalprize?: boolean
-    runnerupprize?: boolean
-    long?: boolean
-    lat?: boolean
-    country_id?: boolean
-    state_id?: boolean
-    city_id?: boolean
-    address?: boolean
-    winner_id?: boolean
-    organization_tier_id?: boolean
-    status?: boolean
-    participation_limit?: boolean
-    publish_status?: boolean
-    is_old?: boolean
-    is_verified?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    is_whatsapp_message_allowed?: boolean
-    tournament_fees?: boolean
-    is_event_fees?: boolean
-    is_registration_table_dynamic?: boolean
-    is_razorpay_payment_enable?: boolean
-    deleted_at?: boolean
+    note_id?: boolean
+    content?: boolean
+    createdAt?: boolean
   }
 
-  export type tournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "created_by" | "name" | "slug_name" | "locality" | "events_payload" | "match_type" | "description" | "type" | "tournament_type" | "user_id" | "academy_id" | "tourstartdate" | "tourenddate" | "sets" | "tournament_set" | "tourcategory" | "drawtype" | "agegroup" | "variationid" | "venue" | "official" | "tourimage" | "winnerprize" | "contestantprize" | "semifinalprize" | "quarterfinalprize" | "runnerupprize" | "long" | "lat" | "country_id" | "state_id" | "city_id" | "address" | "winner_id" | "organization_tier_id" | "status" | "participation_limit" | "publish_status" | "is_old" | "is_verified" | "created_at" | "updated_at" | "is_whatsapp_message_allowed" | "tournament_fees" | "is_event_fees" | "is_registration_table_dynamic" | "is_razorpay_payment_enable" | "deleted_at", ExtArgs["result"]["tournaments"]>
-  export type tournamentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contents?: boolean | tournaments$contentsArgs<ExtArgs>
-    _count?: boolean | TournamentsCountOutputTypeDefaultArgs<ExtArgs>
-  }
+  export type ask_notes_detailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "note_id" | "content" | "createdAt", ExtArgs["result"]["ask_notes_detail"]>
 
-  export type $tournamentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "tournaments"
-    objects: {
-      contents: Prisma.$tournament_contentsPayload<ExtArgs>[]
-    }
+  export type $ask_notes_detailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ask_notes_detail"
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      uuid: string
-      sport_id: string | null
-      created_by: bigint | null
-      name: string | null
-      slug_name: string | null
-      locality: string | null
-      events_payload: string | null
-      match_type: string | null
-      description: string | null
-      type: string | null
-      tournament_type: string | null
-      user_id: bigint | null
-      academy_id: number | null
-      tourstartdate: Date | null
-      tourenddate: Date | null
-      sets: number | null
-      tournament_set: string | null
-      tourcategory: string | null
-      drawtype: string | null
-      agegroup: string | null
-      variationid: string | null
-      venue: string | null
-      official: string | null
-      tourimage: string | null
-      winnerprize: string | null
-      contestantprize: string | null
-      semifinalprize: string | null
-      quarterfinalprize: string | null
-      runnerupprize: string | null
-      long: string | null
-      lat: string | null
-      country_id: bigint | null
-      state_id: bigint | null
-      city_id: bigint | null
-      address: string | null
-      winner_id: number | null
-      organization_tier_id: string | null
-      status: boolean
-      participation_limit: number
-      publish_status: number
-      is_old: number
-      is_verified: number
-      created_at: Date | null
-      updated_at: Date | null
-      is_whatsapp_message_allowed: boolean
-      tournament_fees: Prisma.Decimal | null
-      is_event_fees: boolean
-      is_registration_table_dynamic: boolean
-      is_razorpay_payment_enable: boolean
-      deleted_at: Date | null
-    }, ExtArgs["result"]["tournaments"]>
+      note_id: number
+      content: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["ask_notes_detail"]>
     composites: {}
   }
 
-  type tournamentsGetPayload<S extends boolean | null | undefined | tournamentsDefaultArgs> = $Result.GetResult<Prisma.$tournamentsPayload, S>
+  type ask_notes_detailGetPayload<S extends boolean | null | undefined | ask_notes_detailDefaultArgs> = $Result.GetResult<Prisma.$ask_notes_detailPayload, S>
 
-  type tournamentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<tournamentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TournamentsCountAggregateInputType | true
+  type ask_notes_detailCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ask_notes_detailFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Ask_notes_detailCountAggregateInputType | true
     }
 
-  export interface tournamentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['tournaments'], meta: { name: 'tournaments' } }
+  export interface ask_notes_detailDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ask_notes_detail'], meta: { name: 'ask_notes_detail' } }
     /**
-     * Find zero or one Tournaments that matches the filter.
-     * @param {tournamentsFindUniqueArgs} args - Arguments to find a Tournaments
+     * Find zero or one Ask_notes_detail that matches the filter.
+     * @param {ask_notes_detailFindUniqueArgs} args - Arguments to find a Ask_notes_detail
      * @example
-     * // Get one Tournaments
-     * const tournaments = await prisma.tournaments.findUnique({
+     * // Get one Ask_notes_detail
+     * const ask_notes_detail = await prisma.ask_notes_detail.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends tournamentsFindUniqueArgs>(args: SelectSubset<T, tournamentsFindUniqueArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ask_notes_detailFindUniqueArgs>(args: SelectSubset<T, ask_notes_detailFindUniqueArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Tournaments that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Ask_notes_detail that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {tournamentsFindUniqueOrThrowArgs} args - Arguments to find a Tournaments
+     * @param {ask_notes_detailFindUniqueOrThrowArgs} args - Arguments to find a Ask_notes_detail
      * @example
-     * // Get one Tournaments
-     * const tournaments = await prisma.tournaments.findUniqueOrThrow({
+     * // Get one Ask_notes_detail
+     * const ask_notes_detail = await prisma.ask_notes_detail.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends tournamentsFindUniqueOrThrowArgs>(args: SelectSubset<T, tournamentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ask_notes_detailFindUniqueOrThrowArgs>(args: SelectSubset<T, ask_notes_detailFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Tournaments that matches the filter.
+     * Find the first Ask_notes_detail that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tournamentsFindFirstArgs} args - Arguments to find a Tournaments
+     * @param {ask_notes_detailFindFirstArgs} args - Arguments to find a Ask_notes_detail
      * @example
-     * // Get one Tournaments
-     * const tournaments = await prisma.tournaments.findFirst({
+     * // Get one Ask_notes_detail
+     * const ask_notes_detail = await prisma.ask_notes_detail.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends tournamentsFindFirstArgs>(args?: SelectSubset<T, tournamentsFindFirstArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ask_notes_detailFindFirstArgs>(args?: SelectSubset<T, ask_notes_detailFindFirstArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Tournaments that matches the filter or
+     * Find the first Ask_notes_detail that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tournamentsFindFirstOrThrowArgs} args - Arguments to find a Tournaments
+     * @param {ask_notes_detailFindFirstOrThrowArgs} args - Arguments to find a Ask_notes_detail
      * @example
-     * // Get one Tournaments
-     * const tournaments = await prisma.tournaments.findFirstOrThrow({
+     * // Get one Ask_notes_detail
+     * const ask_notes_detail = await prisma.ask_notes_detail.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends tournamentsFindFirstOrThrowArgs>(args?: SelectSubset<T, tournamentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ask_notes_detailFindFirstOrThrowArgs>(args?: SelectSubset<T, ask_notes_detailFindFirstOrThrowArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Tournaments that matches the filter.
+     * Find zero or more Ask_notes_details that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tournamentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ask_notes_detailFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Tournaments
-     * const tournaments = await prisma.tournaments.findMany()
+     * // Get all Ask_notes_details
+     * const ask_notes_details = await prisma.ask_notes_detail.findMany()
      * 
-     * // Get first 10 Tournaments
-     * const tournaments = await prisma.tournaments.findMany({ take: 10 })
+     * // Get first 10 Ask_notes_details
+     * const ask_notes_details = await prisma.ask_notes_detail.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const tournamentsWithIdOnly = await prisma.tournaments.findMany({ select: { id: true } })
+     * const ask_notes_detailWithIdOnly = await prisma.ask_notes_detail.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends tournamentsFindManyArgs>(args?: SelectSubset<T, tournamentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ask_notes_detailFindManyArgs>(args?: SelectSubset<T, ask_notes_detailFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Tournaments.
-     * @param {tournamentsCreateArgs} args - Arguments to create a Tournaments.
+     * Create a Ask_notes_detail.
+     * @param {ask_notes_detailCreateArgs} args - Arguments to create a Ask_notes_detail.
      * @example
-     * // Create one Tournaments
-     * const Tournaments = await prisma.tournaments.create({
+     * // Create one Ask_notes_detail
+     * const Ask_notes_detail = await prisma.ask_notes_detail.create({
      *   data: {
-     *     // ... data to create a Tournaments
+     *     // ... data to create a Ask_notes_detail
      *   }
      * })
      * 
      */
-    create<T extends tournamentsCreateArgs>(args: SelectSubset<T, tournamentsCreateArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ask_notes_detailCreateArgs>(args: SelectSubset<T, ask_notes_detailCreateArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Tournaments.
-     * @param {tournamentsCreateManyArgs} args - Arguments to create many Tournaments.
+     * Create many Ask_notes_details.
+     * @param {ask_notes_detailCreateManyArgs} args - Arguments to create many Ask_notes_details.
      * @example
-     * // Create many Tournaments
-     * const tournaments = await prisma.tournaments.createMany({
+     * // Create many Ask_notes_details
+     * const ask_notes_detail = await prisma.ask_notes_detail.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends tournamentsCreateManyArgs>(args?: SelectSubset<T, tournamentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ask_notes_detailCreateManyArgs>(args?: SelectSubset<T, ask_notes_detailCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Tournaments.
-     * @param {tournamentsDeleteArgs} args - Arguments to delete one Tournaments.
+     * Delete a Ask_notes_detail.
+     * @param {ask_notes_detailDeleteArgs} args - Arguments to delete one Ask_notes_detail.
      * @example
-     * // Delete one Tournaments
-     * const Tournaments = await prisma.tournaments.delete({
+     * // Delete one Ask_notes_detail
+     * const Ask_notes_detail = await prisma.ask_notes_detail.delete({
      *   where: {
-     *     // ... filter to delete one Tournaments
+     *     // ... filter to delete one Ask_notes_detail
      *   }
      * })
      * 
      */
-    delete<T extends tournamentsDeleteArgs>(args: SelectSubset<T, tournamentsDeleteArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ask_notes_detailDeleteArgs>(args: SelectSubset<T, ask_notes_detailDeleteArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Tournaments.
-     * @param {tournamentsUpdateArgs} args - Arguments to update one Tournaments.
+     * Update one Ask_notes_detail.
+     * @param {ask_notes_detailUpdateArgs} args - Arguments to update one Ask_notes_detail.
      * @example
-     * // Update one Tournaments
-     * const tournaments = await prisma.tournaments.update({
+     * // Update one Ask_notes_detail
+     * const ask_notes_detail = await prisma.ask_notes_detail.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -18734,30 +21095,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends tournamentsUpdateArgs>(args: SelectSubset<T, tournamentsUpdateArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ask_notes_detailUpdateArgs>(args: SelectSubset<T, ask_notes_detailUpdateArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Tournaments.
-     * @param {tournamentsDeleteManyArgs} args - Arguments to filter Tournaments to delete.
+     * Delete zero or more Ask_notes_details.
+     * @param {ask_notes_detailDeleteManyArgs} args - Arguments to filter Ask_notes_details to delete.
      * @example
-     * // Delete a few Tournaments
-     * const { count } = await prisma.tournaments.deleteMany({
+     * // Delete a few Ask_notes_details
+     * const { count } = await prisma.ask_notes_detail.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends tournamentsDeleteManyArgs>(args?: SelectSubset<T, tournamentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ask_notes_detailDeleteManyArgs>(args?: SelectSubset<T, ask_notes_detailDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Tournaments.
+     * Update zero or more Ask_notes_details.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tournamentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ask_notes_detailUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Tournaments
-     * const tournaments = await prisma.tournaments.updateMany({
+     * // Update many Ask_notes_details
+     * const ask_notes_detail = await prisma.ask_notes_detail.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -18767,56 +21128,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends tournamentsUpdateManyArgs>(args: SelectSubset<T, tournamentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ask_notes_detailUpdateManyArgs>(args: SelectSubset<T, ask_notes_detailUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Tournaments.
-     * @param {tournamentsUpsertArgs} args - Arguments to update or create a Tournaments.
+     * Create or update one Ask_notes_detail.
+     * @param {ask_notes_detailUpsertArgs} args - Arguments to update or create a Ask_notes_detail.
      * @example
-     * // Update or create a Tournaments
-     * const tournaments = await prisma.tournaments.upsert({
+     * // Update or create a Ask_notes_detail
+     * const ask_notes_detail = await prisma.ask_notes_detail.upsert({
      *   create: {
-     *     // ... data to create a Tournaments
+     *     // ... data to create a Ask_notes_detail
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Tournaments we want to update
+     *     // ... the filter for the Ask_notes_detail we want to update
      *   }
      * })
      */
-    upsert<T extends tournamentsUpsertArgs>(args: SelectSubset<T, tournamentsUpsertArgs<ExtArgs>>): Prisma__tournamentsClient<$Result.GetResult<Prisma.$tournamentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ask_notes_detailUpsertArgs>(args: SelectSubset<T, ask_notes_detailUpsertArgs<ExtArgs>>): Prisma__ask_notes_detailClient<$Result.GetResult<Prisma.$ask_notes_detailPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Tournaments.
+     * Count the number of Ask_notes_details.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tournamentsCountArgs} args - Arguments to filter Tournaments to count.
+     * @param {ask_notes_detailCountArgs} args - Arguments to filter Ask_notes_details to count.
      * @example
-     * // Count the number of Tournaments
-     * const count = await prisma.tournaments.count({
+     * // Count the number of Ask_notes_details
+     * const count = await prisma.ask_notes_detail.count({
      *   where: {
-     *     // ... the filter for the Tournaments we want to count
+     *     // ... the filter for the Ask_notes_details we want to count
      *   }
      * })
     **/
-    count<T extends tournamentsCountArgs>(
-      args?: Subset<T, tournamentsCountArgs>,
+    count<T extends ask_notes_detailCountArgs>(
+      args?: Subset<T, ask_notes_detailCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TournamentsCountAggregateOutputType>
+          : GetScalarType<T['select'], Ask_notes_detailCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Tournaments.
+     * Allows you to perform aggregations operations on a Ask_notes_detail.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TournamentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {Ask_notes_detailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -18836,13 +21197,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TournamentsAggregateArgs>(args: Subset<T, TournamentsAggregateArgs>): Prisma.PrismaPromise<GetTournamentsAggregateType<T>>
+    aggregate<T extends Ask_notes_detailAggregateArgs>(args: Subset<T, Ask_notes_detailAggregateArgs>): Prisma.PrismaPromise<GetAsk_notes_detailAggregateType<T>>
 
     /**
-     * Group by Tournaments.
+     * Group by Ask_notes_detail.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tournamentsGroupByArgs} args - Group by arguments.
+     * @param {ask_notes_detailGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -18857,14 +21218,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends tournamentsGroupByArgs,
+      T extends ask_notes_detailGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: tournamentsGroupByArgs['orderBy'] }
-        : { orderBy?: tournamentsGroupByArgs['orderBy'] },
+        ? { orderBy: ask_notes_detailGroupByArgs['orderBy'] }
+        : { orderBy?: ask_notes_detailGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -18913,22 +21274,21 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, tournamentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTournamentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ask_notes_detailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsk_notes_detailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the tournaments model
+   * Fields of the ask_notes_detail model
    */
-  readonly fields: tournamentsFieldRefs;
+  readonly fields: ask_notes_detailFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for tournaments.
+   * The delegate class that acts as a "Promise-like" for ask_notes_detail.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__tournamentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ask_notes_detailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    contents<T extends tournaments$contentsArgs<ExtArgs> = {}>(args?: Subset<T, tournaments$contentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tournament_contentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18955,442 +21315,331 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the tournaments model
+   * Fields of the ask_notes_detail model
    */
-  interface tournamentsFieldRefs {
-    readonly id: FieldRef<"tournaments", 'Int'>
-    readonly uuid: FieldRef<"tournaments", 'String'>
-    readonly sport_id: FieldRef<"tournaments", 'String'>
-    readonly created_by: FieldRef<"tournaments", 'BigInt'>
-    readonly name: FieldRef<"tournaments", 'String'>
-    readonly slug_name: FieldRef<"tournaments", 'String'>
-    readonly locality: FieldRef<"tournaments", 'String'>
-    readonly events_payload: FieldRef<"tournaments", 'String'>
-    readonly match_type: FieldRef<"tournaments", 'String'>
-    readonly description: FieldRef<"tournaments", 'String'>
-    readonly type: FieldRef<"tournaments", 'String'>
-    readonly tournament_type: FieldRef<"tournaments", 'String'>
-    readonly user_id: FieldRef<"tournaments", 'BigInt'>
-    readonly academy_id: FieldRef<"tournaments", 'Int'>
-    readonly tourstartdate: FieldRef<"tournaments", 'DateTime'>
-    readonly tourenddate: FieldRef<"tournaments", 'DateTime'>
-    readonly sets: FieldRef<"tournaments", 'Int'>
-    readonly tournament_set: FieldRef<"tournaments", 'String'>
-    readonly tourcategory: FieldRef<"tournaments", 'String'>
-    readonly drawtype: FieldRef<"tournaments", 'String'>
-    readonly agegroup: FieldRef<"tournaments", 'String'>
-    readonly variationid: FieldRef<"tournaments", 'String'>
-    readonly venue: FieldRef<"tournaments", 'String'>
-    readonly official: FieldRef<"tournaments", 'String'>
-    readonly tourimage: FieldRef<"tournaments", 'String'>
-    readonly winnerprize: FieldRef<"tournaments", 'String'>
-    readonly contestantprize: FieldRef<"tournaments", 'String'>
-    readonly semifinalprize: FieldRef<"tournaments", 'String'>
-    readonly quarterfinalprize: FieldRef<"tournaments", 'String'>
-    readonly runnerupprize: FieldRef<"tournaments", 'String'>
-    readonly long: FieldRef<"tournaments", 'String'>
-    readonly lat: FieldRef<"tournaments", 'String'>
-    readonly country_id: FieldRef<"tournaments", 'BigInt'>
-    readonly state_id: FieldRef<"tournaments", 'BigInt'>
-    readonly city_id: FieldRef<"tournaments", 'BigInt'>
-    readonly address: FieldRef<"tournaments", 'String'>
-    readonly winner_id: FieldRef<"tournaments", 'Int'>
-    readonly organization_tier_id: FieldRef<"tournaments", 'String'>
-    readonly status: FieldRef<"tournaments", 'Boolean'>
-    readonly participation_limit: FieldRef<"tournaments", 'Int'>
-    readonly publish_status: FieldRef<"tournaments", 'Int'>
-    readonly is_old: FieldRef<"tournaments", 'Int'>
-    readonly is_verified: FieldRef<"tournaments", 'Int'>
-    readonly created_at: FieldRef<"tournaments", 'DateTime'>
-    readonly updated_at: FieldRef<"tournaments", 'DateTime'>
-    readonly is_whatsapp_message_allowed: FieldRef<"tournaments", 'Boolean'>
-    readonly tournament_fees: FieldRef<"tournaments", 'Decimal'>
-    readonly is_event_fees: FieldRef<"tournaments", 'Boolean'>
-    readonly is_registration_table_dynamic: FieldRef<"tournaments", 'Boolean'>
-    readonly is_razorpay_payment_enable: FieldRef<"tournaments", 'Boolean'>
-    readonly deleted_at: FieldRef<"tournaments", 'DateTime'>
+  interface ask_notes_detailFieldRefs {
+    readonly id: FieldRef<"ask_notes_detail", 'Int'>
+    readonly note_id: FieldRef<"ask_notes_detail", 'Int'>
+    readonly content: FieldRef<"ask_notes_detail", 'String'>
+    readonly createdAt: FieldRef<"ask_notes_detail", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * tournaments findUnique
+   * ask_notes_detail findUnique
    */
-  export type tournamentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which ask_notes_detail to fetch.
      */
-    include?: tournamentsInclude<ExtArgs> | null
-    /**
-     * Filter, which tournaments to fetch.
-     */
-    where: tournamentsWhereUniqueInput
+    where: ask_notes_detailWhereUniqueInput
   }
 
   /**
-   * tournaments findUniqueOrThrow
+   * ask_notes_detail findUniqueOrThrow
    */
-  export type tournamentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which ask_notes_detail to fetch.
      */
-    include?: tournamentsInclude<ExtArgs> | null
-    /**
-     * Filter, which tournaments to fetch.
-     */
-    where: tournamentsWhereUniqueInput
+    where: ask_notes_detailWhereUniqueInput
   }
 
   /**
-   * tournaments findFirst
+   * ask_notes_detail findFirst
    */
-  export type tournamentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which ask_notes_detail to fetch.
      */
-    include?: tournamentsInclude<ExtArgs> | null
-    /**
-     * Filter, which tournaments to fetch.
-     */
-    where?: tournamentsWhereInput
+    where?: ask_notes_detailWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tournaments to fetch.
+     * Determine the order of ask_notes_details to fetch.
      */
-    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    orderBy?: ask_notes_detailOrderByWithRelationInput | ask_notes_detailOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for tournaments.
+     * Sets the position for searching for ask_notes_details.
      */
-    cursor?: tournamentsWhereUniqueInput
+    cursor?: ask_notes_detailWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tournaments from the position of the cursor.
+     * Take `±n` ask_notes_details from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tournaments.
+     * Skip the first `n` ask_notes_details.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of tournaments.
+     * Filter by unique combinations of ask_notes_details.
      */
-    distinct?: TournamentsScalarFieldEnum | TournamentsScalarFieldEnum[]
+    distinct?: Ask_notes_detailScalarFieldEnum | Ask_notes_detailScalarFieldEnum[]
   }
 
   /**
-   * tournaments findFirstOrThrow
+   * ask_notes_detail findFirstOrThrow
    */
-  export type tournamentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which ask_notes_detail to fetch.
      */
-    include?: tournamentsInclude<ExtArgs> | null
-    /**
-     * Filter, which tournaments to fetch.
-     */
-    where?: tournamentsWhereInput
+    where?: ask_notes_detailWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tournaments to fetch.
+     * Determine the order of ask_notes_details to fetch.
      */
-    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    orderBy?: ask_notes_detailOrderByWithRelationInput | ask_notes_detailOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for tournaments.
+     * Sets the position for searching for ask_notes_details.
      */
-    cursor?: tournamentsWhereUniqueInput
+    cursor?: ask_notes_detailWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tournaments from the position of the cursor.
+     * Take `±n` ask_notes_details from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tournaments.
+     * Skip the first `n` ask_notes_details.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of tournaments.
+     * Filter by unique combinations of ask_notes_details.
      */
-    distinct?: TournamentsScalarFieldEnum | TournamentsScalarFieldEnum[]
+    distinct?: Ask_notes_detailScalarFieldEnum | Ask_notes_detailScalarFieldEnum[]
   }
 
   /**
-   * tournaments findMany
+   * ask_notes_detail findMany
    */
-  export type tournamentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which ask_notes_details to fetch.
      */
-    include?: tournamentsInclude<ExtArgs> | null
-    /**
-     * Filter, which tournaments to fetch.
-     */
-    where?: tournamentsWhereInput
+    where?: ask_notes_detailWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tournaments to fetch.
+     * Determine the order of ask_notes_details to fetch.
      */
-    orderBy?: tournamentsOrderByWithRelationInput | tournamentsOrderByWithRelationInput[]
+    orderBy?: ask_notes_detailOrderByWithRelationInput | ask_notes_detailOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing tournaments.
+     * Sets the position for listing ask_notes_details.
      */
-    cursor?: tournamentsWhereUniqueInput
+    cursor?: ask_notes_detailWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tournaments from the position of the cursor.
+     * Take `±n` ask_notes_details from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tournaments.
+     * Skip the first `n` ask_notes_details.
      */
     skip?: number
-    distinct?: TournamentsScalarFieldEnum | TournamentsScalarFieldEnum[]
+    distinct?: Ask_notes_detailScalarFieldEnum | Ask_notes_detailScalarFieldEnum[]
   }
 
   /**
-   * tournaments create
+   * ask_notes_detail create
    */
-  export type tournamentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * The data needed to create a ask_notes_detail.
      */
-    include?: tournamentsInclude<ExtArgs> | null
-    /**
-     * The data needed to create a tournaments.
-     */
-    data: XOR<tournamentsCreateInput, tournamentsUncheckedCreateInput>
+    data: XOR<ask_notes_detailCreateInput, ask_notes_detailUncheckedCreateInput>
   }
 
   /**
-   * tournaments createMany
+   * ask_notes_detail createMany
    */
-  export type tournamentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many tournaments.
+     * The data used to create many ask_notes_details.
      */
-    data: tournamentsCreateManyInput | tournamentsCreateManyInput[]
+    data: ask_notes_detailCreateManyInput | ask_notes_detailCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * tournaments update
+   * ask_notes_detail update
    */
-  export type tournamentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * The data needed to update a ask_notes_detail.
      */
-    include?: tournamentsInclude<ExtArgs> | null
+    data: XOR<ask_notes_detailUpdateInput, ask_notes_detailUncheckedUpdateInput>
     /**
-     * The data needed to update a tournaments.
+     * Choose, which ask_notes_detail to update.
      */
-    data: XOR<tournamentsUpdateInput, tournamentsUncheckedUpdateInput>
-    /**
-     * Choose, which tournaments to update.
-     */
-    where: tournamentsWhereUniqueInput
+    where: ask_notes_detailWhereUniqueInput
   }
 
   /**
-   * tournaments updateMany
+   * ask_notes_detail updateMany
    */
-  export type tournamentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update tournaments.
+     * The data used to update ask_notes_details.
      */
-    data: XOR<tournamentsUpdateManyMutationInput, tournamentsUncheckedUpdateManyInput>
+    data: XOR<ask_notes_detailUpdateManyMutationInput, ask_notes_detailUncheckedUpdateManyInput>
     /**
-     * Filter which tournaments to update
+     * Filter which ask_notes_details to update
      */
-    where?: tournamentsWhereInput
+    where?: ask_notes_detailWhereInput
     /**
-     * Limit how many tournaments to update.
+     * Limit how many ask_notes_details to update.
      */
     limit?: number
   }
 
   /**
-   * tournaments upsert
+   * ask_notes_detail upsert
    */
-  export type tournamentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * The filter to search for the ask_notes_detail to update in case it exists.
      */
-    include?: tournamentsInclude<ExtArgs> | null
+    where: ask_notes_detailWhereUniqueInput
     /**
-     * The filter to search for the tournaments to update in case it exists.
+     * In case the ask_notes_detail found by the `where` argument doesn't exist, create a new ask_notes_detail with this data.
      */
-    where: tournamentsWhereUniqueInput
+    create: XOR<ask_notes_detailCreateInput, ask_notes_detailUncheckedCreateInput>
     /**
-     * In case the tournaments found by the `where` argument doesn't exist, create a new tournaments with this data.
+     * In case the ask_notes_detail was found with the provided `where` argument, update it with this data.
      */
-    create: XOR<tournamentsCreateInput, tournamentsUncheckedCreateInput>
-    /**
-     * In case the tournaments was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<tournamentsUpdateInput, tournamentsUncheckedUpdateInput>
+    update: XOR<ask_notes_detailUpdateInput, ask_notes_detailUncheckedUpdateInput>
   }
 
   /**
-   * tournaments delete
+   * ask_notes_detail delete
    */
-  export type tournamentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournaments
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournamentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournaments
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournamentsOmit<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter which ask_notes_detail to delete.
      */
-    include?: tournamentsInclude<ExtArgs> | null
-    /**
-     * Filter which tournaments to delete.
-     */
-    where: tournamentsWhereUniqueInput
+    where: ask_notes_detailWhereUniqueInput
   }
 
   /**
-   * tournaments deleteMany
+   * ask_notes_detail deleteMany
    */
-  export type tournamentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which tournaments to delete
+     * Filter which ask_notes_details to delete
      */
-    where?: tournamentsWhereInput
+    where?: ask_notes_detailWhereInput
     /**
-     * Limit how many tournaments to delete.
+     * Limit how many ask_notes_details to delete.
      */
     limit?: number
   }
 
   /**
-   * tournaments.contents
+   * ask_notes_detail without action
    */
-  export type tournaments$contentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ask_notes_detailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tournament_contents
+     * Select specific fields to fetch from the ask_notes_detail
      */
-    select?: tournament_contentsSelect<ExtArgs> | null
+    select?: ask_notes_detailSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tournament_contents
+     * Omit specific fields from the ask_notes_detail
      */
-    omit?: tournament_contentsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: tournament_contentsInclude<ExtArgs> | null
-    where?: tournament_contentsWhereInput
-    orderBy?: tournament_contentsOrderByWithRelationInput | tournament_contentsOrderByWithRelationInput[]
-    cursor?: tournament_contentsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Tournament_contentsScalarFieldEnum | Tournament_contentsScalarFieldEnum[]
-  }
-
-  /**
-   * tournaments without action
-   */
-  export type tournamentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the tournaments
-     */
-    select?: tournamentsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the tournaments
-     */
-    omit?: tournamentsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: tournamentsInclude<ExtArgs> | null
+    omit?: ask_notes_detailOmit<ExtArgs> | null
   }
 
 
@@ -19608,60 +21857,6 @@ export namespace Prisma {
   export type SportsScalarFieldEnum = (typeof SportsScalarFieldEnum)[keyof typeof SportsScalarFieldEnum]
 
 
-  export const Tournament_contentsScalarFieldEnum: {
-    id: 'id',
-    uuid: 'uuid',
-    tournament_id: 'tournament_id',
-    name: 'name',
-    value: 'value',
-    extra: 'extra',
-    created_at: 'created_at',
-    updated_at: 'updated_at',
-    deleted_at: 'deleted_at'
-  };
-
-  export type Tournament_contentsScalarFieldEnum = (typeof Tournament_contentsScalarFieldEnum)[keyof typeof Tournament_contentsScalarFieldEnum]
-
-
-  export const Tournament_galleriesScalarFieldEnum: {
-    id: 'id',
-    uuid: 'uuid',
-    tournament_id: 'tournament_id',
-    image: 'image',
-    tag_users: 'tag_users',
-    tournament_galleries_folder_id: 'tournament_galleries_folder_id',
-    face_app_sync: 'face_app_sync',
-    created_at: 'created_at',
-    updated_at: 'updated_at',
-    deleted_at: 'deleted_at'
-  };
-
-  export type Tournament_galleriesScalarFieldEnum = (typeof Tournament_galleriesScalarFieldEnum)[keyof typeof Tournament_galleriesScalarFieldEnum]
-
-
-  export const Tournament_galleries_foldersScalarFieldEnum: {
-    id: 'id',
-    uuid: 'uuid',
-    tournament_id: 'tournament_id',
-    folder_name: 'folder_name',
-    created_at: 'created_at',
-    updated_at: 'updated_at',
-    deleted_at: 'deleted_at'
-  };
-
-  export type Tournament_galleries_foldersScalarFieldEnum = (typeof Tournament_galleries_foldersScalarFieldEnum)[keyof typeof Tournament_galleries_foldersScalarFieldEnum]
-
-
-  export const Ask_notesScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    body: 'body',
-    createdAt: 'createdAt'
-  };
-
-  export type Ask_notesScalarFieldEnum = (typeof Ask_notesScalarFieldEnum)[keyof typeof Ask_notesScalarFieldEnum]
-
-
   export const TournamentsScalarFieldEnum: {
     id: 'id',
     uuid: 'uuid',
@@ -19717,6 +21912,102 @@ export namespace Prisma {
   };
 
   export type TournamentsScalarFieldEnum = (typeof TournamentsScalarFieldEnum)[keyof typeof TournamentsScalarFieldEnum]
+
+
+  export const Tournament_contentsScalarFieldEnum: {
+    id: 'id',
+    uuid: 'uuid',
+    tournament_id: 'tournament_id',
+    name: 'name',
+    value: 'value',
+    extra: 'extra',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type Tournament_contentsScalarFieldEnum = (typeof Tournament_contentsScalarFieldEnum)[keyof typeof Tournament_contentsScalarFieldEnum]
+
+
+  export const Tournament_galleriesScalarFieldEnum: {
+    id: 'id',
+    uuid: 'uuid',
+    tournament_id: 'tournament_id',
+    image: 'image',
+    tag_users: 'tag_users',
+    tournament_galleries_folder_id: 'tournament_galleries_folder_id',
+    face_app_sync: 'face_app_sync',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type Tournament_galleriesScalarFieldEnum = (typeof Tournament_galleriesScalarFieldEnum)[keyof typeof Tournament_galleriesScalarFieldEnum]
+
+
+  export const Tournament_galleries_foldersScalarFieldEnum: {
+    id: 'id',
+    uuid: 'uuid',
+    tournament_id: 'tournament_id',
+    folder_name: 'folder_name',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type Tournament_galleries_foldersScalarFieldEnum = (typeof Tournament_galleries_foldersScalarFieldEnum)[keyof typeof Tournament_galleries_foldersScalarFieldEnum]
+
+
+  export const AsktournamentsScalarFieldEnum: {
+    id: 'id',
+    uuid: 'uuid',
+    sport_id: 'sport_id',
+    name: 'name',
+    slug_name: 'slug_name',
+    description: 'description',
+    tournament_type: 'tournament_type',
+    user_id: 'user_id',
+    tourstartdate: 'tourstartdate',
+    tourenddate: 'tourenddate',
+    venue: 'venue',
+    tourbannerimage: 'tourbannerimage',
+    tourthumbnail: 'tourthumbnail',
+    tourwebsite: 'tourwebsite',
+    tourbrochure: 'tourbrochure',
+    prizemoney: 'prizemoney',
+    tournament_fees: 'tournament_fees',
+    country_id: 'country_id',
+    state_id: 'state_id',
+    city_id: 'city_id',
+    address: 'address',
+    participation_limit: 'participation_limit',
+    publish_status: 'publish_status',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type AsktournamentsScalarFieldEnum = (typeof AsktournamentsScalarFieldEnum)[keyof typeof AsktournamentsScalarFieldEnum]
+
+
+  export const Ask_my_notesScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    body: 'body',
+    createdAt: 'createdAt'
+  };
+
+  export type Ask_my_notesScalarFieldEnum = (typeof Ask_my_notesScalarFieldEnum)[keyof typeof Ask_my_notesScalarFieldEnum]
+
+
+  export const Ask_notes_detailScalarFieldEnum: {
+    id: 'id',
+    note_id: 'note_id',
+    content: 'content',
+    createdAt: 'createdAt'
+  };
+
+  export type Ask_notes_detailScalarFieldEnum = (typeof Ask_notes_detailScalarFieldEnum)[keyof typeof Ask_notes_detailScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -19871,41 +22162,6 @@ export namespace Prisma {
   export type sportsOrderByRelevanceFieldEnum = (typeof sportsOrderByRelevanceFieldEnum)[keyof typeof sportsOrderByRelevanceFieldEnum]
 
 
-  export const tournament_contentsOrderByRelevanceFieldEnum: {
-    uuid: 'uuid',
-    name: 'name',
-    value: 'value',
-    extra: 'extra'
-  };
-
-  export type tournament_contentsOrderByRelevanceFieldEnum = (typeof tournament_contentsOrderByRelevanceFieldEnum)[keyof typeof tournament_contentsOrderByRelevanceFieldEnum]
-
-
-  export const tournament_galleriesOrderByRelevanceFieldEnum: {
-    uuid: 'uuid',
-    image: 'image',
-    tag_users: 'tag_users'
-  };
-
-  export type tournament_galleriesOrderByRelevanceFieldEnum = (typeof tournament_galleriesOrderByRelevanceFieldEnum)[keyof typeof tournament_galleriesOrderByRelevanceFieldEnum]
-
-
-  export const tournament_galleries_foldersOrderByRelevanceFieldEnum: {
-    uuid: 'uuid',
-    folder_name: 'folder_name'
-  };
-
-  export type tournament_galleries_foldersOrderByRelevanceFieldEnum = (typeof tournament_galleries_foldersOrderByRelevanceFieldEnum)[keyof typeof tournament_galleries_foldersOrderByRelevanceFieldEnum]
-
-
-  export const ask_notesOrderByRelevanceFieldEnum: {
-    title: 'title',
-    body: 'body'
-  };
-
-  export type ask_notesOrderByRelevanceFieldEnum = (typeof ask_notesOrderByRelevanceFieldEnum)[keyof typeof ask_notesOrderByRelevanceFieldEnum]
-
-
   export const tournamentsOrderByRelevanceFieldEnum: {
     uuid: 'uuid',
     sport_id: 'sport_id',
@@ -19937,6 +22193,67 @@ export namespace Prisma {
   };
 
   export type tournamentsOrderByRelevanceFieldEnum = (typeof tournamentsOrderByRelevanceFieldEnum)[keyof typeof tournamentsOrderByRelevanceFieldEnum]
+
+
+  export const tournament_contentsOrderByRelevanceFieldEnum: {
+    uuid: 'uuid',
+    name: 'name',
+    value: 'value',
+    extra: 'extra'
+  };
+
+  export type tournament_contentsOrderByRelevanceFieldEnum = (typeof tournament_contentsOrderByRelevanceFieldEnum)[keyof typeof tournament_contentsOrderByRelevanceFieldEnum]
+
+
+  export const tournament_galleriesOrderByRelevanceFieldEnum: {
+    uuid: 'uuid',
+    image: 'image',
+    tag_users: 'tag_users'
+  };
+
+  export type tournament_galleriesOrderByRelevanceFieldEnum = (typeof tournament_galleriesOrderByRelevanceFieldEnum)[keyof typeof tournament_galleriesOrderByRelevanceFieldEnum]
+
+
+  export const tournament_galleries_foldersOrderByRelevanceFieldEnum: {
+    uuid: 'uuid',
+    folder_name: 'folder_name'
+  };
+
+  export type tournament_galleries_foldersOrderByRelevanceFieldEnum = (typeof tournament_galleries_foldersOrderByRelevanceFieldEnum)[keyof typeof tournament_galleries_foldersOrderByRelevanceFieldEnum]
+
+
+  export const asktournamentsOrderByRelevanceFieldEnum: {
+    uuid: 'uuid',
+    sport_id: 'sport_id',
+    name: 'name',
+    slug_name: 'slug_name',
+    description: 'description',
+    tournament_type: 'tournament_type',
+    venue: 'venue',
+    tourbannerimage: 'tourbannerimage',
+    tourthumbnail: 'tourthumbnail',
+    tourwebsite: 'tourwebsite',
+    tourbrochure: 'tourbrochure',
+    prizemoney: 'prizemoney',
+    address: 'address'
+  };
+
+  export type asktournamentsOrderByRelevanceFieldEnum = (typeof asktournamentsOrderByRelevanceFieldEnum)[keyof typeof asktournamentsOrderByRelevanceFieldEnum]
+
+
+  export const ask_my_notesOrderByRelevanceFieldEnum: {
+    title: 'title',
+    body: 'body'
+  };
+
+  export type ask_my_notesOrderByRelevanceFieldEnum = (typeof ask_my_notesOrderByRelevanceFieldEnum)[keyof typeof ask_my_notesOrderByRelevanceFieldEnum]
+
+
+  export const ask_notes_detailOrderByRelevanceFieldEnum: {
+    content: 'content'
+  };
+
+  export type ask_notes_detailOrderByRelevanceFieldEnum = (typeof ask_notes_detailOrderByRelevanceFieldEnum)[keyof typeof ask_notes_detailOrderByRelevanceFieldEnum]
 
 
   /**
@@ -21051,279 +23368,6 @@ export namespace Prisma {
     deleted_at?: DateTimeNullableWithAggregatesFilter<"sports"> | Date | string | null
   }
 
-  export type tournament_contentsWhereInput = {
-    AND?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
-    OR?: tournament_contentsWhereInput[]
-    NOT?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
-    id?: BigIntFilter<"tournament_contents"> | bigint | number
-    uuid?: StringFilter<"tournament_contents"> | string
-    tournament_id?: IntFilter<"tournament_contents"> | number
-    name?: StringNullableFilter<"tournament_contents"> | string | null
-    value?: StringNullableFilter<"tournament_contents"> | string | null
-    extra?: StringNullableFilter<"tournament_contents"> | string | null
-    created_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    tournament?: XOR<TournamentsScalarRelationFilter, tournamentsWhereInput>
-  }
-
-  export type tournament_contentsOrderByWithRelationInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    name?: SortOrderInput | SortOrder
-    value?: SortOrderInput | SortOrder
-    extra?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    deleted_at?: SortOrderInput | SortOrder
-    tournament?: tournamentsOrderByWithRelationInput
-    _relevance?: tournament_contentsOrderByRelevanceInput
-  }
-
-  export type tournament_contentsWhereUniqueInput = Prisma.AtLeast<{
-    id?: bigint | number
-    AND?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
-    OR?: tournament_contentsWhereInput[]
-    NOT?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
-    uuid?: StringFilter<"tournament_contents"> | string
-    tournament_id?: IntFilter<"tournament_contents"> | number
-    name?: StringNullableFilter<"tournament_contents"> | string | null
-    value?: StringNullableFilter<"tournament_contents"> | string | null
-    extra?: StringNullableFilter<"tournament_contents"> | string | null
-    created_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    tournament?: XOR<TournamentsScalarRelationFilter, tournamentsWhereInput>
-  }, "id">
-
-  export type tournament_contentsOrderByWithAggregationInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    name?: SortOrderInput | SortOrder
-    value?: SortOrderInput | SortOrder
-    extra?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    deleted_at?: SortOrderInput | SortOrder
-    _count?: tournament_contentsCountOrderByAggregateInput
-    _avg?: tournament_contentsAvgOrderByAggregateInput
-    _max?: tournament_contentsMaxOrderByAggregateInput
-    _min?: tournament_contentsMinOrderByAggregateInput
-    _sum?: tournament_contentsSumOrderByAggregateInput
-  }
-
-  export type tournament_contentsScalarWhereWithAggregatesInput = {
-    AND?: tournament_contentsScalarWhereWithAggregatesInput | tournament_contentsScalarWhereWithAggregatesInput[]
-    OR?: tournament_contentsScalarWhereWithAggregatesInput[]
-    NOT?: tournament_contentsScalarWhereWithAggregatesInput | tournament_contentsScalarWhereWithAggregatesInput[]
-    id?: BigIntWithAggregatesFilter<"tournament_contents"> | bigint | number
-    uuid?: StringWithAggregatesFilter<"tournament_contents"> | string
-    tournament_id?: IntWithAggregatesFilter<"tournament_contents"> | number
-    name?: StringNullableWithAggregatesFilter<"tournament_contents"> | string | null
-    value?: StringNullableWithAggregatesFilter<"tournament_contents"> | string | null
-    extra?: StringNullableWithAggregatesFilter<"tournament_contents"> | string | null
-    created_at?: DateTimeNullableWithAggregatesFilter<"tournament_contents"> | Date | string | null
-    updated_at?: DateTimeNullableWithAggregatesFilter<"tournament_contents"> | Date | string | null
-    deleted_at?: DateTimeNullableWithAggregatesFilter<"tournament_contents"> | Date | string | null
-  }
-
-  export type tournament_galleriesWhereInput = {
-    AND?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
-    OR?: tournament_galleriesWhereInput[]
-    NOT?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
-    id?: BigIntFilter<"tournament_galleries"> | bigint | number
-    uuid?: StringFilter<"tournament_galleries"> | string
-    tournament_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
-    image?: StringNullableFilter<"tournament_galleries"> | string | null
-    tag_users?: StringNullableFilter<"tournament_galleries"> | string | null
-    tournament_galleries_folder_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
-    face_app_sync?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-    created_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-  }
-
-  export type tournament_galleriesOrderByWithRelationInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrderInput | SortOrder
-    image?: SortOrderInput | SortOrder
-    tag_users?: SortOrderInput | SortOrder
-    tournament_galleries_folder_id?: SortOrderInput | SortOrder
-    face_app_sync?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    deleted_at?: SortOrderInput | SortOrder
-    _relevance?: tournament_galleriesOrderByRelevanceInput
-  }
-
-  export type tournament_galleriesWhereUniqueInput = Prisma.AtLeast<{
-    id?: bigint | number
-    AND?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
-    OR?: tournament_galleriesWhereInput[]
-    NOT?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
-    uuid?: StringFilter<"tournament_galleries"> | string
-    tournament_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
-    image?: StringNullableFilter<"tournament_galleries"> | string | null
-    tag_users?: StringNullableFilter<"tournament_galleries"> | string | null
-    tournament_galleries_folder_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
-    face_app_sync?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-    created_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
-  }, "id">
-
-  export type tournament_galleriesOrderByWithAggregationInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrderInput | SortOrder
-    image?: SortOrderInput | SortOrder
-    tag_users?: SortOrderInput | SortOrder
-    tournament_galleries_folder_id?: SortOrderInput | SortOrder
-    face_app_sync?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    deleted_at?: SortOrderInput | SortOrder
-    _count?: tournament_galleriesCountOrderByAggregateInput
-    _avg?: tournament_galleriesAvgOrderByAggregateInput
-    _max?: tournament_galleriesMaxOrderByAggregateInput
-    _min?: tournament_galleriesMinOrderByAggregateInput
-    _sum?: tournament_galleriesSumOrderByAggregateInput
-  }
-
-  export type tournament_galleriesScalarWhereWithAggregatesInput = {
-    AND?: tournament_galleriesScalarWhereWithAggregatesInput | tournament_galleriesScalarWhereWithAggregatesInput[]
-    OR?: tournament_galleriesScalarWhereWithAggregatesInput[]
-    NOT?: tournament_galleriesScalarWhereWithAggregatesInput | tournament_galleriesScalarWhereWithAggregatesInput[]
-    id?: BigIntWithAggregatesFilter<"tournament_galleries"> | bigint | number
-    uuid?: StringWithAggregatesFilter<"tournament_galleries"> | string
-    tournament_id?: BigIntNullableWithAggregatesFilter<"tournament_galleries"> | bigint | number | null
-    image?: StringNullableWithAggregatesFilter<"tournament_galleries"> | string | null
-    tag_users?: StringNullableWithAggregatesFilter<"tournament_galleries"> | string | null
-    tournament_galleries_folder_id?: BigIntNullableWithAggregatesFilter<"tournament_galleries"> | bigint | number | null
-    face_app_sync?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
-    created_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
-    updated_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
-    deleted_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
-  }
-
-  export type tournament_galleries_foldersWhereInput = {
-    AND?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
-    OR?: tournament_galleries_foldersWhereInput[]
-    NOT?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
-    id?: BigIntFilter<"tournament_galleries_folders"> | bigint | number
-    uuid?: StringFilter<"tournament_galleries_folders"> | string
-    tournament_id?: BigIntFilter<"tournament_galleries_folders"> | bigint | number
-    folder_name?: StringFilter<"tournament_galleries_folders"> | string
-    created_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
-  }
-
-  export type tournament_galleries_foldersOrderByWithRelationInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    folder_name?: SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    deleted_at?: SortOrderInput | SortOrder
-    _relevance?: tournament_galleries_foldersOrderByRelevanceInput
-  }
-
-  export type tournament_galleries_foldersWhereUniqueInput = Prisma.AtLeast<{
-    id?: bigint | number
-    AND?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
-    OR?: tournament_galleries_foldersWhereInput[]
-    NOT?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
-    uuid?: StringFilter<"tournament_galleries_folders"> | string
-    tournament_id?: BigIntFilter<"tournament_galleries_folders"> | bigint | number
-    folder_name?: StringFilter<"tournament_galleries_folders"> | string
-    created_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
-  }, "id">
-
-  export type tournament_galleries_foldersOrderByWithAggregationInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    folder_name?: SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    deleted_at?: SortOrderInput | SortOrder
-    _count?: tournament_galleries_foldersCountOrderByAggregateInput
-    _avg?: tournament_galleries_foldersAvgOrderByAggregateInput
-    _max?: tournament_galleries_foldersMaxOrderByAggregateInput
-    _min?: tournament_galleries_foldersMinOrderByAggregateInput
-    _sum?: tournament_galleries_foldersSumOrderByAggregateInput
-  }
-
-  export type tournament_galleries_foldersScalarWhereWithAggregatesInput = {
-    AND?: tournament_galleries_foldersScalarWhereWithAggregatesInput | tournament_galleries_foldersScalarWhereWithAggregatesInput[]
-    OR?: tournament_galleries_foldersScalarWhereWithAggregatesInput[]
-    NOT?: tournament_galleries_foldersScalarWhereWithAggregatesInput | tournament_galleries_foldersScalarWhereWithAggregatesInput[]
-    id?: BigIntWithAggregatesFilter<"tournament_galleries_folders"> | bigint | number
-    uuid?: StringWithAggregatesFilter<"tournament_galleries_folders"> | string
-    tournament_id?: BigIntWithAggregatesFilter<"tournament_galleries_folders"> | bigint | number
-    folder_name?: StringWithAggregatesFilter<"tournament_galleries_folders"> | string
-    created_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries_folders"> | Date | string | null
-    updated_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries_folders"> | Date | string | null
-    deleted_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries_folders"> | Date | string | null
-  }
-
-  export type ask_notesWhereInput = {
-    AND?: ask_notesWhereInput | ask_notesWhereInput[]
-    OR?: ask_notesWhereInput[]
-    NOT?: ask_notesWhereInput | ask_notesWhereInput[]
-    id?: IntFilter<"ask_notes"> | number
-    title?: StringFilter<"ask_notes"> | string
-    body?: StringNullableFilter<"ask_notes"> | string | null
-    createdAt?: DateTimeFilter<"ask_notes"> | Date | string
-  }
-
-  export type ask_notesOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    body?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    _relevance?: ask_notesOrderByRelevanceInput
-  }
-
-  export type ask_notesWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: ask_notesWhereInput | ask_notesWhereInput[]
-    OR?: ask_notesWhereInput[]
-    NOT?: ask_notesWhereInput | ask_notesWhereInput[]
-    title?: StringFilter<"ask_notes"> | string
-    body?: StringNullableFilter<"ask_notes"> | string | null
-    createdAt?: DateTimeFilter<"ask_notes"> | Date | string
-  }, "id">
-
-  export type ask_notesOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    body?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    _count?: ask_notesCountOrderByAggregateInput
-    _avg?: ask_notesAvgOrderByAggregateInput
-    _max?: ask_notesMaxOrderByAggregateInput
-    _min?: ask_notesMinOrderByAggregateInput
-    _sum?: ask_notesSumOrderByAggregateInput
-  }
-
-  export type ask_notesScalarWhereWithAggregatesInput = {
-    AND?: ask_notesScalarWhereWithAggregatesInput | ask_notesScalarWhereWithAggregatesInput[]
-    OR?: ask_notesScalarWhereWithAggregatesInput[]
-    NOT?: ask_notesScalarWhereWithAggregatesInput | ask_notesScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"ask_notes"> | number
-    title?: StringWithAggregatesFilter<"ask_notes"> | string
-    body?: StringNullableWithAggregatesFilter<"ask_notes"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"ask_notes"> | Date | string
-  }
-
   export type tournamentsWhereInput = {
     AND?: tournamentsWhereInput | tournamentsWhereInput[]
     OR?: tournamentsWhereInput[]
@@ -21610,6 +23654,489 @@ export namespace Prisma {
     is_registration_table_dynamic?: BoolWithAggregatesFilter<"tournaments"> | boolean
     is_razorpay_payment_enable?: BoolWithAggregatesFilter<"tournaments"> | boolean
     deleted_at?: DateTimeNullableWithAggregatesFilter<"tournaments"> | Date | string | null
+  }
+
+  export type tournament_contentsWhereInput = {
+    AND?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
+    OR?: tournament_contentsWhereInput[]
+    NOT?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
+    id?: BigIntFilter<"tournament_contents"> | bigint | number
+    uuid?: StringFilter<"tournament_contents"> | string
+    tournament_id?: IntFilter<"tournament_contents"> | number
+    name?: StringNullableFilter<"tournament_contents"> | string | null
+    value?: StringNullableFilter<"tournament_contents"> | string | null
+    extra?: StringNullableFilter<"tournament_contents"> | string | null
+    created_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    tournament?: XOR<TournamentsScalarRelationFilter, tournamentsWhereInput>
+  }
+
+  export type tournament_contentsOrderByWithRelationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    name?: SortOrderInput | SortOrder
+    value?: SortOrderInput | SortOrder
+    extra?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    tournament?: tournamentsOrderByWithRelationInput
+    _relevance?: tournament_contentsOrderByRelevanceInput
+  }
+
+  export type tournament_contentsWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
+    OR?: tournament_contentsWhereInput[]
+    NOT?: tournament_contentsWhereInput | tournament_contentsWhereInput[]
+    uuid?: StringFilter<"tournament_contents"> | string
+    tournament_id?: IntFilter<"tournament_contents"> | number
+    name?: StringNullableFilter<"tournament_contents"> | string | null
+    value?: StringNullableFilter<"tournament_contents"> | string | null
+    extra?: StringNullableFilter<"tournament_contents"> | string | null
+    created_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    tournament?: XOR<TournamentsScalarRelationFilter, tournamentsWhereInput>
+  }, "id">
+
+  export type tournament_contentsOrderByWithAggregationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    name?: SortOrderInput | SortOrder
+    value?: SortOrderInput | SortOrder
+    extra?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: tournament_contentsCountOrderByAggregateInput
+    _avg?: tournament_contentsAvgOrderByAggregateInput
+    _max?: tournament_contentsMaxOrderByAggregateInput
+    _min?: tournament_contentsMinOrderByAggregateInput
+    _sum?: tournament_contentsSumOrderByAggregateInput
+  }
+
+  export type tournament_contentsScalarWhereWithAggregatesInput = {
+    AND?: tournament_contentsScalarWhereWithAggregatesInput | tournament_contentsScalarWhereWithAggregatesInput[]
+    OR?: tournament_contentsScalarWhereWithAggregatesInput[]
+    NOT?: tournament_contentsScalarWhereWithAggregatesInput | tournament_contentsScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"tournament_contents"> | bigint | number
+    uuid?: StringWithAggregatesFilter<"tournament_contents"> | string
+    tournament_id?: IntWithAggregatesFilter<"tournament_contents"> | number
+    name?: StringNullableWithAggregatesFilter<"tournament_contents"> | string | null
+    value?: StringNullableWithAggregatesFilter<"tournament_contents"> | string | null
+    extra?: StringNullableWithAggregatesFilter<"tournament_contents"> | string | null
+    created_at?: DateTimeNullableWithAggregatesFilter<"tournament_contents"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"tournament_contents"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"tournament_contents"> | Date | string | null
+  }
+
+  export type tournament_galleriesWhereInput = {
+    AND?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
+    OR?: tournament_galleriesWhereInput[]
+    NOT?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
+    id?: BigIntFilter<"tournament_galleries"> | bigint | number
+    uuid?: StringFilter<"tournament_galleries"> | string
+    tournament_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
+    image?: StringNullableFilter<"tournament_galleries"> | string | null
+    tag_users?: StringNullableFilter<"tournament_galleries"> | string | null
+    tournament_galleries_folder_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
+    face_app_sync?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+    created_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+  }
+
+  export type tournament_galleriesOrderByWithRelationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    tag_users?: SortOrderInput | SortOrder
+    tournament_galleries_folder_id?: SortOrderInput | SortOrder
+    face_app_sync?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _relevance?: tournament_galleriesOrderByRelevanceInput
+  }
+
+  export type tournament_galleriesWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
+    OR?: tournament_galleriesWhereInput[]
+    NOT?: tournament_galleriesWhereInput | tournament_galleriesWhereInput[]
+    uuid?: StringFilter<"tournament_galleries"> | string
+    tournament_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
+    image?: StringNullableFilter<"tournament_galleries"> | string | null
+    tag_users?: StringNullableFilter<"tournament_galleries"> | string | null
+    tournament_galleries_folder_id?: BigIntNullableFilter<"tournament_galleries"> | bigint | number | null
+    face_app_sync?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+    created_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"tournament_galleries"> | Date | string | null
+  }, "id">
+
+  export type tournament_galleriesOrderByWithAggregationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    tag_users?: SortOrderInput | SortOrder
+    tournament_galleries_folder_id?: SortOrderInput | SortOrder
+    face_app_sync?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: tournament_galleriesCountOrderByAggregateInput
+    _avg?: tournament_galleriesAvgOrderByAggregateInput
+    _max?: tournament_galleriesMaxOrderByAggregateInput
+    _min?: tournament_galleriesMinOrderByAggregateInput
+    _sum?: tournament_galleriesSumOrderByAggregateInput
+  }
+
+  export type tournament_galleriesScalarWhereWithAggregatesInput = {
+    AND?: tournament_galleriesScalarWhereWithAggregatesInput | tournament_galleriesScalarWhereWithAggregatesInput[]
+    OR?: tournament_galleriesScalarWhereWithAggregatesInput[]
+    NOT?: tournament_galleriesScalarWhereWithAggregatesInput | tournament_galleriesScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"tournament_galleries"> | bigint | number
+    uuid?: StringWithAggregatesFilter<"tournament_galleries"> | string
+    tournament_id?: BigIntNullableWithAggregatesFilter<"tournament_galleries"> | bigint | number | null
+    image?: StringNullableWithAggregatesFilter<"tournament_galleries"> | string | null
+    tag_users?: StringNullableWithAggregatesFilter<"tournament_galleries"> | string | null
+    tournament_galleries_folder_id?: BigIntNullableWithAggregatesFilter<"tournament_galleries"> | bigint | number | null
+    face_app_sync?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
+    created_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries"> | Date | string | null
+  }
+
+  export type tournament_galleries_foldersWhereInput = {
+    AND?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
+    OR?: tournament_galleries_foldersWhereInput[]
+    NOT?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
+    id?: BigIntFilter<"tournament_galleries_folders"> | bigint | number
+    uuid?: StringFilter<"tournament_galleries_folders"> | string
+    tournament_id?: BigIntFilter<"tournament_galleries_folders"> | bigint | number
+    folder_name?: StringFilter<"tournament_galleries_folders"> | string
+    created_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
+  }
+
+  export type tournament_galleries_foldersOrderByWithRelationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    folder_name?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _relevance?: tournament_galleries_foldersOrderByRelevanceInput
+  }
+
+  export type tournament_galleries_foldersWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
+    OR?: tournament_galleries_foldersWhereInput[]
+    NOT?: tournament_galleries_foldersWhereInput | tournament_galleries_foldersWhereInput[]
+    uuid?: StringFilter<"tournament_galleries_folders"> | string
+    tournament_id?: BigIntFilter<"tournament_galleries_folders"> | bigint | number
+    folder_name?: StringFilter<"tournament_galleries_folders"> | string
+    created_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"tournament_galleries_folders"> | Date | string | null
+  }, "id">
+
+  export type tournament_galleries_foldersOrderByWithAggregationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    folder_name?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: tournament_galleries_foldersCountOrderByAggregateInput
+    _avg?: tournament_galleries_foldersAvgOrderByAggregateInput
+    _max?: tournament_galleries_foldersMaxOrderByAggregateInput
+    _min?: tournament_galleries_foldersMinOrderByAggregateInput
+    _sum?: tournament_galleries_foldersSumOrderByAggregateInput
+  }
+
+  export type tournament_galleries_foldersScalarWhereWithAggregatesInput = {
+    AND?: tournament_galleries_foldersScalarWhereWithAggregatesInput | tournament_galleries_foldersScalarWhereWithAggregatesInput[]
+    OR?: tournament_galleries_foldersScalarWhereWithAggregatesInput[]
+    NOT?: tournament_galleries_foldersScalarWhereWithAggregatesInput | tournament_galleries_foldersScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"tournament_galleries_folders"> | bigint | number
+    uuid?: StringWithAggregatesFilter<"tournament_galleries_folders"> | string
+    tournament_id?: BigIntWithAggregatesFilter<"tournament_galleries_folders"> | bigint | number
+    folder_name?: StringWithAggregatesFilter<"tournament_galleries_folders"> | string
+    created_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries_folders"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries_folders"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"tournament_galleries_folders"> | Date | string | null
+  }
+
+  export type asktournamentsWhereInput = {
+    AND?: asktournamentsWhereInput | asktournamentsWhereInput[]
+    OR?: asktournamentsWhereInput[]
+    NOT?: asktournamentsWhereInput | asktournamentsWhereInput[]
+    id?: IntFilter<"asktournaments"> | number
+    uuid?: StringFilter<"asktournaments"> | string
+    sport_id?: StringNullableFilter<"asktournaments"> | string | null
+    name?: StringNullableFilter<"asktournaments"> | string | null
+    slug_name?: StringNullableFilter<"asktournaments"> | string | null
+    description?: StringNullableFilter<"asktournaments"> | string | null
+    tournament_type?: StringNullableFilter<"asktournaments"> | string | null
+    user_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    tourstartdate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    tourenddate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    venue?: StringNullableFilter<"asktournaments"> | string | null
+    tourbannerimage?: StringNullableFilter<"asktournaments"> | string | null
+    tourthumbnail?: StringNullableFilter<"asktournaments"> | string | null
+    tourwebsite?: StringNullableFilter<"asktournaments"> | string | null
+    tourbrochure?: StringNullableFilter<"asktournaments"> | string | null
+    prizemoney?: StringNullableFilter<"asktournaments"> | string | null
+    tournament_fees?: DecimalNullableFilter<"asktournaments"> | Decimal | DecimalJsLike | number | string | null
+    country_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    state_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    city_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    address?: StringNullableFilter<"asktournaments"> | string | null
+    participation_limit?: IntFilter<"asktournaments"> | number
+    publish_status?: IntFilter<"asktournaments"> | number
+    created_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+  }
+
+  export type asktournamentsOrderByWithRelationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    sport_id?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
+    slug_name?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    tournament_type?: SortOrderInput | SortOrder
+    user_id?: SortOrderInput | SortOrder
+    tourstartdate?: SortOrderInput | SortOrder
+    tourenddate?: SortOrderInput | SortOrder
+    venue?: SortOrderInput | SortOrder
+    tourbannerimage?: SortOrderInput | SortOrder
+    tourthumbnail?: SortOrderInput | SortOrder
+    tourwebsite?: SortOrderInput | SortOrder
+    tourbrochure?: SortOrderInput | SortOrder
+    prizemoney?: SortOrderInput | SortOrder
+    tournament_fees?: SortOrderInput | SortOrder
+    country_id?: SortOrderInput | SortOrder
+    state_id?: SortOrderInput | SortOrder
+    city_id?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    participation_limit?: SortOrder
+    publish_status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _relevance?: asktournamentsOrderByRelevanceInput
+  }
+
+  export type asktournamentsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: asktournamentsWhereInput | asktournamentsWhereInput[]
+    OR?: asktournamentsWhereInput[]
+    NOT?: asktournamentsWhereInput | asktournamentsWhereInput[]
+    uuid?: StringFilter<"asktournaments"> | string
+    sport_id?: StringNullableFilter<"asktournaments"> | string | null
+    name?: StringNullableFilter<"asktournaments"> | string | null
+    slug_name?: StringNullableFilter<"asktournaments"> | string | null
+    description?: StringNullableFilter<"asktournaments"> | string | null
+    tournament_type?: StringNullableFilter<"asktournaments"> | string | null
+    user_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    tourstartdate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    tourenddate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    venue?: StringNullableFilter<"asktournaments"> | string | null
+    tourbannerimage?: StringNullableFilter<"asktournaments"> | string | null
+    tourthumbnail?: StringNullableFilter<"asktournaments"> | string | null
+    tourwebsite?: StringNullableFilter<"asktournaments"> | string | null
+    tourbrochure?: StringNullableFilter<"asktournaments"> | string | null
+    prizemoney?: StringNullableFilter<"asktournaments"> | string | null
+    tournament_fees?: DecimalNullableFilter<"asktournaments"> | Decimal | DecimalJsLike | number | string | null
+    country_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    state_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    city_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
+    address?: StringNullableFilter<"asktournaments"> | string | null
+    participation_limit?: IntFilter<"asktournaments"> | number
+    publish_status?: IntFilter<"asktournaments"> | number
+    created_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+  }, "id">
+
+  export type asktournamentsOrderByWithAggregationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    sport_id?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
+    slug_name?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    tournament_type?: SortOrderInput | SortOrder
+    user_id?: SortOrderInput | SortOrder
+    tourstartdate?: SortOrderInput | SortOrder
+    tourenddate?: SortOrderInput | SortOrder
+    venue?: SortOrderInput | SortOrder
+    tourbannerimage?: SortOrderInput | SortOrder
+    tourthumbnail?: SortOrderInput | SortOrder
+    tourwebsite?: SortOrderInput | SortOrder
+    tourbrochure?: SortOrderInput | SortOrder
+    prizemoney?: SortOrderInput | SortOrder
+    tournament_fees?: SortOrderInput | SortOrder
+    country_id?: SortOrderInput | SortOrder
+    state_id?: SortOrderInput | SortOrder
+    city_id?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    participation_limit?: SortOrder
+    publish_status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: asktournamentsCountOrderByAggregateInput
+    _avg?: asktournamentsAvgOrderByAggregateInput
+    _max?: asktournamentsMaxOrderByAggregateInput
+    _min?: asktournamentsMinOrderByAggregateInput
+    _sum?: asktournamentsSumOrderByAggregateInput
+  }
+
+  export type asktournamentsScalarWhereWithAggregatesInput = {
+    AND?: asktournamentsScalarWhereWithAggregatesInput | asktournamentsScalarWhereWithAggregatesInput[]
+    OR?: asktournamentsScalarWhereWithAggregatesInput[]
+    NOT?: asktournamentsScalarWhereWithAggregatesInput | asktournamentsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"asktournaments"> | number
+    uuid?: StringWithAggregatesFilter<"asktournaments"> | string
+    sport_id?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    name?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    slug_name?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    description?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    tournament_type?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    user_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
+    tourstartdate?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
+    tourenddate?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
+    venue?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    tourbannerimage?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    tourthumbnail?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    tourwebsite?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    tourbrochure?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    prizemoney?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    tournament_fees?: DecimalNullableWithAggregatesFilter<"asktournaments"> | Decimal | DecimalJsLike | number | string | null
+    country_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
+    state_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
+    city_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
+    address?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
+    participation_limit?: IntWithAggregatesFilter<"asktournaments"> | number
+    publish_status?: IntWithAggregatesFilter<"asktournaments"> | number
+    created_at?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
+  }
+
+  export type ask_my_notesWhereInput = {
+    AND?: ask_my_notesWhereInput | ask_my_notesWhereInput[]
+    OR?: ask_my_notesWhereInput[]
+    NOT?: ask_my_notesWhereInput | ask_my_notesWhereInput[]
+    id?: IntFilter<"ask_my_notes"> | number
+    title?: StringFilter<"ask_my_notes"> | string
+    body?: StringNullableFilter<"ask_my_notes"> | string | null
+    createdAt?: DateTimeFilter<"ask_my_notes"> | Date | string
+  }
+
+  export type ask_my_notesOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    body?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _relevance?: ask_my_notesOrderByRelevanceInput
+  }
+
+  export type ask_my_notesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ask_my_notesWhereInput | ask_my_notesWhereInput[]
+    OR?: ask_my_notesWhereInput[]
+    NOT?: ask_my_notesWhereInput | ask_my_notesWhereInput[]
+    title?: StringFilter<"ask_my_notes"> | string
+    body?: StringNullableFilter<"ask_my_notes"> | string | null
+    createdAt?: DateTimeFilter<"ask_my_notes"> | Date | string
+  }, "id">
+
+  export type ask_my_notesOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    body?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ask_my_notesCountOrderByAggregateInput
+    _avg?: ask_my_notesAvgOrderByAggregateInput
+    _max?: ask_my_notesMaxOrderByAggregateInput
+    _min?: ask_my_notesMinOrderByAggregateInput
+    _sum?: ask_my_notesSumOrderByAggregateInput
+  }
+
+  export type ask_my_notesScalarWhereWithAggregatesInput = {
+    AND?: ask_my_notesScalarWhereWithAggregatesInput | ask_my_notesScalarWhereWithAggregatesInput[]
+    OR?: ask_my_notesScalarWhereWithAggregatesInput[]
+    NOT?: ask_my_notesScalarWhereWithAggregatesInput | ask_my_notesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ask_my_notes"> | number
+    title?: StringWithAggregatesFilter<"ask_my_notes"> | string
+    body?: StringNullableWithAggregatesFilter<"ask_my_notes"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ask_my_notes"> | Date | string
+  }
+
+  export type ask_notes_detailWhereInput = {
+    AND?: ask_notes_detailWhereInput | ask_notes_detailWhereInput[]
+    OR?: ask_notes_detailWhereInput[]
+    NOT?: ask_notes_detailWhereInput | ask_notes_detailWhereInput[]
+    id?: IntFilter<"ask_notes_detail"> | number
+    note_id?: IntFilter<"ask_notes_detail"> | number
+    content?: StringNullableFilter<"ask_notes_detail"> | string | null
+    createdAt?: DateTimeFilter<"ask_notes_detail"> | Date | string
+  }
+
+  export type ask_notes_detailOrderByWithRelationInput = {
+    id?: SortOrder
+    note_id?: SortOrder
+    content?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _relevance?: ask_notes_detailOrderByRelevanceInput
+  }
+
+  export type ask_notes_detailWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ask_notes_detailWhereInput | ask_notes_detailWhereInput[]
+    OR?: ask_notes_detailWhereInput[]
+    NOT?: ask_notes_detailWhereInput | ask_notes_detailWhereInput[]
+    note_id?: IntFilter<"ask_notes_detail"> | number
+    content?: StringNullableFilter<"ask_notes_detail"> | string | null
+    createdAt?: DateTimeFilter<"ask_notes_detail"> | Date | string
+  }, "id">
+
+  export type ask_notes_detailOrderByWithAggregationInput = {
+    id?: SortOrder
+    note_id?: SortOrder
+    content?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ask_notes_detailCountOrderByAggregateInput
+    _avg?: ask_notes_detailAvgOrderByAggregateInput
+    _max?: ask_notes_detailMaxOrderByAggregateInput
+    _min?: ask_notes_detailMinOrderByAggregateInput
+    _sum?: ask_notes_detailSumOrderByAggregateInput
+  }
+
+  export type ask_notes_detailScalarWhereWithAggregatesInput = {
+    AND?: ask_notes_detailScalarWhereWithAggregatesInput | ask_notes_detailScalarWhereWithAggregatesInput[]
+    OR?: ask_notes_detailScalarWhereWithAggregatesInput[]
+    NOT?: ask_notes_detailScalarWhereWithAggregatesInput | ask_notes_detailScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ask_notes_detail"> | number
+    note_id?: IntWithAggregatesFilter<"ask_notes_detail"> | number
+    content?: StringNullableWithAggregatesFilter<"ask_notes_detail"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ask_notes_detail"> | Date | string
   }
 
   export type academiesCreateInput = {
@@ -22805,296 +25332,6 @@ export namespace Prisma {
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type tournament_contentsCreateInput = {
-    id: bigint | number
-    uuid: string
-    name?: string | null
-    value?: string | null
-    extra?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-    tournament: tournamentsCreateNestedOneWithoutContentsInput
-  }
-
-  export type tournament_contentsUncheckedCreateInput = {
-    id: bigint | number
-    uuid: string
-    tournament_id: number
-    name?: string | null
-    value?: string | null
-    extra?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_contentsUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: NullableStringFieldUpdateOperationsInput | string | null
-    extra?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tournament?: tournamentsUpdateOneRequiredWithoutContentsNestedInput
-  }
-
-  export type tournament_contentsUncheckedUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: NullableStringFieldUpdateOperationsInput | string | null
-    extra?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_contentsCreateManyInput = {
-    id: bigint | number
-    uuid: string
-    tournament_id: number
-    name?: string | null
-    value?: string | null
-    extra?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_contentsUpdateManyMutationInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: NullableStringFieldUpdateOperationsInput | string | null
-    extra?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_contentsUncheckedUpdateManyInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: NullableStringFieldUpdateOperationsInput | string | null
-    extra?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleriesCreateInput = {
-    id?: bigint | number
-    uuid: string
-    tournament_id?: bigint | number | null
-    image?: string | null
-    tag_users?: string | null
-    tournament_galleries_folder_id?: bigint | number | null
-    face_app_sync?: Date | string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_galleriesUncheckedCreateInput = {
-    id?: bigint | number
-    uuid: string
-    tournament_id?: bigint | number | null
-    image?: string | null
-    tag_users?: string | null
-    tournament_galleries_folder_id?: bigint | number | null
-    face_app_sync?: Date | string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_galleriesUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleriesUncheckedUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleriesCreateManyInput = {
-    id?: bigint | number
-    uuid: string
-    tournament_id?: bigint | number | null
-    image?: string | null
-    tag_users?: string | null
-    tournament_galleries_folder_id?: bigint | number | null
-    face_app_sync?: Date | string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_galleriesUpdateManyMutationInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleriesUncheckedUpdateManyInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleries_foldersCreateInput = {
-    id?: bigint | number
-    uuid: string
-    tournament_id: bigint | number
-    folder_name: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_galleries_foldersUncheckedCreateInput = {
-    id?: bigint | number
-    uuid: string
-    tournament_id: bigint | number
-    folder_name: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_galleries_foldersUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    folder_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleries_foldersUncheckedUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    folder_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleries_foldersCreateManyInput = {
-    id?: bigint | number
-    uuid: string
-    tournament_id: bigint | number
-    folder_name: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_galleries_foldersUpdateManyMutationInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    folder_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_galleries_foldersUncheckedUpdateManyInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    folder_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type ask_notesCreateInput = {
-    title: string
-    body?: string | null
-    createdAt?: Date | string
-  }
-
-  export type ask_notesUncheckedCreateInput = {
-    id?: number
-    title: string
-    body?: string | null
-    createdAt?: Date | string
-  }
-
-  export type ask_notesUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    body?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ask_notesUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    body?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ask_notesCreateManyInput = {
-    id?: number
-    title: string
-    body?: string | null
-    createdAt?: Date | string
-  }
-
-  export type ask_notesUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    body?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ask_notesUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    body?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type tournamentsCreateInput = {
     id: number
     uuid: string
@@ -23475,6 +25712,545 @@ export namespace Prisma {
     is_registration_table_dynamic?: BoolFieldUpdateOperationsInput | boolean
     is_razorpay_payment_enable?: BoolFieldUpdateOperationsInput | boolean
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_contentsCreateInput = {
+    id: bigint | number
+    uuid: string
+    name?: string | null
+    value?: string | null
+    extra?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+    tournament: tournamentsCreateNestedOneWithoutContentsInput
+  }
+
+  export type tournament_contentsUncheckedCreateInput = {
+    id: bigint | number
+    uuid: string
+    tournament_id: number
+    name?: string | null
+    value?: string | null
+    extra?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_contentsUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    value?: NullableStringFieldUpdateOperationsInput | string | null
+    extra?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tournament?: tournamentsUpdateOneRequiredWithoutContentsNestedInput
+  }
+
+  export type tournament_contentsUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    value?: NullableStringFieldUpdateOperationsInput | string | null
+    extra?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_contentsCreateManyInput = {
+    id: bigint | number
+    uuid: string
+    tournament_id: number
+    name?: string | null
+    value?: string | null
+    extra?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_contentsUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    value?: NullableStringFieldUpdateOperationsInput | string | null
+    extra?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_contentsUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    value?: NullableStringFieldUpdateOperationsInput | string | null
+    extra?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleriesCreateInput = {
+    id?: bigint | number
+    uuid: string
+    tournament_id?: bigint | number | null
+    image?: string | null
+    tag_users?: string | null
+    tournament_galleries_folder_id?: bigint | number | null
+    face_app_sync?: Date | string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_galleriesUncheckedCreateInput = {
+    id?: bigint | number
+    uuid: string
+    tournament_id?: bigint | number | null
+    image?: string | null
+    tag_users?: string | null
+    tournament_galleries_folder_id?: bigint | number | null
+    face_app_sync?: Date | string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_galleriesUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleriesUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleriesCreateManyInput = {
+    id?: bigint | number
+    uuid: string
+    tournament_id?: bigint | number | null
+    image?: string | null
+    tag_users?: string | null
+    tournament_galleries_folder_id?: bigint | number | null
+    face_app_sync?: Date | string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_galleriesUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleriesUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    tag_users?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_galleries_folder_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    face_app_sync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleries_foldersCreateInput = {
+    id?: bigint | number
+    uuid: string
+    tournament_id: bigint | number
+    folder_name: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_galleries_foldersUncheckedCreateInput = {
+    id?: bigint | number
+    uuid: string
+    tournament_id: bigint | number
+    folder_name: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_galleries_foldersUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    folder_name?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleries_foldersUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    folder_name?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleries_foldersCreateManyInput = {
+    id?: bigint | number
+    uuid: string
+    tournament_id: bigint | number
+    folder_name: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_galleries_foldersUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    folder_name?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type tournament_galleries_foldersUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    tournament_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    folder_name?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type asktournamentsCreateInput = {
+    id: number
+    uuid: string
+    sport_id?: string | null
+    name?: string | null
+    slug_name?: string | null
+    description?: string | null
+    tournament_type?: string | null
+    user_id?: bigint | number | null
+    tourstartdate?: Date | string | null
+    tourenddate?: Date | string | null
+    venue?: string | null
+    tourbannerimage?: string | null
+    tourthumbnail?: string | null
+    tourwebsite?: string | null
+    tourbrochure?: string | null
+    prizemoney?: string | null
+    tournament_fees?: Decimal | DecimalJsLike | number | string | null
+    country_id?: bigint | number | null
+    state_id?: bigint | number | null
+    city_id?: bigint | number | null
+    address?: string | null
+    participation_limit?: number
+    publish_status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type asktournamentsUncheckedCreateInput = {
+    id: number
+    uuid: string
+    sport_id?: string | null
+    name?: string | null
+    slug_name?: string | null
+    description?: string | null
+    tournament_type?: string | null
+    user_id?: bigint | number | null
+    tourstartdate?: Date | string | null
+    tourenddate?: Date | string | null
+    venue?: string | null
+    tourbannerimage?: string | null
+    tourthumbnail?: string | null
+    tourwebsite?: string | null
+    tourbrochure?: string | null
+    prizemoney?: string | null
+    tournament_fees?: Decimal | DecimalJsLike | number | string | null
+    country_id?: bigint | number | null
+    state_id?: bigint | number | null
+    city_id?: bigint | number | null
+    address?: string | null
+    participation_limit?: number
+    publish_status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type asktournamentsUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    venue?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: IntFieldUpdateOperationsInput | number
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type asktournamentsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    venue?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: IntFieldUpdateOperationsInput | number
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type asktournamentsCreateManyInput = {
+    id: number
+    uuid: string
+    sport_id?: string | null
+    name?: string | null
+    slug_name?: string | null
+    description?: string | null
+    tournament_type?: string | null
+    user_id?: bigint | number | null
+    tourstartdate?: Date | string | null
+    tourenddate?: Date | string | null
+    venue?: string | null
+    tourbannerimage?: string | null
+    tourthumbnail?: string | null
+    tourwebsite?: string | null
+    tourbrochure?: string | null
+    prizemoney?: string | null
+    tournament_fees?: Decimal | DecimalJsLike | number | string | null
+    country_id?: bigint | number | null
+    state_id?: bigint | number | null
+    city_id?: bigint | number | null
+    address?: string | null
+    participation_limit?: number
+    publish_status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type asktournamentsUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    venue?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: IntFieldUpdateOperationsInput | number
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type asktournamentsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    venue?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
+    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: IntFieldUpdateOperationsInput | number
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ask_my_notesCreateInput = {
+    title: string
+    body?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ask_my_notesUncheckedCreateInput = {
+    id?: number
+    title: string
+    body?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ask_my_notesUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ask_my_notesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ask_my_notesCreateManyInput = {
+    id?: number
+    title: string
+    body?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ask_my_notesUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ask_my_notesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ask_notes_detailCreateInput = {
+    note_id: number
+    content?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ask_notes_detailUncheckedCreateInput = {
+    id?: number
+    note_id: number
+    content?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ask_notes_detailUpdateInput = {
+    note_id?: IntFieldUpdateOperationsInput | number
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ask_notes_detailUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    note_id?: IntFieldUpdateOperationsInput | number
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ask_notes_detailCreateManyInput = {
+    id?: number
+    note_id: number
+    content?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ask_notes_detailUpdateManyMutationInput = {
+    note_id?: IntFieldUpdateOperationsInput | number
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ask_notes_detailUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    note_id?: IntFieldUpdateOperationsInput | number
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BigIntFilter<$PrismaModel = never> = {
@@ -24483,226 +27259,6 @@ export namespace Prisma {
     _max?: NestedEnumsports_statusFilter<$PrismaModel>
   }
 
-  export type TournamentsScalarRelationFilter = {
-    is?: tournamentsWhereInput
-    isNot?: tournamentsWhereInput
-  }
-
-  export type tournament_contentsOrderByRelevanceInput = {
-    fields: tournament_contentsOrderByRelevanceFieldEnum | tournament_contentsOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type tournament_contentsCountOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    name?: SortOrder
-    value?: SortOrder
-    extra?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_contentsAvgOrderByAggregateInput = {
-    id?: SortOrder
-    tournament_id?: SortOrder
-  }
-
-  export type tournament_contentsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    name?: SortOrder
-    value?: SortOrder
-    extra?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_contentsMinOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    name?: SortOrder
-    value?: SortOrder
-    extra?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_contentsSumOrderByAggregateInput = {
-    id?: SortOrder
-    tournament_id?: SortOrder
-  }
-
-  export type tournament_galleriesOrderByRelevanceInput = {
-    fields: tournament_galleriesOrderByRelevanceFieldEnum | tournament_galleriesOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type tournament_galleriesCountOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    image?: SortOrder
-    tag_users?: SortOrder
-    tournament_galleries_folder_id?: SortOrder
-    face_app_sync?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_galleriesAvgOrderByAggregateInput = {
-    id?: SortOrder
-    tournament_id?: SortOrder
-    tournament_galleries_folder_id?: SortOrder
-  }
-
-  export type tournament_galleriesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    image?: SortOrder
-    tag_users?: SortOrder
-    tournament_galleries_folder_id?: SortOrder
-    face_app_sync?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_galleriesMinOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    image?: SortOrder
-    tag_users?: SortOrder
-    tournament_galleries_folder_id?: SortOrder
-    face_app_sync?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_galleriesSumOrderByAggregateInput = {
-    id?: SortOrder
-    tournament_id?: SortOrder
-    tournament_galleries_folder_id?: SortOrder
-  }
-
-  export type tournament_galleries_foldersOrderByRelevanceInput = {
-    fields: tournament_galleries_foldersOrderByRelevanceFieldEnum | tournament_galleries_foldersOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type tournament_galleries_foldersCountOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    folder_name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_galleries_foldersAvgOrderByAggregateInput = {
-    id?: SortOrder
-    tournament_id?: SortOrder
-  }
-
-  export type tournament_galleries_foldersMaxOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    folder_name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_galleries_foldersMinOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    tournament_id?: SortOrder
-    folder_name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type tournament_galleries_foldersSumOrderByAggregateInput = {
-    id?: SortOrder
-    tournament_id?: SortOrder
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type ask_notesOrderByRelevanceInput = {
-    fields: ask_notesOrderByRelevanceFieldEnum | ask_notesOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type ask_notesCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    body?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type ask_notesAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ask_notesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    body?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type ask_notesMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    body?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type ask_notesSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -24953,6 +27509,378 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type TournamentsScalarRelationFilter = {
+    is?: tournamentsWhereInput
+    isNot?: tournamentsWhereInput
+  }
+
+  export type tournament_contentsOrderByRelevanceInput = {
+    fields: tournament_contentsOrderByRelevanceFieldEnum | tournament_contentsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type tournament_contentsCountOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    name?: SortOrder
+    value?: SortOrder
+    extra?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_contentsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    tournament_id?: SortOrder
+  }
+
+  export type tournament_contentsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    name?: SortOrder
+    value?: SortOrder
+    extra?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_contentsMinOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    name?: SortOrder
+    value?: SortOrder
+    extra?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_contentsSumOrderByAggregateInput = {
+    id?: SortOrder
+    tournament_id?: SortOrder
+  }
+
+  export type tournament_galleriesOrderByRelevanceInput = {
+    fields: tournament_galleriesOrderByRelevanceFieldEnum | tournament_galleriesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type tournament_galleriesCountOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    image?: SortOrder
+    tag_users?: SortOrder
+    tournament_galleries_folder_id?: SortOrder
+    face_app_sync?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_galleriesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    tournament_id?: SortOrder
+    tournament_galleries_folder_id?: SortOrder
+  }
+
+  export type tournament_galleriesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    image?: SortOrder
+    tag_users?: SortOrder
+    tournament_galleries_folder_id?: SortOrder
+    face_app_sync?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_galleriesMinOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    image?: SortOrder
+    tag_users?: SortOrder
+    tournament_galleries_folder_id?: SortOrder
+    face_app_sync?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_galleriesSumOrderByAggregateInput = {
+    id?: SortOrder
+    tournament_id?: SortOrder
+    tournament_galleries_folder_id?: SortOrder
+  }
+
+  export type tournament_galleries_foldersOrderByRelevanceInput = {
+    fields: tournament_galleries_foldersOrderByRelevanceFieldEnum | tournament_galleries_foldersOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type tournament_galleries_foldersCountOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    folder_name?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_galleries_foldersAvgOrderByAggregateInput = {
+    id?: SortOrder
+    tournament_id?: SortOrder
+  }
+
+  export type tournament_galleries_foldersMaxOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    folder_name?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_galleries_foldersMinOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    tournament_id?: SortOrder
+    folder_name?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type tournament_galleries_foldersSumOrderByAggregateInput = {
+    id?: SortOrder
+    tournament_id?: SortOrder
+  }
+
+  export type asktournamentsOrderByRelevanceInput = {
+    fields: asktournamentsOrderByRelevanceFieldEnum | asktournamentsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type asktournamentsCountOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    sport_id?: SortOrder
+    name?: SortOrder
+    slug_name?: SortOrder
+    description?: SortOrder
+    tournament_type?: SortOrder
+    user_id?: SortOrder
+    tourstartdate?: SortOrder
+    tourenddate?: SortOrder
+    venue?: SortOrder
+    tourbannerimage?: SortOrder
+    tourthumbnail?: SortOrder
+    tourwebsite?: SortOrder
+    tourbrochure?: SortOrder
+    prizemoney?: SortOrder
+    tournament_fees?: SortOrder
+    country_id?: SortOrder
+    state_id?: SortOrder
+    city_id?: SortOrder
+    address?: SortOrder
+    participation_limit?: SortOrder
+    publish_status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type asktournamentsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    tournament_fees?: SortOrder
+    country_id?: SortOrder
+    state_id?: SortOrder
+    city_id?: SortOrder
+    participation_limit?: SortOrder
+    publish_status?: SortOrder
+  }
+
+  export type asktournamentsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    sport_id?: SortOrder
+    name?: SortOrder
+    slug_name?: SortOrder
+    description?: SortOrder
+    tournament_type?: SortOrder
+    user_id?: SortOrder
+    tourstartdate?: SortOrder
+    tourenddate?: SortOrder
+    venue?: SortOrder
+    tourbannerimage?: SortOrder
+    tourthumbnail?: SortOrder
+    tourwebsite?: SortOrder
+    tourbrochure?: SortOrder
+    prizemoney?: SortOrder
+    tournament_fees?: SortOrder
+    country_id?: SortOrder
+    state_id?: SortOrder
+    city_id?: SortOrder
+    address?: SortOrder
+    participation_limit?: SortOrder
+    publish_status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type asktournamentsMinOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    sport_id?: SortOrder
+    name?: SortOrder
+    slug_name?: SortOrder
+    description?: SortOrder
+    tournament_type?: SortOrder
+    user_id?: SortOrder
+    tourstartdate?: SortOrder
+    tourenddate?: SortOrder
+    venue?: SortOrder
+    tourbannerimage?: SortOrder
+    tourthumbnail?: SortOrder
+    tourwebsite?: SortOrder
+    tourbrochure?: SortOrder
+    prizemoney?: SortOrder
+    tournament_fees?: SortOrder
+    country_id?: SortOrder
+    state_id?: SortOrder
+    city_id?: SortOrder
+    address?: SortOrder
+    participation_limit?: SortOrder
+    publish_status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type asktournamentsSumOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    tournament_fees?: SortOrder
+    country_id?: SortOrder
+    state_id?: SortOrder
+    city_id?: SortOrder
+    participation_limit?: SortOrder
+    publish_status?: SortOrder
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type ask_my_notesOrderByRelevanceInput = {
+    fields: ask_my_notesOrderByRelevanceFieldEnum | ask_my_notesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ask_my_notesCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ask_my_notesAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ask_my_notesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ask_my_notesMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ask_my_notesSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type ask_notes_detailOrderByRelevanceInput = {
+    fields: ask_notes_detailOrderByRelevanceFieldEnum | ask_notes_detailOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ask_notes_detailCountOrderByAggregateInput = {
+    id?: SortOrder
+    note_id?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ask_notes_detailAvgOrderByAggregateInput = {
+    id?: SortOrder
+    note_id?: SortOrder
+  }
+
+  export type ask_notes_detailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    note_id?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ask_notes_detailMinOrderByAggregateInput = {
+    id?: SortOrder
+    note_id?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ask_notes_detailSumOrderByAggregateInput = {
+    id?: SortOrder
+    note_id?: SortOrder
   }
 
   export type academy_seo_contentsCreateNestedManyWithoutAcademiesInput = {
@@ -25463,24 +28391,6 @@ export namespace Prisma {
     set?: $Enums.sports_status
   }
 
-  export type tournamentsCreateNestedOneWithoutContentsInput = {
-    create?: XOR<tournamentsCreateWithoutContentsInput, tournamentsUncheckedCreateWithoutContentsInput>
-    connectOrCreate?: tournamentsCreateOrConnectWithoutContentsInput
-    connect?: tournamentsWhereUniqueInput
-  }
-
-  export type tournamentsUpdateOneRequiredWithoutContentsNestedInput = {
-    create?: XOR<tournamentsCreateWithoutContentsInput, tournamentsUncheckedCreateWithoutContentsInput>
-    connectOrCreate?: tournamentsCreateOrConnectWithoutContentsInput
-    upsert?: tournamentsUpsertWithoutContentsInput
-    connect?: tournamentsWhereUniqueInput
-    update?: XOR<XOR<tournamentsUpdateToOneWithWhereWithoutContentsInput, tournamentsUpdateWithoutContentsInput>, tournamentsUncheckedUpdateWithoutContentsInput>
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
   export type tournament_contentsCreateNestedManyWithoutTournamentInput = {
     create?: XOR<tournament_contentsCreateWithoutTournamentInput, tournament_contentsUncheckedCreateWithoutTournamentInput> | tournament_contentsCreateWithoutTournamentInput[] | tournament_contentsUncheckedCreateWithoutTournamentInput[]
     connectOrCreate?: tournament_contentsCreateOrConnectWithoutTournamentInput | tournament_contentsCreateOrConnectWithoutTournamentInput[]
@@ -25533,6 +28443,24 @@ export namespace Prisma {
     update?: tournament_contentsUpdateWithWhereUniqueWithoutTournamentInput | tournament_contentsUpdateWithWhereUniqueWithoutTournamentInput[]
     updateMany?: tournament_contentsUpdateManyWithWhereWithoutTournamentInput | tournament_contentsUpdateManyWithWhereWithoutTournamentInput[]
     deleteMany?: tournament_contentsScalarWhereInput | tournament_contentsScalarWhereInput[]
+  }
+
+  export type tournamentsCreateNestedOneWithoutContentsInput = {
+    create?: XOR<tournamentsCreateWithoutContentsInput, tournamentsUncheckedCreateWithoutContentsInput>
+    connectOrCreate?: tournamentsCreateOrConnectWithoutContentsInput
+    connect?: tournamentsWhereUniqueInput
+  }
+
+  export type tournamentsUpdateOneRequiredWithoutContentsNestedInput = {
+    create?: XOR<tournamentsCreateWithoutContentsInput, tournamentsUncheckedCreateWithoutContentsInput>
+    connectOrCreate?: tournamentsCreateOrConnectWithoutContentsInput
+    upsert?: tournamentsUpsertWithoutContentsInput
+    connect?: tournamentsWhereUniqueInput
+    update?: XOR<XOR<tournamentsUpdateToOneWithWhereWithoutContentsInput, tournamentsUpdateWithoutContentsInput>, tournamentsUncheckedUpdateWithoutContentsInput>
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type NestedBigIntFilter<$PrismaModel = never> = {
@@ -25773,31 +28701,6 @@ export namespace Prisma {
     _max?: NestedEnumsports_statusFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -25836,6 +28739,31 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type academy_seo_contentsCreateWithoutAcademiesInput = {
@@ -27664,6 +30592,69 @@ export namespace Prisma {
     academy_galleries?: academy_galleriesUncheckedUpdateManyWithoutAcademiesNestedInput
   }
 
+  export type tournament_contentsCreateWithoutTournamentInput = {
+    id: bigint | number
+    uuid: string
+    name?: string | null
+    value?: string | null
+    extra?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_contentsUncheckedCreateWithoutTournamentInput = {
+    id: bigint | number
+    uuid: string
+    name?: string | null
+    value?: string | null
+    extra?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type tournament_contentsCreateOrConnectWithoutTournamentInput = {
+    where: tournament_contentsWhereUniqueInput
+    create: XOR<tournament_contentsCreateWithoutTournamentInput, tournament_contentsUncheckedCreateWithoutTournamentInput>
+  }
+
+  export type tournament_contentsCreateManyTournamentInputEnvelope = {
+    data: tournament_contentsCreateManyTournamentInput | tournament_contentsCreateManyTournamentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type tournament_contentsUpsertWithWhereUniqueWithoutTournamentInput = {
+    where: tournament_contentsWhereUniqueInput
+    update: XOR<tournament_contentsUpdateWithoutTournamentInput, tournament_contentsUncheckedUpdateWithoutTournamentInput>
+    create: XOR<tournament_contentsCreateWithoutTournamentInput, tournament_contentsUncheckedCreateWithoutTournamentInput>
+  }
+
+  export type tournament_contentsUpdateWithWhereUniqueWithoutTournamentInput = {
+    where: tournament_contentsWhereUniqueInput
+    data: XOR<tournament_contentsUpdateWithoutTournamentInput, tournament_contentsUncheckedUpdateWithoutTournamentInput>
+  }
+
+  export type tournament_contentsUpdateManyWithWhereWithoutTournamentInput = {
+    where: tournament_contentsScalarWhereInput
+    data: XOR<tournament_contentsUpdateManyMutationInput, tournament_contentsUncheckedUpdateManyWithoutTournamentInput>
+  }
+
+  export type tournament_contentsScalarWhereInput = {
+    AND?: tournament_contentsScalarWhereInput | tournament_contentsScalarWhereInput[]
+    OR?: tournament_contentsScalarWhereInput[]
+    NOT?: tournament_contentsScalarWhereInput | tournament_contentsScalarWhereInput[]
+    id?: BigIntFilter<"tournament_contents"> | bigint | number
+    uuid?: StringFilter<"tournament_contents"> | string
+    tournament_id?: IntFilter<"tournament_contents"> | number
+    name?: StringNullableFilter<"tournament_contents"> | string | null
+    value?: StringNullableFilter<"tournament_contents"> | string | null
+    extra?: StringNullableFilter<"tournament_contents"> | string | null
+    created_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
+  }
+
   export type tournamentsCreateWithoutContentsInput = {
     id: number
     uuid: string
@@ -27894,69 +30885,6 @@ export namespace Prisma {
     is_registration_table_dynamic?: BoolFieldUpdateOperationsInput | boolean
     is_razorpay_payment_enable?: BoolFieldUpdateOperationsInput | boolean
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type tournament_contentsCreateWithoutTournamentInput = {
-    id: bigint | number
-    uuid: string
-    name?: string | null
-    value?: string | null
-    extra?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_contentsUncheckedCreateWithoutTournamentInput = {
-    id: bigint | number
-    uuid: string
-    name?: string | null
-    value?: string | null
-    extra?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type tournament_contentsCreateOrConnectWithoutTournamentInput = {
-    where: tournament_contentsWhereUniqueInput
-    create: XOR<tournament_contentsCreateWithoutTournamentInput, tournament_contentsUncheckedCreateWithoutTournamentInput>
-  }
-
-  export type tournament_contentsCreateManyTournamentInputEnvelope = {
-    data: tournament_contentsCreateManyTournamentInput | tournament_contentsCreateManyTournamentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type tournament_contentsUpsertWithWhereUniqueWithoutTournamentInput = {
-    where: tournament_contentsWhereUniqueInput
-    update: XOR<tournament_contentsUpdateWithoutTournamentInput, tournament_contentsUncheckedUpdateWithoutTournamentInput>
-    create: XOR<tournament_contentsCreateWithoutTournamentInput, tournament_contentsUncheckedCreateWithoutTournamentInput>
-  }
-
-  export type tournament_contentsUpdateWithWhereUniqueWithoutTournamentInput = {
-    where: tournament_contentsWhereUniqueInput
-    data: XOR<tournament_contentsUpdateWithoutTournamentInput, tournament_contentsUncheckedUpdateWithoutTournamentInput>
-  }
-
-  export type tournament_contentsUpdateManyWithWhereWithoutTournamentInput = {
-    where: tournament_contentsScalarWhereInput
-    data: XOR<tournament_contentsUpdateManyMutationInput, tournament_contentsUncheckedUpdateManyWithoutTournamentInput>
-  }
-
-  export type tournament_contentsScalarWhereInput = {
-    AND?: tournament_contentsScalarWhereInput | tournament_contentsScalarWhereInput[]
-    OR?: tournament_contentsScalarWhereInput[]
-    NOT?: tournament_contentsScalarWhereInput | tournament_contentsScalarWhereInput[]
-    id?: BigIntFilter<"tournament_contents"> | bigint | number
-    uuid?: StringFilter<"tournament_contents"> | string
-    tournament_id?: IntFilter<"tournament_contents"> | number
-    name?: StringNullableFilter<"tournament_contents"> | string | null
-    value?: StringNullableFilter<"tournament_contents"> | string | null
-    extra?: StringNullableFilter<"tournament_contents"> | string | null
-    created_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"tournament_contents"> | Date | string | null
   }
 
   export type academy_seo_contentsCreateManyAcademiesInput = {

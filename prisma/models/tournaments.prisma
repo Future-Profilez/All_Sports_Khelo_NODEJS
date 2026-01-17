@@ -1,0 +1,129 @@
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+
+
+model tournaments {
+  id                            Int       @id
+  uuid                          String    @db.Char(36)
+  sport_id                      String?   @db.Char(36)
+  created_by                    BigInt?   @db.UnsignedBigInt
+  name                          String?   @db.VarChar(255)
+  slug_name                     String?   @db.VarChar(255)
+  locality                      String?   @default("local") @db.VarChar(255)
+  events_payload                String?   @db.LongText
+  match_type                    String?   @db.VarChar(255)
+  description                   String?   @db.LongText
+  type                          String?   @default("real") @db.VarChar(255)
+  tournament_type               String?   @db.VarChar(255)
+  user_id                       BigInt?   @db.UnsignedBigInt
+  academy_id                    Int?
+  tourstartdate                 DateTime? @db.Date
+  tourenddate                   DateTime? @db.Date
+  sets                          Int?
+  tournament_set                String?   @db.VarChar(255)
+  tourcategory                  String?   @db.VarChar(255)
+  drawtype                      String?   @db.VarChar(255)
+  agegroup                      String?   @db.VarChar(255)
+  variationid                   String?   @db.VarChar(255)
+  venue                         String?   @db.VarChar(255)
+  official                      String?   @db.VarChar(255)
+  tourimage                     String?   @db.VarChar(255)
+  winnerprize                   String?   @db.VarChar(255)
+  contestantprize               String?   @db.VarChar(255)
+  semifinalprize                String?   @db.VarChar(255)
+  quarterfinalprize             String?   @db.VarChar(255)
+  runnerupprize                 String?   @db.VarChar(255)
+  long                          String?   @db.VarChar(255)
+  lat                           String?   @db.VarChar(255)
+  country_id                    BigInt?   @db.UnsignedBigInt
+  state_id                      BigInt?   @db.UnsignedBigInt
+  city_id                       BigInt?   @db.UnsignedBigInt
+  address                       String?   @db.Text
+  winner_id                     Int?
+  organization_tier_id          String?   @db.Char(36)
+  status                        Boolean   @default(false)
+  participation_limit           Int       @default(1) @db.TinyInt
+  publish_status                Int       @default(0) @db.TinyInt
+  is_old                        Int       @default(1)
+  is_verified                   Int       @default(1)
+  created_at                    DateTime? @db.Timestamp(0)
+  updated_at                    DateTime? @db.Timestamp(0)
+  is_whatsapp_message_allowed   Boolean   @default(false)
+  tournament_fees               Decimal?  @db.Decimal(10, 2)
+  is_event_fees                 Boolean   @default(false)
+  is_registration_table_dynamic Boolean   @default(false)
+  is_razorpay_payment_enable    Boolean   @default(false)
+  deleted_at                    DateTime? @db.Timestamp(0)
+
+  contents tournament_contents[]
+}
+
+
+model tournament_contents {
+  id            BigInt    @id @db.UnsignedBigInt
+  uuid          String    @db.VarChar(255)
+  tournament_id Int       @db.UnsignedInt
+  name          String?   @db.VarChar(255)
+  value         String?   @db.LongText
+  extra         String?   @db.LongText
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  tournament tournaments @relation(fields: [tournament_id], references: [id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model tournament_galleries {
+  id                             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid                           String    @db.Char(36)
+  tournament_id                  BigInt?   @db.UnsignedBigInt
+  image                          String?   @db.VarChar(255)
+  tag_users                      String?   @db.LongText
+  tournament_galleries_folder_id BigInt?   @db.UnsignedBigInt
+  face_app_sync                  DateTime? @db.Timestamp(0)
+  created_at                     DateTime? @db.Timestamp(0)
+  updated_at                     DateTime? @db.Timestamp(0)
+  deleted_at                     DateTime? @db.Timestamp(0)
+
+  @@index([tournament_galleries_folder_id], map: "tournament_image_album_id")
+}
+
+model tournament_galleries_folders {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  folder_name   String    @db.VarChar(255)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+}
+
+model asktournaments {
+  id                            Int       @id
+  uuid                          String    @db.Char(36)
+  sport_id                      String?   @db.Char(36)
+  name                          String?   @db.VarChar(255)
+  slug_name                     String?   @db.VarChar(255)
+  description                   String?   @db.LongText
+  tournament_type               String?   @db.VarChar(255)
+  user_id                       BigInt?   @db.UnsignedBigInt
+  tourstartdate                 DateTime? @db.Date
+  tourenddate                   DateTime? @db.Date
+  venue                         String?   @db.VarChar(255)
+  tourbannerimage               String?   @db.VarChar(255)
+  tourthumbnail                 String?   @db.VarChar(255)
+  tourwebsite                   String?   @db.VarChar(255)
+  tourbrochure                  String?   @db.VarChar(255)
+  prizemoney                    String?   @db.VarChar(255)
+  tournament_fees               Decimal?  @db.Decimal(10, 2)
+  country_id                    BigInt?   @db.UnsignedBigInt
+  state_id                      BigInt?   @db.UnsignedBigInt
+  city_id                       BigInt?   @db.UnsignedBigInt
+  address                       String?   @db.Text
+  participation_limit           Int       @default(1) @db.TinyInt
+  publish_status                Int       @default(0) @db.TinyInt
+  created_at                    DateTime? @db.Timestamp(0)
+  updated_at                    DateTime? @db.Timestamp(0)
+  deleted_at                    DateTime? @db.Timestamp(0)
+}

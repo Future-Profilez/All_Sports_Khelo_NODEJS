@@ -1,7 +1,7 @@
-CREATE TABLE `ask_notes` (
+CREATE TABLE `ask_notes_detail` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(255) NOT NULL,
-    `body` LONGTEXT NULL,
+    `note_id` INTEGER NOT NULL,
+    `content` LONGTEXT NULL,
     `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
     PRIMARY KEY (`id`)
