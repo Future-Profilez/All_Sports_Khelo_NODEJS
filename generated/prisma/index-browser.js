@@ -149,6 +149,103 @@ exports.Prisma.AcademiesScalarFieldEnum = {
   evening: 'evening'
 };
 
+exports.Prisma.Academy_seo_contentsScalarFieldEnum = {
+  id: 'id',
+  academy_id: 'academy_id',
+  name: 'name',
+  value: 'value',
+  extra: 'extra',
+  updated_by: 'updated_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Academy_amenitiesScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  academy_id: 'academy_id',
+  amenity_name: 'amenity_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Academy_detailsScalarFieldEnum = {
+  id: 'id',
+  academy_id: 'academy_id',
+  timing: 'timing',
+  amenities: 'amenities',
+  rooms: 'rooms',
+  img: 'img',
+  profile: 'profile',
+  additional_info: 'additional_info',
+  h1_tag: 'h1_tag',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  timings_to: 'timings_to',
+  timings_from: 'timings_from',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Academy_timingsScalarFieldEnum = {
+  id: 'id',
+  academy_id: 'academy_id',
+  morning_shift: 'morning_shift',
+  evening_shift: 'evening_shift',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Academy_programsScalarFieldEnum = {
+  id: 'id',
+  default_id: 'default_id',
+  academy_id: 'academy_id',
+  program_name: 'program_name',
+  training_time: 'training_time',
+  services: 'services',
+  other_services: 'other_services',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Academy_coachesScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  academy_id: 'academy_id',
+  image: 'image',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  achievement: 'achievement',
+  overview: 'overview',
+  experience: 'experience',
+  facebook: 'facebook',
+  twitter: 'twitter',
+  instagram: 'instagram',
+  youtube_video_link: 'youtube_video_link',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  phone_prefix: 'phone_prefix'
+};
+
+exports.Prisma.Academy_galleriesScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  academy_id: 'academy_id',
+  academy_name: 'academy_name',
+  slug_name: 'slug_name',
+  title: 'title',
+  academy_description: 'academy_description',
+  academy_images: 'academy_images',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.Academy_achievementsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -160,6 +257,21 @@ exports.Prisma.Academy_achievementsScalarFieldEnum = {
   updated_at: 'updated_at',
   academy_id: 'academy_id',
   deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Academy_urlsScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  user_id: 'user_id',
+  insta_url: 'insta_url',
+  youtube_url: 'youtube_url',
+  twitter_url: 'twitter_url',
+  fb_url: 'fb_url',
+  linkedln_url: 'linkedln_url',
+  website_url: 'website_url',
+  other_url: 'other_url',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.Academy_addonsScalarFieldEnum = {
@@ -176,16 +288,6 @@ exports.Prisma.Academy_admin_permissionsScalarFieldEnum = {
   permissions: 'permissions',
   extra: 'extra',
   modified_by: 'modified_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
-exports.Prisma.Academy_amenitiesScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  academy_id: 'academy_id',
-  amenity_name: 'amenity_name',
   created_at: 'created_at',
   updated_at: 'updated_at',
   deleted_at: 'deleted_at'
@@ -340,27 +442,6 @@ exports.Prisma.Academy_claimsScalarFieldEnum = {
   phone_prefix: 'phone_prefix'
 };
 
-exports.Prisma.Academy_coachesScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  academy_id: 'academy_id',
-  image: 'image',
-  name: 'name',
-  email: 'email',
-  phone: 'phone',
-  achievement: 'achievement',
-  overview: 'overview',
-  experience: 'experience',
-  facebook: 'facebook',
-  twitter: 'twitter',
-  instagram: 'instagram',
-  youtube_video_link: 'youtube_video_link',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
-  phone_prefix: 'phone_prefix'
-};
-
 exports.Prisma.Academy_courtsScalarFieldEnum = {
   id: 'id',
   academy_id: 'academy_id',
@@ -413,23 +494,6 @@ exports.Prisma.Academy_delete_requestsScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
-exports.Prisma.Academy_detailsScalarFieldEnum = {
-  id: 'id',
-  academy_id: 'academy_id',
-  timing: 'timing',
-  amenities: 'amenities',
-  rooms: 'rooms',
-  img: 'img',
-  profile: 'profile',
-  additional_info: 'additional_info',
-  h1_tag: 'h1_tag',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  timings_to: 'timings_to',
-  timings_from: 'timings_from',
-  deleted_at: 'deleted_at'
-};
-
 exports.Prisma.Academy_featuresScalarFieldEnum = {
   id: 'id',
   academy_id: 'academy_id',
@@ -441,20 +505,6 @@ exports.Prisma.Academy_featuresScalarFieldEnum = {
   updated_at: 'updated_at',
   deleted_at: 'deleted_at',
   phone_prefix: 'phone_prefix'
-};
-
-exports.Prisma.Academy_galleriesScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  academy_id: 'academy_id',
-  academy_name: 'academy_name',
-  slug_name: 'slug_name',
-  title: 'title',
-  academy_description: 'academy_description',
-  academy_images: 'academy_images',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
 };
 
 exports.Prisma.Academy_holidaysScalarFieldEnum = {
@@ -627,19 +677,6 @@ exports.Prisma.Academy_program_usersScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.Academy_programsScalarFieldEnum = {
-  id: 'id',
-  default_id: 'default_id',
-  academy_id: 'academy_id',
-  program_name: 'program_name',
-  training_time: 'training_time',
-  services: 'services',
-  other_services: 'other_services',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
 exports.Prisma.Academy_ratingsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -712,18 +749,6 @@ exports.Prisma.Academy_seo_content_settingsScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.Academy_seo_contentsScalarFieldEnum = {
-  id: 'id',
-  academy_id: 'academy_id',
-  name: 'name',
-  value: 'value',
-  extra: 'extra',
-  updated_by: 'updated_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
 exports.Prisma.Academy_sportsScalarFieldEnum = {
   id: 'id',
   academy_id: 'academy_id',
@@ -731,31 +756,6 @@ exports.Prisma.Academy_sportsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   deleted_at: 'deleted_at'
-};
-
-exports.Prisma.Academy_timingsScalarFieldEnum = {
-  id: 'id',
-  academy_id: 'academy_id',
-  morning_shift: 'morning_shift',
-  evening_shift: 'evening_shift',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-};
-
-exports.Prisma.Academy_urlsScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  user_id: 'user_id',
-  insta_url: 'insta_url',
-  youtube_url: 'youtube_url',
-  twitter_url: 'twitter_url',
-  fb_url: 'fb_url',
-  linkedln_url: 'linkedln_url',
-  website_url: 'website_url',
-  other_url: 'other_url',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
 };
 
 exports.Prisma.Add_onsScalarFieldEnum = {
@@ -2874,6 +2874,29 @@ exports.Prisma.TournamentsScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
+exports.Prisma.Tournament_galleriesScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  tournament_id: 'tournament_id',
+  image: 'image',
+  tag_users: 'tag_users',
+  tournament_galleries_folder_id: 'tournament_galleries_folder_id',
+  face_app_sync: 'face_app_sync',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.Tournament_galleries_foldersScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  tournament_id: 'tournament_id',
+  folder_name: 'folder_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2900,12 +2923,83 @@ exports.Prisma.academiesOrderByRelevanceFieldEnum = {
   city_id: 'city_id'
 };
 
+exports.Prisma.academy_seo_contentsOrderByRelevanceFieldEnum = {
+  name: 'name',
+  value: 'value',
+  extra: 'extra'
+};
+
+exports.Prisma.academy_amenitiesOrderByRelevanceFieldEnum = {
+  user_id: 'user_id',
+  amenity_name: 'amenity_name'
+};
+
+exports.Prisma.academy_detailsOrderByRelevanceFieldEnum = {
+  timing: 'timing',
+  amenities: 'amenities',
+  rooms: 'rooms',
+  img: 'img',
+  profile: 'profile',
+  additional_info: 'additional_info',
+  h1_tag: 'h1_tag',
+  timings_to: 'timings_to',
+  timings_from: 'timings_from'
+};
+
+exports.Prisma.academy_timingsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  morning_shift: 'morning_shift',
+  evening_shift: 'evening_shift'
+};
+
+exports.Prisma.academy_programsOrderByRelevanceFieldEnum = {
+  program_name: 'program_name',
+  training_time: 'training_time',
+  services: 'services',
+  other_services: 'other_services'
+};
+
+exports.Prisma.academy_coachesOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  image: 'image',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  achievement: 'achievement',
+  overview: 'overview',
+  facebook: 'facebook',
+  twitter: 'twitter',
+  instagram: 'instagram',
+  youtube_video_link: 'youtube_video_link',
+  phone_prefix: 'phone_prefix'
+};
+
+exports.Prisma.academy_galleriesOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  academy_name: 'academy_name',
+  slug_name: 'slug_name',
+  title: 'title',
+  academy_description: 'academy_description',
+  academy_images: 'academy_images'
+};
+
 exports.Prisma.academy_achievementsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   name: 'name',
   slug_name: 'slug_name',
   achhievement_image: 'achhievement_image',
   description: 'description'
+};
+
+exports.Prisma.academy_urlsOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  insta_url: 'insta_url',
+  youtube_url: 'youtube_url',
+  twitter_url: 'twitter_url',
+  fb_url: 'fb_url',
+  linkedln_url: 'linkedln_url',
+  website_url: 'website_url',
+  other_url: 'other_url'
 };
 
 exports.Prisma.academy_addonsOrderByRelevanceFieldEnum = {
@@ -2917,11 +3011,6 @@ exports.Prisma.academy_admin_permissionsOrderByRelevanceFieldEnum = {
   id: 'id',
   permissions: 'permissions',
   extra: 'extra'
-};
-
-exports.Prisma.academy_amenitiesOrderByRelevanceFieldEnum = {
-  user_id: 'user_id',
-  amenity_name: 'amenity_name'
 };
 
 exports.Prisma.academy_bookingsOrderByRelevanceFieldEnum = {
@@ -3010,21 +3099,6 @@ exports.Prisma.academy_claimsOrderByRelevanceFieldEnum = {
   phone_prefix: 'phone_prefix'
 };
 
-exports.Prisma.academy_coachesOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  image: 'image',
-  name: 'name',
-  email: 'email',
-  phone: 'phone',
-  achievement: 'achievement',
-  overview: 'overview',
-  facebook: 'facebook',
-  twitter: 'twitter',
-  instagram: 'instagram',
-  youtube_video_link: 'youtube_video_link',
-  phone_prefix: 'phone_prefix'
-};
-
 exports.Prisma.academy_courtsOrderByRelevanceFieldEnum = {
   hardCourt: 'hardCourt',
   clayCourt: 'clayCourt',
@@ -3059,33 +3133,12 @@ exports.Prisma.academy_delete_requestsOrderByRelevanceFieldEnum = {
   uuid: 'uuid'
 };
 
-exports.Prisma.academy_detailsOrderByRelevanceFieldEnum = {
-  timing: 'timing',
-  amenities: 'amenities',
-  rooms: 'rooms',
-  img: 'img',
-  profile: 'profile',
-  additional_info: 'additional_info',
-  h1_tag: 'h1_tag',
-  timings_to: 'timings_to',
-  timings_from: 'timings_from'
-};
-
 exports.Prisma.academy_featuresOrderByRelevanceFieldEnum = {
   name: 'name',
   phone: 'phone',
   email: 'email',
   avatar_image: 'avatar_image',
   phone_prefix: 'phone_prefix'
-};
-
-exports.Prisma.academy_galleriesOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  academy_name: 'academy_name',
-  slug_name: 'slug_name',
-  title: 'title',
-  academy_description: 'academy_description',
-  academy_images: 'academy_images'
 };
 
 exports.Prisma.academy_holidaysOrderByRelevanceFieldEnum = {
@@ -3178,13 +3231,6 @@ exports.Prisma.academy_program_usersOrderByRelevanceFieldEnum = {
   id: 'id'
 };
 
-exports.Prisma.academy_programsOrderByRelevanceFieldEnum = {
-  program_name: 'program_name',
-  training_time: 'training_time',
-  services: 'services',
-  other_services: 'other_services'
-};
-
 exports.Prisma.academy_ratingsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   review: 'review'
@@ -3221,32 +3267,9 @@ exports.Prisma.academy_seo_content_settingsOrderByRelevanceFieldEnum = {
   extra: 'extra'
 };
 
-exports.Prisma.academy_seo_contentsOrderByRelevanceFieldEnum = {
-  name: 'name',
-  value: 'value',
-  extra: 'extra'
-};
-
 exports.Prisma.academy_sportsOrderByRelevanceFieldEnum = {
   id: 'id',
   sport_id: 'sport_id'
-};
-
-exports.Prisma.academy_timingsOrderByRelevanceFieldEnum = {
-  id: 'id',
-  morning_shift: 'morning_shift',
-  evening_shift: 'evening_shift'
-};
-
-exports.Prisma.academy_urlsOrderByRelevanceFieldEnum = {
-  uuid: 'uuid',
-  insta_url: 'insta_url',
-  youtube_url: 'youtube_url',
-  twitter_url: 'twitter_url',
-  fb_url: 'fb_url',
-  linkedln_url: 'linkedln_url',
-  website_url: 'website_url',
-  other_url: 'other_url'
 };
 
 exports.Prisma.add_onsOrderByRelevanceFieldEnum = {
@@ -4410,6 +4433,17 @@ exports.Prisma.tournamentsOrderByRelevanceFieldEnum = {
   address: 'address',
   organization_tier_id: 'organization_tier_id'
 };
+
+exports.Prisma.tournament_galleriesOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  image: 'image',
+  tag_users: 'tag_users'
+};
+
+exports.Prisma.tournament_galleries_foldersOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  folder_name: 'folder_name'
+};
 exports.academy_claim_reports_status = exports.$Enums.academy_claim_reports_status = {
   pending: 'pending',
   accepted: 'accepted',
@@ -4689,10 +4723,17 @@ exports.sports_status = exports.$Enums.sports_status = {
 
 exports.Prisma.ModelName = {
   academies: 'academies',
+  academy_seo_contents: 'academy_seo_contents',
+  academy_amenities: 'academy_amenities',
+  academy_details: 'academy_details',
+  academy_timings: 'academy_timings',
+  academy_programs: 'academy_programs',
+  academy_coaches: 'academy_coaches',
+  academy_galleries: 'academy_galleries',
   academy_achievements: 'academy_achievements',
+  academy_urls: 'academy_urls',
   academy_addons: 'academy_addons',
   academy_admin_permissions: 'academy_admin_permissions',
-  academy_amenities: 'academy_amenities',
   academy_bookings: 'academy_bookings',
   academy_claim_docs: 'academy_claim_docs',
   academy_claim_logs: 'academy_claim_logs',
@@ -4702,13 +4743,10 @@ exports.Prisma.ModelName = {
   academy_claim_report_notes: 'academy_claim_report_notes',
   academy_claim_reports: 'academy_claim_reports',
   academy_claims: 'academy_claims',
-  academy_coaches: 'academy_coaches',
   academy_courts: 'academy_courts',
   academy_delete_request_logs: 'academy_delete_request_logs',
   academy_delete_requests: 'academy_delete_requests',
-  academy_details: 'academy_details',
   academy_features: 'academy_features',
-  academy_galleries: 'academy_galleries',
   academy_holidays: 'academy_holidays',
   academy_images: 'academy_images',
   academy_info: 'academy_info',
@@ -4721,17 +4759,13 @@ exports.Prisma.ModelName = {
   academy_logs: 'academy_logs',
   academy_players: 'academy_players',
   academy_program_users: 'academy_program_users',
-  academy_programs: 'academy_programs',
   academy_ratings: 'academy_ratings',
   academy_reported_reviews: 'academy_reported_reviews',
   academy_review_replies: 'academy_review_replies',
   academy_rooms: 'academy_rooms',
   academy_rules: 'academy_rules',
   academy_seo_content_settings: 'academy_seo_content_settings',
-  academy_seo_contents: 'academy_seo_contents',
   academy_sports: 'academy_sports',
-  academy_timings: 'academy_timings',
-  academy_urls: 'academy_urls',
   add_ons: 'add_ons',
   add_ons_prices: 'add_ons_prices',
   admin_emulates: 'admin_emulates',
@@ -4884,7 +4918,9 @@ exports.Prisma.ModelName = {
   player_matrix_featured_matches: 'player_matrix_featured_matches',
   sports: 'sports',
   tournament_contents: 'tournament_contents',
-  tournaments: 'tournaments'
+  tournaments: 'tournaments',
+  tournament_galleries: 'tournament_galleries',
+  tournament_galleries_folders: 'tournament_galleries_folders'
 };
 
 /**

@@ -8,7 +8,6 @@ datasource db {
   provider = "mysql"
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academies {
   id                 BigInt    @id @db.UnsignedBigInt
   uuid               String    @db.Char(36)
@@ -37,27 +36,151 @@ model academies {
   morning            BigInt?
   evening            BigInt?
 
-  @@index([country_id], map: "academies_country_id")
-  @@index([city_id], map: "academy_city_id")
-  @@index([name], map: "academy_name")
-  @@index([slug_name], map: "academy_slug_name")
-  @@index([state_id, city_id], map: "academy_state_city_id")
-  @@index([state_id], map: "academy_state_id")
-  @@index([user_id], map: "academy_user_id")
-  @@index([uuid], map: "academy_uuid")
+  academy_seo_contents academy_seo_contents[] @relation("AcademySeoRelation")
+  academy_amenities    academy_amenities[]    @relation("AcademyAmentiesRelation")
+  academy_details      academy_details[]      @relation("AcademyDetailsRelation")
+  academy_timings      academy_timings[]      @relation("AcademyTimingRelation")
+  academy_programs     academy_programs[]     @relation("AcademyProgramsRelation")
+  academy_coaches      academy_coaches[]      @relation("AcademyCoachesRelation")
+  academy_galleries    academy_galleries[]    @relation("AcademyGalleryRelation")
+  academy_achievements academy_achievements[] @relation("AcademyAchievementsRelation")
+}
+
+model academy_seo_contents {
+  id         BigInt    @id @db.UnsignedBigInt
+  academy_id BigInt    @db.UnsignedBigInt
+  name       String?   @db.VarChar(255)
+  value      String?   @db.LongText
+  extra      String?   @db.LongText
+  updated_by BigInt?   @db.UnsignedBigInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  academies academies @relation("AcademySeoRelation", fields: [academy_id], references: [id])
+}
+
+model academy_amenities {
+  id           BigInt     @id @db.UnsignedBigInt
+  user_id      String?    @db.VarChar(255)
+  academy_id   BigInt?    @db.UnsignedBigInt
+  amenity_name String     @db.VarChar(255)
+  created_at   DateTime?  @db.Timestamp(0)
+  updated_at   DateTime?  @db.Timestamp(0)
+  deleted_at   DateTime?  @db.Timestamp(0)
+  academies    academies? @relation("AcademyAmentiesRelation", fields: [academy_id], references: [id])
+}
+
+model academy_details {
+  id              BigInt     @id @db.UnsignedBigInt
+  academy_id      BigInt     @db.UnsignedBigInt
+  timing          String?    @db.VarChar(255)
+  amenities       String?    @db.VarChar(255)
+  rooms           String?    @db.VarChar(255)
+  img             String?    @db.LongText
+  profile         String?    @db.VarChar(255)
+  additional_info String?    @db.LongText
+  h1_tag          String?    @db.VarChar(255)
+  created_at      DateTime?  @db.Timestamp(0)
+  updated_at      DateTime?  @db.Timestamp(0)
+  timings_to      String?    @db.VarChar(255)
+  timings_from    String?    @db.VarChar(255)
+  deleted_at      DateTime?  @db.Timestamp(0)
+  academies       academies? @relation("AcademyDetailsRelation", fields: [academy_id], references: [id])
+}
+
+model academy_timings {
+  id            String    @id @db.Char(36)
+  academy_id    BigInt    @db.UnsignedBigInt
+  morning_shift String?   @db.LongText
+  evening_shift String?   @db.LongText
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  academies academies @relation("AcademyTimingRelation", fields: [academy_id], references: [id])
+
+  @@index([academy_id], map: "academy_timings_academy_id_foreign")
+}
+
+model academy_programs {
+  id             BigInt     @id @db.UnsignedBigInt
+  default_id     BigInt?    @db.UnsignedBigInt
+  academy_id     BigInt?    @db.UnsignedBigInt
+  program_name   String     @db.VarChar(255)
+  training_time  String     @db.VarChar(255)
+  services       String?    @db.VarChar(255)
+  other_services String?    @db.VarChar(255)
+  created_at     DateTime?  @db.Timestamp(0)
+  updated_at     DateTime?  @db.Timestamp(0)
+  deleted_at     DateTime?  @db.Timestamp(0)
+  academies      academies? @relation("AcademyProgramsRelation", fields: [academy_id], references: [id])
+}
+
+model academy_coaches {
+  id                 BigInt     @id @db.UnsignedBigInt
+  uuid               String     @db.Char(36)
+  academy_id         BigInt     @db.UnsignedBigInt
+  image              String?    @db.VarChar(255)
+  name               String?    @db.VarChar(255)
+  email              String?    @db.VarChar(255)
+  phone              String?    @db.VarChar(255)
+  achievement        String?    @db.Text
+  overview           String?    @db.Text
+  experience         Int?
+  facebook           String?    @db.VarChar(255)
+  twitter            String?    @db.VarChar(255)
+  instagram          String?    @db.VarChar(255)
+  youtube_video_link String?    @db.VarChar(255)
+  created_at         DateTime?  @db.Timestamp(0)
+  updated_at         DateTime?  @db.Timestamp(0)
+  deleted_at         DateTime?  @db.Timestamp(0)
+  phone_prefix       String?    @default("91") @db.VarChar(255)
+  academies          academies? @relation("AcademyCoachesRelation", fields: [academy_id], references: [id])
+}
+
+model academy_galleries {
+  id                  BigInt     @id @db.UnsignedBigInt
+  uuid                String     @db.Char(36)
+  academy_id          BigInt     @db.UnsignedBigInt
+  academy_name        String     @db.VarChar(255)
+  slug_name           String?    @db.VarChar(255)
+  title               String?    @db.VarChar(255)
+  academy_description String     @db.LongText
+  academy_images      String     @db.LongText
+  created_at          DateTime?  @db.Timestamp(0)
+  updated_at          DateTime?  @db.Timestamp(0)
+  deleted_at          DateTime?  @db.Timestamp(0)
+  academies           academies? @relation("AcademyGalleryRelation", fields: [academy_id], references: [id])
 }
 
 model academy_achievements {
-  id                 BigInt    @id @db.UnsignedBigInt
-  uuid               String?   @db.VarChar(255)
-  name               String    @db.VarChar(255)
-  slug_name          String?   @db.VarChar(255)
-  achhievement_image String?   @db.VarChar(255)
-  description        String?   @db.LongText
-  created_at         DateTime? @db.Timestamp(0)
-  updated_at         DateTime? @db.Timestamp(0)
-  academy_id         BigInt    @db.UnsignedBigInt
-  deleted_at         DateTime? @db.Timestamp(0)
+  id                 BigInt     @id @db.UnsignedBigInt
+  uuid               String?    @db.VarChar(255)
+  name               String     @db.VarChar(255)
+  slug_name          String?    @db.VarChar(255)
+  achhievement_image String?    @db.VarChar(255)
+  description        String?    @db.LongText
+  created_at         DateTime?  @db.Timestamp(0)
+  updated_at         DateTime?  @db.Timestamp(0)
+  academy_id         BigInt     @db.UnsignedBigInt
+  deleted_at         DateTime?  @db.Timestamp(0)
+  academies          academies? @relation("AcademyAchievementsRelation", fields: [academy_id], references: [id])
+}
+
+model academy_urls {
+  id           BigInt    @id @db.UnsignedBigInt
+  uuid         String    @db.Char(36)
+  user_id      BigInt    @db.UnsignedBigInt
+  insta_url    String?   @db.VarChar(255)
+  youtube_url  String?   @db.VarChar(255)
+  twitter_url  String?   @db.VarChar(255)
+  fb_url       String?   @db.VarChar(255)
+  linkedln_url String?   @db.VarChar(255)
+  website_url  String?   @db.VarChar(255)
+  other_url    String?   @db.VarChar(255)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -79,16 +202,6 @@ model academy_admin_permissions {
   created_at  DateTime? @db.Timestamp(0)
   updated_at  DateTime? @db.Timestamp(0)
   deleted_at  DateTime? @db.Timestamp(0)
-}
-
-model academy_amenities {
-  id           BigInt    @id @db.UnsignedBigInt
-  user_id      String?   @db.VarChar(255)
-  academy_id   BigInt?   @db.UnsignedBigInt
-  amenity_name String    @db.VarChar(255)
-  created_at   DateTime? @db.Timestamp(0)
-  updated_at   DateTime? @db.Timestamp(0)
-  deleted_at   DateTime? @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -248,27 +361,6 @@ model academy_claims {
   @@index([user_id], map: "academy_claims_user_id")
 }
 
-model academy_coaches {
-  id                 BigInt    @id @db.UnsignedBigInt
-  uuid               String    @db.Char(36)
-  academy_id         BigInt    @db.UnsignedBigInt
-  image              String?   @db.VarChar(255)
-  name               String?   @db.VarChar(255)
-  email              String?   @db.VarChar(255)
-  phone              String?   @db.VarChar(255)
-  achievement        String?   @db.Text
-  overview           String?   @db.Text
-  experience         Int?
-  facebook           String?   @db.VarChar(255)
-  twitter            String?   @db.VarChar(255)
-  instagram          String?   @db.VarChar(255)
-  youtube_video_link String?   @db.VarChar(255)
-  created_at         DateTime? @db.Timestamp(0)
-  updated_at         DateTime? @db.Timestamp(0)
-  deleted_at         DateTime? @db.Timestamp(0)
-  phone_prefix       String?   @default("91") @db.VarChar(255)
-}
-
 model academy_courts {
   id                        BigInt    @id @db.UnsignedBigInt
   academy_id                BigInt    @db.UnsignedBigInt
@@ -322,23 +414,6 @@ model academy_delete_requests {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
-model academy_details {
-  id              BigInt    @id @db.UnsignedBigInt
-  academy_id      BigInt    @db.UnsignedBigInt
-  timing          String?   @db.VarChar(255)
-  amenities       String?   @db.VarChar(255)
-  rooms           String?   @db.VarChar(255)
-  img             String?   @db.LongText
-  profile         String?   @db.VarChar(255)
-  additional_info String?   @db.LongText
-  h1_tag          String?   @db.VarChar(255)
-  created_at      DateTime? @db.Timestamp(0)
-  updated_at      DateTime? @db.Timestamp(0)
-  timings_to      String?   @db.VarChar(255)
-  timings_from    String?   @db.VarChar(255)
-  deleted_at      DateTime? @db.Timestamp(0)
-}
-
 model academy_features {
   id           BigInt    @id @db.UnsignedBigInt
   academy_id   BigInt    @db.UnsignedBigInt
@@ -350,20 +425,6 @@ model academy_features {
   updated_at   DateTime? @db.Timestamp(0)
   deleted_at   DateTime? @db.Timestamp(0)
   phone_prefix String?   @default("91") @db.VarChar(255)
-}
-
-model academy_galleries {
-  id                  BigInt    @id @db.UnsignedBigInt
-  uuid                String    @db.Char(36)
-  academy_id          BigInt    @db.UnsignedBigInt
-  academy_name        String    @db.VarChar(255)
-  slug_name           String?   @db.VarChar(255)
-  title               String?   @db.VarChar(255)
-  academy_description String    @db.LongText
-  academy_images      String    @db.LongText
-  created_at          DateTime? @db.Timestamp(0)
-  updated_at          DateTime? @db.Timestamp(0)
-  deleted_at          DateTime? @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -550,18 +611,6 @@ model academy_program_users {
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model academy_programs {
-  id             BigInt    @id @db.UnsignedBigInt
-  default_id     BigInt?   @db.UnsignedBigInt
-  academy_id     BigInt?   @db.UnsignedBigInt
-  program_name   String    @db.VarChar(255)
-  training_time  String    @db.VarChar(255)
-  services       String?   @db.VarChar(255)
-  other_services String?   @db.VarChar(255)
-  created_at     DateTime? @db.Timestamp(0)
-  updated_at     DateTime? @db.Timestamp(0)
-  deleted_at     DateTime? @db.Timestamp(0)
-}
 
 model academy_ratings {
   id         BigInt    @id @db.UnsignedBigInt
@@ -637,20 +686,6 @@ model academy_seo_content_settings {
   updated_at DateTime?                           @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model academy_seo_contents {
-  id         BigInt    @id @db.UnsignedBigInt
-  academy_id BigInt    @db.UnsignedBigInt
-  name       String?   @db.VarChar(255)
-  value      String?   @db.LongText
-  extra      String?   @db.LongText
-  updated_by BigInt?   @db.UnsignedBigInt
-  created_at DateTime? @db.Timestamp(0)
-  updated_at DateTime? @db.Timestamp(0)
-  deleted_at DateTime? @db.Timestamp(0)
-}
-
 model academy_sports {
   id         String    @id @db.Char(36)
   academy_id BigInt    @db.UnsignedBigInt
@@ -665,32 +700,6 @@ model academy_sports {
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model academy_timings {
-  id            String    @id @db.Char(36)
-  academy_id    BigInt    @db.UnsignedBigInt
-  morning_shift String?   @db.LongText
-  evening_shift String?   @db.LongText
-  created_at    DateTime? @db.Timestamp(0)
-  updated_at    DateTime? @db.Timestamp(0)
-  deleted_at    DateTime? @db.Timestamp(0)
-
-  @@index([academy_id], map: "academy_timings_academy_id_foreign")
-}
-
-model academy_urls {
-  id           BigInt    @id @db.UnsignedBigInt
-  uuid         String    @db.Char(36)
-  user_id      BigInt    @db.UnsignedBigInt
-  insta_url    String?   @db.VarChar(255)
-  youtube_url  String?   @db.VarChar(255)
-  twitter_url  String?   @db.VarChar(255)
-  fb_url       String?   @db.VarChar(255)
-  linkedln_url String?   @db.VarChar(255)
-  website_url  String?   @db.VarChar(255)
-  other_url    String?   @db.VarChar(255)
-  created_at   DateTime? @db.Timestamp(0)
-  updated_at   DateTime? @db.Timestamp(0)
-}
 
 model add_ons {
   id         BigInt    @id @db.UnsignedBigInt
@@ -4253,6 +4262,32 @@ model tournaments {
   deleted_at                    DateTime? @db.Timestamp(0)
 
   contents tournament_contents[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model tournament_galleries {
+  id                             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid                           String    @db.Char(36)
+  tournament_id                  BigInt?   @db.UnsignedBigInt
+  image                          String?   @db.VarChar(255)
+  tag_users                      String?   @db.LongText
+  tournament_galleries_folder_id BigInt?   @db.UnsignedBigInt
+  face_app_sync                  DateTime? @db.Timestamp(0)
+  created_at                     DateTime? @db.Timestamp(0)
+  updated_at                     DateTime? @db.Timestamp(0)
+  deleted_at                     DateTime? @db.Timestamp(0)
+
+  @@index([tournament_galleries_folder_id], map: "tournament_image_album_id")
+}
+
+model tournament_galleries_folders {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  folder_name   String    @db.VarChar(255)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
 }
 
 enum aita_acceptance_list_entries_draw_type {
