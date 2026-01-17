@@ -8,6 +8,12 @@ datasource db {
   provider = "mysql"
 }
 
+model node_feature_logs {
+  id        Int      @id @default(autoincrement())
+  feature   String
+  createdAt DateTime @default(now())
+}
+
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academies {
   id                 BigInt    @id @db.UnsignedBigInt
@@ -198,6 +204,7 @@ model academy_claim_report_notes {
 
 model academy_claim_reports {
   id           BigInt                       @id @db.UnsignedBigInt
+  platform     String?                      @default("web") @db.VarChar(255)
   uuid         String                       @db.Char(36)
   academy_id   BigInt                       @db.UnsignedBigInt
   name         String?                      @db.VarChar(255)
@@ -222,6 +229,7 @@ model academy_claim_reports {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_claims {
   id                BigInt                   @id @db.UnsignedBigInt
+  platform          String?                  @default("web") @db.VarChar(255)
   uuid              String?                  @db.Char(36)
   user_id           BigInt?                  @db.UnsignedBigInt
   academy_id        String?                  @db.VarChar(255)
@@ -543,7 +551,7 @@ model academy_program_users {
   academy_program_id BigInt    @db.UnsignedBigInt
   user_id            BigInt    @db.UnsignedBigInt
   start_date         DateTime  @default(now()) @db.Timestamp(0)
-  end_date           DateTime  @default(dbgenerated("'0000-00-00 00:00:00'")) @db.Timestamp(0)
+  end_date           DateTime  @default(dbgenerated("('0000-00-00 00:00:00')")) @db.Timestamp(0)
   deleted_at         DateTime? @db.Timestamp(0)
   created_at         DateTime? @db.Timestamp(0)
   updated_at         DateTime? @db.Timestamp(0)
@@ -655,6 +663,7 @@ model academy_sports {
   id         String    @id @db.Char(36)
   academy_id BigInt    @db.UnsignedBigInt
   sport_id   String    @db.Char(36)
+  status     Boolean   @default(true)
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
   deleted_at DateTime? @db.Timestamp(0)
@@ -958,6 +967,7 @@ model aita_profile_report_notes {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model aita_profile_reports {
   id                     String                      @id @db.Char(36)
+  platform               String?                     @default("web") @db.VarChar(255)
   player_aita_profile_id String                      @db.Char(36)
   name                   String?                     @db.VarChar(255)
   phone                  String?                     @db.VarChar(20)
@@ -2099,6 +2109,7 @@ model itf_profile_report_notes {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model itf_profile_reports {
   id                    BigInt                     @id @db.UnsignedBigInt
+  platform              String?                    @default("web") @db.VarChar(255)
   uuid                  String                     @db.VarChar(255)
   player_itf_profile_id String                     @db.Char(36)
   name                  String?                    @db.VarChar(255)
@@ -2173,28 +2184,27 @@ model league_challenge_scores {
 }
 
 model league_challenges {
-  id                     BigInt                            @id @db.UnsignedBigInt
-  uuid                   String                            @db.Char(36)
-  league_id              BigInt                            @db.UnsignedBigInt
-  challenge_to           BigInt                            @db.UnsignedBigInt
-  challenge_to_partner   BigInt?
-  challenge_from         BigInt                            @db.UnsignedBigInt
-  challenge_from_partner BigInt?
-  challenge_type         league_challenges_challenge_type? @default(single)
-  challenger_points      Int                               @default(0)
-  acceptor_points        Int                               @default(0)
-  status                 Int                               @default(0) @db.TinyInt
-  date                   DateTime?                         @db.Timestamp(0)
-  venue                  String?                           @db.Text
-  match_date             DateTime?                         @db.Date
-  match_time             String?                           @db.VarChar(20)
-  lat                    String?                           @db.VarChar(255)
-  long                   String?                           @db.VarChar(255)
-  zoom                   String?                           @default("16") @db.VarChar(255)
-  reject_reason          String?                           @db.Text
-  created_at             DateTime?                         @db.Timestamp(0)
-  updated_at             DateTime?                         @db.Timestamp(0)
-  deleted_at             DateTime?                         @db.Timestamp(0)
+  id                BigInt    @id @db.UnsignedBigInt
+  uuid              String    @db.Char(36)
+  league_id         BigInt    @db.UnsignedBigInt
+  challenger_id     BigInt    @db.UnsignedBigInt
+  challenger_points Float?    @default(0)
+  opponent_points   Float?    @default(0)
+  acceptor_points   Int       @default(0)
+  status            Int       @default(0) @db.TinyInt
+  date              DateTime? @db.Timestamp(0)
+  venue             String?   @db.Text
+  match_date        DateTime? @db.Date
+  lat               String?   @db.VarChar(255)
+  long              String?   @db.VarChar(255)
+  zoom              String?   @default("16") @db.VarChar(255)
+  reject_reason     String?   @db.Text
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+  deleted_at        DateTime? @db.Timestamp(0)
+  leagues           leagues   @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "fk_league_challenge_league")
+
+  @@index([league_id], map: "fk_league_challenge_league")
 }
 
 model league_lefts {
@@ -2226,6 +2236,9 @@ model league_players {
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
   deleted_at DateTime? @db.Timestamp(0)
+  leagues    leagues   @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "fk_league_player_league")
+
+  @@index([league_id], map: "fk_league_player_league")
 }
 
 model league_rankings {
@@ -2251,28 +2264,38 @@ model league_requests {
 }
 
 model leagues {
-  id            BigInt    @id @db.UnsignedBigInt
-  uuid          String    @db.Char(36)
-  owner_type    String?   @default("admin") @db.VarChar(50)
-  user_id       BigInt    @db.UnsignedBigInt
-  name          String    @db.VarChar(255)
-  slug_name     String?   @db.VarChar(255)
-  description   String?   @db.LongText
-  sets          String    @db.VarChar(255)
-  type          String?   @db.VarChar(255)
-  winner_point  Int
-  profile_photo String?   @db.VarChar(255)
-  age_group     String?   @db.VarChar(255)
-  country_id    BigInt    @default(105) @db.UnsignedBigInt
-  state_id      BigInt?   @db.UnsignedBigInt
-  city_id       BigInt?   @db.UnsignedBigInt
-  status        Int       @default(1) @db.TinyInt
-  end_date      DateTime? @db.Timestamp(0)
-  extend_for    String?   @db.Text
-  is_verified   Int       @default(1)
-  created_at    DateTime? @db.Timestamp(0)
-  updated_at    DateTime? @db.Timestamp(0)
-  deleted_at    DateTime? @db.Timestamp(0)
+  id                     BigInt                   @id @db.UnsignedBigInt
+  sport_id               String?                  @db.Char(36)
+  uuid                   String                   @db.Char(36)
+  owner_type             String?                  @default("admin") @db.VarChar(50)
+  user_id                BigInt                   @db.UnsignedBigInt
+  name                   String                   @db.VarChar(255)
+  slug_name              String?                  @db.VarChar(255)
+  description            String?                  @db.LongText
+  sets                   String                   @db.VarChar(255)
+  type                   String?                  @db.VarChar(255)
+  group                  String?                  @db.VarChar(255)
+  winner_point           Int
+  profile_photo          String?                  @db.VarChar(255)
+  age_group              String?                  @db.VarChar(255)
+  country_id             BigInt                   @default(105) @db.UnsignedBigInt
+  state_id               BigInt?                  @db.UnsignedBigInt
+  city_id                BigInt?                  @db.UnsignedBigInt
+  status                 Int                      @default(1) @db.TinyInt
+  end_date               DateTime?                @db.Timestamp(0)
+  extend_for             String?                  @db.Text
+  is_verified            Int                      @default(1)
+  created_at             DateTime?                @db.Timestamp(0)
+  updated_at             DateTime?                @db.Timestamp(0)
+  deleted_at             DateTime?                @db.Timestamp(0)
+  league_challenges      league_challenges[]
+  league_players         league_players[]
+  league_rules           league_rules[]
+  league_session_players league_session_players[]
+  league_sessions        league_sessions[]
+  sports                 sports?                  @relation(fields: [sport_id], references: [id], onUpdate: Restrict, map: "leagues_sport_id_foreign")
+
+  @@index([sport_id], map: "leagues_sport_id_foreign")
 }
 
 model lms_inquiries {
@@ -2349,7 +2372,7 @@ model messages {
 }
 
 model migrations {
-  id        Int    @id @db.UnsignedInt
+  id        BigInt @id @default(autoincrement()) @db.UnsignedBigInt
   migration String @db.VarChar(255)
   batch     Int
 }
@@ -2868,6 +2891,7 @@ model player_itf_profiles {
   user_id                 BigInt?   @db.UnsignedBigInt
   player_aita_profile_id  String?   @db.Char(36)
   player_id               BigInt    @unique(map: "player_itf_profiles_player_id_unique")
+  ipin                    String?   @unique(map: "player_itf_profiles_ipin_unique") @db.VarChar(255)
   player_family_name      String?   @db.VarChar(255)
   player_given_name       String?   @db.VarChar(255)
   player_nationality      String?   @db.VarChar(255)
@@ -2886,7 +2910,7 @@ model player_itf_profiles {
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model player_itf_rankings {
-  id                         String    @db.Char(36)
+  id                         String    @id @db.Char(36)
   player_itf_profile_id      String?   @db.Char(36)
   rank                       Int?
   rank_movement              Int?
@@ -2908,15 +2932,19 @@ model player_itf_rankings {
   updated_at                 DateTime? @db.Timestamp(0)
   deleted_at                 DateTime? @db.Timestamp(0)
 
+  @@unique([player_itf_profile_id, rank_date, main_category, gender_category, age, type, wttj_ranking], map: "unique_rank")
   @@ignore
 }
 
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model player_matrix_featured_matches {
-  id         BigInt    @id @db.UnsignedBigInt
+  id         BigInt    @db.UnsignedBigInt
   match_id   BigInt?
   user_id    BigInt
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -3748,17 +3776,21 @@ model sponsors {
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sports {
-  id         String        @id @db.Char(36)
-  super_id   BigInt?       @db.UnsignedBigInt
-  slug       String?       @db.VarChar(255)
-  name       String        @db.VarChar(255)
-  icon_sm    String?       @db.Text
-  icon_md    String?       @db.Text
-  status     sports_status
-  created_at DateTime?     @db.Timestamp(0)
-  updated_at DateTime?     @db.Timestamp(0)
-  deleted_at DateTime?     @db.Timestamp(0)
-
+  id           String        @id @db.Char(36)
+  super_id     BigInt?       @db.UnsignedBigInt
+  slug         String?       @db.VarChar(255)
+  name         String        @db.VarChar(255)
+  icon_sm      String?       @db.Text
+  icon_md      String?       @db.Text
+  logo_sm      String?       @db.VarChar(255)
+  logo_md      String?       @db.VarChar(255)
+  watermark_sm String?       @db.VarChar(255)
+  watermark_md String?       @db.VarChar(255)
+  status       sports_status
+  created_at   DateTime?     @db.Timestamp(0)
+  updated_at   DateTime?     @db.Timestamp(0)
+  deleted_at   DateTime?     @db.Timestamp(0)
+  leagues      leagues[]
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -4076,9 +4108,9 @@ model tournament_categories {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model tournament_contents {
-  id            BigInt    @id @db.UnsignedBigInt
+  id            BigInt    @db.UnsignedBigInt
   uuid          String    @db.VarChar(255)
-  tournament_id Int       @db.UnsignedInt
+  tournament_id BigInt    @db.UnsignedBigInt
   name          String?   @db.VarChar(255)
   value         String?   @db.LongText
   extra         String?   @db.LongText
@@ -4086,7 +4118,7 @@ model tournament_contents {
   updated_at    DateTime? @db.Timestamp(0)
   deleted_at    DateTime? @db.Timestamp(0)
 
-  tournament tournaments @relation(fields: [tournament_id], references: [id])
+  @@ignore
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -4165,7 +4197,7 @@ model tournament_draw_matches {
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tournament_draws {
-  id             BigInt    @db.UnsignedBigInt
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
   uuid           String    @db.Char(36)
   request_status Boolean   @default(false)
   tournament_id  BigInt?   @db.UnsignedBigInt
@@ -4201,7 +4233,7 @@ model tournament_draws {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tournaments {
-  id                            Int       @id
+  id                            Int
   uuid                          String    @db.Char(36)
   sport_id                      String?   @db.Char(36)
   created_by                    BigInt?   @db.UnsignedBigInt
@@ -4253,7 +4285,1415 @@ model tournaments {
   is_razorpay_payment_enable    Boolean   @default(false)
   deleted_at                    DateTime? @db.Timestamp(0)
 
-  contents tournament_contents[]
+  @@id([id, uuid])
+}
+
+model host_live_matches {
+  id               String    @id @db.Char(36)
+  user_id          BigInt?   @db.UnsignedBigInt
+  umpire_id        BigInt?   @db.UnsignedBigInt
+  sport_id         String?   @db.Char(36)
+  title            String?   @db.VarChar(255)
+  type             String?   @db.Text
+  player_1_name    String?   @db.VarChar(255)
+  player_2_name    String?   @db.VarChar(255)
+  opponent_1_name  String?   @db.VarChar(255)
+  opponent_2_name  String?   @db.VarChar(255)
+  sets             String?   @db.VarChar(255)
+  winning_point    Int?
+  max_point_cap    Int?
+  service          String?   @db.Text
+  toss             String?   @db.Text
+  reason           String?   @db.Text
+  timer            String?   @db.Text
+  score            String?   @db.Text
+  action           String?   @db.Text
+  match_date       DateTime? @db.Date
+  match_time       DateTime? @db.Time(0)
+  match_started_at DateTime? @db.Timestamp(0)
+  match_ended_at   DateTime? @db.Timestamp(0)
+  winner           String?   @db.VarChar(255)
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  deleted_at       DateTime? @db.Timestamp(0)
+}
+
+model job_batches {
+  id             String  @id @db.VarChar(255)
+  name           String  @db.VarChar(255)
+  total_jobs     Int
+  pending_jobs   Int
+  failed_jobs    Int
+  failed_job_ids String  @db.LongText
+  options        String? @db.MediumText
+  cancelled_at   Int?
+  created_at     Int
+  finished_at    Int?
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model league_rules {
+  id                           BigInt                       @id @default(autoincrement()) @db.UnsignedBigInt
+  league_id                    BigInt                       @db.UnsignedBigInt
+  session_frequency            String?                      @db.VarChar(255)
+  max_players                  Int                          @default(0)
+  win_points                   Float                        @default(0)
+  loss_points                  Float                        @default(0)
+  rank_algo                    league_rules_rank_algo       @default(point)
+  max_rank_swap_range          Int                          @default(0)
+  sets                         String?                      @db.VarChar(255)
+  set_win_points               Int                          @default(7)
+  set_win_point_gap            Int                          @default(2)
+  allow_self_join              Boolean                      @default(false)
+  challenge_expires_in         Int                          @default(0)
+  challenge_max_rank_gap       Int                          @default(3)
+  can_challenge_below          Boolean                      @default(false)
+  challenge_below_max_rank_gap Int                          @default(3)
+  rechallenge_window           Int?                         @default(7)
+  challenge_deny_penalty       Boolean                      @default(false)
+  challenge_deny_forfeit       Boolean                      @default(false)
+  tie_break                    Boolean                      @default(false)
+  max_match_per_player         Int                          @default(0)
+  rank_reset_type              league_rules_rank_reset_type @default(full)
+  carry_forward_points         String?                      @db.VarChar(255)
+  inactivity_rules             String?                      @db.LongText
+  created_at                   DateTime?                    @db.Timestamp(0)
+  updated_at                   DateTime?                    @db.Timestamp(0)
+  deleted_at                   DateTime?                    @db.Timestamp(0)
+  leagues                      leagues                      @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_rules_league_id_foreign")
+
+  @@index([league_id], map: "league_rules_league_id_foreign")
+}
+
+model league_session_players {
+  id                BigInt          @id @default(autoincrement()) @db.UnsignedBigInt
+  league_id         BigInt          @db.UnsignedBigInt
+  league_session_id String          @db.Char(36)
+  user_id           BigInt          @db.UnsignedBigInt
+  partner_id        BigInt?         @db.UnsignedBigInt
+  rank_position     Int?            @default(0)
+  points            Float?          @default(0)
+  wins              Int?            @default(0)
+  losses            Int?            @default(0)
+  created_at        DateTime?       @db.Timestamp(0)
+  updated_at        DateTime?       @db.Timestamp(0)
+  deleted_at        DateTime?       @db.Timestamp(0)
+  leagues           leagues         @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_session_players_league_id_foreign")
+  league_sessions   league_sessions @relation(fields: [league_session_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_session_players_league_session_id_foreign")
+
+  @@index([league_id], map: "league_session_players_league_id_foreign")
+  @@index([league_session_id], map: "league_session_players_league_session_id_foreign")
+}
+
+model league_sessions {
+  id                     String                   @id @db.Char(36)
+  league_id              BigInt                   @db.UnsignedBigInt
+  session_name           String?                  @db.VarChar(255)
+  start_date             DateTime?                @db.Date
+  end_date               DateTime?                @db.Date
+  status                 league_sessions_status?  @default(ongoing)
+  created_at             DateTime?                @db.Timestamp(0)
+  updated_at             DateTime?                @db.Timestamp(0)
+  deleted_at             DateTime?                @db.Timestamp(0)
+  league_session_players league_session_players[]
+  leagues                leagues                  @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_sessions_league_id_foreign")
+
+  @@index([league_id], map: "league_sessions_league_id_foreign")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model migrations_backup {
+  id        Int    @db.UnsignedInt
+  migration String @db.VarChar(255)
+  batch     Int
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_event_courts {
+  id                        String    @db.Char(36)
+  tournament_id             BigInt?   @db.UnsignedBigInt
+  tournament_event_venue_id String?   @db.Char(36)
+  name                      String?   @db.VarChar(255)
+  youtube_link              String?   @db.VarChar(255)
+  created_at                DateTime? @db.Timestamp(0)
+  updated_at                DateTime? @db.Timestamp(0)
+  deleted_at                DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_event_venues {
+  id            String    @db.Char(36)
+  academy_id    BigInt?   @db.UnsignedBigInt
+  name          String?   @db.VarChar(255)
+  short_name    String?   @db.VarChar(50)
+  location      String?   @db.LongText
+  state_id      BigInt?   @db.UnsignedBigInt
+  city_id       BigInt?   @db.UnsignedBigInt
+  tournament_id BigInt?   @db.UnsignedBigInt
+  status        Int       @default(1)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tournament_events {
+  id                         String                                    @db.Char(36)
+  tournament_id              BigInt                                    @db.UnsignedBigInt
+  has_loser_event            Boolean                                   @default(false)
+  event_type                 String?                                   @db.VarChar(255)
+  draw_type                  String?                                   @db.VarChar(50)
+  draw                       Int?
+  type                       String?                                   @db.VarChar(50)
+  prize                      String?                                   @db.VarChar(255)
+  group                      String?                                   @db.VarChar(50)
+  age_group                  String?                                   @db.VarChar(50)
+  age_group_rule             String?                                   @default("combined") @db.VarChar(255)
+  match_type                 String?                                   @db.VarChar(50)
+  qualify_based_on           String?                                   @default("match") @db.VarChar(100)
+  groups                     Int?                                      @default(0)
+  max_team                   Int?                                      @default(0)
+  max_players                Int?                                      @default(0)
+  categories                 String?                                   @default("[]") @db.LongText
+  sets                       String?                                   @db.VarChar(255)
+  match_count_qualify        Int?                                      @default(3)
+  match_count_qfinal         Int?                                      @default(3)
+  match_count_sfinal         Int?                                      @default(3)
+  match_count_final          Int?                                      @default(3)
+  quarter_final              String?                                   @db.VarChar(20)
+  qualifier_sets             String?                                   @db.VarChar(255)
+  qualifier_winner_point     Int?                                      @default(11)
+  quarter_final_sets         String?                                   @db.VarChar(255)
+  quarter_final_winner_point Int?                                      @default(11)
+  semifinal_sets             String?                                   @db.VarChar(255)
+  semifinal_winner_point     Int?                                      @default(11)
+  final_sets                 String?                                   @db.VarChar(255)
+  final_winner_point         Int?                                      @default(11)
+  qualifier_is_race          Int                                       @default(0)
+  quarter_final_is_race      Int                                       @default(0)
+  age_rule                   String?                                   @db.VarChar(50)
+  age_rule_fn                String?                                   @db.VarChar(20)
+  age_rule_val               Int?                                      @default(0)
+  parent_event_id            String?                                   @db.VarChar(255)
+  main_event_name            String?                                   @db.VarChar(255)
+  loser_event_name           String?                                   @db.VarChar(255)
+  loser_event_init_stage     tournament_events_loser_event_init_stage? @default(preQuarter)
+  label                      String?                                   @db.VarChar(50)
+  dyn_achievement_created    DateTime?                                 @db.Timestamp(0)
+  created_at                 DateTime?                                 @db.Timestamp(0)
+  updated_at                 DateTime?                                 @db.Timestamp(0)
+  deleted_at                 DateTime?                                 @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_galleries {
+  id                             BigInt    @db.UnsignedBigInt
+  uuid                           String    @db.Char(36)
+  tournament_id                  BigInt?   @db.UnsignedBigInt
+  image                          String?   @db.VarChar(255)
+  tag_users                      String?   @db.LongText
+  tournament_galleries_folder_id BigInt?   @db.UnsignedBigInt
+  face_app_sync                  DateTime? @db.Timestamp(0)
+  created_at                     DateTime? @db.Timestamp(0)
+  updated_at                     DateTime? @db.Timestamp(0)
+  deleted_at                     DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_galleries_folders {
+  id            BigInt    @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  folder_name   String    @db.VarChar(255)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_groups {
+  id                  BigInt    @db.UnsignedBigInt
+  uuid                String?   @db.VarChar(100)
+  tournament_event_id String?   @db.Char(36)
+  name                String?   @db.VarChar(155)
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+  tournament_id       BigInt?   @db.UnsignedBigInt
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tournament_match_rules {
+  id                  String    @db.Char(36)
+  tournament_id       BigInt    @db.UnsignedBigInt
+  tournament_event_id String    @db.Char(36)
+  round_type          String?   @db.VarChar(30)
+  type                String?   @default("category") @db.VarChar(50)
+  rules               String?   @db.LongText
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_match_score_logs {
+  id                       BigInt    @db.UnsignedBigInt
+  uuid                     String?   @db.Char(36)
+  tournament_id            BigInt?   @db.UnsignedBigInt
+  match_id                 BigInt?   @db.UnsignedBigInt
+  team_1                   BigInt?   @db.UnsignedBigInt
+  team_2                   BigInt?   @db.UnsignedBigInt
+  team_1_ace               Int       @default(0)
+  team_2_ace               Int       @default(0)
+  team_1_fault             BigInt    @default(0)
+  team_2_fault             BigInt    @default(0)
+  service_team_id          BigInt?
+  winner_team_id           BigInt?
+  loser_team_id            BigInt?
+  winner_points            BigInt?
+  loser_points             BigInt?
+  score                    String?   @db.LongText
+  tie_break_team_1         String?   @db.VarChar(255)
+  tie_break_team_2         String?   @db.VarChar(255)
+  low_points_team_1        String?   @db.VarChar(255)
+  low_points_team_2        String?   @db.VarChar(255)
+  team_1_points            String?   @db.VarChar(255)
+  team_2_points            String?   @db.VarChar(255)
+  team_1_service_no        String?   @db.VarChar(255)
+  team_2_service_no        String?   @db.VarChar(255)
+  team_1_break_point_id    String?   @db.VarChar(255)
+  team_2_break_point_id    String?   @db.VarChar(255)
+  team_1_second_serve      String?   @db.VarChar(255)
+  team_2_second_serve      String?   @db.VarChar(255)
+  team_1_receiving_point   String?   @db.VarChar(255)
+  team_2_receiving_point   String?   @db.VarChar(255)
+  team_1_receiving_service String?   @db.VarChar(255)
+  team_2_receiving_service String?   @db.VarChar(255)
+  team_1_break_conversion  Int?
+  team_2_break_conversion  Int?
+  team_1_double_fault      Int       @default(0)
+  team_2_double_fault      Int       @default(0)
+  team_1_winners           Int       @default(0)
+  team_2_winners           Int       @default(0)
+  team_1_forced_errors     Int       @default(0)
+  team_2_forced_errors     Int       @default(0)
+  team_1_unforced_errors   Int       @default(0)
+  team_2_unforced_errors   Int       @default(0)
+  team_1_break_point       Int       @default(0)
+  team_2_break_point       Int       @default(0)
+  sets                     String?   @db.Text
+  created_at               DateTime? @db.Timestamp(0)
+  updated_at               DateTime? @db.Timestamp(0)
+  deleted_at               DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_match_scores {
+  id                 BigInt    @db.UnsignedBigInt
+  uuid               String    @db.Char(36)
+  tournament_draw_id BigInt    @db.UnsignedBigInt
+  winner_id          BigInt?   @db.UnsignedBigInt
+  loser_id           BigInt?   @db.UnsignedBigInt
+  winner_points      BigInt?   @db.UnsignedBigInt
+  loser_points       BigInt?   @db.UnsignedBigInt
+  sets               String?   @db.VarChar(255)
+  score              String?   @db.LongText
+  created_at         DateTime? @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_metas {
+  id                      BigInt    @db.UnsignedBigInt
+  tournament_id           BigInt    @db.UnsignedBigInt
+  overview_title          String?   @db.Text
+  overview_description    String?   @db.Text
+  overview_keyword        String?   @db.Text
+  team_page_title         String?   @db.Text
+  team_page_desc          String?   @db.Text
+  team_page_keyword       String?   @db.Text
+  score_title             String?   @db.Text
+  score_desc              String?   @db.Text
+  score_keyword           String?   @db.Text
+  point_table_title       String?   @db.Text
+  point_table_desc        String?   @db.Text
+  point_table_keyword     String?   @db.Text
+  scores_title            String?   @db.Text
+  scores_desc             String?   @db.Text
+  scores_keyword          String?   @db.Text
+  sponsor_title           String?   @db.Text
+  sponsor_desc            String?   @db.Text
+  sponsor_keyword         String?   @db.Text
+  knockout_title          String?   @db.Text
+  knockout_des            String?   @db.Text
+  knockout_keyword        String?   @db.Text
+  knockout_subheading     String?   @db.Text
+  gallery_title           String?   @db.Text
+  gallery_desc            String?   @db.Text
+  gallery_keyword         String?   @db.Text
+  news_title              String?   @db.Text
+  news_des                String?   @db.Text
+  news_keyword            String?   @db.Text
+  overview_subheading     String?   @db.Text
+  live_matches_subheading String?   @db.Text
+  scores_subheading       String?   @db.Text
+  pointstable_subheading  String?   @db.Text
+  teams_subheading        String?   @db.Text
+  news_subheading         String?   @db.Text
+  gallery_subheading      String?   @db.Text
+  sponsors_subheading     String?   @db.Text
+  created_at              DateTime? @db.Timestamp(0)
+  updated_at              DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_officials {
+  id            BigInt    @db.UnsignedBigInt
+  uuid          String?   @db.Char(36)
+  tournament_id Int?
+  Name          String    @db.VarChar(255)
+  phone         Int
+  email_id      String    @db.VarChar(255)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_open_draw_score_logs {
+  id                         BigInt    @db.UnsignedBigInt
+  uuid                       String?   @db.Char(36)
+  tournament_open_draw_id    String?   @db.Char(36)
+  player_1                   String?   @db.VarChar(255)
+  player_2                   String?   @db.VarChar(255)
+  player_1_ace               Int       @default(0)
+  player_2_ace               Int       @default(0)
+  player_1_fault             BigInt    @default(0)
+  player_2_fault             BigInt    @default(0)
+  winner_id                  String?   @db.VarChar(255)
+  score                      String?   @db.LongText
+  tie_break_player_1         String?   @db.VarChar(255)
+  tie_break_player_2         String?   @db.VarChar(255)
+  low_points_player_1        String?   @db.VarChar(255)
+  low_points_player_2        String?   @db.VarChar(255)
+  player_1_points            String?   @db.VarChar(255)
+  player_2_points            String?   @db.VarChar(255)
+  player_1_service_no        String?   @db.VarChar(255)
+  player_2_service_no        String?   @db.VarChar(255)
+  player_1_break_point_id    String?   @db.VarChar(255)
+  player_2_break_point_id    String?   @db.VarChar(255)
+  player_1_second_serve      String?   @db.VarChar(255)
+  player_2_second_serve      String?   @db.VarChar(255)
+  player_1_receiving_point   String?   @db.VarChar(255)
+  player_2_receiving_point   String?   @db.VarChar(255)
+  player_1_receiving_service String?   @db.VarChar(255)
+  player_2_receiving_service String?   @db.VarChar(255)
+  player_1_break_conversion  Int       @default(0)
+  player_2_break_conversion  Int       @default(0)
+  player_1_double_fault      Int       @default(0)
+  player_2_double_fault      Int       @default(0)
+  player_1_winners           Int       @default(0)
+  player_2_winners           Int       @default(0)
+  player_1_forced_errors     Int       @default(0)
+  player_2_forced_errors     Int       @default(0)
+  player_1_unforced_errors   Int       @default(0)
+  player_2_unforced_errors   Int       @default(0)
+  player_1_break_point       Int       @default(0)
+  player_2_break_point       Int       @default(0)
+  sets                       String?   @db.LongText
+  created_at                 DateTime? @db.Timestamp(0)
+  updated_at                 DateTime? @db.Timestamp(0)
+  deleted_at                 DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tournament_open_draws {
+  id                        String    @db.Char(36)
+  tournament_id             BigInt    @db.UnsignedBigInt
+  tournament_event_id       String    @db.Char(36)
+  round_no                  Int?      @default(0)
+  match_no                  Int?      @default(0)
+  player_id                 String?   @db.Char(36)
+  player_bye_1              String?   @db.VarChar(255)
+  player_bye_2              String?   @db.VarChar(255)
+  opponent_id               String?   @db.Char(36)
+  opponent_bye_1            String?   @db.VarChar(255)
+  opponent_bye_2            String?   @db.VarChar(255)
+  winner_id                 String?   @db.Char(36)
+  is_bye_given              Boolean?  @default(false)
+  staff_id                  BigInt?   @db.UnsignedBigInt
+  draw_type                 String?   @db.VarChar(255)
+  sets                      String?   @db.VarChar(255)
+  winning_point             Int?      @default(7)
+  court                     String?   @db.VarChar(255)
+  tournament_event_court_id String?   @db.Char(36)
+  court_surface             String?   @db.VarChar(255)
+  match_date                DateTime? @db.Date
+  match_time                String?   @db.VarChar(50)
+  match_started_at          DateTime? @db.Timestamp(0)
+  match_ended_at            DateTime? @db.Timestamp(0)
+  service_player_id         String?   @db.Char(36)
+  toss_player_id            String?   @db.Char(36)
+  loser_points              Int?      @default(0)
+  opponent_1_points         Int?      @default(0)
+  opponent_2_points         Int?      @default(0)
+  tie_break_opp_1           Int?
+  tie_break_opp_2           Int?
+  low_points_opp_1          String?   @default("0") @db.VarChar(255)
+  low_points_opp_2          String?   @default("0") @db.VarChar(255)
+  score                     String?   @db.LongText
+  is_old_score_method       Int       @default(1)
+  score_type                String?   @db.VarChar(255)
+  is_race                   Int       @default(0)
+  action                    String?   @db.VarChar(50)
+  reason                    String?   @db.Text
+  timer                     String?   @db.VarChar(50)
+  time_played               String?   @db.VarChar(255)
+  created_at                DateTime? @db.Timestamp(0)
+  updated_at                DateTime? @db.Timestamp(0)
+  deleted_at                DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_open_event_players {
+  id                  String    @db.Char(36)
+  tournament_id       BigInt    @db.UnsignedBigInt
+  tournament_event_id String    @db.Char(36)
+  user_id             BigInt    @db.UnsignedBigInt
+  partner_id          BigInt?   @db.UnsignedBigInt
+  seed_no             Int?
+  rank_no             Int?
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_participants {
+  id                BigInt    @db.UnsignedBigInt
+  tournament_id     BigInt    @db.UnsignedBigInt
+  user_id           BigInt    @db.UnsignedBigInt
+  category          String?   @db.VarChar(255)
+  referred_by       Int?
+  variation_id      String?   @db.VarChar(255)
+  referred_type     String?   @db.VarChar(255)
+  age_group_id      String?   @db.VarChar(255)
+  partner_id        BigInt?   @db.UnsignedBigInt
+  partner_phone     String?   @db.VarChar(255)
+  partner_name      String?   @db.VarChar(255)
+  status            Int       @default(1) @db.TinyInt
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+  deleted_at        DateTime? @db.Timestamp(0)
+  payment_id        BigInt?   @db.UnsignedBigInt
+  registration_ITF  String?   @db.VarChar(255)
+  registration_AITA String?   @db.VarChar(255)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_payments {
+  id             BigInt    @db.UnsignedBigInt
+  uuid           String    @db.Char(36)
+  tournament_id  BigInt    @db.UnsignedBigInt
+  user_id        BigInt    @db.UnsignedBigInt
+  variation_id   String    @db.VarChar(255)
+  amount         Int
+  transaction_id String?   @db.VarChar(255)
+  screenshot     String?   @db.VarChar(255)
+  payment_method String?   @db.VarChar(255)
+  status         Int       @default(0) @db.TinyInt
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+  deleted_at     DateTime? @db.Timestamp(0)
+  age_group_id   String    @db.VarChar(255)
+  partner_id     Int?      @db.TinyInt
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_player_check_ins {
+  id            String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  user_id       BigInt    @db.UnsignedBigInt
+  check_in      DateTime? @db.Timestamp(0)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_publish_requests {
+  id            String    @db.Char(36)
+  user_id       BigInt?   @db.UnsignedBigInt
+  tournament_id BigInt    @db.UnsignedBigInt
+  super_id      BigInt?   @db.UnsignedBigInt
+  status        String?   @default("pending") @db.VarChar(255)
+  note          String?   @db.Text
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_registration_payment {
+  id                         String                                              @db.Char(36)
+  tournament_registration_id BigInt                                              @db.UnsignedBigInt
+  user_id                    BigInt                                              @db.UnsignedBigInt
+  tournament_id              BigInt                                              @db.UnsignedBigInt
+  amount                     Decimal                                             @db.Decimal(10, 2)
+  user_paid_amount           Decimal                                             @default(0.00) @db.Decimal(10, 2)
+  payment_method             String?                                             @db.VarChar(255)
+  transaction_id             String?                                             @db.VarChar(255)
+  payment_status             tournament_registration_payment_payment_status      @default(pending)
+  refund_event_ids           String?                                             @db.LongText
+  refund_amount              Decimal?                                            @db.Decimal(10, 2)
+  refund_status              String?                                             @db.VarChar(255)
+  payment_screenshot         String?                                             @db.LongText
+  verification_status        tournament_registration_payment_verification_status @default(unverified)
+  verified_by                BigInt?                                             @db.UnsignedBigInt
+  verified_at                DateTime?                                           @db.Timestamp(0)
+  ip_address                 String?                                             @db.VarChar(255)
+  user_agent                 String?                                             @db.Text
+  extra                      String?                                             @db.LongText
+  deleted_at                 DateTime?                                           @db.Timestamp(0)
+  created_at                 DateTime?                                           @db.Timestamp(0)
+  updated_at                 DateTime?                                           @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_registration_templates {
+  id            BigInt    @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt?   @db.UnsignedBigInt
+  super_id      BigInt?   @db.UnsignedBigInt
+  title         String    @db.VarChar(255)
+  description   String?   @db.Text
+  form_fields   String    @db.LongText
+  status        String    @default("0") @db.Text
+  reject_reason String?   @db.Text
+  approved_at   DateTime? @db.Timestamp(0)
+  rejected_at   DateTime? @db.Timestamp(0)
+  approved_by   BigInt?   @db.UnsignedBigInt
+  rejected_by   BigInt?   @db.UnsignedBigInt
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_registration_withdrawals {
+  uuid                       String    @db.Char(36)
+  user_id                    BigInt    @db.UnsignedBigInt
+  tournament_id              BigInt    @db.UnsignedBigInt
+  tournament_registration_id BigInt    @db.UnsignedBigInt
+  reason                     String?   @db.LongText
+  status                     String?   @db.VarChar(255)
+  payment_status             String?   @db.VarChar(255)
+  prossed_by                 String?   @db.VarChar(255)
+  fine                       String?   @db.VarChar(255)
+  extra                      String?   @db.Text
+  event_ids                  String?   @db.Text
+  deleted_at                 DateTime? @db.Timestamp(0)
+  created_at                 DateTime? @db.Timestamp(0)
+  updated_at                 DateTime? @db.Timestamp(0)
+  id                         BigInt    @db.UnsignedBigInt
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_registrations {
+  id                           BigInt                          @db.UnsignedBigInt
+  uuid                         String                          @db.Char(36)
+  registration_number          String?                         @unique(map: "tournament_registrations_registration_number_unique") @db.VarChar(255)
+  user_id                      BigInt                          @db.UnsignedBigInt
+  tournament_id                BigInt                          @db.UnsignedBigInt
+  invited_by                   BigInt?                         @db.UnsignedBigInt
+  admin_id                     BigInt                          @db.UnsignedBigInt
+  remark                       String?                         @db.LongText
+  tournament_event_ids         String                          @db.LongText
+  group                        tournament_registrations_group?
+  status                       String                          @default("pending") @db.VarChar(255)
+  partner_name                 String?                         @db.VarChar(255)
+  partner_phone                String?                         @db.VarChar(255)
+  reject_reason                String?                         @db.VarChar(255)
+  reject_description           String?                         @db.LongText
+  is_terms_conditions_accepted Boolean                         @default(false)
+  is_partner_message_sent      Boolean                         @default(false)
+  payment_status               String                          @default("pending") @db.VarChar(255)
+  payment_amount               Int?
+  is_withdraw                  Boolean                         @default(false)
+  admin_approved_events_ids    String?                         @db.LongText
+  image                        String?                         @db.LongText
+  extra                        String?                         @db.LongText
+  deleted_at                   DateTime?                       @db.Timestamp(0)
+  created_at                   DateTime?                       @db.Timestamp(0)
+  updated_at                   DateTime?                       @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_registrations_invites {
+  id                     BigInt    @db.UnsignedBigInt
+  uuid                   String    @db.Char(36)
+  user_id                BigInt    @db.UnsignedBigInt
+  invite_id              BigInt    @db.UnsignedBigInt
+  invite_number          String    @db.VarChar(255)
+  registered_with_number String?   @db.VarChar(255)
+  invite_link            String    @db.VarChar(255)
+  is_invite_link_expire  Boolean   @default(false)
+  deleted_at             DateTime? @db.Timestamp(0)
+  created_at             DateTime? @db.Timestamp(0)
+  updated_at             DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tournament_round_entries {
+  id                  String    @db.Char(36)
+  tournament_event_id String?   @db.Char(36)
+  tournament_id       BigInt    @db.UnsignedBigInt
+  round_stage         String    @db.VarChar(50)
+  schedule_type       String?   @default("winner") @db.VarChar(255)
+  tournament_group_id BigInt?   @db.UnsignedBigInt
+  tournament_team_id  BigInt?   @db.UnsignedBigInt
+  q_count             Int?
+  is_dummy            Boolean   @default(false)
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+model tournament_settings {
+  id                  String    @id @db.Char(36)
+  tournament_id       BigInt    @db.UnsignedBigInt
+  tournament_event_id String?   @db.Char(36)
+  name                String?   @db.VarChar(50)
+  value               String?   @db.VarChar(255)
+  extra               String?   @db.LongText
+  start               DateTime? @db.Date
+  expire              DateTime? @db.Date
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tournament_team_matches {
+  id                          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid                        String?   @db.Char(36)
+  tournament_team_schedule_id BigInt?   @db.UnsignedBigInt
+  tournament_event_id         String?   @db.Char(36)
+  tournament_id               BigInt?   @db.UnsignedBigInt
+  opponent_1                  BigInt?   @db.UnsignedBigInt
+  opponent_2                  BigInt?   @db.UnsignedBigInt
+  staff_id                    BigInt?   @db.UnsignedBigInt
+  match_count                 Int?
+  round_stage                 String?   @db.VarChar(255)
+  court                       String?   @db.VarChar(255)
+  tournament_event_court_id   String?   @db.Char(36)
+  match_date                  DateTime? @db.Date
+  match_time                  String?   @db.VarChar(255)
+  match_started_at            DateTime? @db.Timestamp(0)
+  match_ended_at              DateTime? @db.Timestamp(0)
+  match_score_type            String    @default("normal") @db.VarChar(255)
+  service_team_id             BigInt?   @db.UnsignedBigInt
+  toss_team_id                BigInt?
+  opponent_1_points           Int?
+  opponent_2_points           Int?
+  tie_break_opp_1             Int?
+  tie_break_opp_2             Int?
+  low_points_opp_1            String?   @db.VarChar(255)
+  low_points_opp_2            String?   @db.VarChar(255)
+  sets                        String?   @db.VarChar(255)
+  winning_point               Int?      @default(7)
+  score                       String?   @db.LongText
+  match_type                  String    @default("double") @db.VarChar(255)
+  is_old_score_method         Int       @default(1)
+  winner_team_id              BigInt?   @db.UnsignedBigInt
+  action                      String?   @db.VarChar(50)
+  reason                      String?   @db.Text
+  timer                       String?   @db.VarChar(50)
+  youtube_link                String?   @db.Text
+  created_at                  DateTime? @db.Timestamp(0)
+  updated_at                  DateTime? @db.Timestamp(0)
+  deleted_at                  DateTime? @db.Timestamp(0)
+  time_played                 DateTime? @db.Time(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_team_points {
+  id                  String    @db.Char(36)
+  tournament_event_id String?   @db.Char(36)
+  tournament_id       BigInt    @db.UnsignedBigInt
+  tournament_team_id  BigInt    @db.UnsignedBigInt
+  group_id            BigInt?   @db.UnsignedBigInt
+  tie_played          Int?
+  tie_won             Int?
+  matches_played      Int       @default(0)
+  matches_won         Int       @default(0)
+  points_won          Int       @default(0)
+  points_lost         Int       @default(0)
+  game_won            Int       @default(0)
+  game_lost           Int       @default(0)
+  win_ratio           Float     @default(0.00)
+  points              Decimal   @default(0.00) @db.Decimal(10, 2)
+  round_stage         String    @default("qualifier") @db.VarChar(255)
+  is_declared         Int       @default(0) @db.TinyInt
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tournament_team_schedules {
+  id                        BigInt    @db.UnsignedBigInt
+  uuid                      String    @db.Char(36)
+  tournament_event_id       String?   @db.Char(36)
+  tournament_id             Int?
+  group_id                  BigInt?   @db.UnsignedBigInt
+  home_team_id              BigInt?   @db.UnsignedBigInt
+  opponent_team_id          BigInt?   @db.UnsignedBigInt
+  match_round_type          Int       @default(3) @db.TinyInt
+  sets                      String?   @db.VarChar(255)
+  schedule_type             String?   @default("winner") @db.VarChar(255)
+  schedule_date             DateTime? @db.Date
+  schedule_time             DateTime? @db.Time(0)
+  interval_time             Int?
+  staff_id                  BigInt?   @db.UnsignedBigInt
+  created_at                DateTime? @db.Timestamp(0)
+  updated_at                DateTime? @db.Timestamp(0)
+  deleted_at                DateTime? @db.Timestamp(0)
+  tournament_event_court_id String?   @db.Char(36)
+
+  @@ignore
+}
+
+model tournament_teams {
+  id                  BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid                String    @db.Char(36)
+  tournament_event_id String?   @db.Char(36)
+  captain_id          BigInt?   @db.UnsignedBigInt
+  tournament_id       BigInt    @db.UnsignedBigInt
+  academy_id          BigInt?   @db.UnsignedBigInt
+  group_id            BigInt?   @db.UnsignedBigInt
+  team_name           String    @db.VarChar(255)
+  image               String?   @db.VarChar(255)
+  cover_banner        String?   @db.VarChar(255)
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_transaction {
+  id                  Int
+  user_id             Int
+  tournamentpartid    Int      @default(0)
+  razorpay_payment_id String?  @db.VarChar(255)
+  amount              String   @db.VarChar(255)
+  payment_mode        String   @db.VarChar(255)
+  payment_reference   String   @db.VarChar(255)
+  reference_image     String   @db.VarChar(255)
+  status              Int      @default(0) @db.TinyInt
+  created_at          DateTime @default(now()) @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_types {
+  id         BigInt    @db.UnsignedBigInt
+  name       String    @db.VarChar(255)
+  gender     String    @db.VarChar(255)
+  cons_val   String    @db.VarChar(255)
+  status     Int       @default(1) @db.TinyInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_variations {
+  id              BigInt    @db.UnsignedBigInt
+  host_id         String    @db.VarChar(255)
+  tournament_type String    @db.VarChar(255)
+  tournament_name String    @db.VarChar(255)
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_venues {
+  id            BigInt    @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  venue_id      BigInt    @db.UnsignedBigInt
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tournament_whatsapp_logs {
+  id            BigInt    @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  admin_id      BigInt?   @db.UnsignedBigInt
+  event         String?   @db.VarChar(100)
+  extra         String?   @db.LongText
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tourparttotalplayers {
+  id            Int
+  tournament_id Int
+  total_player  Int
+  add_date      DateTime @db.DateTime(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model trackings {
+  id         BigInt    @db.UnsignedBigInt
+  visitor_id String?   @db.LongText
+  ad_id      BigInt    @default(0) @db.UnsignedBigInt
+  user_ip    String?   @db.VarChar(45)
+  browser    String?   @db.Text
+  device     String?   @db.Text
+  os         String?   @db.Text
+  country    String?   @db.VarChar(50)
+  city       String?   @db.VarChar(50)
+  state      String?   @db.VarChar(50)
+  form_data  String?   @db.LongText
+  status     Int       @default(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_assigns {
+  id         String    @db.Char(36)
+  batch_id   String    @db.Char(36)
+  program_id String    @db.Char(36)
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_players {
+  id         String    @db.Char(36)
+  batch_id   String    @db.Char(36)
+  user_id    BigInt?   @db.UnsignedBigInt
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_session_assigns {
+  id         String    @db.Char(36)
+  batch_id   String    @db.Char(36)
+  session_id String    @db.Char(36)
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_session_drill_assigns {
+  id         String    @db.Char(36)
+  session_id String    @db.Char(36)
+  drill_id   String    @db.Char(36)
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_session_drill_players {
+  id         String    @db.Char(36)
+  drill_id   String    @db.Char(36)
+  user_id    BigInt?   @db.UnsignedBigInt
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_session_drills {
+  id             String                                       @db.Char(36)
+  academy_id     Int?                                         @db.UnsignedInt
+  name           String                                       @db.VarChar(255)
+  description    String?                                      @db.Text
+  skill_targeted String?                                      @db.VarChar(255)
+  duration       String?                                      @db.VarChar(255)
+  video_link     String?                                      @db.VarChar(255)
+  session_id     String?                                      @db.LongText
+  status         training_program_batch_session_drills_status @default(active)
+  deleted_at     DateTime?                                    @db.Timestamp(0)
+  created_at     DateTime?                                    @db.Timestamp(0)
+  updated_at     DateTime?                                    @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_session_players {
+  id         String    @db.Char(36)
+  session_id String    @db.Char(36)
+  user_id    BigInt?   @db.UnsignedBigInt
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_program_batch_sessions {
+  id         String                                 @db.Char(36)
+  batch_id   String?                                @db.LongText
+  academy_id Int?                                   @db.UnsignedInt
+  name       String?                                @db.VarChar(255)
+  date       DateTime?                              @db.Date
+  start_time DateTime?                              @db.Time(0)
+  end_time   DateTime?                              @db.Time(0)
+  notes      String?                                @db.LongText
+  status     training_program_batch_sessions_status @default(active)
+  deleted_at DateTime?                              @db.Timestamp(0)
+  created_at DateTime?                              @db.Timestamp(0)
+  updated_at DateTime?                              @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model training_program_batches {
+  id                  String                               @db.Char(36)
+  coach_id            String?                              @db.Char(36)
+  training_program_id String                               @db.Char(36)
+  academy_id          Int?                                 @db.UnsignedInt
+  name                String?                              @db.VarChar(255)
+  skill_level         training_program_batches_skill_level @default(beginner)
+  max_players         Int?
+  start_date          DateTime?                            @db.Date
+  end_date            DateTime?                            @db.Date
+  location            String?                              @db.VarChar(255)
+  shift               training_program_batches_shift?
+  start_time          DateTime?                            @db.Time(0)
+  end_time            DateTime?                            @db.Time(0)
+  is_recurring        Boolean                              @default(false)
+  recurring_days      String?                              @db.LongText
+  status              training_program_batches_status      @default(active)
+  deleted_at          DateTime?                            @db.Timestamp(0)
+  created_at          DateTime?                            @db.Timestamp(0)
+  updated_at          DateTime?                            @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model training_programs {
+  id              String                   @db.Char(36)
+  academy_id      BigInt                   @db.UnsignedBigInt
+  name            String?                  @db.VarChar(255)
+  description     String?                  @db.LongText
+  duration        String?                  @db.VarChar(255)
+  level           training_programs_level  @default(beginner)
+  start_date      DateTime?                @db.Date
+  end_date        DateTime?                @db.Date
+  status          training_programs_status @default(active)
+  target_audience String?                  @db.LongText
+  focus_area      String?                  @db.LongText
+  price           Int                      @db.UnsignedInt
+  image           String?                  @db.VarChar(255)
+  draft           Int                      @default(0)
+  deleted_at      DateTime?                @db.Timestamp(0)
+  created_at      DateTime?                @db.Timestamp(0)
+  updated_at      DateTime?                @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tshirt_claim_logs {
+  id                       BigInt    @db.UnsignedBigInt
+  uuid                     String    @db.Char(36)
+  t_shirt_claim_request_id BigInt    @db.UnsignedBigInt
+  target_id                String?   @db.Char(36)
+  admin_id                 BigInt?   @db.UnsignedBigInt
+  event                    String?   @db.VarChar(100)
+  extra                    String?   @db.LongText
+  created_at               DateTime? @db.Timestamp(0)
+  updated_at               DateTime? @db.Timestamp(0)
+  deleted_at               DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tshirt_claim_notes {
+  id                       BigInt    @db.UnsignedBigInt
+  uuid                     String    @db.Char(36)
+  t_shirt_claim_request_id BigInt    @db.UnsignedBigInt
+  admin_id                 BigInt    @db.UnsignedBigInt
+  note                     String?   @db.LongText
+  extra                    String?   @db.LongText
+  created_at               DateTime? @db.Timestamp(0)
+  updated_at               DateTime? @db.Timestamp(0)
+  deleted_at               DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tshirt_claim_requests {
+  id               BigInt    @db.UnsignedBigInt
+  uuid             String    @db.Char(36)
+  name             String    @db.VarChar(255)
+  phone            String    @db.VarChar(255)
+  email            String    @db.VarChar(255)
+  size             String    @db.VarChar(255)
+  shipping_address String?   @db.Text
+  approved         Int       @default(0) @db.TinyInt
+  is_delivered     Int       @default(0) @db.TinyInt
+  image            String?   @db.VarChar(255)
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  deleted_at       DateTime? @db.Timestamp(0)
+  phone_prefix     String?   @default("91") @db.VarChar(255)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tshirt_galleries {
+  id               BigInt    @db.UnsignedBigInt
+  uuid             String    @db.Char(36)
+  super_admin      Int?      @db.TinyInt
+  image            String?   @db.VarChar(255)
+  tag_users        String?   @db.VarChar(255)
+  tshirt_folder_id Int?      @db.TinyInt
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  deleted_at       DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model umpire_contact_requests {
+  id              BigInt    @db.UnsignedBigInt
+  chair_umpire_id BigInt    @db.UnsignedBigInt
+  name            String    @db.VarChar(255)
+  phone_number    String    @db.VarChar(255)
+  email           String?   @db.VarChar(255)
+  subject         String?   @db.VarChar(255)
+  message         String?   @db.Text
+  deleted_at      DateTime? @db.Timestamp(0)
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model umpire_inquiries {
+  id                  BigInt    @db.UnsignedBigInt
+  user_id             BigInt?   @db.UnsignedBigInt
+  event_size          String?   @db.Text
+  tournament_date     DateTime? @db.Date
+  tournament_end_date DateTime? @db.Date
+  match_number        String?   @db.Text
+  name                String?   @db.VarChar(255)
+  phone_number        String?   @db.VarChar(255)
+  email               String?   @db.VarChar(255)
+  message             String?   @db.Text
+  approved_by         BigInt?   @db.UnsignedBigInt
+  status              Int       @default(1) @db.TinyInt
+  note                String?   @db.Text
+  reject_reason       String?   @db.Text
+  deleted_at          DateTime? @db.Timestamp(0)
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model umpire_settings {
+  id         String    @db.Char(36)
+  user_id    BigInt    @db.UnsignedBigInt
+  name       String?   @db.VarChar(50)
+  value      String?   @db.LongText
+  extra      String?   @db.LongText
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model user_access_logs {
+  id         BigInt                    @db.UnsignedBigInt
+  user_id    BigInt?                   @db.UnsignedBigInt
+  platform   user_access_logs_platform @default(app)
+  device     String?                   @db.VarChar(255)
+  ip         String?                   @db.VarChar(255)
+  method     String?                   @db.VarChar(255)
+  endpoint   String?                   @db.Text
+  extra      String?                   @db.LongText
+  created_at DateTime?                 @db.Timestamp(0)
+  updated_at DateTime?                 @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model user_details {
+  id                    BigInt    @db.UnsignedBigInt
+  uuid                  String    @db.Char(36)
+  user_id               BigInt    @db.UnsignedBigInt
+  academy_name          String    @db.VarChar(255)
+  website               String    @db.VarChar(255)
+  manager_name          String    @db.VarChar(255)
+  manager_designation   String    @db.VarChar(255)
+  manager_mobile_number String    @db.VarChar(255)
+  manager_email         String    @db.VarChar(255)
+  created_at            DateTime? @db.Timestamp(0)
+  updated_at            DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model user_documents {
+  id           BigInt    @db.UnsignedBigInt
+  uuid         String    @db.Char(36)
+  user_id      BigInt    @db.UnsignedBigInt
+  type         String    @db.VarChar(50)
+  id_no        String?   @db.VarChar(255)
+  files        String?   @db.LongText
+  status       Int       @default(0) @db.TinyInt
+  commented_by BigInt?   @db.UnsignedBigInt
+  comment      String?   @db.Text
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  deleted_at   DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model user_gallery_images {
+  id             BigInt    @db.UnsignedBigInt
+  uuid           String    @db.VarChar(255)
+  user_id        BigInt
+  gallery_images String    @db.VarChar(255)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model user_locations {
+  id         String    @db.Char(36)
+  user_id    BigInt    @db.UnsignedBigInt
+  lat        String?   @db.VarChar(255)
+  lng        String?   @db.VarChar(255)
+  address    String?   @db.Text
+  country_id BigInt?   @db.UnsignedBigInt
+  state_id   BigInt?   @db.UnsignedBigInt
+  city_id    BigInt?   @db.UnsignedBigInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  id               BigInt    @db.UnsignedBigInt
+  uuid             String?   @db.Char(36)
+  global_category  String?   @db.VarChar(20)
+  registration_no  String?   @db.VarChar(255)
+  name             String?   @db.VarChar(255)
+  slug             String?   @db.VarChar(255)
+  referred_by      String?   @db.VarChar(255)
+  role             String?   @db.VarChar(50)
+  roles            String?   @db.LongText
+  referred_type    String?   @db.VarChar(255)
+  admin_type       String    @default("app") @db.VarChar(255)
+  email            String?   @db.VarChar(255)
+  alternatephone   String?   @db.VarChar(255)
+  password         String?   @db.VarChar(255)
+  otp              String?   @db.VarChar(255)
+  otp_expire       DateTime? @db.Timestamp(0)
+  dob              DateTime? @db.Date
+  gender           String?   @db.VarChar(50)
+  phone            String?   @db.VarChar(100)
+  phone_verify     DateTime? @db.Timestamp(0)
+  country_id       BigInt    @default(105) @db.UnsignedBigInt
+  state_id         BigInt?   @db.UnsignedBigInt
+  city_id          BigInt?   @db.UnsignedBigInt
+  about_player     String?   @db.LongText
+  address          String?   @db.VarChar(255)
+  lat              String?   @db.VarChar(255)
+  lng              String?   @db.VarChar(255)
+  pincode          Int?
+  photograph       String?   @db.VarChar(255)
+  status           Boolean   @default(false)
+  is_dummy_phone   Int       @default(0) @db.TinyInt
+  is_minor         Boolean   @default(false)
+  state_defaulter  Boolean   @default(false)
+  registerfees     String?   @db.VarChar(255)
+  remember_token   String?   @db.VarChar(255)
+  created_at       DateTime  @default(now()) @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  deleted_at       DateTime? @db.Timestamp(0)
+  deativate_status Int       @default(0) @db.TinyInt
+  is_invited       Int       @default(0) @db.TinyInt
+  is_verified      Int       @default(0)
+  phone_prefix     String?   @default("91") @db.VarChar(255)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users_bank_details {
+  id                       BigInt                                 @db.UnsignedBigInt
+  uuid                     String                                 @db.VarChar(255)
+  user_id                  BigInt                                 @db.UnsignedBigInt
+  account_holder_name      String                                 @db.VarChar(255)
+  account_number           String                                 @db.VarChar(255)
+  ifsc_code                String                                 @db.VarChar(255)
+  account_type             String                                 @db.VarChar(255)
+  bank_name                String?                                @db.VarChar(255)
+  razorpay_contact_id      String?                                @db.VarChar(255)
+  razorpay_fund_account_id String?                                @db.VarChar(255)
+  verification_status      users_bank_details_verification_status @default(pending)
+  rejection_reason         String?                                @db.Text
+  status                   Int                                    @default(1) @db.TinyInt
+  created_at               DateTime?                              @db.Timestamp(0)
+  updated_at               DateTime?                              @db.Timestamp(0)
+  deleted_at               DateTime?                              @db.Timestamp(0)
+  processed_by             BigInt?                                @db.UnsignedBigInt
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model venues {
+  id              BigInt    @db.UnsignedBigInt
+  uuid            String    @db.Char(36)
+  user_id         BigInt?   @db.UnsignedBigInt
+  Name            String    @db.Text
+  address_1       String    @db.Text
+  address_2       String?   @db.Text
+  city_id         BigInt    @db.UnsignedBigInt
+  state_id        BigInt    @db.UnsignedBigInt
+  country_id      BigInt    @default(105) @db.UnsignedBigInt
+  pincode         String?   @db.VarChar(255)
+  phone           String?   @db.VarChar(20)
+  fax             String?   @db.VarChar(20)
+  grass_court     Int       @default(0) @db.TinyInt
+  clay_court      Int       @default(0) @db.TinyInt
+  synthetic_court Int       @default(0) @db.TinyInt
+  flood_light     Int       @default(0) @db.TinyInt
+  status          Int       @default(1) @db.TinyInt
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  deleted_at      DateTime? @db.Timestamp(0)
+  phone_prefix    String?   @default("91") @db.VarChar(255)
+
+  @@ignore
 }
 
 enum aita_acceptance_list_entries_draw_type {
@@ -4394,11 +5834,6 @@ enum become_partner_status {
 enum coaches_status {
   active
   inactive
-}
-
-enum league_challenges_challenge_type {
-  single
-  doubles
 }
 
 enum parents_status {
@@ -4597,4 +6032,109 @@ enum customize_tournament_status {
   completed
   rejected
   accepted
+}
+
+enum user_access_logs_platform {
+  app
+  web
+}
+
+enum league_sessions_status {
+  ongoing
+  upcoming
+  completed
+}
+
+enum training_programs_level {
+  beginner
+  intermediate
+  advanced
+}
+
+enum training_program_batches_skill_level {
+  beginner
+  intermediate
+  elite
+  competitive_juniors @map("competitive juniors")
+  seniors_40_         @map("seniors 40+")
+  advanced
+}
+
+enum league_rules_rank_algo {
+  point
+  swap
+  bump
+}
+
+enum tournament_registration_payment_payment_status {
+  pending
+  complete
+  partial
+  failed
+}
+
+enum training_programs_status {
+  active
+  inactive
+  upcoming
+  completed
+}
+
+enum training_program_batch_sessions_status {
+  active
+  inactive
+  upcoming
+  completed
+}
+
+enum training_program_batch_session_drills_status {
+  active
+  inactive
+}
+
+enum tournament_registrations_group {
+  boys
+  girls
+  men
+  women
+  senior_men
+  senior_women
+  mixed
+}
+
+enum training_program_batches_shift {
+  morning
+  evening
+}
+
+enum users_bank_details_verification_status {
+  pending
+  approved
+  rejected
+}
+
+enum tournament_registration_payment_verification_status {
+  unverified
+  verified
+  rejected
+}
+
+enum training_program_batches_status {
+  active
+  inactive
+  upcoming
+  completed
+}
+
+enum league_rules_rank_reset_type {
+  full
+  soft
+  none
+}
+
+enum tournament_events_loser_event_init_stage {
+  preQuarter
+  quarter
+  semi
+  final
 }
