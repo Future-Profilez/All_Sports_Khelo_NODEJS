@@ -115,7 +115,17 @@ exports.academyDetailsByType = async (req, res) => {
                     }
                 case 'gallery':
                     return{
+                        academy_details: true,
                         academy_galleries: true
+                    }
+                case 'tournament':
+                    return{
+                        academy_details: true
+                    }
+                case 'achievements':
+                    return{
+                        academy_details: true,
+                        academy_achievements : true
                     }
                 case 'basic':
                     return {
@@ -147,11 +157,18 @@ exports.academyDetailsByType = async (req, res) => {
             });
             academyurls = convertBigIntToString(a_urls);
         }
+        let academyTournaments
+        if (type === 'tournament'){
+            const a_tournament = await prisma.tournaments.findFirst({
+                where: {id: data?.academy_id},
+            });
+            academyTournaments = convertBigIntToString(a_tournament);
+        }
         const content = convertBigIntToString(data);
         return res.status(200).json({
             status: true,
             message: "Academy details fetched succesfully",
-            academy: { ...content, academyurls: academyurls }
+            academy: { ...content, academyurls: academyurls, academyTournaments: academyTournaments }
         })
     } catch (error) {
         console.log("error: ", error);
