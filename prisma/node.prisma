@@ -1,0 +1,12 @@
+model node_feature_logs {
+  id        Int      @id @default(autoincrement())
+  feature   String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+}
+ 
+model ask_test_tournaments {
+  id        Int      @id @default(autoincrement())
+  feature   String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+}
+ 

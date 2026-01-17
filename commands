@@ -1,0 +1,19 @@
+npx prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --script -o prisma/sql/add_node_feature_logs.sql
+
+
+npx prisma db execute --file prisma/sql/20260118_add_ask_test_table2.sql
+
+
+npx prisma generate
+
+ALTER TABLE `ask_test_table2`
+  ADD COLUMN `tournamentId` INT NULL,
+  ADD CONSTRAINT `ask_test_table2_tournamentId_fkey`
+    FOREIGN KEY (`tournamentId`)
+    REFERENCES `tournaments`(`id`)
+    ON UPDATE CASCADE
+    ON DELETE SET NULL;
+
+npx prisma db execute --file prisma/sql/20260118_alter_ask_test_table2_add_fk.sql
+
+npx prisma db pull --config prisma-introspect.config.ts

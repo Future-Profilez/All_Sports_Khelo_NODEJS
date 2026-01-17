@@ -7,6 +7,3 @@ generator client {
 datasource db {
   provider = "mysql"
 }
-
-require("./models/tournaments.prisma)
-require("./models/sports.prisma)
