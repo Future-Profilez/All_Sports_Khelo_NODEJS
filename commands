@@ -1,6 +1,18 @@
-npx prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --script -o prisma/sql/add_node_feature_logs.sql
-npx prisma db execute --file prisma/sql/20260118_add_ask_test_table2.sql
+Add Schema into node.prisma file
+
+check is this modal already exists or not
 npx prisma generate
+
+npx prisma migrate diff ^ --from-config-datasource ^ --to-schema prisma ^ --script -o prisma/sql/20260118_add_ask_notes.sql
+
+// remove all content except the actual qury
+
+npx prisma db execute --file prisma/sql/20260118_add_ask_notes.sql
+
+
+npx prisma generate
+
+-- to add relations 
 ALTER TABLE `ask_test_table2`
   ADD COLUMN `tournamentId` INT NULL,
   ADD CONSTRAINT `ask_test_table2_tournamentId_fkey`
@@ -9,6 +21,14 @@ ALTER TABLE `ask_test_table2`
     ON UPDATE CASCADE
     ON DELETE SET NULL;
 
-npx prisma db execute --file prisma/sql/20260118_alter_ask_test_table2_add_fk.sql
+npx prisma db pull --config prisma-introspect.config.ts --force
 
-npx prisma db pull --config prisma-introspect.config.ts
+
+
+
+
+AVOID THESE commands
+npx prisma migrate dev
+npx prisma migrate reset
+npx prisma db push
+npx prisma db pull

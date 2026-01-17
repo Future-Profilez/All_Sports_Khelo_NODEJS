@@ -12,3 +12,9 @@ model sports {
   deleted_at DateTime?     @db.Timestamp(0)
 
 }
+
+enum sports_status {
+  active
+  inactive
+  archived
+}
