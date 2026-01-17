@@ -2,7 +2,7 @@ import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
 
 export default defineConfig({
-  schema: "prisma/introspected.prisma", // temporary file
+  schema: "introspected.tmp.prisma",
   datasource: {
     url: env("DATABASE_URL"),
   },

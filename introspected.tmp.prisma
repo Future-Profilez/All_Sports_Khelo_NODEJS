@@ -1,13 +1,8 @@
-generator client {
-  provider         = "prisma-client-js"
-  output           = "../generated/prisma"
-  clientExtensions = "true"
-}
-
 datasource db {
   provider = "mysql"
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academies {
   id                 BigInt    @id @db.UnsignedBigInt
   uuid               String    @db.Char(36)
@@ -47,105 +42,6 @@ model academies {
 
 }
 
-model academy_seo_contents {
-  id         BigInt    @id @db.UnsignedBigInt
-  academy_id BigInt    @db.UnsignedBigInt
-  name       String?   @db.VarChar(255)
-  value      String?   @db.LongText
-  extra      String?   @db.LongText
-  updated_by BigInt?   @db.UnsignedBigInt
-  created_at DateTime? @db.Timestamp(0)
-  updated_at DateTime? @db.Timestamp(0)
-  deleted_at DateTime? @db.Timestamp(0)
-}
-
-model academy_amenities {
-  id           BigInt    @id @db.UnsignedBigInt
-  user_id      String?   @db.VarChar(255)
-  academy_id   BigInt?   @db.UnsignedBigInt
-  amenity_name String    @db.VarChar(255)
-  created_at   DateTime? @db.Timestamp(0)
-  updated_at   DateTime? @db.Timestamp(0)
-  deleted_at   DateTime? @db.Timestamp(0)
-}
-
-model academy_details {
-  id              BigInt    @id @db.UnsignedBigInt
-  academy_id      BigInt    @db.UnsignedBigInt
-  timing          String?   @db.VarChar(255)
-  amenities       String?   @db.VarChar(255)
-  rooms           String?   @db.VarChar(255)
-  img             String?   @db.LongText
-  profile         String?   @db.VarChar(255)
-  additional_info String?   @db.LongText
-  h1_tag          String?   @db.VarChar(255)
-  created_at      DateTime? @db.Timestamp(0)
-  updated_at      DateTime? @db.Timestamp(0)
-  timings_to      String?   @db.VarChar(255)
-  timings_from    String?   @db.VarChar(255)
-  deleted_at      DateTime? @db.Timestamp(0)
-}
-
-model academy_timings {
-  id            String    @id @db.Char(36)
-  academy_id    BigInt    @db.UnsignedBigInt
-  morning_shift String?   @db.LongText
-  evening_shift String?   @db.LongText
-  created_at    DateTime? @db.Timestamp(0)
-  updated_at    DateTime? @db.Timestamp(0)
-  deleted_at    DateTime? @db.Timestamp(0)
-
-  @@index([academy_id], map: "academy_timings_academy_id_foreign")
-}
-
-model academy_programs {
-  id             BigInt    @id @db.UnsignedBigInt
-  default_id     BigInt?   @db.UnsignedBigInt
-  academy_id     BigInt?   @db.UnsignedBigInt
-  program_name   String    @db.VarChar(255)
-  training_time  String    @db.VarChar(255)
-  services       String?   @db.VarChar(255)
-  other_services String?   @db.VarChar(255)
-  created_at     DateTime? @db.Timestamp(0)
-  updated_at     DateTime? @db.Timestamp(0)
-  deleted_at     DateTime? @db.Timestamp(0)
-}
-
-model academy_coaches {
-  id                 BigInt    @id @db.UnsignedBigInt
-  uuid               String    @db.Char(36)
-  academy_id         BigInt    @db.UnsignedBigInt
-  image              String?   @db.VarChar(255)
-  name               String?   @db.VarChar(255)
-  email              String?   @db.VarChar(255)
-  phone              String?   @db.VarChar(255)
-  achievement        String?   @db.Text
-  overview           String?   @db.Text
-  experience         Int?
-  facebook           String?   @db.VarChar(255)
-  twitter            String?   @db.VarChar(255)
-  instagram          String?   @db.VarChar(255)
-  youtube_video_link String?   @db.VarChar(255)
-  created_at         DateTime? @db.Timestamp(0)
-  updated_at         DateTime? @db.Timestamp(0)
-  deleted_at         DateTime? @db.Timestamp(0)
-  phone_prefix       String?   @default("91") @db.VarChar(255)
-}
-
-model academy_galleries {
-  id                  BigInt    @id @db.UnsignedBigInt
-  uuid                String    @db.Char(36)
-  academy_id          BigInt    @db.UnsignedBigInt
-  academy_name        String    @db.VarChar(255)
-  slug_name           String?   @db.VarChar(255)
-  title               String?   @db.VarChar(255)
-  academy_description String    @db.LongText
-  academy_images      String    @db.LongText
-  created_at          DateTime? @db.Timestamp(0)
-  updated_at          DateTime? @db.Timestamp(0)
-  deleted_at          DateTime? @db.Timestamp(0)
-}
-
 model academy_achievements {
   id                 BigInt    @id @db.UnsignedBigInt
   uuid               String?   @db.VarChar(255)
@@ -159,21 +55,6 @@ model academy_achievements {
   deleted_at         DateTime? @db.Timestamp(0)
 }
 
-model academy_urls {
-  id           BigInt    @id @db.UnsignedBigInt
-  uuid         String    @db.Char(36)
-  user_id      BigInt    @db.UnsignedBigInt
-  insta_url    String?   @db.VarChar(255)
-  youtube_url  String?   @db.VarChar(255)
-  twitter_url  String?   @db.VarChar(255)
-  fb_url       String?   @db.VarChar(255)
-  linkedln_url String?   @db.VarChar(255)
-  website_url  String?   @db.VarChar(255)
-  other_url    String?   @db.VarChar(255)
-  created_at   DateTime? @db.Timestamp(0)
-  updated_at   DateTime? @db.Timestamp(0)
-}
-
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academy_addons {
   id         String    @id @db.Char(36)
@@ -183,7 +64,6 @@ model academy_addons {
   updated_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_admin_permissions {
   id          String    @id @db.Char(36)
   user_id     BigInt?   @db.UnsignedBigInt
@@ -193,6 +73,16 @@ model academy_admin_permissions {
   created_at  DateTime? @db.Timestamp(0)
   updated_at  DateTime? @db.Timestamp(0)
   deleted_at  DateTime? @db.Timestamp(0)
+}
+
+model academy_amenities {
+  id           BigInt    @id @db.UnsignedBigInt
+  user_id      String?   @db.VarChar(255)
+  academy_id   BigInt?   @db.UnsignedBigInt
+  amenity_name String    @db.VarChar(255)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  deleted_at   DateTime? @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -233,7 +123,6 @@ model academy_claim_docs {
   updated_at         DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_claim_logs {
   id                 BigInt    @id @db.UnsignedBigInt
   uuid               String?   @db.Char(36)
@@ -247,7 +136,6 @@ model academy_claim_logs {
   updated_at         DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_claim_notes {
   id                 BigInt    @id @db.UnsignedBigInt
   uuid               String?   @db.Char(36)
@@ -274,7 +162,6 @@ model academy_claim_report_docs {
   updated_at              DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_claim_report_logs {
   id                      BigInt    @id @db.UnsignedBigInt
   uuid                    String    @db.Char(36)
@@ -287,7 +174,6 @@ model academy_claim_report_logs {
   updated_at              DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_claim_report_notes {
   id                      BigInt    @id @db.UnsignedBigInt
   uuid                    String    @db.Char(36)
@@ -300,6 +186,7 @@ model academy_claim_report_notes {
   deleted_at              DateTime? @db.Timestamp(0)
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academy_claim_reports {
   id           BigInt                       @id @db.UnsignedBigInt
   platform     String?                      @default("web") @db.VarChar(255)
@@ -324,7 +211,7 @@ model academy_claim_reports {
   phone_prefix String?                      @default("91") @db.VarChar(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academy_claims {
   id                BigInt                   @id @db.UnsignedBigInt
   platform          String?                  @default("web") @db.VarChar(255)
@@ -352,6 +239,27 @@ model academy_claims {
   phone_prefix      String?                  @default("91") @db.VarChar(255)
 
   @@index([user_id], map: "academy_claims_user_id")
+}
+
+model academy_coaches {
+  id                 BigInt    @id @db.UnsignedBigInt
+  uuid               String    @db.Char(36)
+  academy_id         BigInt    @db.UnsignedBigInt
+  image              String?   @db.VarChar(255)
+  name               String?   @db.VarChar(255)
+  email              String?   @db.VarChar(255)
+  phone              String?   @db.VarChar(255)
+  achievement        String?   @db.Text
+  overview           String?   @db.Text
+  experience         Int?
+  facebook           String?   @db.VarChar(255)
+  twitter            String?   @db.VarChar(255)
+  instagram          String?   @db.VarChar(255)
+  youtube_video_link String?   @db.VarChar(255)
+  created_at         DateTime? @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
+  deleted_at         DateTime? @db.Timestamp(0)
+  phone_prefix       String?   @default("91") @db.VarChar(255)
 }
 
 model academy_courts {
@@ -384,7 +292,6 @@ model academy_courts {
   padelCourtFeesEvening     String?   @db.VarChar(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_delete_request_logs {
   id                        BigInt    @id @db.UnsignedBigInt
   uuid                      String    @db.Char(36)
@@ -407,6 +314,23 @@ model academy_delete_requests {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
+model academy_details {
+  id              BigInt    @id @db.UnsignedBigInt
+  academy_id      BigInt    @db.UnsignedBigInt
+  timing          String?   @db.VarChar(255)
+  amenities       String?   @db.VarChar(255)
+  rooms           String?   @db.VarChar(255)
+  img             String?   @db.LongText
+  profile         String?   @db.VarChar(255)
+  additional_info String?   @db.LongText
+  h1_tag          String?   @db.VarChar(255)
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  timings_to      String?   @db.VarChar(255)
+  timings_from    String?   @db.VarChar(255)
+  deleted_at      DateTime? @db.Timestamp(0)
+}
+
 model academy_features {
   id           BigInt    @id @db.UnsignedBigInt
   academy_id   BigInt    @db.UnsignedBigInt
@@ -418,6 +342,20 @@ model academy_features {
   updated_at   DateTime? @db.Timestamp(0)
   deleted_at   DateTime? @db.Timestamp(0)
   phone_prefix String?   @default("91") @db.VarChar(255)
+}
+
+model academy_galleries {
+  id                  BigInt    @id @db.UnsignedBigInt
+  uuid                String    @db.Char(36)
+  academy_id          BigInt    @db.UnsignedBigInt
+  academy_name        String    @db.VarChar(255)
+  slug_name           String?   @db.VarChar(255)
+  title               String?   @db.VarChar(255)
+  academy_description String    @db.LongText
+  academy_images      String    @db.LongText
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -499,7 +437,6 @@ model academy_inquiry_follow_ups {
   @@index([academy_inquiry_id], map: "academy_inquiry_id_followup_index")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_inquiry_logs {
   id                 BigInt    @id @db.UnsignedBigInt
   uuid               String    @db.Char(36)
@@ -514,7 +451,6 @@ model academy_inquiry_logs {
   deleted_at         DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_inquiry_notes {
   id                 BigInt    @id @db.UnsignedBigInt
   uuid               String    @db.Char(36)
@@ -551,7 +487,6 @@ model academy_list_requests {
   @@index([user_id], map: "academy_list_requests_user_id")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_listing_logs {
   id                      BigInt    @id @db.UnsignedBigInt
   uuid                    String    @db.Char(36)
@@ -565,7 +500,6 @@ model academy_listing_logs {
   deleted_at              DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model academy_logs {
   id         BigInt    @id @db.UnsignedBigInt
   uuid       String    @db.Char(36)
@@ -601,6 +535,20 @@ model academy_program_users {
   deleted_at         DateTime? @db.Timestamp(0)
   created_at         DateTime? @db.Timestamp(0)
   updated_at         DateTime? @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model academy_programs {
+  id             BigInt    @id @db.UnsignedBigInt
+  default_id     BigInt?   @db.UnsignedBigInt
+  academy_id     BigInt?   @db.UnsignedBigInt
+  program_name   String    @db.VarChar(255)
+  training_time  String    @db.VarChar(255)
+  services       String?   @db.VarChar(255)
+  other_services String?   @db.VarChar(255)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+  deleted_at     DateTime? @db.Timestamp(0)
 }
 
 model academy_ratings {
@@ -662,7 +610,6 @@ model academy_rules {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academy_seo_content_settings {
   id         String                              @id @db.Char(36)
@@ -677,6 +624,20 @@ model academy_seo_content_settings {
   updated_at DateTime?                           @db.Timestamp(0)
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model academy_seo_contents {
+  id         BigInt    @id @db.UnsignedBigInt
+  academy_id BigInt    @db.UnsignedBigInt
+  name       String?   @db.VarChar(255)
+  value      String?   @db.LongText
+  extra      String?   @db.LongText
+  updated_by BigInt?   @db.UnsignedBigInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model academy_sports {
   id         String    @id @db.Char(36)
   academy_id BigInt    @db.UnsignedBigInt
@@ -689,6 +650,33 @@ model academy_sports {
   @@index([academy_id], map: "academy_sport_academy_id")
   @@index([sport_id], map: "academy_sport_sport_id")
   @@index([academy_id, sport_id], map: "academy_sports_academy_id_sport_id_index")
+}
+
+model academy_timings {
+  id            String    @id @db.Char(36)
+  academy_id    BigInt    @db.UnsignedBigInt
+  morning_shift String?   @db.LongText
+  evening_shift String?   @db.LongText
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@index([academy_id], map: "academy_timings_academy_id_foreign")
+}
+
+model academy_urls {
+  id           BigInt    @id @db.UnsignedBigInt
+  uuid         String    @db.Char(36)
+  user_id      BigInt    @db.UnsignedBigInt
+  insta_url    String?   @db.VarChar(255)
+  youtube_url  String?   @db.VarChar(255)
+  twitter_url  String?   @db.VarChar(255)
+  fb_url       String?   @db.VarChar(255)
+  linkedln_url String?   @db.VarChar(255)
+  website_url  String?   @db.VarChar(255)
+  other_url    String?   @db.VarChar(255)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
 }
 
 model add_ons {
@@ -762,7 +750,6 @@ model advertisment_details {
   deleted_at      DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model advertisments {
   id                BigInt                 @id @db.UnsignedBigInt
@@ -817,7 +804,6 @@ model aita_acceptance_list_entries {
   updated_at         DateTime?                              @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model aita_calendars {
   id              String    @id @db.Char(36)
@@ -837,7 +823,6 @@ model aita_calendars {
   page_link       String?   @db.VarChar(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model aita_claim_logs {
   id                    BigInt    @id @db.UnsignedBigInt
   aita_profile_claim_id String    @db.Char(36)
@@ -865,7 +850,6 @@ model aita_profile_claim_follow_ups {
   @@index([aita_profile_claim_id], map: "aita_claim_profile_id_followup_index")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model aita_profile_claims {
   id                     String                        @id @db.Char(36)
@@ -906,7 +890,6 @@ model aita_profile_docs {
   updated_at            DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model aita_profile_notes {
   id                    String    @id @db.Char(36)
   aita_profile_claim_id String    @db.Char(36)
@@ -930,7 +913,6 @@ model aita_profile_report_docs {
   updated_at             DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model aita_profile_report_logs {
   id                     BigInt    @id @db.UnsignedBigInt
   aita_profile_report_id String    @db.Char(36)
@@ -942,7 +924,6 @@ model aita_profile_report_logs {
   updated_at             DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model aita_profile_report_notes {
   id                     String    @id @db.Char(36)
   aita_profile_report_id String    @db.Char(36)
@@ -954,7 +935,7 @@ model aita_profile_report_notes {
   deleted_at             DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model aita_profile_reports {
   id                     String                      @id @db.Char(36)
   platform               String?                     @default("web") @db.VarChar(255)
@@ -977,7 +958,6 @@ model aita_profile_reports {
   phone_prefix           String?                     @default("91") @db.VarChar(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model aita_rank_sync_events {
   id         String                       @id @db.Char(36)
   super_id   BigInt?                      @db.UnsignedBigInt
@@ -1016,6 +996,20 @@ model app_services {
   updated_at    DateTime? @db.Timestamp(0)
 }
 
+model ask_notes {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  body      String?  @db.LongText
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+}
+
+model ask_test_table {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  value     String?  @db.VarChar(255)
+  createdAt DateTime @default(now())
+}
+
 model assocation_achievements {
   id            String    @id @db.Char(36)
   assocation_id String    @db.Char(36)
@@ -1044,7 +1038,6 @@ model assocation_albums {
   deleted_at    DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model assocation_contents {
   id            String    @id @db.Char(36)
   assocation_id String    @db.Char(36)
@@ -1142,7 +1135,6 @@ model booking_add_ons_prices {
   deleted_at      DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model booking_payments {
   id                  String    @id @db.Char(36)
   booking_id          BigInt?   @db.UnsignedBigInt
@@ -1259,7 +1251,6 @@ model chair_umpire_requests {
   deleted_at    DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model challenge_chats {
   id                  BigInt    @id @db.UnsignedBigInt
   uuid                String    @db.Char(36)
@@ -1451,7 +1442,6 @@ model coach_reviews_ratings {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model coach_settings {
   id         String    @id @db.Char(36)
   user_id    BigInt    @db.UnsignedBigInt
@@ -1552,7 +1542,6 @@ model contacts {
   phone_prefix String?   @default("91") @db.VarChar(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model control_access_logs {
   id         BigInt    @id @db.UnsignedBigInt
@@ -1590,7 +1579,6 @@ model countries {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model country_availables {
   id         String    @id @db.Char(36)
   country_id BigInt    @db.UnsignedBigInt
@@ -1613,7 +1601,6 @@ model court_rules {
   uuid       String    @db.Char(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model court_timings {
   id            String    @id @db.Char(36)
   academy_id    BigInt    @db.UnsignedBigInt
@@ -1632,7 +1619,6 @@ model custom_notification_reads {
   updated_at             DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model custom_notifications {
   id           String                      @id @db.Char(36)
@@ -1684,7 +1670,6 @@ model customize_tournament {
   phone_prefix      String?                     @default("91") @db.VarChar(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model customize_tournament_logs {
   id                      BigInt    @id @db.UnsignedBigInt
   uuid                    String    @db.Char(36)
@@ -1697,7 +1682,6 @@ model customize_tournament_logs {
   deleted_at              DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model data_delete_logs {
   id         BigInt                  @id @db.UnsignedBigInt
@@ -1781,7 +1765,6 @@ model draw_players {
   @@index([user_id], map: "user_id")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model dummy_matches {
   id            String    @id @db.Char(36)
   tournament_id BigInt?   @db.UnsignedBigInt
@@ -1828,7 +1811,6 @@ model email_logs {
   updated_at    DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model email_templates {
   id         String    @id @db.Char(36)
@@ -1847,7 +1829,6 @@ model email_templates {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model face_app_process_logs {
   id                             BigInt    @id @db.UnsignedBigInt
   tournament_galleries_folder_id BigInt?   @db.UnsignedBigInt
@@ -1904,7 +1885,6 @@ model google_fit {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model group_contacts {
   id           BigInt    @id @db.UnsignedBigInt
@@ -1947,7 +1927,6 @@ model help_and_support_follow_ups {
   @@index([help_and_support_id], map: "help_support_id_followup_index")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model help_and_support_logs {
   id                  BigInt    @id @db.UnsignedBigInt
   help_and_support_id BigInt    @db.UnsignedBigInt
@@ -1959,7 +1938,6 @@ model help_and_support_logs {
   updated_at          DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model help_and_support_notes {
   id                  BigInt    @id @db.UnsignedBigInt
   help_and_support_id BigInt    @db.UnsignedBigInt
@@ -1995,6 +1973,36 @@ model help_and_supports {
   @@index([tournament_id], map: "help_tournament_id_index")
 }
 
+model host_live_matches {
+  id               String    @id @db.Char(36)
+  user_id          BigInt?   @db.UnsignedBigInt
+  umpire_id        BigInt?   @db.UnsignedBigInt
+  sport_id         String?   @db.Char(36)
+  title            String?   @db.VarChar(255)
+  type             String?   @db.Text
+  player_1_name    String?   @db.VarChar(255)
+  player_2_name    String?   @db.VarChar(255)
+  opponent_1_name  String?   @db.VarChar(255)
+  opponent_2_name  String?   @db.VarChar(255)
+  sets             String?   @db.VarChar(255)
+  winning_point    Int?
+  max_point_cap    Int?
+  service          String?   @db.Text
+  toss             String?   @db.Text
+  reason           String?   @db.Text
+  timer            String?   @db.Text
+  score            String?   @db.Text
+  action           String?   @db.Text
+  match_date       DateTime? @db.Date
+  match_time       DateTime? @db.Time(0)
+  match_started_at DateTime? @db.Timestamp(0)
+  match_ended_at   DateTime? @db.Timestamp(0)
+  winner           String?   @db.VarChar(255)
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  deleted_at       DateTime? @db.Timestamp(0)
+}
+
 model itf_calendar {
   id                       BigInt    @id @db.UnsignedBigInt
   tournamentKey            String?   @db.VarChar(255)
@@ -2028,7 +2036,6 @@ model itf_calendar {
   updated_at               DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model itf_claim_logs {
   id                   BigInt    @id @db.UnsignedBigInt
   itf_profile_claim_id String    @db.Char(36)
@@ -2040,7 +2047,6 @@ model itf_claim_logs {
   updated_at           DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model itf_profile_claims {
   id                    String                       @id @db.Char(36)
@@ -2065,7 +2071,6 @@ model itf_profile_claims {
   deleted_at            DateTime?                    @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model itf_profile_notes {
   id                   String    @id @db.Char(36)
   itf_profile_claim_id String    @db.Char(36)
@@ -2095,7 +2100,6 @@ model itf_profile_report_notes {
   updated_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model itf_profile_reports {
   id                    BigInt                     @id @db.UnsignedBigInt
@@ -2117,6 +2121,19 @@ model itf_profile_reports {
   created_at            DateTime?                  @db.Timestamp(0)
   updated_at            DateTime?                  @db.Timestamp(0)
   deleted_at            DateTime?                  @db.Timestamp(0)
+}
+
+model job_batches {
+  id             String  @id @db.VarChar(255)
+  name           String  @db.VarChar(255)
+  total_jobs     Int
+  pending_jobs   Int
+  failed_jobs    Int
+  failed_job_ids String  @db.LongText
+  options        String? @db.MediumText
+  cancelled_at   Int?
+  created_at     Int
+  finished_at    Int?
 }
 
 model jobs {
@@ -2253,6 +2270,77 @@ model league_requests {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model league_rules {
+  id                           BigInt                       @id @default(autoincrement()) @db.UnsignedBigInt
+  league_id                    BigInt                       @db.UnsignedBigInt
+  session_frequency            String?                      @db.VarChar(255)
+  max_players                  Int                          @default(0)
+  win_points                   Float                        @default(0)
+  loss_points                  Float                        @default(0)
+  rank_algo                    league_rules_rank_algo       @default(point)
+  max_rank_swap_range          Int                          @default(0)
+  sets                         String?                      @db.VarChar(255)
+  set_win_points               Int                          @default(7)
+  set_win_point_gap            Int                          @default(2)
+  allow_self_join              Boolean                      @default(false)
+  challenge_expires_in         Int                          @default(0)
+  challenge_max_rank_gap       Int                          @default(3)
+  can_challenge_below          Boolean                      @default(false)
+  challenge_below_max_rank_gap Int                          @default(3)
+  rechallenge_window           Int?                         @default(7)
+  challenge_deny_penalty       Boolean                      @default(false)
+  challenge_deny_forfeit       Boolean                      @default(false)
+  tie_break                    Boolean                      @default(false)
+  max_match_per_player         Int                          @default(0)
+  rank_reset_type              league_rules_rank_reset_type @default(full)
+  carry_forward_points         String?                      @db.VarChar(255)
+  inactivity_rules             String?                      @db.LongText
+  created_at                   DateTime?                    @db.Timestamp(0)
+  updated_at                   DateTime?                    @db.Timestamp(0)
+  deleted_at                   DateTime?                    @db.Timestamp(0)
+  leagues                      leagues                      @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_rules_league_id_foreign")
+
+  @@index([league_id], map: "league_rules_league_id_foreign")
+}
+
+model league_session_players {
+  id                BigInt          @id @default(autoincrement()) @db.UnsignedBigInt
+  league_id         BigInt          @db.UnsignedBigInt
+  league_session_id String          @db.Char(36)
+  user_id           BigInt          @db.UnsignedBigInt
+  partner_id        BigInt?         @db.UnsignedBigInt
+  rank_position     Int?            @default(0)
+  points            Float?          @default(0)
+  wins              Int?            @default(0)
+  losses            Int?            @default(0)
+  created_at        DateTime?       @db.Timestamp(0)
+  updated_at        DateTime?       @db.Timestamp(0)
+  deleted_at        DateTime?       @db.Timestamp(0)
+  leagues           leagues         @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_session_players_league_id_foreign")
+  league_sessions   league_sessions @relation(fields: [league_session_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_session_players_league_session_id_foreign")
+
+  @@index([league_id], map: "league_session_players_league_id_foreign")
+  @@index([league_session_id], map: "league_session_players_league_session_id_foreign")
+}
+
+model league_sessions {
+  id                     String                   @id @db.Char(36)
+  league_id              BigInt                   @db.UnsignedBigInt
+  session_name           String?                  @db.VarChar(255)
+  start_date             DateTime?                @db.Date
+  end_date               DateTime?                @db.Date
+  status                 league_sessions_status?  @default(ongoing)
+  created_at             DateTime?                @db.Timestamp(0)
+  updated_at             DateTime?                @db.Timestamp(0)
+  deleted_at             DateTime?                @db.Timestamp(0)
+  league_session_players league_session_players[]
+  leagues                leagues                  @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_sessions_league_id_foreign")
+
+  @@index([league_id], map: "league_sessions_league_id_foreign")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model leagues {
   id                     BigInt                   @id @db.UnsignedBigInt
   sport_id               String?                  @db.Char(36)
@@ -2367,6 +2455,21 @@ model migrations {
   batch     Int
 }
 
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model migrations_backup {
+  id        Int    @db.UnsignedInt
+  migration String @db.VarChar(255)
+  batch     Int
+
+  @@ignore
+}
+
+model node_feature_logs {
+  id        Int      @id @default(autoincrement())
+  feature   String
+  createdAt DateTime @default(now())
+}
+
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model notification_settings {
   id         BigInt    @id @db.UnsignedBigInt
@@ -2378,7 +2481,6 @@ model notification_settings {
   deleted_at DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model notifications {
   id          BigInt    @id @db.UnsignedBigInt
   uuid        String    @db.Char(36)
@@ -2465,7 +2567,6 @@ model organizer_achievements {
   @@index([organizer_id], map: "organizer_achievement_organizer_id")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model organizer_contents {
   id           BigInt    @id @db.UnsignedBigInt
   organizer_id String    @db.Char(36)
@@ -2517,7 +2618,6 @@ model organizer_team_members {
   @@index([organizer_id], map: "organizer_id")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model organizers {
   id          String    @id @db.Char(36)
   user_id     BigInt?   @db.UnsignedBigInt
@@ -2591,7 +2691,6 @@ model partner_docs {
   deleted_at        DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model partner_logs {
   id                BigInt    @id @db.UnsignedBigInt
   uuid              String    @db.Char(36)
@@ -2604,7 +2703,6 @@ model partner_logs {
   deleted_at        DateTime? @db.Timestamp(0)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model partner_notes {
   id                BigInt    @id @db.UnsignedBigInt
   uuid              String    @db.Char(36)
@@ -2763,7 +2861,6 @@ model player_achievements {
   @@index([tournament_event_id], map: "p_ach_tournament_event_id")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model player_aita_profile_logs {
   id                     BigInt    @id @db.UnsignedBigInt
   uuid                   String    @db.Char(36)
@@ -2875,7 +2972,6 @@ model player_invite {
   phone_prefix String?   @default("91") @db.VarChar(255)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model player_itf_profiles {
   id                      String    @id @db.Char(36)
   user_id                 BigInt?   @db.UnsignedBigInt
@@ -2898,7 +2994,6 @@ model player_itf_profiles {
   deleted_at              DateTime? @db.Timestamp(0)
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model player_itf_rankings {
   id                         String    @id @db.Char(36)
   player_itf_profile_id      String?   @db.Char(36)
@@ -2923,7 +3018,6 @@ model player_itf_rankings {
   deleted_at                 DateTime? @db.Timestamp(0)
 
   @@unique([player_itf_profile_id, rank_date, main_category, gender_category, age, type, wttj_ranking], map: "unique_rank")
-  @@ignore
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -3096,7 +3190,6 @@ model player_seo_contents {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model player_seo_templates {
   id         String    @db.Char(36)
@@ -3204,7 +3297,6 @@ model point_table_admin_logs {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model point_table_logs {
   id            BigInt    @db.UnsignedBigInt
@@ -3412,7 +3504,6 @@ model report_recent_match {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model report_recent_match_logs {
   id                     BigInt    @db.UnsignedBigInt
@@ -3427,7 +3518,6 @@ model report_recent_match_logs {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model report_recent_match_notes {
   id                     BigInt    @db.UnsignedBigInt
@@ -3485,7 +3575,6 @@ model sent_documents {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model signup_requests {
@@ -3510,7 +3599,6 @@ model signup_requests {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sponsor_contents {
   id         BigInt    @db.UnsignedBigInt
@@ -3543,7 +3631,6 @@ model sponsor_customer_inquiry {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sponsor_customer_inquiry_log {
   id                        BigInt    @db.UnsignedBigInt
@@ -3559,7 +3646,6 @@ model sponsor_customer_inquiry_log {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sponsor_customer_inquiry_notes {
   id                        BigInt    @db.UnsignedBigInt
@@ -3628,7 +3714,6 @@ model sponsor_inquiry_docs {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sponsor_inquiry_logs {
   id                 BigInt    @db.UnsignedBigInt
@@ -3644,7 +3729,6 @@ model sponsor_inquiry_logs {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sponsor_inquiry_notes {
   id                 BigInt    @db.UnsignedBigInt
@@ -3677,7 +3761,6 @@ model sponsor_locations {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sponsor_logs {
   id               BigInt    @db.UnsignedBigInt
@@ -3694,7 +3777,6 @@ model sponsor_logs {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sponsor_owner_logs {
   id               BigInt    @db.UnsignedBigInt
@@ -3764,7 +3846,6 @@ model sponsors {
   @@ignore
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model sports {
   id           String        @id @db.Char(36)
   super_id     BigInt?       @db.UnsignedBigInt
@@ -3833,7 +3914,6 @@ model states {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model subscription_logs {
@@ -3849,7 +3929,6 @@ model subscription_logs {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model subscription_plan_perks {
@@ -3890,7 +3969,6 @@ model subscription_plans {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model subscriptions {
@@ -3929,7 +4007,6 @@ model super_fcm_tokens {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model super_role_permissions {
   id          String    @db.Char(36)
@@ -3942,7 +4019,6 @@ model super_role_permissions {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model super_whatsapp_logs {
   id         BigInt    @db.UnsignedBigInt
@@ -3958,7 +4034,6 @@ model super_whatsapp_logs {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model supers {
@@ -3980,7 +4055,6 @@ model supers {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model system_settings {
   id         BigInt    @db.UnsignedBigInt
@@ -4042,7 +4116,6 @@ model template_languages {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model templates {
@@ -4095,7 +4168,6 @@ model tournament_categories {
   @@ignore
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model tournament_contents {
   id            BigInt    @db.UnsignedBigInt
@@ -4116,10 +4188,10 @@ model tournament_decided_rounds {
   id               BigInt                                     @db.UnsignedBigInt
   uuid             String                                     @db.Char(36)
   tournament_id    BigInt?                                    @db.UnsignedBigInt
-  is_qualifier     tournament_decided_rounds_is_qualifier     @default(YES)
-  is_quarter_final tournament_decided_rounds_is_quarter_final @default(YES)
-  is_semi_final    tournament_decided_rounds_is_semi_final    @default(YES)
-  is_final         tournament_decided_rounds_is_final         @default(YES)
+  is_qualifier     tournament_decided_rounds_is_qualifier     @default(dbgenerated("1"))
+  is_quarter_final tournament_decided_rounds_is_quarter_final @default(dbgenerated("1"))
+  is_semi_final    tournament_decided_rounds_is_semi_final    @default(dbgenerated("1"))
+  is_final         tournament_decided_rounds_is_final         @default(dbgenerated("1"))
   deleted_at       DateTime?                                  @db.Timestamp(0)
   created_at       DateTime?                                  @db.Timestamp(0)
   updated_at       DateTime?                                  @db.Timestamp(0)
@@ -4184,7 +4256,6 @@ model tournament_draw_matches {
   @@ignore
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tournament_draws {
   id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
@@ -4216,189 +4287,6 @@ model tournament_draws {
   created_at     DateTime? @db.Timestamp(0)
   updated_at     DateTime? @db.Timestamp(0)
   deleted_at     DateTime? @db.Timestamp(0)
-
-  @@ignore
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model tournaments {
-  id                            Int
-  uuid                          String    @db.Char(36)
-  sport_id                      String?   @db.Char(36)
-  created_by                    BigInt?   @db.UnsignedBigInt
-  name                          String?   @db.VarChar(255)
-  slug_name                     String?   @db.VarChar(255)
-  locality                      String?   @default("local") @db.VarChar(255)
-  events_payload                String?   @db.LongText
-  match_type                    String?   @db.VarChar(255)
-  description                   String?   @db.LongText
-  type                          String?   @default("real") @db.VarChar(255)
-  tournament_type               String?   @db.VarChar(255)
-  user_id                       BigInt?   @db.UnsignedBigInt
-  academy_id                    Int?
-  tourstartdate                 DateTime? @db.Date
-  tourenddate                   DateTime? @db.Date
-  sets                          Int?
-  tournament_set                String?   @db.VarChar(255)
-  tourcategory                  String?   @db.VarChar(255)
-  drawtype                      String?   @db.VarChar(255)
-  agegroup                      String?   @db.VarChar(255)
-  variationid                   String?   @db.VarChar(255)
-  venue                         String?   @db.VarChar(255)
-  official                      String?   @db.VarChar(255)
-  tourimage                     String?   @db.VarChar(255)
-  winnerprize                   String?   @db.VarChar(255)
-  contestantprize               String?   @db.VarChar(255)
-  semifinalprize                String?   @db.VarChar(255)
-  quarterfinalprize             String?   @db.VarChar(255)
-  runnerupprize                 String?   @db.VarChar(255)
-  long                          String?   @db.VarChar(255)
-  lat                           String?   @db.VarChar(255)
-  country_id                    BigInt?   @db.UnsignedBigInt
-  state_id                      BigInt?   @db.UnsignedBigInt
-  city_id                       BigInt?   @db.UnsignedBigInt
-  address                       String?   @db.Text
-  winner_id                     Int?
-  organization_tier_id          String?   @db.Char(36)
-  status                        Boolean   @default(false)
-  participation_limit           Int       @default(1) @db.TinyInt
-  publish_status                Int       @default(0) @db.TinyInt
-  is_old                        Int       @default(1)
-  is_verified                   Int       @default(1)
-  created_at                    DateTime? @db.Timestamp(0)
-  updated_at                    DateTime? @db.Timestamp(0)
-  is_whatsapp_message_allowed   Boolean   @default(false)
-  tournament_fees               Decimal?  @db.Decimal(10, 2)
-  is_event_fees                 Boolean   @default(false)
-  is_registration_table_dynamic Boolean   @default(false)
-  is_razorpay_payment_enable    Boolean   @default(false)
-  deleted_at                    DateTime? @db.Timestamp(0)
-
-  @@id([id, uuid])
-}
-
-model host_live_matches {
-  id               String    @id @db.Char(36)
-  user_id          BigInt?   @db.UnsignedBigInt
-  umpire_id        BigInt?   @db.UnsignedBigInt
-  sport_id         String?   @db.Char(36)
-  title            String?   @db.VarChar(255)
-  type             String?   @db.Text
-  player_1_name    String?   @db.VarChar(255)
-  player_2_name    String?   @db.VarChar(255)
-  opponent_1_name  String?   @db.VarChar(255)
-  opponent_2_name  String?   @db.VarChar(255)
-  sets             String?   @db.VarChar(255)
-  winning_point    Int?
-  max_point_cap    Int?
-  service          String?   @db.Text
-  toss             String?   @db.Text
-  reason           String?   @db.Text
-  timer            String?   @db.Text
-  score            String?   @db.Text
-  action           String?   @db.Text
-  match_date       DateTime? @db.Date
-  match_time       DateTime? @db.Time(0)
-  match_started_at DateTime? @db.Timestamp(0)
-  match_ended_at   DateTime? @db.Timestamp(0)
-  winner           String?   @db.VarChar(255)
-  created_at       DateTime? @db.Timestamp(0)
-  updated_at       DateTime? @db.Timestamp(0)
-  deleted_at       DateTime? @db.Timestamp(0)
-}
-
-model job_batches {
-  id             String  @id @db.VarChar(255)
-  name           String  @db.VarChar(255)
-  total_jobs     Int
-  pending_jobs   Int
-  failed_jobs    Int
-  failed_job_ids String  @db.LongText
-  options        String? @db.MediumText
-  cancelled_at   Int?
-  created_at     Int
-  finished_at    Int?
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model league_rules {
-  id                           BigInt                       @id @default(autoincrement()) @db.UnsignedBigInt
-  league_id                    BigInt                       @db.UnsignedBigInt
-  session_frequency            String?                      @db.VarChar(255)
-  max_players                  Int                          @default(0)
-  win_points                   Float                        @default(0)
-  loss_points                  Float                        @default(0)
-  rank_algo                    league_rules_rank_algo       @default(point)
-  max_rank_swap_range          Int                          @default(0)
-  sets                         String?                      @db.VarChar(255)
-  set_win_points               Int                          @default(7)
-  set_win_point_gap            Int                          @default(2)
-  allow_self_join              Boolean                      @default(false)
-  challenge_expires_in         Int                          @default(0)
-  challenge_max_rank_gap       Int                          @default(3)
-  can_challenge_below          Boolean                      @default(false)
-  challenge_below_max_rank_gap Int                          @default(3)
-  rechallenge_window           Int?                         @default(7)
-  challenge_deny_penalty       Boolean                      @default(false)
-  challenge_deny_forfeit       Boolean                      @default(false)
-  tie_break                    Boolean                      @default(false)
-  max_match_per_player         Int                          @default(0)
-  rank_reset_type              league_rules_rank_reset_type @default(full)
-  carry_forward_points         String?                      @db.VarChar(255)
-  inactivity_rules             String?                      @db.LongText
-  created_at                   DateTime?                    @db.Timestamp(0)
-  updated_at                   DateTime?                    @db.Timestamp(0)
-  deleted_at                   DateTime?                    @db.Timestamp(0)
-  leagues                      leagues                      @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_rules_league_id_foreign")
-
-  @@index([league_id], map: "league_rules_league_id_foreign")
-}
-
-model league_session_players {
-  id                BigInt          @id @default(autoincrement()) @db.UnsignedBigInt
-  league_id         BigInt          @db.UnsignedBigInt
-  league_session_id String          @db.Char(36)
-  user_id           BigInt          @db.UnsignedBigInt
-  partner_id        BigInt?         @db.UnsignedBigInt
-  rank_position     Int?            @default(0)
-  points            Float?          @default(0)
-  wins              Int?            @default(0)
-  losses            Int?            @default(0)
-  created_at        DateTime?       @db.Timestamp(0)
-  updated_at        DateTime?       @db.Timestamp(0)
-  deleted_at        DateTime?       @db.Timestamp(0)
-  leagues           leagues         @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_session_players_league_id_foreign")
-  league_sessions   league_sessions @relation(fields: [league_session_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_session_players_league_session_id_foreign")
-
-  @@index([league_id], map: "league_session_players_league_id_foreign")
-  @@index([league_session_id], map: "league_session_players_league_session_id_foreign")
-}
-
-model league_sessions {
-  id                     String                   @id @db.Char(36)
-  league_id              BigInt                   @db.UnsignedBigInt
-  session_name           String?                  @db.VarChar(255)
-  start_date             DateTime?                @db.Date
-  end_date               DateTime?                @db.Date
-  status                 league_sessions_status?  @default(ongoing)
-  created_at             DateTime?                @db.Timestamp(0)
-  updated_at             DateTime?                @db.Timestamp(0)
-  deleted_at             DateTime?                @db.Timestamp(0)
-  league_session_players league_session_players[]
-  leagues                leagues                  @relation(fields: [league_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "league_sessions_league_id_foreign")
-
-  @@index([league_id], map: "league_sessions_league_id_foreign")
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model migrations_backup {
-  id        Int    @db.UnsignedInt
-  migration String @db.VarChar(255)
-  batch     Int
-
-  @@ignore
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -5197,6 +5085,63 @@ model tournament_whatsapp_logs {
   @@ignore
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tournaments {
+  id                            Int
+  uuid                          String    @db.Char(36)
+  sport_id                      String?   @db.Char(36)
+  created_by                    BigInt?   @db.UnsignedBigInt
+  name                          String?   @db.VarChar(255)
+  slug_name                     String?   @db.VarChar(255)
+  locality                      String?   @default("local") @db.VarChar(255)
+  events_payload                String?   @db.LongText
+  match_type                    String?   @db.VarChar(255)
+  description                   String?   @db.LongText
+  type                          String?   @default("real") @db.VarChar(255)
+  tournament_type               String?   @db.VarChar(255)
+  user_id                       BigInt?   @db.UnsignedBigInt
+  academy_id                    Int?
+  tourstartdate                 DateTime? @db.Date
+  tourenddate                   DateTime? @db.Date
+  sets                          Int?
+  tournament_set                String?   @db.VarChar(255)
+  tourcategory                  String?   @db.VarChar(255)
+  drawtype                      String?   @db.VarChar(255)
+  agegroup                      String?   @db.VarChar(255)
+  variationid                   String?   @db.VarChar(255)
+  venue                         String?   @db.VarChar(255)
+  official                      String?   @db.VarChar(255)
+  tourimage                     String?   @db.VarChar(255)
+  winnerprize                   String?   @db.VarChar(255)
+  contestantprize               String?   @db.VarChar(255)
+  semifinalprize                String?   @db.VarChar(255)
+  quarterfinalprize             String?   @db.VarChar(255)
+  runnerupprize                 String?   @db.VarChar(255)
+  long                          String?   @db.VarChar(255)
+  lat                           String?   @db.VarChar(255)
+  country_id                    BigInt?   @db.UnsignedBigInt
+  state_id                      BigInt?   @db.UnsignedBigInt
+  city_id                       BigInt?   @db.UnsignedBigInt
+  address                       String?   @db.Text
+  winner_id                     Int?
+  organization_tier_id          String?   @db.Char(36)
+  status                        Boolean   @default(false)
+  participation_limit           Int       @default(1) @db.TinyInt
+  publish_status                Int       @default(0) @db.TinyInt
+  is_old                        Int       @default(1)
+  is_verified                   Int       @default(1)
+  created_at                    DateTime? @db.Timestamp(0)
+  updated_at                    DateTime? @db.Timestamp(0)
+  is_whatsapp_message_allowed   Boolean   @default(false)
+  tournament_fees               Decimal?  @db.Decimal(10, 2)
+  is_event_fees                 Boolean   @default(false)
+  is_registration_table_dynamic Boolean   @default(false)
+  is_razorpay_payment_enable    Boolean   @default(false)
+  deleted_at                    DateTime? @db.Timestamp(0)
+
+  @@id([id, uuid])
+}
+
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model tourparttotalplayers {
   id            Int
@@ -5719,6 +5664,11 @@ enum password_reset_requests_type {
   verify
 }
 
+enum user_access_logs_platform {
+  app
+  web
+}
+
 enum lms_inquiry_details_pref_training_mode {
   Group
   One_on_One @map("One-on-One")
@@ -5733,8 +5683,8 @@ enum player_connections_status {
 }
 
 enum tournament_decided_rounds_is_qualifier {
-  NO  @map("0")
-  YES @map("1")
+  // 0 @map("0")
+  // 1 @map("1")
 }
 
 enum coach_reported_reviews_status {
@@ -5764,8 +5714,8 @@ enum lms_inquiry_details_pref_court_surface {
 }
 
 enum tournament_decided_rounds_is_quarter_final {
-  NO  @map("0")
-  YES @map("1")
+  // 0 @map("0")
+  // 1 @map("1")
 }
 
 enum advertisments_ads_type {
@@ -5773,9 +5723,30 @@ enum advertisments_ads_type {
   popup
 }
 
+enum league_sessions_status {
+  ongoing
+  upcoming
+  completed
+}
+
 enum tournament_decided_rounds_is_semi_final {
-  NO  @map("0")
-  YES @map("1")
+  // 0 @map("0")
+  // 1 @map("1")
+}
+
+enum training_programs_level {
+  beginner
+  intermediate
+  advanced
+}
+
+enum training_program_batches_skill_level {
+  beginner
+  intermediate
+  elite
+  competitive_juniors @map("competitive juniors")
+  seniors_40_         @map("seniors 40+")
+  advanced
 }
 
 enum academy_seo_content_settings_status {
@@ -5783,6 +5754,12 @@ enum academy_seo_content_settings_status {
   draft
   rejected
   accepted
+}
+
+enum league_rules_rank_algo {
+  point
+  swap
+  bump
 }
 
 enum lms_inquiry_details_level_of_coaching_required {
@@ -5798,15 +5775,9 @@ enum local_profile_claims_relation {
   guardian
 }
 
-enum sports_status {
-  active
-  inactive
-  archived
-}
-
 enum tournament_decided_rounds_is_final {
-  NO  @map("0")
-  YES @map("1")
+  // 0 @map("0")
+  // 1 @map("1")
 }
 
 enum become_partner_status {
@@ -5870,6 +5841,32 @@ enum local_profile_claims_status {
   accepted
 }
 
+enum tournament_registration_payment_payment_status {
+  pending
+  complete
+  partial
+  failed
+}
+
+enum training_programs_status {
+  active
+  inactive
+  upcoming
+  completed
+}
+
+enum training_program_batch_sessions_status {
+  active
+  inactive
+  upcoming
+  completed
+}
+
+enum training_program_batch_session_drills_status {
+  active
+  inactive
+}
+
 enum academy_inquiries_status {
   new
   in_process @map("in-process")
@@ -5920,17 +5917,14 @@ enum subscription_plans_trial_type {
   year
 }
 
-enum academy_claims_relation {
-  self
-  parent
-  guardian
-}
-
-enum aita_profile_reports_status {
-  pending
-  accepted
-  rejected
-  in_process @map("in-process")
+enum tournament_registrations_group {
+  boys
+  girls
+  men
+  women
+  senior_men
+  senior_women
+  mixed
 }
 
 enum custom_notifications_status {
@@ -5944,153 +5938,10 @@ enum lms_inquiry_details_flexible_availble_shift {
   Evening
 }
 
-enum itf_profile_claims_status {
-  pending
-  accepted
-  rejected
-  in_process @map("in-process")
-}
-
-enum registration_requests_status {
-  PENDING  @map("1")
-  APPROVED @map("2")
-  REJECTED @map("3")
-}
-
-enum subscription_plans_period {
-  daily
-  weekly
-  monthly
-  quarterly
-  yearly
-}
-
-enum academy_claim_reports_status {
-  pending
-  accepted
-  rejected
-  in_process @map("in-process")
-}
-
-enum academy_list_requests_status {
-  pending
-  accepted
-  rejected
-  in_process @map("in-process")
-}
-
-enum itf_profile_reports_status {
-  pending
-  accepted
-  rejected
-  in_process @map("in-process")
-}
-
-enum subscription_plans_status {
+enum sports_status {
   active
   inactive
   archived
-}
-
-enum aita_profile_claims_status {
-  pending
-  accepted
-  rejected
-  in_process @map("in-process")
-}
-
-enum academy_claims_status {
-  pending
-  accepted
-  rejected
-  in_process @map("in-process")
-}
-
-enum lms_inquiry_details_status {
-  active
-  inactive
-  pending
-}
-
-enum customize_tournament_status {
-  new
-  in_process @map("in-process")
-  pending
-  closed
-  done
-  on_hold    @map("on-hold")
-  resolved
-  completed
-  rejected
-  accepted
-}
-
-enum user_access_logs_platform {
-  app
-  web
-}
-
-enum league_sessions_status {
-  ongoing
-  upcoming
-  completed
-}
-
-enum training_programs_level {
-  beginner
-  intermediate
-  advanced
-}
-
-enum training_program_batches_skill_level {
-  beginner
-  intermediate
-  elite
-  competitive_juniors @map("competitive juniors")
-  seniors_40_         @map("seniors 40+")
-  advanced
-}
-
-enum league_rules_rank_algo {
-  point
-  swap
-  bump
-}
-
-enum tournament_registration_payment_payment_status {
-  pending
-  complete
-  partial
-  failed
-}
-
-enum training_programs_status {
-  active
-  inactive
-  upcoming
-  completed
-}
-
-enum training_program_batch_sessions_status {
-  active
-  inactive
-  upcoming
-  completed
-}
-
-enum training_program_batch_session_drills_status {
-  active
-  inactive
-}
-
-enum tournament_registrations_group {
-  boys
-  girls
-  men
-  women
-  senior_men
-  senior_women
-  mixed
 }
 
 enum training_program_batches_shift {
@@ -6104,10 +5955,85 @@ enum users_bank_details_verification_status {
   rejected
 }
 
+enum academy_claims_relation {
+  self
+  parent
+  guardian
+}
+
+enum aita_profile_reports_status {
+  pending
+  accepted
+  rejected
+  in_process @map("in-process")
+}
+
+enum itf_profile_claims_status {
+  pending
+  accepted
+  rejected
+  in_process @map("in-process")
+}
+
+enum registration_requests_status {
+  // 1 @map("1")
+  // 2 @map("2")
+  // 3 @map("3")
+}
+
+enum subscription_plans_period {
+  daily
+  weekly
+  monthly
+  quarterly
+  yearly
+}
+
+enum academy_list_requests_status {
+  pending
+  accepted
+  rejected
+  in_process @map("in-process")
+}
+
+enum subscription_plans_status {
+  active
+  inactive
+  archived
+}
+
+enum academy_claim_reports_status {
+  pending
+  accepted
+  rejected
+  in_process @map("in-process")
+}
+
+enum aita_profile_claims_status {
+  pending
+  accepted
+  rejected
+  in_process @map("in-process")
+}
+
+enum itf_profile_reports_status {
+  pending
+  accepted
+  rejected
+  in_process @map("in-process")
+}
+
 enum tournament_registration_payment_verification_status {
   unverified
   verified
   rejected
+}
+
+enum academy_claims_status {
+  pending
+  accepted
+  rejected
+  in_process @map("in-process")
 }
 
 enum training_program_batches_status {
@@ -6117,10 +6043,29 @@ enum training_program_batches_status {
   completed
 }
 
+enum lms_inquiry_details_status {
+  active
+  inactive
+  pending
+}
+
 enum league_rules_rank_reset_type {
   full
   soft
   none
+}
+
+enum customize_tournament_status {
+  new
+  in_process @map("in-process")
+  pending
+  closed
+  done
+  on_hold    @map("on-hold")
+  resolved
+  completed
+  rejected
+  accepted
 }
 
 enum tournament_events_loser_event_init_stage {

@@ -1,7 +1,8 @@
-model node_feature_logs {
+model ask_notes {
   id        Int      @id @default(autoincrement())
-  feature   String   @db.VarChar(255)
-  createdAt DateTime @default(now())
+  title     String   @db.VarChar(255)
+  body      String?  @db.LongText
+  createdAt DateTime @default(now()) @db.Timestamp(0)
 }
  
 model ask_test_tournaments {
