@@ -407,7 +407,12 @@ exports.Prisma.Ask_testing1ScalarFieldEnum = {
   description: 'description'
 };
 
-exports.Prisma.AsktournamentsScalarFieldEnum = {
+exports.Prisma.Testing_dateScalarFieldEnum = {
+  id: 'id',
+  startdate: 'startdate'
+};
+
+exports.Prisma.Ask_tournamentsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
   sport_id: 'sport_id',
@@ -417,20 +422,58 @@ exports.Prisma.AsktournamentsScalarFieldEnum = {
   description: 'description',
   content: 'content',
   tournament_type: 'tournament_type',
-  tourstartdate: 'tourstartdate',
-  tourenddate: 'tourenddate',
+  startdate: 'startdate',
+  enddate: 'enddate',
   address: 'address',
   country_id: 'country_id',
   state_id: 'state_id',
   city_id: 'city_id',
-  tourbannerimage: 'tourbannerimage',
-  tourthumbnail: 'tourthumbnail',
-  tourwebsite: 'tourwebsite',
-  tourbrochure: 'tourbrochure',
-  prizemoney: 'prizemoney',
-  tournament_fees: 'tournament_fees',
+  bannerimage: 'bannerimage',
+  thumbnail: 'thumbnail',
+  url: 'url',
+  brochure: 'brochure',
+  prize: 'prize',
+  fees: 'fees',
   participation_limit: 'participation_limit',
   publish_status: 'publish_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.CountriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  iso_2: 'iso_2',
+  iso_3: 'iso_3',
+  phone_code: 'phone_code',
+  currency: 'currency',
+  flag: 'flag',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.StatesScalarFieldEnum = {
+  id: 'id',
+  country_id: 'country_id',
+  name: 'name',
+  code: 'code',
+  slug: 'slug',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
+exports.Prisma.CitiesScalarFieldEnum = {
+  id: 'id',
+  state_id: 'state_id',
+  name: 'name',
+  slug: 'slug',
+  leagues_allowed: 'leagues_allowed',
+  status: 'status',
   created_at: 'created_at',
   updated_at: 'updated_at',
   deleted_at: 'deleted_at'
@@ -620,7 +663,7 @@ exports.Prisma.ask_testing1OrderByRelevanceFieldEnum = {
   description: 'description'
 };
 
-exports.Prisma.asktournamentsOrderByRelevanceFieldEnum = {
+exports.Prisma.ask_tournamentsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   sport_id: 'sport_id',
   name: 'name',
@@ -629,11 +672,32 @@ exports.Prisma.asktournamentsOrderByRelevanceFieldEnum = {
   content: 'content',
   tournament_type: 'tournament_type',
   address: 'address',
-  tourbannerimage: 'tourbannerimage',
-  tourthumbnail: 'tourthumbnail',
-  tourwebsite: 'tourwebsite',
-  tourbrochure: 'tourbrochure',
-  prizemoney: 'prizemoney'
+  bannerimage: 'bannerimage',
+  thumbnail: 'thumbnail',
+  url: 'url',
+  brochure: 'brochure',
+  prize: 'prize',
+  fees: 'fees'
+};
+
+exports.Prisma.countriesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  iso_2: 'iso_2',
+  iso_3: 'iso_3',
+  phone_code: 'phone_code',
+  currency: 'currency',
+  flag: 'flag'
+};
+
+exports.Prisma.statesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  code: 'code',
+  slug: 'slug'
+};
+
+exports.Prisma.citiesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  slug: 'slug'
 };
 exports.sports_status = exports.$Enums.sports_status = {
   active: 'active',
@@ -662,7 +726,11 @@ exports.Prisma.ModelName = {
   ask_testing: 'ask_testing',
   ask_test_sports: 'ask_test_sports',
   ask_testing1: 'ask_testing1',
-  asktournaments: 'asktournaments'
+  testing_date: 'testing_date',
+  ask_tournaments: 'ask_tournaments',
+  countries: 'countries',
+  states: 'states',
+  cities: 'cities'
 };
 
 /**

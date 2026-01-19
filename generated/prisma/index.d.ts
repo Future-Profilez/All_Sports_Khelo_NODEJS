@@ -114,10 +114,30 @@ export type ask_test_sports = $Result.DefaultSelection<Prisma.$ask_test_sportsPa
  */
 export type ask_testing1 = $Result.DefaultSelection<Prisma.$ask_testing1Payload>
 /**
- * Model asktournaments
+ * Model testing_date
  * 
  */
-export type asktournaments = $Result.DefaultSelection<Prisma.$asktournamentsPayload>
+export type testing_date = $Result.DefaultSelection<Prisma.$testing_datePayload>
+/**
+ * Model ask_tournaments
+ * 
+ */
+export type ask_tournaments = $Result.DefaultSelection<Prisma.$ask_tournamentsPayload>
+/**
+ * Model countries
+ * 
+ */
+export type countries = $Result.DefaultSelection<Prisma.$countriesPayload>
+/**
+ * Model states
+ * 
+ */
+export type states = $Result.DefaultSelection<Prisma.$statesPayload>
+/**
+ * Model cities
+ * 
+ */
+export type cities = $Result.DefaultSelection<Prisma.$citiesPayload>
 
 /**
  * Enums
@@ -455,14 +475,54 @@ export class PrismaClient<
   get ask_testing1(): Prisma.ask_testing1Delegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.asktournaments`: Exposes CRUD operations for the **asktournaments** model.
+   * `prisma.testing_date`: Exposes CRUD operations for the **testing_date** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Asktournaments
-    * const asktournaments = await prisma.asktournaments.findMany()
+    * // Fetch zero or more Testing_dates
+    * const testing_dates = await prisma.testing_date.findMany()
     * ```
     */
-  get asktournaments(): Prisma.asktournamentsDelegate<ExtArgs, ClientOptions>;
+  get testing_date(): Prisma.testing_dateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.ask_tournaments`: Exposes CRUD operations for the **ask_tournaments** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Ask_tournaments
+    * const ask_tournaments = await prisma.ask_tournaments.findMany()
+    * ```
+    */
+  get ask_tournaments(): Prisma.ask_tournamentsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.countries`: Exposes CRUD operations for the **countries** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Countries
+    * const countries = await prisma.countries.findMany()
+    * ```
+    */
+  get countries(): Prisma.countriesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.states`: Exposes CRUD operations for the **states** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more States
+    * const states = await prisma.states.findMany()
+    * ```
+    */
+  get states(): Prisma.statesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cities`: Exposes CRUD operations for the **cities** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Cities
+    * const cities = await prisma.cities.findMany()
+    * ```
+    */
+  get cities(): Prisma.citiesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -917,7 +977,11 @@ export namespace Prisma {
     ask_testing: 'ask_testing',
     ask_test_sports: 'ask_test_sports',
     ask_testing1: 'ask_testing1',
-    asktournaments: 'asktournaments'
+    testing_date: 'testing_date',
+    ask_tournaments: 'ask_tournaments',
+    countries: 'countries',
+    states: 'states',
+    cities: 'cities'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -933,7 +997,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_my_notes" | "ask_notes_detail" | "ask_testing" | "ask_test_sports" | "ask_testing1" | "asktournaments"
+      modelProps: "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_my_notes" | "ask_notes_detail" | "ask_testing" | "ask_test_sports" | "ask_testing1" | "testing_date" | "ask_tournaments" | "countries" | "states" | "cities"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2257,69 +2321,333 @@ export namespace Prisma {
           }
         }
       }
-      asktournaments: {
-        payload: Prisma.$asktournamentsPayload<ExtArgs>
-        fields: Prisma.asktournamentsFieldRefs
+      testing_date: {
+        payload: Prisma.$testing_datePayload<ExtArgs>
+        fields: Prisma.testing_dateFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.asktournamentsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload> | null
+            args: Prisma.testing_dateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.asktournamentsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
+            args: Prisma.testing_dateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload>
           }
           findFirst: {
-            args: Prisma.asktournamentsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload> | null
+            args: Prisma.testing_dateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.asktournamentsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
+            args: Prisma.testing_dateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload>
           }
           findMany: {
-            args: Prisma.asktournamentsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>[]
+            args: Prisma.testing_dateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload>[]
           }
           create: {
-            args: Prisma.asktournamentsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
+            args: Prisma.testing_dateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload>
           }
           createMany: {
-            args: Prisma.asktournamentsCreateManyArgs<ExtArgs>
+            args: Prisma.testing_dateCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.asktournamentsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
+            args: Prisma.testing_dateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload>
           }
           update: {
-            args: Prisma.asktournamentsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
+            args: Prisma.testing_dateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload>
           }
           deleteMany: {
-            args: Prisma.asktournamentsDeleteManyArgs<ExtArgs>
+            args: Prisma.testing_dateDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.asktournamentsUpdateManyArgs<ExtArgs>
+            args: Prisma.testing_dateUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.asktournamentsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$asktournamentsPayload>
+            args: Prisma.testing_dateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$testing_datePayload>
           }
           aggregate: {
-            args: Prisma.AsktournamentsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAsktournaments>
+            args: Prisma.Testing_dateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTesting_date>
           }
           groupBy: {
-            args: Prisma.asktournamentsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AsktournamentsGroupByOutputType>[]
+            args: Prisma.testing_dateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Testing_dateGroupByOutputType>[]
           }
           count: {
-            args: Prisma.asktournamentsCountArgs<ExtArgs>
-            result: $Utils.Optional<AsktournamentsCountAggregateOutputType> | number
+            args: Prisma.testing_dateCountArgs<ExtArgs>
+            result: $Utils.Optional<Testing_dateCountAggregateOutputType> | number
+          }
+        }
+      }
+      ask_tournaments: {
+        payload: Prisma.$ask_tournamentsPayload<ExtArgs>
+        fields: Prisma.ask_tournamentsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ask_tournamentsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ask_tournamentsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload>
+          }
+          findFirst: {
+            args: Prisma.ask_tournamentsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ask_tournamentsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload>
+          }
+          findMany: {
+            args: Prisma.ask_tournamentsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload>[]
+          }
+          create: {
+            args: Prisma.ask_tournamentsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload>
+          }
+          createMany: {
+            args: Prisma.ask_tournamentsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ask_tournamentsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload>
+          }
+          update: {
+            args: Prisma.ask_tournamentsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ask_tournamentsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ask_tournamentsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ask_tournamentsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_tournamentsPayload>
+          }
+          aggregate: {
+            args: Prisma.Ask_tournamentsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAsk_tournaments>
+          }
+          groupBy: {
+            args: Prisma.ask_tournamentsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Ask_tournamentsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ask_tournamentsCountArgs<ExtArgs>
+            result: $Utils.Optional<Ask_tournamentsCountAggregateOutputType> | number
+          }
+        }
+      }
+      countries: {
+        payload: Prisma.$countriesPayload<ExtArgs>
+        fields: Prisma.countriesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.countriesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.countriesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload>
+          }
+          findFirst: {
+            args: Prisma.countriesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.countriesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload>
+          }
+          findMany: {
+            args: Prisma.countriesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload>[]
+          }
+          create: {
+            args: Prisma.countriesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload>
+          }
+          createMany: {
+            args: Prisma.countriesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.countriesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload>
+          }
+          update: {
+            args: Prisma.countriesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload>
+          }
+          deleteMany: {
+            args: Prisma.countriesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.countriesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.countriesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$countriesPayload>
+          }
+          aggregate: {
+            args: Prisma.CountriesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCountries>
+          }
+          groupBy: {
+            args: Prisma.countriesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CountriesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.countriesCountArgs<ExtArgs>
+            result: $Utils.Optional<CountriesCountAggregateOutputType> | number
+          }
+        }
+      }
+      states: {
+        payload: Prisma.$statesPayload<ExtArgs>
+        fields: Prisma.statesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.statesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.statesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload>
+          }
+          findFirst: {
+            args: Prisma.statesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.statesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload>
+          }
+          findMany: {
+            args: Prisma.statesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload>[]
+          }
+          create: {
+            args: Prisma.statesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload>
+          }
+          createMany: {
+            args: Prisma.statesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.statesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload>
+          }
+          update: {
+            args: Prisma.statesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload>
+          }
+          deleteMany: {
+            args: Prisma.statesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.statesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.statesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$statesPayload>
+          }
+          aggregate: {
+            args: Prisma.StatesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStates>
+          }
+          groupBy: {
+            args: Prisma.statesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StatesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.statesCountArgs<ExtArgs>
+            result: $Utils.Optional<StatesCountAggregateOutputType> | number
+          }
+        }
+      }
+      cities: {
+        payload: Prisma.$citiesPayload<ExtArgs>
+        fields: Prisma.citiesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.citiesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.citiesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload>
+          }
+          findFirst: {
+            args: Prisma.citiesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.citiesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload>
+          }
+          findMany: {
+            args: Prisma.citiesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload>[]
+          }
+          create: {
+            args: Prisma.citiesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload>
+          }
+          createMany: {
+            args: Prisma.citiesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.citiesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload>
+          }
+          update: {
+            args: Prisma.citiesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload>
+          }
+          deleteMany: {
+            args: Prisma.citiesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.citiesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.citiesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$citiesPayload>
+          }
+          aggregate: {
+            args: Prisma.CitiesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCities>
+          }
+          groupBy: {
+            args: Prisma.citiesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CitiesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.citiesCountArgs<ExtArgs>
+            result: $Utils.Optional<CitiesCountAggregateOutputType> | number
           }
         }
       }
@@ -2435,7 +2763,11 @@ export namespace Prisma {
     ask_testing?: ask_testingOmit
     ask_test_sports?: ask_test_sportsOmit
     ask_testing1?: ask_testing1Omit
-    asktournaments?: asktournamentsOmit
+    testing_date?: testing_dateOmit
+    ask_tournaments?: ask_tournamentsOmit
+    countries?: countriesOmit
+    states?: statesOmit
+    cities?: citiesOmit
   }
 
   /* Types for Logging */
@@ -23389,601 +23721,333 @@ export namespace Prisma {
 
 
   /**
-   * Model asktournaments
+   * Model testing_date
    */
 
-  export type AggregateAsktournaments = {
-    _count: AsktournamentsCountAggregateOutputType | null
-    _avg: AsktournamentsAvgAggregateOutputType | null
-    _sum: AsktournamentsSumAggregateOutputType | null
-    _min: AsktournamentsMinAggregateOutputType | null
-    _max: AsktournamentsMaxAggregateOutputType | null
+  export type AggregateTesting_date = {
+    _count: Testing_dateCountAggregateOutputType | null
+    _avg: Testing_dateAvgAggregateOutputType | null
+    _sum: Testing_dateSumAggregateOutputType | null
+    _min: Testing_dateMinAggregateOutputType | null
+    _max: Testing_dateMaxAggregateOutputType | null
   }
 
-  export type AsktournamentsAvgAggregateOutputType = {
+  export type Testing_dateAvgAggregateOutputType = {
     id: number | null
-    user_id: number | null
-    country_id: number | null
-    state_id: number | null
-    city_id: number | null
-    tournament_fees: Decimal | null
-    participation_limit: number | null
-    publish_status: number | null
   }
 
-  export type AsktournamentsSumAggregateOutputType = {
+  export type Testing_dateSumAggregateOutputType = {
     id: number | null
-    user_id: bigint | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    tournament_fees: Decimal | null
-    participation_limit: number | null
-    publish_status: number | null
   }
 
-  export type AsktournamentsMinAggregateOutputType = {
+  export type Testing_dateMinAggregateOutputType = {
     id: number | null
-    uuid: string | null
-    sport_id: string | null
-    user_id: bigint | null
-    name: string | null
-    slug_name: string | null
-    description: string | null
-    content: string | null
-    tournament_type: string | null
-    tourstartdate: Date | null
-    tourenddate: Date | null
-    address: string | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    tourbannerimage: string | null
-    tourthumbnail: string | null
-    tourwebsite: string | null
-    tourbrochure: string | null
-    prizemoney: string | null
-    tournament_fees: Decimal | null
-    participation_limit: number | null
-    publish_status: number | null
-    created_at: Date | null
-    updated_at: Date | null
-    deleted_at: Date | null
+    startdate: Date | null
   }
 
-  export type AsktournamentsMaxAggregateOutputType = {
+  export type Testing_dateMaxAggregateOutputType = {
     id: number | null
-    uuid: string | null
-    sport_id: string | null
-    user_id: bigint | null
-    name: string | null
-    slug_name: string | null
-    description: string | null
-    content: string | null
-    tournament_type: string | null
-    tourstartdate: Date | null
-    tourenddate: Date | null
-    address: string | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    tourbannerimage: string | null
-    tourthumbnail: string | null
-    tourwebsite: string | null
-    tourbrochure: string | null
-    prizemoney: string | null
-    tournament_fees: Decimal | null
-    participation_limit: number | null
-    publish_status: number | null
-    created_at: Date | null
-    updated_at: Date | null
-    deleted_at: Date | null
+    startdate: Date | null
   }
 
-  export type AsktournamentsCountAggregateOutputType = {
+  export type Testing_dateCountAggregateOutputType = {
     id: number
-    uuid: number
-    sport_id: number
-    user_id: number
-    name: number
-    slug_name: number
-    description: number
-    content: number
-    tournament_type: number
-    tourstartdate: number
-    tourenddate: number
-    address: number
-    country_id: number
-    state_id: number
-    city_id: number
-    tourbannerimage: number
-    tourthumbnail: number
-    tourwebsite: number
-    tourbrochure: number
-    prizemoney: number
-    tournament_fees: number
-    participation_limit: number
-    publish_status: number
-    created_at: number
-    updated_at: number
-    deleted_at: number
+    startdate: number
     _all: number
   }
 
 
-  export type AsktournamentsAvgAggregateInputType = {
+  export type Testing_dateAvgAggregateInputType = {
     id?: true
-    user_id?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    tournament_fees?: true
-    participation_limit?: true
-    publish_status?: true
   }
 
-  export type AsktournamentsSumAggregateInputType = {
+  export type Testing_dateSumAggregateInputType = {
     id?: true
-    user_id?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    tournament_fees?: true
-    participation_limit?: true
-    publish_status?: true
   }
 
-  export type AsktournamentsMinAggregateInputType = {
+  export type Testing_dateMinAggregateInputType = {
     id?: true
-    uuid?: true
-    sport_id?: true
-    user_id?: true
-    name?: true
-    slug_name?: true
-    description?: true
-    content?: true
-    tournament_type?: true
-    tourstartdate?: true
-    tourenddate?: true
-    address?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    tourbannerimage?: true
-    tourthumbnail?: true
-    tourwebsite?: true
-    tourbrochure?: true
-    prizemoney?: true
-    tournament_fees?: true
-    participation_limit?: true
-    publish_status?: true
-    created_at?: true
-    updated_at?: true
-    deleted_at?: true
+    startdate?: true
   }
 
-  export type AsktournamentsMaxAggregateInputType = {
+  export type Testing_dateMaxAggregateInputType = {
     id?: true
-    uuid?: true
-    sport_id?: true
-    user_id?: true
-    name?: true
-    slug_name?: true
-    description?: true
-    content?: true
-    tournament_type?: true
-    tourstartdate?: true
-    tourenddate?: true
-    address?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    tourbannerimage?: true
-    tourthumbnail?: true
-    tourwebsite?: true
-    tourbrochure?: true
-    prizemoney?: true
-    tournament_fees?: true
-    participation_limit?: true
-    publish_status?: true
-    created_at?: true
-    updated_at?: true
-    deleted_at?: true
+    startdate?: true
   }
 
-  export type AsktournamentsCountAggregateInputType = {
+  export type Testing_dateCountAggregateInputType = {
     id?: true
-    uuid?: true
-    sport_id?: true
-    user_id?: true
-    name?: true
-    slug_name?: true
-    description?: true
-    content?: true
-    tournament_type?: true
-    tourstartdate?: true
-    tourenddate?: true
-    address?: true
-    country_id?: true
-    state_id?: true
-    city_id?: true
-    tourbannerimage?: true
-    tourthumbnail?: true
-    tourwebsite?: true
-    tourbrochure?: true
-    prizemoney?: true
-    tournament_fees?: true
-    participation_limit?: true
-    publish_status?: true
-    created_at?: true
-    updated_at?: true
-    deleted_at?: true
+    startdate?: true
     _all?: true
   }
 
-  export type AsktournamentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Testing_dateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which asktournaments to aggregate.
+     * Filter which testing_date to aggregate.
      */
-    where?: asktournamentsWhereInput
+    where?: testing_dateWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of asktournaments to fetch.
+     * Determine the order of testing_dates to fetch.
      */
-    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    orderBy?: testing_dateOrderByWithRelationInput | testing_dateOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: asktournamentsWhereUniqueInput
+    cursor?: testing_dateWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` asktournaments from the position of the cursor.
+     * Take `±n` testing_dates from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` asktournaments.
+     * Skip the first `n` testing_dates.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned asktournaments
+     * Count returned testing_dates
     **/
-    _count?: true | AsktournamentsCountAggregateInputType
+    _count?: true | Testing_dateCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: AsktournamentsAvgAggregateInputType
+    _avg?: Testing_dateAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: AsktournamentsSumAggregateInputType
+    _sum?: Testing_dateSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: AsktournamentsMinAggregateInputType
+    _min?: Testing_dateMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: AsktournamentsMaxAggregateInputType
+    _max?: Testing_dateMaxAggregateInputType
   }
 
-  export type GetAsktournamentsAggregateType<T extends AsktournamentsAggregateArgs> = {
-        [P in keyof T & keyof AggregateAsktournaments]: P extends '_count' | 'count'
+  export type GetTesting_dateAggregateType<T extends Testing_dateAggregateArgs> = {
+        [P in keyof T & keyof AggregateTesting_date]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAsktournaments[P]>
-      : GetScalarType<T[P], AggregateAsktournaments[P]>
+        : GetScalarType<T[P], AggregateTesting_date[P]>
+      : GetScalarType<T[P], AggregateTesting_date[P]>
   }
 
 
 
 
-  export type asktournamentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: asktournamentsWhereInput
-    orderBy?: asktournamentsOrderByWithAggregationInput | asktournamentsOrderByWithAggregationInput[]
-    by: AsktournamentsScalarFieldEnum[] | AsktournamentsScalarFieldEnum
-    having?: asktournamentsScalarWhereWithAggregatesInput
+  export type testing_dateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: testing_dateWhereInput
+    orderBy?: testing_dateOrderByWithAggregationInput | testing_dateOrderByWithAggregationInput[]
+    by: Testing_dateScalarFieldEnum[] | Testing_dateScalarFieldEnum
+    having?: testing_dateScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: AsktournamentsCountAggregateInputType | true
-    _avg?: AsktournamentsAvgAggregateInputType
-    _sum?: AsktournamentsSumAggregateInputType
-    _min?: AsktournamentsMinAggregateInputType
-    _max?: AsktournamentsMaxAggregateInputType
+    _count?: Testing_dateCountAggregateInputType | true
+    _avg?: Testing_dateAvgAggregateInputType
+    _sum?: Testing_dateSumAggregateInputType
+    _min?: Testing_dateMinAggregateInputType
+    _max?: Testing_dateMaxAggregateInputType
   }
 
-  export type AsktournamentsGroupByOutputType = {
+  export type Testing_dateGroupByOutputType = {
     id: number
-    uuid: string
-    sport_id: string | null
-    user_id: bigint | null
-    name: string | null
-    slug_name: string | null
-    description: string | null
-    content: string | null
-    tournament_type: string | null
-    tourstartdate: Date | null
-    tourenddate: Date | null
-    address: string | null
-    country_id: bigint | null
-    state_id: bigint | null
-    city_id: bigint | null
-    tourbannerimage: string | null
-    tourthumbnail: string | null
-    tourwebsite: string | null
-    tourbrochure: string | null
-    prizemoney: string | null
-    tournament_fees: Decimal | null
-    participation_limit: number
-    publish_status: number
-    created_at: Date | null
-    updated_at: Date | null
-    deleted_at: Date | null
-    _count: AsktournamentsCountAggregateOutputType | null
-    _avg: AsktournamentsAvgAggregateOutputType | null
-    _sum: AsktournamentsSumAggregateOutputType | null
-    _min: AsktournamentsMinAggregateOutputType | null
-    _max: AsktournamentsMaxAggregateOutputType | null
+    startdate: Date | null
+    _count: Testing_dateCountAggregateOutputType | null
+    _avg: Testing_dateAvgAggregateOutputType | null
+    _sum: Testing_dateSumAggregateOutputType | null
+    _min: Testing_dateMinAggregateOutputType | null
+    _max: Testing_dateMaxAggregateOutputType | null
   }
 
-  type GetAsktournamentsGroupByPayload<T extends asktournamentsGroupByArgs> = Prisma.PrismaPromise<
+  type GetTesting_dateGroupByPayload<T extends testing_dateGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<AsktournamentsGroupByOutputType, T['by']> &
+      PickEnumerable<Testing_dateGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof AsktournamentsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof Testing_dateGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], AsktournamentsGroupByOutputType[P]>
-            : GetScalarType<T[P], AsktournamentsGroupByOutputType[P]>
+              : GetScalarType<T[P], Testing_dateGroupByOutputType[P]>
+            : GetScalarType<T[P], Testing_dateGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type asktournamentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type testing_dateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    uuid?: boolean
-    sport_id?: boolean
-    user_id?: boolean
-    name?: boolean
-    slug_name?: boolean
-    description?: boolean
-    content?: boolean
-    tournament_type?: boolean
-    tourstartdate?: boolean
-    tourenddate?: boolean
-    address?: boolean
-    country_id?: boolean
-    state_id?: boolean
-    city_id?: boolean
-    tourbannerimage?: boolean
-    tourthumbnail?: boolean
-    tourwebsite?: boolean
-    tourbrochure?: boolean
-    prizemoney?: boolean
-    tournament_fees?: boolean
-    participation_limit?: boolean
-    publish_status?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    deleted_at?: boolean
-  }, ExtArgs["result"]["asktournaments"]>
+    startdate?: boolean
+  }, ExtArgs["result"]["testing_date"]>
 
 
 
-  export type asktournamentsSelectScalar = {
+  export type testing_dateSelectScalar = {
     id?: boolean
-    uuid?: boolean
-    sport_id?: boolean
-    user_id?: boolean
-    name?: boolean
-    slug_name?: boolean
-    description?: boolean
-    content?: boolean
-    tournament_type?: boolean
-    tourstartdate?: boolean
-    tourenddate?: boolean
-    address?: boolean
-    country_id?: boolean
-    state_id?: boolean
-    city_id?: boolean
-    tourbannerimage?: boolean
-    tourthumbnail?: boolean
-    tourwebsite?: boolean
-    tourbrochure?: boolean
-    prizemoney?: boolean
-    tournament_fees?: boolean
-    participation_limit?: boolean
-    publish_status?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    deleted_at?: boolean
+    startdate?: boolean
   }
 
-  export type asktournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "user_id" | "name" | "slug_name" | "description" | "content" | "tournament_type" | "tourstartdate" | "tourenddate" | "address" | "country_id" | "state_id" | "city_id" | "tourbannerimage" | "tourthumbnail" | "tourwebsite" | "tourbrochure" | "prizemoney" | "tournament_fees" | "participation_limit" | "publish_status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["asktournaments"]>
+  export type testing_dateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startdate", ExtArgs["result"]["testing_date"]>
 
-  export type $asktournamentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "asktournaments"
+  export type $testing_datePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "testing_date"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      uuid: string
-      sport_id: string | null
-      user_id: bigint | null
-      name: string | null
-      slug_name: string | null
-      description: string | null
-      content: string | null
-      tournament_type: string | null
-      tourstartdate: Date | null
-      tourenddate: Date | null
-      address: string | null
-      country_id: bigint | null
-      state_id: bigint | null
-      city_id: bigint | null
-      tourbannerimage: string | null
-      tourthumbnail: string | null
-      tourwebsite: string | null
-      tourbrochure: string | null
-      prizemoney: string | null
-      tournament_fees: Prisma.Decimal | null
-      participation_limit: number
-      publish_status: number
-      created_at: Date | null
-      updated_at: Date | null
-      deleted_at: Date | null
-    }, ExtArgs["result"]["asktournaments"]>
+      startdate: Date | null
+    }, ExtArgs["result"]["testing_date"]>
     composites: {}
   }
 
-  type asktournamentsGetPayload<S extends boolean | null | undefined | asktournamentsDefaultArgs> = $Result.GetResult<Prisma.$asktournamentsPayload, S>
+  type testing_dateGetPayload<S extends boolean | null | undefined | testing_dateDefaultArgs> = $Result.GetResult<Prisma.$testing_datePayload, S>
 
-  type asktournamentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<asktournamentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AsktournamentsCountAggregateInputType | true
+  type testing_dateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<testing_dateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Testing_dateCountAggregateInputType | true
     }
 
-  export interface asktournamentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['asktournaments'], meta: { name: 'asktournaments' } }
+  export interface testing_dateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['testing_date'], meta: { name: 'testing_date' } }
     /**
-     * Find zero or one Asktournaments that matches the filter.
-     * @param {asktournamentsFindUniqueArgs} args - Arguments to find a Asktournaments
+     * Find zero or one Testing_date that matches the filter.
+     * @param {testing_dateFindUniqueArgs} args - Arguments to find a Testing_date
      * @example
-     * // Get one Asktournaments
-     * const asktournaments = await prisma.asktournaments.findUnique({
+     * // Get one Testing_date
+     * const testing_date = await prisma.testing_date.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends asktournamentsFindUniqueArgs>(args: SelectSubset<T, asktournamentsFindUniqueArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends testing_dateFindUniqueArgs>(args: SelectSubset<T, testing_dateFindUniqueArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Asktournaments that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Testing_date that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {asktournamentsFindUniqueOrThrowArgs} args - Arguments to find a Asktournaments
+     * @param {testing_dateFindUniqueOrThrowArgs} args - Arguments to find a Testing_date
      * @example
-     * // Get one Asktournaments
-     * const asktournaments = await prisma.asktournaments.findUniqueOrThrow({
+     * // Get one Testing_date
+     * const testing_date = await prisma.testing_date.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends asktournamentsFindUniqueOrThrowArgs>(args: SelectSubset<T, asktournamentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends testing_dateFindUniqueOrThrowArgs>(args: SelectSubset<T, testing_dateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Asktournaments that matches the filter.
+     * Find the first Testing_date that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {asktournamentsFindFirstArgs} args - Arguments to find a Asktournaments
+     * @param {testing_dateFindFirstArgs} args - Arguments to find a Testing_date
      * @example
-     * // Get one Asktournaments
-     * const asktournaments = await prisma.asktournaments.findFirst({
+     * // Get one Testing_date
+     * const testing_date = await prisma.testing_date.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends asktournamentsFindFirstArgs>(args?: SelectSubset<T, asktournamentsFindFirstArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends testing_dateFindFirstArgs>(args?: SelectSubset<T, testing_dateFindFirstArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Asktournaments that matches the filter or
+     * Find the first Testing_date that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {asktournamentsFindFirstOrThrowArgs} args - Arguments to find a Asktournaments
+     * @param {testing_dateFindFirstOrThrowArgs} args - Arguments to find a Testing_date
      * @example
-     * // Get one Asktournaments
-     * const asktournaments = await prisma.asktournaments.findFirstOrThrow({
+     * // Get one Testing_date
+     * const testing_date = await prisma.testing_date.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends asktournamentsFindFirstOrThrowArgs>(args?: SelectSubset<T, asktournamentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends testing_dateFindFirstOrThrowArgs>(args?: SelectSubset<T, testing_dateFindFirstOrThrowArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Asktournaments that matches the filter.
+     * Find zero or more Testing_dates that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {asktournamentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {testing_dateFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Asktournaments
-     * const asktournaments = await prisma.asktournaments.findMany()
+     * // Get all Testing_dates
+     * const testing_dates = await prisma.testing_date.findMany()
      * 
-     * // Get first 10 Asktournaments
-     * const asktournaments = await prisma.asktournaments.findMany({ take: 10 })
+     * // Get first 10 Testing_dates
+     * const testing_dates = await prisma.testing_date.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const asktournamentsWithIdOnly = await prisma.asktournaments.findMany({ select: { id: true } })
+     * const testing_dateWithIdOnly = await prisma.testing_date.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends asktournamentsFindManyArgs>(args?: SelectSubset<T, asktournamentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends testing_dateFindManyArgs>(args?: SelectSubset<T, testing_dateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Asktournaments.
-     * @param {asktournamentsCreateArgs} args - Arguments to create a Asktournaments.
+     * Create a Testing_date.
+     * @param {testing_dateCreateArgs} args - Arguments to create a Testing_date.
      * @example
-     * // Create one Asktournaments
-     * const Asktournaments = await prisma.asktournaments.create({
+     * // Create one Testing_date
+     * const Testing_date = await prisma.testing_date.create({
      *   data: {
-     *     // ... data to create a Asktournaments
+     *     // ... data to create a Testing_date
      *   }
      * })
      * 
      */
-    create<T extends asktournamentsCreateArgs>(args: SelectSubset<T, asktournamentsCreateArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends testing_dateCreateArgs>(args: SelectSubset<T, testing_dateCreateArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Asktournaments.
-     * @param {asktournamentsCreateManyArgs} args - Arguments to create many Asktournaments.
+     * Create many Testing_dates.
+     * @param {testing_dateCreateManyArgs} args - Arguments to create many Testing_dates.
      * @example
-     * // Create many Asktournaments
-     * const asktournaments = await prisma.asktournaments.createMany({
+     * // Create many Testing_dates
+     * const testing_date = await prisma.testing_date.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends asktournamentsCreateManyArgs>(args?: SelectSubset<T, asktournamentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends testing_dateCreateManyArgs>(args?: SelectSubset<T, testing_dateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Asktournaments.
-     * @param {asktournamentsDeleteArgs} args - Arguments to delete one Asktournaments.
+     * Delete a Testing_date.
+     * @param {testing_dateDeleteArgs} args - Arguments to delete one Testing_date.
      * @example
-     * // Delete one Asktournaments
-     * const Asktournaments = await prisma.asktournaments.delete({
+     * // Delete one Testing_date
+     * const Testing_date = await prisma.testing_date.delete({
      *   where: {
-     *     // ... filter to delete one Asktournaments
+     *     // ... filter to delete one Testing_date
      *   }
      * })
      * 
      */
-    delete<T extends asktournamentsDeleteArgs>(args: SelectSubset<T, asktournamentsDeleteArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends testing_dateDeleteArgs>(args: SelectSubset<T, testing_dateDeleteArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Asktournaments.
-     * @param {asktournamentsUpdateArgs} args - Arguments to update one Asktournaments.
+     * Update one Testing_date.
+     * @param {testing_dateUpdateArgs} args - Arguments to update one Testing_date.
      * @example
-     * // Update one Asktournaments
-     * const asktournaments = await prisma.asktournaments.update({
+     * // Update one Testing_date
+     * const testing_date = await prisma.testing_date.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -23993,30 +24057,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends asktournamentsUpdateArgs>(args: SelectSubset<T, asktournamentsUpdateArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends testing_dateUpdateArgs>(args: SelectSubset<T, testing_dateUpdateArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Asktournaments.
-     * @param {asktournamentsDeleteManyArgs} args - Arguments to filter Asktournaments to delete.
+     * Delete zero or more Testing_dates.
+     * @param {testing_dateDeleteManyArgs} args - Arguments to filter Testing_dates to delete.
      * @example
-     * // Delete a few Asktournaments
-     * const { count } = await prisma.asktournaments.deleteMany({
+     * // Delete a few Testing_dates
+     * const { count } = await prisma.testing_date.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends asktournamentsDeleteManyArgs>(args?: SelectSubset<T, asktournamentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends testing_dateDeleteManyArgs>(args?: SelectSubset<T, testing_dateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Asktournaments.
+     * Update zero or more Testing_dates.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {asktournamentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {testing_dateUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Asktournaments
-     * const asktournaments = await prisma.asktournaments.updateMany({
+     * // Update many Testing_dates
+     * const testing_date = await prisma.testing_date.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -24026,56 +24090,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends asktournamentsUpdateManyArgs>(args: SelectSubset<T, asktournamentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends testing_dateUpdateManyArgs>(args: SelectSubset<T, testing_dateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Asktournaments.
-     * @param {asktournamentsUpsertArgs} args - Arguments to update or create a Asktournaments.
+     * Create or update one Testing_date.
+     * @param {testing_dateUpsertArgs} args - Arguments to update or create a Testing_date.
      * @example
-     * // Update or create a Asktournaments
-     * const asktournaments = await prisma.asktournaments.upsert({
+     * // Update or create a Testing_date
+     * const testing_date = await prisma.testing_date.upsert({
      *   create: {
-     *     // ... data to create a Asktournaments
+     *     // ... data to create a Testing_date
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Asktournaments we want to update
+     *     // ... the filter for the Testing_date we want to update
      *   }
      * })
      */
-    upsert<T extends asktournamentsUpsertArgs>(args: SelectSubset<T, asktournamentsUpsertArgs<ExtArgs>>): Prisma__asktournamentsClient<$Result.GetResult<Prisma.$asktournamentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends testing_dateUpsertArgs>(args: SelectSubset<T, testing_dateUpsertArgs<ExtArgs>>): Prisma__testing_dateClient<$Result.GetResult<Prisma.$testing_datePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Asktournaments.
+     * Count the number of Testing_dates.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {asktournamentsCountArgs} args - Arguments to filter Asktournaments to count.
+     * @param {testing_dateCountArgs} args - Arguments to filter Testing_dates to count.
      * @example
-     * // Count the number of Asktournaments
-     * const count = await prisma.asktournaments.count({
+     * // Count the number of Testing_dates
+     * const count = await prisma.testing_date.count({
      *   where: {
-     *     // ... the filter for the Asktournaments we want to count
+     *     // ... the filter for the Testing_dates we want to count
      *   }
      * })
     **/
-    count<T extends asktournamentsCountArgs>(
-      args?: Subset<T, asktournamentsCountArgs>,
+    count<T extends testing_dateCountArgs>(
+      args?: Subset<T, testing_dateCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], AsktournamentsCountAggregateOutputType>
+          : GetScalarType<T['select'], Testing_dateCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Asktournaments.
+     * Allows you to perform aggregations operations on a Testing_date.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AsktournamentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {Testing_dateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -24095,13 +24159,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends AsktournamentsAggregateArgs>(args: Subset<T, AsktournamentsAggregateArgs>): Prisma.PrismaPromise<GetAsktournamentsAggregateType<T>>
+    aggregate<T extends Testing_dateAggregateArgs>(args: Subset<T, Testing_dateAggregateArgs>): Prisma.PrismaPromise<GetTesting_dateAggregateType<T>>
 
     /**
-     * Group by Asktournaments.
+     * Group by Testing_date.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {asktournamentsGroupByArgs} args - Group by arguments.
+     * @param {testing_dateGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -24116,14 +24180,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends asktournamentsGroupByArgs,
+      T extends testing_dateGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: asktournamentsGroupByArgs['orderBy'] }
-        : { orderBy?: asktournamentsGroupByArgs['orderBy'] },
+        ? { orderBy: testing_dateGroupByArgs['orderBy'] }
+        : { orderBy?: testing_dateGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -24172,20 +24236,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, asktournamentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsktournamentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, testing_dateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTesting_dateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the asktournaments model
+   * Fields of the testing_date model
    */
-  readonly fields: asktournamentsFieldRefs;
+  readonly fields: testing_dateFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for asktournaments.
+   * The delegate class that acts as a "Promise-like" for testing_date.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__asktournamentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__testing_dateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -24213,353 +24277,4426 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the asktournaments model
+   * Fields of the testing_date model
    */
-  interface asktournamentsFieldRefs {
-    readonly id: FieldRef<"asktournaments", 'Int'>
-    readonly uuid: FieldRef<"asktournaments", 'String'>
-    readonly sport_id: FieldRef<"asktournaments", 'String'>
-    readonly user_id: FieldRef<"asktournaments", 'BigInt'>
-    readonly name: FieldRef<"asktournaments", 'String'>
-    readonly slug_name: FieldRef<"asktournaments", 'String'>
-    readonly description: FieldRef<"asktournaments", 'String'>
-    readonly content: FieldRef<"asktournaments", 'String'>
-    readonly tournament_type: FieldRef<"asktournaments", 'String'>
-    readonly tourstartdate: FieldRef<"asktournaments", 'DateTime'>
-    readonly tourenddate: FieldRef<"asktournaments", 'DateTime'>
-    readonly address: FieldRef<"asktournaments", 'String'>
-    readonly country_id: FieldRef<"asktournaments", 'BigInt'>
-    readonly state_id: FieldRef<"asktournaments", 'BigInt'>
-    readonly city_id: FieldRef<"asktournaments", 'BigInt'>
-    readonly tourbannerimage: FieldRef<"asktournaments", 'String'>
-    readonly tourthumbnail: FieldRef<"asktournaments", 'String'>
-    readonly tourwebsite: FieldRef<"asktournaments", 'String'>
-    readonly tourbrochure: FieldRef<"asktournaments", 'String'>
-    readonly prizemoney: FieldRef<"asktournaments", 'String'>
-    readonly tournament_fees: FieldRef<"asktournaments", 'Decimal'>
-    readonly participation_limit: FieldRef<"asktournaments", 'Int'>
-    readonly publish_status: FieldRef<"asktournaments", 'Int'>
-    readonly created_at: FieldRef<"asktournaments", 'DateTime'>
-    readonly updated_at: FieldRef<"asktournaments", 'DateTime'>
-    readonly deleted_at: FieldRef<"asktournaments", 'DateTime'>
+  interface testing_dateFieldRefs {
+    readonly id: FieldRef<"testing_date", 'Int'>
+    readonly startdate: FieldRef<"testing_date", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * asktournaments findUnique
+   * testing_date findUnique
    */
-  export type asktournamentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * Filter, which asktournaments to fetch.
+     * Filter, which testing_date to fetch.
      */
-    where: asktournamentsWhereUniqueInput
+    where: testing_dateWhereUniqueInput
   }
 
   /**
-   * asktournaments findUniqueOrThrow
+   * testing_date findUniqueOrThrow
    */
-  export type asktournamentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * Filter, which asktournaments to fetch.
+     * Filter, which testing_date to fetch.
      */
-    where: asktournamentsWhereUniqueInput
+    where: testing_dateWhereUniqueInput
   }
 
   /**
-   * asktournaments findFirst
+   * testing_date findFirst
    */
-  export type asktournamentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * Filter, which asktournaments to fetch.
+     * Filter, which testing_date to fetch.
      */
-    where?: asktournamentsWhereInput
+    where?: testing_dateWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of asktournaments to fetch.
+     * Determine the order of testing_dates to fetch.
      */
-    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    orderBy?: testing_dateOrderByWithRelationInput | testing_dateOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for asktournaments.
+     * Sets the position for searching for testing_dates.
      */
-    cursor?: asktournamentsWhereUniqueInput
+    cursor?: testing_dateWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` asktournaments from the position of the cursor.
+     * Take `±n` testing_dates from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` asktournaments.
+     * Skip the first `n` testing_dates.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of asktournaments.
+     * Filter by unique combinations of testing_dates.
      */
-    distinct?: AsktournamentsScalarFieldEnum | AsktournamentsScalarFieldEnum[]
+    distinct?: Testing_dateScalarFieldEnum | Testing_dateScalarFieldEnum[]
   }
 
   /**
-   * asktournaments findFirstOrThrow
+   * testing_date findFirstOrThrow
    */
-  export type asktournamentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * Filter, which asktournaments to fetch.
+     * Filter, which testing_date to fetch.
      */
-    where?: asktournamentsWhereInput
+    where?: testing_dateWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of asktournaments to fetch.
+     * Determine the order of testing_dates to fetch.
      */
-    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    orderBy?: testing_dateOrderByWithRelationInput | testing_dateOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for asktournaments.
+     * Sets the position for searching for testing_dates.
      */
-    cursor?: asktournamentsWhereUniqueInput
+    cursor?: testing_dateWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` asktournaments from the position of the cursor.
+     * Take `±n` testing_dates from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` asktournaments.
+     * Skip the first `n` testing_dates.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of asktournaments.
+     * Filter by unique combinations of testing_dates.
      */
-    distinct?: AsktournamentsScalarFieldEnum | AsktournamentsScalarFieldEnum[]
+    distinct?: Testing_dateScalarFieldEnum | Testing_dateScalarFieldEnum[]
   }
 
   /**
-   * asktournaments findMany
+   * testing_date findMany
    */
-  export type asktournamentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * Filter, which asktournaments to fetch.
+     * Filter, which testing_dates to fetch.
      */
-    where?: asktournamentsWhereInput
+    where?: testing_dateWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of asktournaments to fetch.
+     * Determine the order of testing_dates to fetch.
      */
-    orderBy?: asktournamentsOrderByWithRelationInput | asktournamentsOrderByWithRelationInput[]
+    orderBy?: testing_dateOrderByWithRelationInput | testing_dateOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing asktournaments.
+     * Sets the position for listing testing_dates.
      */
-    cursor?: asktournamentsWhereUniqueInput
+    cursor?: testing_dateWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` asktournaments from the position of the cursor.
+     * Take `±n` testing_dates from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` asktournaments.
+     * Skip the first `n` testing_dates.
      */
     skip?: number
-    distinct?: AsktournamentsScalarFieldEnum | AsktournamentsScalarFieldEnum[]
+    distinct?: Testing_dateScalarFieldEnum | Testing_dateScalarFieldEnum[]
   }
 
   /**
-   * asktournaments create
+   * testing_date create
    */
-  export type asktournamentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * The data needed to create a asktournaments.
+     * The data needed to create a testing_date.
      */
-    data: XOR<asktournamentsCreateInput, asktournamentsUncheckedCreateInput>
+    data?: XOR<testing_dateCreateInput, testing_dateUncheckedCreateInput>
   }
 
   /**
-   * asktournaments createMany
+   * testing_date createMany
    */
-  export type asktournamentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many asktournaments.
+     * The data used to create many testing_dates.
      */
-    data: asktournamentsCreateManyInput | asktournamentsCreateManyInput[]
+    data: testing_dateCreateManyInput | testing_dateCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * asktournaments update
+   * testing_date update
    */
-  export type asktournamentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * The data needed to update a asktournaments.
+     * The data needed to update a testing_date.
      */
-    data: XOR<asktournamentsUpdateInput, asktournamentsUncheckedUpdateInput>
+    data: XOR<testing_dateUpdateInput, testing_dateUncheckedUpdateInput>
     /**
-     * Choose, which asktournaments to update.
+     * Choose, which testing_date to update.
      */
-    where: asktournamentsWhereUniqueInput
+    where: testing_dateWhereUniqueInput
   }
 
   /**
-   * asktournaments updateMany
+   * testing_date updateMany
    */
-  export type asktournamentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update asktournaments.
+     * The data used to update testing_dates.
      */
-    data: XOR<asktournamentsUpdateManyMutationInput, asktournamentsUncheckedUpdateManyInput>
+    data: XOR<testing_dateUpdateManyMutationInput, testing_dateUncheckedUpdateManyInput>
     /**
-     * Filter which asktournaments to update
+     * Filter which testing_dates to update
      */
-    where?: asktournamentsWhereInput
+    where?: testing_dateWhereInput
     /**
-     * Limit how many asktournaments to update.
+     * Limit how many testing_dates to update.
      */
     limit?: number
   }
 
   /**
-   * asktournaments upsert
+   * testing_date upsert
    */
-  export type asktournamentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * The filter to search for the asktournaments to update in case it exists.
+     * The filter to search for the testing_date to update in case it exists.
      */
-    where: asktournamentsWhereUniqueInput
+    where: testing_dateWhereUniqueInput
     /**
-     * In case the asktournaments found by the `where` argument doesn't exist, create a new asktournaments with this data.
+     * In case the testing_date found by the `where` argument doesn't exist, create a new testing_date with this data.
      */
-    create: XOR<asktournamentsCreateInput, asktournamentsUncheckedCreateInput>
+    create: XOR<testing_dateCreateInput, testing_dateUncheckedCreateInput>
     /**
-     * In case the asktournaments was found with the provided `where` argument, update it with this data.
+     * In case the testing_date was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<asktournamentsUpdateInput, asktournamentsUncheckedUpdateInput>
+    update: XOR<testing_dateUpdateInput, testing_dateUncheckedUpdateInput>
   }
 
   /**
-   * asktournaments delete
+   * testing_date delete
    */
-  export type asktournamentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
     /**
-     * Filter which asktournaments to delete.
+     * Filter which testing_date to delete.
      */
-    where: asktournamentsWhereUniqueInput
+    where: testing_dateWhereUniqueInput
   }
 
   /**
-   * asktournaments deleteMany
+   * testing_date deleteMany
    */
-  export type asktournamentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which asktournaments to delete
+     * Filter which testing_dates to delete
      */
-    where?: asktournamentsWhereInput
+    where?: testing_dateWhereInput
     /**
-     * Limit how many asktournaments to delete.
+     * Limit how many testing_dates to delete.
      */
     limit?: number
   }
 
   /**
-   * asktournaments without action
+   * testing_date without action
    */
-  export type asktournamentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type testing_dateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the asktournaments
+     * Select specific fields to fetch from the testing_date
      */
-    select?: asktournamentsSelect<ExtArgs> | null
+    select?: testing_dateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the asktournaments
+     * Omit specific fields from the testing_date
      */
-    omit?: asktournamentsOmit<ExtArgs> | null
+    omit?: testing_dateOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ask_tournaments
+   */
+
+  export type AggregateAsk_tournaments = {
+    _count: Ask_tournamentsCountAggregateOutputType | null
+    _avg: Ask_tournamentsAvgAggregateOutputType | null
+    _sum: Ask_tournamentsSumAggregateOutputType | null
+    _min: Ask_tournamentsMinAggregateOutputType | null
+    _max: Ask_tournamentsMaxAggregateOutputType | null
+  }
+
+  export type Ask_tournamentsAvgAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    country_id: number | null
+    state_id: number | null
+    city_id: number | null
+    participation_limit: number | null
+    publish_status: number | null
+  }
+
+  export type Ask_tournamentsSumAggregateOutputType = {
+    id: number | null
+    user_id: bigint | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    participation_limit: number | null
+    publish_status: number | null
+  }
+
+  export type Ask_tournamentsMinAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    sport_id: string | null
+    user_id: bigint | null
+    name: string | null
+    slug_name: string | null
+    description: string | null
+    content: string | null
+    tournament_type: string | null
+    startdate: Date | null
+    enddate: Date | null
+    address: string | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    bannerimage: string | null
+    thumbnail: string | null
+    url: string | null
+    brochure: string | null
+    prize: string | null
+    fees: string | null
+    participation_limit: number | null
+    publish_status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type Ask_tournamentsMaxAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    sport_id: string | null
+    user_id: bigint | null
+    name: string | null
+    slug_name: string | null
+    description: string | null
+    content: string | null
+    tournament_type: string | null
+    startdate: Date | null
+    enddate: Date | null
+    address: string | null
+    country_id: bigint | null
+    state_id: bigint | null
+    city_id: bigint | null
+    bannerimage: string | null
+    thumbnail: string | null
+    url: string | null
+    brochure: string | null
+    prize: string | null
+    fees: string | null
+    participation_limit: number | null
+    publish_status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type Ask_tournamentsCountAggregateOutputType = {
+    id: number
+    uuid: number
+    sport_id: number
+    user_id: number
+    name: number
+    slug_name: number
+    description: number
+    content: number
+    tournament_type: number
+    startdate: number
+    enddate: number
+    address: number
+    country_id: number
+    state_id: number
+    city_id: number
+    bannerimage: number
+    thumbnail: number
+    url: number
+    brochure: number
+    prize: number
+    fees: number
+    participation_limit: number
+    publish_status: number
+    created_at: number
+    updated_at: number
+    deleted_at: number
+    _all: number
+  }
+
+
+  export type Ask_tournamentsAvgAggregateInputType = {
+    id?: true
+    user_id?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    participation_limit?: true
+    publish_status?: true
+  }
+
+  export type Ask_tournamentsSumAggregateInputType = {
+    id?: true
+    user_id?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    participation_limit?: true
+    publish_status?: true
+  }
+
+  export type Ask_tournamentsMinAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    user_id?: true
+    name?: true
+    slug_name?: true
+    description?: true
+    content?: true
+    tournament_type?: true
+    startdate?: true
+    enddate?: true
+    address?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    bannerimage?: true
+    thumbnail?: true
+    url?: true
+    brochure?: true
+    prize?: true
+    fees?: true
+    participation_limit?: true
+    publish_status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type Ask_tournamentsMaxAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    user_id?: true
+    name?: true
+    slug_name?: true
+    description?: true
+    content?: true
+    tournament_type?: true
+    startdate?: true
+    enddate?: true
+    address?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    bannerimage?: true
+    thumbnail?: true
+    url?: true
+    brochure?: true
+    prize?: true
+    fees?: true
+    participation_limit?: true
+    publish_status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type Ask_tournamentsCountAggregateInputType = {
+    id?: true
+    uuid?: true
+    sport_id?: true
+    user_id?: true
+    name?: true
+    slug_name?: true
+    description?: true
+    content?: true
+    tournament_type?: true
+    startdate?: true
+    enddate?: true
+    address?: true
+    country_id?: true
+    state_id?: true
+    city_id?: true
+    bannerimage?: true
+    thumbnail?: true
+    url?: true
+    brochure?: true
+    prize?: true
+    fees?: true
+    participation_limit?: true
+    publish_status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+    _all?: true
+  }
+
+  export type Ask_tournamentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ask_tournaments to aggregate.
+     */
+    where?: ask_tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_tournaments to fetch.
+     */
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ask_tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_tournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ask_tournaments
+    **/
+    _count?: true | Ask_tournamentsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Ask_tournamentsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Ask_tournamentsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Ask_tournamentsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Ask_tournamentsMaxAggregateInputType
+  }
+
+  export type GetAsk_tournamentsAggregateType<T extends Ask_tournamentsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAsk_tournaments]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAsk_tournaments[P]>
+      : GetScalarType<T[P], AggregateAsk_tournaments[P]>
+  }
+
+
+
+
+  export type ask_tournamentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_tournamentsWhereInput
+    orderBy?: ask_tournamentsOrderByWithAggregationInput | ask_tournamentsOrderByWithAggregationInput[]
+    by: Ask_tournamentsScalarFieldEnum[] | Ask_tournamentsScalarFieldEnum
+    having?: ask_tournamentsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Ask_tournamentsCountAggregateInputType | true
+    _avg?: Ask_tournamentsAvgAggregateInputType
+    _sum?: Ask_tournamentsSumAggregateInputType
+    _min?: Ask_tournamentsMinAggregateInputType
+    _max?: Ask_tournamentsMaxAggregateInputType
+  }
+
+  export type Ask_tournamentsGroupByOutputType = {
+    id: number
+    uuid: string
+    sport_id: string
+    user_id: bigint | null
+    name: string
+    slug_name: string
+    description: string | null
+    content: string | null
+    tournament_type: string | null
+    startdate: Date | null
+    enddate: Date | null
+    address: string | null
+    country_id: bigint
+    state_id: bigint
+    city_id: bigint
+    bannerimage: string | null
+    thumbnail: string | null
+    url: string | null
+    brochure: string | null
+    prize: string | null
+    fees: string | null
+    participation_limit: number | null
+    publish_status: number
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+    _count: Ask_tournamentsCountAggregateOutputType | null
+    _avg: Ask_tournamentsAvgAggregateOutputType | null
+    _sum: Ask_tournamentsSumAggregateOutputType | null
+    _min: Ask_tournamentsMinAggregateOutputType | null
+    _max: Ask_tournamentsMaxAggregateOutputType | null
+  }
+
+  type GetAsk_tournamentsGroupByPayload<T extends ask_tournamentsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Ask_tournamentsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Ask_tournamentsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Ask_tournamentsGroupByOutputType[P]>
+            : GetScalarType<T[P], Ask_tournamentsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ask_tournamentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    uuid?: boolean
+    sport_id?: boolean
+    user_id?: boolean
+    name?: boolean
+    slug_name?: boolean
+    description?: boolean
+    content?: boolean
+    tournament_type?: boolean
+    startdate?: boolean
+    enddate?: boolean
+    address?: boolean
+    country_id?: boolean
+    state_id?: boolean
+    city_id?: boolean
+    bannerimage?: boolean
+    thumbnail?: boolean
+    url?: boolean
+    brochure?: boolean
+    prize?: boolean
+    fees?: boolean
+    participation_limit?: boolean
+    publish_status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }, ExtArgs["result"]["ask_tournaments"]>
+
+
+
+  export type ask_tournamentsSelectScalar = {
+    id?: boolean
+    uuid?: boolean
+    sport_id?: boolean
+    user_id?: boolean
+    name?: boolean
+    slug_name?: boolean
+    description?: boolean
+    content?: boolean
+    tournament_type?: boolean
+    startdate?: boolean
+    enddate?: boolean
+    address?: boolean
+    country_id?: boolean
+    state_id?: boolean
+    city_id?: boolean
+    bannerimage?: boolean
+    thumbnail?: boolean
+    url?: boolean
+    brochure?: boolean
+    prize?: boolean
+    fees?: boolean
+    participation_limit?: boolean
+    publish_status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }
+
+  export type ask_tournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "user_id" | "name" | "slug_name" | "description" | "content" | "tournament_type" | "startdate" | "enddate" | "address" | "country_id" | "state_id" | "city_id" | "bannerimage" | "thumbnail" | "url" | "brochure" | "prize" | "fees" | "participation_limit" | "publish_status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["ask_tournaments"]>
+
+  export type $ask_tournamentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ask_tournaments"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      uuid: string
+      sport_id: string
+      user_id: bigint | null
+      name: string
+      slug_name: string
+      description: string | null
+      content: string | null
+      tournament_type: string | null
+      startdate: Date | null
+      enddate: Date | null
+      address: string | null
+      country_id: bigint
+      state_id: bigint
+      city_id: bigint
+      bannerimage: string | null
+      thumbnail: string | null
+      url: string | null
+      brochure: string | null
+      prize: string | null
+      fees: string | null
+      participation_limit: number | null
+      publish_status: number
+      created_at: Date | null
+      updated_at: Date | null
+      deleted_at: Date | null
+    }, ExtArgs["result"]["ask_tournaments"]>
+    composites: {}
+  }
+
+  type ask_tournamentsGetPayload<S extends boolean | null | undefined | ask_tournamentsDefaultArgs> = $Result.GetResult<Prisma.$ask_tournamentsPayload, S>
+
+  type ask_tournamentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ask_tournamentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Ask_tournamentsCountAggregateInputType | true
+    }
+
+  export interface ask_tournamentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ask_tournaments'], meta: { name: 'ask_tournaments' } }
+    /**
+     * Find zero or one Ask_tournaments that matches the filter.
+     * @param {ask_tournamentsFindUniqueArgs} args - Arguments to find a Ask_tournaments
+     * @example
+     * // Get one Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ask_tournamentsFindUniqueArgs>(args: SelectSubset<T, ask_tournamentsFindUniqueArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Ask_tournaments that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ask_tournamentsFindUniqueOrThrowArgs} args - Arguments to find a Ask_tournaments
+     * @example
+     * // Get one Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ask_tournamentsFindUniqueOrThrowArgs>(args: SelectSubset<T, ask_tournamentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Ask_tournaments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_tournamentsFindFirstArgs} args - Arguments to find a Ask_tournaments
+     * @example
+     * // Get one Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ask_tournamentsFindFirstArgs>(args?: SelectSubset<T, ask_tournamentsFindFirstArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Ask_tournaments that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_tournamentsFindFirstOrThrowArgs} args - Arguments to find a Ask_tournaments
+     * @example
+     * // Get one Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ask_tournamentsFindFirstOrThrowArgs>(args?: SelectSubset<T, ask_tournamentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Ask_tournaments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_tournamentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.findMany()
+     * 
+     * // Get first 10 Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ask_tournamentsWithIdOnly = await prisma.ask_tournaments.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ask_tournamentsFindManyArgs>(args?: SelectSubset<T, ask_tournamentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Ask_tournaments.
+     * @param {ask_tournamentsCreateArgs} args - Arguments to create a Ask_tournaments.
+     * @example
+     * // Create one Ask_tournaments
+     * const Ask_tournaments = await prisma.ask_tournaments.create({
+     *   data: {
+     *     // ... data to create a Ask_tournaments
+     *   }
+     * })
+     * 
+     */
+    create<T extends ask_tournamentsCreateArgs>(args: SelectSubset<T, ask_tournamentsCreateArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Ask_tournaments.
+     * @param {ask_tournamentsCreateManyArgs} args - Arguments to create many Ask_tournaments.
+     * @example
+     * // Create many Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ask_tournamentsCreateManyArgs>(args?: SelectSubset<T, ask_tournamentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Ask_tournaments.
+     * @param {ask_tournamentsDeleteArgs} args - Arguments to delete one Ask_tournaments.
+     * @example
+     * // Delete one Ask_tournaments
+     * const Ask_tournaments = await prisma.ask_tournaments.delete({
+     *   where: {
+     *     // ... filter to delete one Ask_tournaments
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ask_tournamentsDeleteArgs>(args: SelectSubset<T, ask_tournamentsDeleteArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Ask_tournaments.
+     * @param {ask_tournamentsUpdateArgs} args - Arguments to update one Ask_tournaments.
+     * @example
+     * // Update one Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ask_tournamentsUpdateArgs>(args: SelectSubset<T, ask_tournamentsUpdateArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Ask_tournaments.
+     * @param {ask_tournamentsDeleteManyArgs} args - Arguments to filter Ask_tournaments to delete.
+     * @example
+     * // Delete a few Ask_tournaments
+     * const { count } = await prisma.ask_tournaments.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ask_tournamentsDeleteManyArgs>(args?: SelectSubset<T, ask_tournamentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Ask_tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_tournamentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ask_tournamentsUpdateManyArgs>(args: SelectSubset<T, ask_tournamentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Ask_tournaments.
+     * @param {ask_tournamentsUpsertArgs} args - Arguments to update or create a Ask_tournaments.
+     * @example
+     * // Update or create a Ask_tournaments
+     * const ask_tournaments = await prisma.ask_tournaments.upsert({
+     *   create: {
+     *     // ... data to create a Ask_tournaments
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Ask_tournaments we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ask_tournamentsUpsertArgs>(args: SelectSubset<T, ask_tournamentsUpsertArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Ask_tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_tournamentsCountArgs} args - Arguments to filter Ask_tournaments to count.
+     * @example
+     * // Count the number of Ask_tournaments
+     * const count = await prisma.ask_tournaments.count({
+     *   where: {
+     *     // ... the filter for the Ask_tournaments we want to count
+     *   }
+     * })
+    **/
+    count<T extends ask_tournamentsCountArgs>(
+      args?: Subset<T, ask_tournamentsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Ask_tournamentsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Ask_tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Ask_tournamentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Ask_tournamentsAggregateArgs>(args: Subset<T, Ask_tournamentsAggregateArgs>): Prisma.PrismaPromise<GetAsk_tournamentsAggregateType<T>>
+
+    /**
+     * Group by Ask_tournaments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_tournamentsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ask_tournamentsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ask_tournamentsGroupByArgs['orderBy'] }
+        : { orderBy?: ask_tournamentsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ask_tournamentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsk_tournamentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ask_tournaments model
+   */
+  readonly fields: ask_tournamentsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ask_tournaments.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ask_tournamentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ask_tournaments model
+   */
+  interface ask_tournamentsFieldRefs {
+    readonly id: FieldRef<"ask_tournaments", 'Int'>
+    readonly uuid: FieldRef<"ask_tournaments", 'String'>
+    readonly sport_id: FieldRef<"ask_tournaments", 'String'>
+    readonly user_id: FieldRef<"ask_tournaments", 'BigInt'>
+    readonly name: FieldRef<"ask_tournaments", 'String'>
+    readonly slug_name: FieldRef<"ask_tournaments", 'String'>
+    readonly description: FieldRef<"ask_tournaments", 'String'>
+    readonly content: FieldRef<"ask_tournaments", 'String'>
+    readonly tournament_type: FieldRef<"ask_tournaments", 'String'>
+    readonly startdate: FieldRef<"ask_tournaments", 'DateTime'>
+    readonly enddate: FieldRef<"ask_tournaments", 'DateTime'>
+    readonly address: FieldRef<"ask_tournaments", 'String'>
+    readonly country_id: FieldRef<"ask_tournaments", 'BigInt'>
+    readonly state_id: FieldRef<"ask_tournaments", 'BigInt'>
+    readonly city_id: FieldRef<"ask_tournaments", 'BigInt'>
+    readonly bannerimage: FieldRef<"ask_tournaments", 'String'>
+    readonly thumbnail: FieldRef<"ask_tournaments", 'String'>
+    readonly url: FieldRef<"ask_tournaments", 'String'>
+    readonly brochure: FieldRef<"ask_tournaments", 'String'>
+    readonly prize: FieldRef<"ask_tournaments", 'String'>
+    readonly fees: FieldRef<"ask_tournaments", 'String'>
+    readonly participation_limit: FieldRef<"ask_tournaments", 'Int'>
+    readonly publish_status: FieldRef<"ask_tournaments", 'Int'>
+    readonly created_at: FieldRef<"ask_tournaments", 'DateTime'>
+    readonly updated_at: FieldRef<"ask_tournaments", 'DateTime'>
+    readonly deleted_at: FieldRef<"ask_tournaments", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ask_tournaments findUnique
+   */
+  export type ask_tournamentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_tournaments to fetch.
+     */
+    where: ask_tournamentsWhereUniqueInput
+  }
+
+  /**
+   * ask_tournaments findUniqueOrThrow
+   */
+  export type ask_tournamentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_tournaments to fetch.
+     */
+    where: ask_tournamentsWhereUniqueInput
+  }
+
+  /**
+   * ask_tournaments findFirst
+   */
+  export type ask_tournamentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_tournaments to fetch.
+     */
+    where?: ask_tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_tournaments to fetch.
+     */
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ask_tournaments.
+     */
+    cursor?: ask_tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_tournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ask_tournaments.
+     */
+    distinct?: Ask_tournamentsScalarFieldEnum | Ask_tournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * ask_tournaments findFirstOrThrow
+   */
+  export type ask_tournamentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_tournaments to fetch.
+     */
+    where?: ask_tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_tournaments to fetch.
+     */
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ask_tournaments.
+     */
+    cursor?: ask_tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_tournaments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ask_tournaments.
+     */
+    distinct?: Ask_tournamentsScalarFieldEnum | Ask_tournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * ask_tournaments findMany
+   */
+  export type ask_tournamentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_tournaments to fetch.
+     */
+    where?: ask_tournamentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_tournaments to fetch.
+     */
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ask_tournaments.
+     */
+    cursor?: ask_tournamentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_tournaments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_tournaments.
+     */
+    skip?: number
+    distinct?: Ask_tournamentsScalarFieldEnum | Ask_tournamentsScalarFieldEnum[]
+  }
+
+  /**
+   * ask_tournaments create
+   */
+  export type ask_tournamentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ask_tournaments.
+     */
+    data: XOR<ask_tournamentsCreateInput, ask_tournamentsUncheckedCreateInput>
+  }
+
+  /**
+   * ask_tournaments createMany
+   */
+  export type ask_tournamentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ask_tournaments.
+     */
+    data: ask_tournamentsCreateManyInput | ask_tournamentsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ask_tournaments update
+   */
+  export type ask_tournamentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ask_tournaments.
+     */
+    data: XOR<ask_tournamentsUpdateInput, ask_tournamentsUncheckedUpdateInput>
+    /**
+     * Choose, which ask_tournaments to update.
+     */
+    where: ask_tournamentsWhereUniqueInput
+  }
+
+  /**
+   * ask_tournaments updateMany
+   */
+  export type ask_tournamentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ask_tournaments.
+     */
+    data: XOR<ask_tournamentsUpdateManyMutationInput, ask_tournamentsUncheckedUpdateManyInput>
+    /**
+     * Filter which ask_tournaments to update
+     */
+    where?: ask_tournamentsWhereInput
+    /**
+     * Limit how many ask_tournaments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ask_tournaments upsert
+   */
+  export type ask_tournamentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ask_tournaments to update in case it exists.
+     */
+    where: ask_tournamentsWhereUniqueInput
+    /**
+     * In case the ask_tournaments found by the `where` argument doesn't exist, create a new ask_tournaments with this data.
+     */
+    create: XOR<ask_tournamentsCreateInput, ask_tournamentsUncheckedCreateInput>
+    /**
+     * In case the ask_tournaments was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ask_tournamentsUpdateInput, ask_tournamentsUncheckedUpdateInput>
+  }
+
+  /**
+   * ask_tournaments delete
+   */
+  export type ask_tournamentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Filter which ask_tournaments to delete.
+     */
+    where: ask_tournamentsWhereUniqueInput
+  }
+
+  /**
+   * ask_tournaments deleteMany
+   */
+  export type ask_tournamentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ask_tournaments to delete
+     */
+    where?: ask_tournamentsWhereInput
+    /**
+     * Limit how many ask_tournaments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ask_tournaments without action
+   */
+  export type ask_tournamentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model countries
+   */
+
+  export type AggregateCountries = {
+    _count: CountriesCountAggregateOutputType | null
+    _avg: CountriesAvgAggregateOutputType | null
+    _sum: CountriesSumAggregateOutputType | null
+    _min: CountriesMinAggregateOutputType | null
+    _max: CountriesMaxAggregateOutputType | null
+  }
+
+  export type CountriesAvgAggregateOutputType = {
+    id: number | null
+    status: number | null
+  }
+
+  export type CountriesSumAggregateOutputType = {
+    id: bigint | null
+    status: number | null
+  }
+
+  export type CountriesMinAggregateOutputType = {
+    id: bigint | null
+    name: string | null
+    iso_2: string | null
+    iso_3: string | null
+    phone_code: string | null
+    currency: string | null
+    flag: string | null
+    status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type CountriesMaxAggregateOutputType = {
+    id: bigint | null
+    name: string | null
+    iso_2: string | null
+    iso_3: string | null
+    phone_code: string | null
+    currency: string | null
+    flag: string | null
+    status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type CountriesCountAggregateOutputType = {
+    id: number
+    name: number
+    iso_2: number
+    iso_3: number
+    phone_code: number
+    currency: number
+    flag: number
+    status: number
+    created_at: number
+    updated_at: number
+    deleted_at: number
+    _all: number
+  }
+
+
+  export type CountriesAvgAggregateInputType = {
+    id?: true
+    status?: true
+  }
+
+  export type CountriesSumAggregateInputType = {
+    id?: true
+    status?: true
+  }
+
+  export type CountriesMinAggregateInputType = {
+    id?: true
+    name?: true
+    iso_2?: true
+    iso_3?: true
+    phone_code?: true
+    currency?: true
+    flag?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type CountriesMaxAggregateInputType = {
+    id?: true
+    name?: true
+    iso_2?: true
+    iso_3?: true
+    phone_code?: true
+    currency?: true
+    flag?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type CountriesCountAggregateInputType = {
+    id?: true
+    name?: true
+    iso_2?: true
+    iso_3?: true
+    phone_code?: true
+    currency?: true
+    flag?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+    _all?: true
+  }
+
+  export type CountriesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which countries to aggregate.
+     */
+    where?: countriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of countries to fetch.
+     */
+    orderBy?: countriesOrderByWithRelationInput | countriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: countriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` countries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned countries
+    **/
+    _count?: true | CountriesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CountriesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CountriesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CountriesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CountriesMaxAggregateInputType
+  }
+
+  export type GetCountriesAggregateType<T extends CountriesAggregateArgs> = {
+        [P in keyof T & keyof AggregateCountries]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCountries[P]>
+      : GetScalarType<T[P], AggregateCountries[P]>
+  }
+
+
+
+
+  export type countriesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: countriesWhereInput
+    orderBy?: countriesOrderByWithAggregationInput | countriesOrderByWithAggregationInput[]
+    by: CountriesScalarFieldEnum[] | CountriesScalarFieldEnum
+    having?: countriesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CountriesCountAggregateInputType | true
+    _avg?: CountriesAvgAggregateInputType
+    _sum?: CountriesSumAggregateInputType
+    _min?: CountriesMinAggregateInputType
+    _max?: CountriesMaxAggregateInputType
+  }
+
+  export type CountriesGroupByOutputType = {
+    id: bigint
+    name: string
+    iso_2: string | null
+    iso_3: string | null
+    phone_code: string | null
+    currency: string | null
+    flag: string | null
+    status: number
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+    _count: CountriesCountAggregateOutputType | null
+    _avg: CountriesAvgAggregateOutputType | null
+    _sum: CountriesSumAggregateOutputType | null
+    _min: CountriesMinAggregateOutputType | null
+    _max: CountriesMaxAggregateOutputType | null
+  }
+
+  type GetCountriesGroupByPayload<T extends countriesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CountriesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CountriesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CountriesGroupByOutputType[P]>
+            : GetScalarType<T[P], CountriesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type countriesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    iso_2?: boolean
+    iso_3?: boolean
+    phone_code?: boolean
+    currency?: boolean
+    flag?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }, ExtArgs["result"]["countries"]>
+
+
+
+  export type countriesSelectScalar = {
+    id?: boolean
+    name?: boolean
+    iso_2?: boolean
+    iso_3?: boolean
+    phone_code?: boolean
+    currency?: boolean
+    flag?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }
+
+  export type countriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "iso_2" | "iso_3" | "phone_code" | "currency" | "flag" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["countries"]>
+
+  export type $countriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "countries"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      name: string
+      iso_2: string | null
+      iso_3: string | null
+      phone_code: string | null
+      currency: string | null
+      flag: string | null
+      status: number
+      created_at: Date | null
+      updated_at: Date | null
+      deleted_at: Date | null
+    }, ExtArgs["result"]["countries"]>
+    composites: {}
+  }
+
+  type countriesGetPayload<S extends boolean | null | undefined | countriesDefaultArgs> = $Result.GetResult<Prisma.$countriesPayload, S>
+
+  type countriesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<countriesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CountriesCountAggregateInputType | true
+    }
+
+  export interface countriesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['countries'], meta: { name: 'countries' } }
+    /**
+     * Find zero or one Countries that matches the filter.
+     * @param {countriesFindUniqueArgs} args - Arguments to find a Countries
+     * @example
+     * // Get one Countries
+     * const countries = await prisma.countries.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends countriesFindUniqueArgs>(args: SelectSubset<T, countriesFindUniqueArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Countries that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {countriesFindUniqueOrThrowArgs} args - Arguments to find a Countries
+     * @example
+     * // Get one Countries
+     * const countries = await prisma.countries.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends countriesFindUniqueOrThrowArgs>(args: SelectSubset<T, countriesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Countries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {countriesFindFirstArgs} args - Arguments to find a Countries
+     * @example
+     * // Get one Countries
+     * const countries = await prisma.countries.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends countriesFindFirstArgs>(args?: SelectSubset<T, countriesFindFirstArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Countries that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {countriesFindFirstOrThrowArgs} args - Arguments to find a Countries
+     * @example
+     * // Get one Countries
+     * const countries = await prisma.countries.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends countriesFindFirstOrThrowArgs>(args?: SelectSubset<T, countriesFindFirstOrThrowArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Countries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {countriesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Countries
+     * const countries = await prisma.countries.findMany()
+     * 
+     * // Get first 10 Countries
+     * const countries = await prisma.countries.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const countriesWithIdOnly = await prisma.countries.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends countriesFindManyArgs>(args?: SelectSubset<T, countriesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Countries.
+     * @param {countriesCreateArgs} args - Arguments to create a Countries.
+     * @example
+     * // Create one Countries
+     * const Countries = await prisma.countries.create({
+     *   data: {
+     *     // ... data to create a Countries
+     *   }
+     * })
+     * 
+     */
+    create<T extends countriesCreateArgs>(args: SelectSubset<T, countriesCreateArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Countries.
+     * @param {countriesCreateManyArgs} args - Arguments to create many Countries.
+     * @example
+     * // Create many Countries
+     * const countries = await prisma.countries.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends countriesCreateManyArgs>(args?: SelectSubset<T, countriesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Countries.
+     * @param {countriesDeleteArgs} args - Arguments to delete one Countries.
+     * @example
+     * // Delete one Countries
+     * const Countries = await prisma.countries.delete({
+     *   where: {
+     *     // ... filter to delete one Countries
+     *   }
+     * })
+     * 
+     */
+    delete<T extends countriesDeleteArgs>(args: SelectSubset<T, countriesDeleteArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Countries.
+     * @param {countriesUpdateArgs} args - Arguments to update one Countries.
+     * @example
+     * // Update one Countries
+     * const countries = await prisma.countries.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends countriesUpdateArgs>(args: SelectSubset<T, countriesUpdateArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Countries.
+     * @param {countriesDeleteManyArgs} args - Arguments to filter Countries to delete.
+     * @example
+     * // Delete a few Countries
+     * const { count } = await prisma.countries.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends countriesDeleteManyArgs>(args?: SelectSubset<T, countriesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Countries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {countriesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Countries
+     * const countries = await prisma.countries.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends countriesUpdateManyArgs>(args: SelectSubset<T, countriesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Countries.
+     * @param {countriesUpsertArgs} args - Arguments to update or create a Countries.
+     * @example
+     * // Update or create a Countries
+     * const countries = await prisma.countries.upsert({
+     *   create: {
+     *     // ... data to create a Countries
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Countries we want to update
+     *   }
+     * })
+     */
+    upsert<T extends countriesUpsertArgs>(args: SelectSubset<T, countriesUpsertArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Countries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {countriesCountArgs} args - Arguments to filter Countries to count.
+     * @example
+     * // Count the number of Countries
+     * const count = await prisma.countries.count({
+     *   where: {
+     *     // ... the filter for the Countries we want to count
+     *   }
+     * })
+    **/
+    count<T extends countriesCountArgs>(
+      args?: Subset<T, countriesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CountriesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Countries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountriesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CountriesAggregateArgs>(args: Subset<T, CountriesAggregateArgs>): Prisma.PrismaPromise<GetCountriesAggregateType<T>>
+
+    /**
+     * Group by Countries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {countriesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends countriesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: countriesGroupByArgs['orderBy'] }
+        : { orderBy?: countriesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, countriesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCountriesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the countries model
+   */
+  readonly fields: countriesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for countries.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__countriesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the countries model
+   */
+  interface countriesFieldRefs {
+    readonly id: FieldRef<"countries", 'BigInt'>
+    readonly name: FieldRef<"countries", 'String'>
+    readonly iso_2: FieldRef<"countries", 'String'>
+    readonly iso_3: FieldRef<"countries", 'String'>
+    readonly phone_code: FieldRef<"countries", 'String'>
+    readonly currency: FieldRef<"countries", 'String'>
+    readonly flag: FieldRef<"countries", 'String'>
+    readonly status: FieldRef<"countries", 'Int'>
+    readonly created_at: FieldRef<"countries", 'DateTime'>
+    readonly updated_at: FieldRef<"countries", 'DateTime'>
+    readonly deleted_at: FieldRef<"countries", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * countries findUnique
+   */
+  export type countriesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * Filter, which countries to fetch.
+     */
+    where: countriesWhereUniqueInput
+  }
+
+  /**
+   * countries findUniqueOrThrow
+   */
+  export type countriesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * Filter, which countries to fetch.
+     */
+    where: countriesWhereUniqueInput
+  }
+
+  /**
+   * countries findFirst
+   */
+  export type countriesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * Filter, which countries to fetch.
+     */
+    where?: countriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of countries to fetch.
+     */
+    orderBy?: countriesOrderByWithRelationInput | countriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for countries.
+     */
+    cursor?: countriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` countries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of countries.
+     */
+    distinct?: CountriesScalarFieldEnum | CountriesScalarFieldEnum[]
+  }
+
+  /**
+   * countries findFirstOrThrow
+   */
+  export type countriesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * Filter, which countries to fetch.
+     */
+    where?: countriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of countries to fetch.
+     */
+    orderBy?: countriesOrderByWithRelationInput | countriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for countries.
+     */
+    cursor?: countriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` countries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of countries.
+     */
+    distinct?: CountriesScalarFieldEnum | CountriesScalarFieldEnum[]
+  }
+
+  /**
+   * countries findMany
+   */
+  export type countriesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * Filter, which countries to fetch.
+     */
+    where?: countriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of countries to fetch.
+     */
+    orderBy?: countriesOrderByWithRelationInput | countriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing countries.
+     */
+    cursor?: countriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` countries.
+     */
+    skip?: number
+    distinct?: CountriesScalarFieldEnum | CountriesScalarFieldEnum[]
+  }
+
+  /**
+   * countries create
+   */
+  export type countriesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a countries.
+     */
+    data: XOR<countriesCreateInput, countriesUncheckedCreateInput>
+  }
+
+  /**
+   * countries createMany
+   */
+  export type countriesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many countries.
+     */
+    data: countriesCreateManyInput | countriesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * countries update
+   */
+  export type countriesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a countries.
+     */
+    data: XOR<countriesUpdateInput, countriesUncheckedUpdateInput>
+    /**
+     * Choose, which countries to update.
+     */
+    where: countriesWhereUniqueInput
+  }
+
+  /**
+   * countries updateMany
+   */
+  export type countriesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update countries.
+     */
+    data: XOR<countriesUpdateManyMutationInput, countriesUncheckedUpdateManyInput>
+    /**
+     * Filter which countries to update
+     */
+    where?: countriesWhereInput
+    /**
+     * Limit how many countries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * countries upsert
+   */
+  export type countriesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the countries to update in case it exists.
+     */
+    where: countriesWhereUniqueInput
+    /**
+     * In case the countries found by the `where` argument doesn't exist, create a new countries with this data.
+     */
+    create: XOR<countriesCreateInput, countriesUncheckedCreateInput>
+    /**
+     * In case the countries was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<countriesUpdateInput, countriesUncheckedUpdateInput>
+  }
+
+  /**
+   * countries delete
+   */
+  export type countriesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+    /**
+     * Filter which countries to delete.
+     */
+    where: countriesWhereUniqueInput
+  }
+
+  /**
+   * countries deleteMany
+   */
+  export type countriesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which countries to delete
+     */
+    where?: countriesWhereInput
+    /**
+     * Limit how many countries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * countries without action
+   */
+  export type countriesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the countries
+     */
+    select?: countriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the countries
+     */
+    omit?: countriesOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model states
+   */
+
+  export type AggregateStates = {
+    _count: StatesCountAggregateOutputType | null
+    _avg: StatesAvgAggregateOutputType | null
+    _sum: StatesSumAggregateOutputType | null
+    _min: StatesMinAggregateOutputType | null
+    _max: StatesMaxAggregateOutputType | null
+  }
+
+  export type StatesAvgAggregateOutputType = {
+    id: number | null
+    country_id: number | null
+    status: number | null
+  }
+
+  export type StatesSumAggregateOutputType = {
+    id: number | null
+    country_id: bigint | null
+    status: number | null
+  }
+
+  export type StatesMinAggregateOutputType = {
+    id: number | null
+    country_id: bigint | null
+    name: string | null
+    code: string | null
+    slug: string | null
+    status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type StatesMaxAggregateOutputType = {
+    id: number | null
+    country_id: bigint | null
+    name: string | null
+    code: string | null
+    slug: string | null
+    status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type StatesCountAggregateOutputType = {
+    id: number
+    country_id: number
+    name: number
+    code: number
+    slug: number
+    status: number
+    created_at: number
+    updated_at: number
+    deleted_at: number
+    _all: number
+  }
+
+
+  export type StatesAvgAggregateInputType = {
+    id?: true
+    country_id?: true
+    status?: true
+  }
+
+  export type StatesSumAggregateInputType = {
+    id?: true
+    country_id?: true
+    status?: true
+  }
+
+  export type StatesMinAggregateInputType = {
+    id?: true
+    country_id?: true
+    name?: true
+    code?: true
+    slug?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type StatesMaxAggregateInputType = {
+    id?: true
+    country_id?: true
+    name?: true
+    code?: true
+    slug?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type StatesCountAggregateInputType = {
+    id?: true
+    country_id?: true
+    name?: true
+    code?: true
+    slug?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+    _all?: true
+  }
+
+  export type StatesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which states to aggregate.
+     */
+    where?: statesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of states to fetch.
+     */
+    orderBy?: statesOrderByWithRelationInput | statesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: statesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` states from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` states.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned states
+    **/
+    _count?: true | StatesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StatesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StatesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StatesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StatesMaxAggregateInputType
+  }
+
+  export type GetStatesAggregateType<T extends StatesAggregateArgs> = {
+        [P in keyof T & keyof AggregateStates]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStates[P]>
+      : GetScalarType<T[P], AggregateStates[P]>
+  }
+
+
+
+
+  export type statesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: statesWhereInput
+    orderBy?: statesOrderByWithAggregationInput | statesOrderByWithAggregationInput[]
+    by: StatesScalarFieldEnum[] | StatesScalarFieldEnum
+    having?: statesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StatesCountAggregateInputType | true
+    _avg?: StatesAvgAggregateInputType
+    _sum?: StatesSumAggregateInputType
+    _min?: StatesMinAggregateInputType
+    _max?: StatesMaxAggregateInputType
+  }
+
+  export type StatesGroupByOutputType = {
+    id: number
+    country_id: bigint
+    name: string
+    code: string | null
+    slug: string | null
+    status: number
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+    _count: StatesCountAggregateOutputType | null
+    _avg: StatesAvgAggregateOutputType | null
+    _sum: StatesSumAggregateOutputType | null
+    _min: StatesMinAggregateOutputType | null
+    _max: StatesMaxAggregateOutputType | null
+  }
+
+  type GetStatesGroupByPayload<T extends statesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StatesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StatesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StatesGroupByOutputType[P]>
+            : GetScalarType<T[P], StatesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type statesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    country_id?: boolean
+    name?: boolean
+    code?: boolean
+    slug?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }, ExtArgs["result"]["states"]>
+
+
+
+  export type statesSelectScalar = {
+    id?: boolean
+    country_id?: boolean
+    name?: boolean
+    code?: boolean
+    slug?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }
+
+  export type statesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country_id" | "name" | "code" | "slug" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["states"]>
+
+  export type $statesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "states"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      country_id: bigint
+      name: string
+      code: string | null
+      slug: string | null
+      status: number
+      created_at: Date | null
+      updated_at: Date | null
+      deleted_at: Date | null
+    }, ExtArgs["result"]["states"]>
+    composites: {}
+  }
+
+  type statesGetPayload<S extends boolean | null | undefined | statesDefaultArgs> = $Result.GetResult<Prisma.$statesPayload, S>
+
+  type statesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<statesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StatesCountAggregateInputType | true
+    }
+
+  export interface statesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['states'], meta: { name: 'states' } }
+    /**
+     * Find zero or one States that matches the filter.
+     * @param {statesFindUniqueArgs} args - Arguments to find a States
+     * @example
+     * // Get one States
+     * const states = await prisma.states.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends statesFindUniqueArgs>(args: SelectSubset<T, statesFindUniqueArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one States that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {statesFindUniqueOrThrowArgs} args - Arguments to find a States
+     * @example
+     * // Get one States
+     * const states = await prisma.states.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends statesFindUniqueOrThrowArgs>(args: SelectSubset<T, statesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first States that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {statesFindFirstArgs} args - Arguments to find a States
+     * @example
+     * // Get one States
+     * const states = await prisma.states.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends statesFindFirstArgs>(args?: SelectSubset<T, statesFindFirstArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first States that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {statesFindFirstOrThrowArgs} args - Arguments to find a States
+     * @example
+     * // Get one States
+     * const states = await prisma.states.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends statesFindFirstOrThrowArgs>(args?: SelectSubset<T, statesFindFirstOrThrowArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more States that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {statesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all States
+     * const states = await prisma.states.findMany()
+     * 
+     * // Get first 10 States
+     * const states = await prisma.states.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const statesWithIdOnly = await prisma.states.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends statesFindManyArgs>(args?: SelectSubset<T, statesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a States.
+     * @param {statesCreateArgs} args - Arguments to create a States.
+     * @example
+     * // Create one States
+     * const States = await prisma.states.create({
+     *   data: {
+     *     // ... data to create a States
+     *   }
+     * })
+     * 
+     */
+    create<T extends statesCreateArgs>(args: SelectSubset<T, statesCreateArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many States.
+     * @param {statesCreateManyArgs} args - Arguments to create many States.
+     * @example
+     * // Create many States
+     * const states = await prisma.states.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends statesCreateManyArgs>(args?: SelectSubset<T, statesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a States.
+     * @param {statesDeleteArgs} args - Arguments to delete one States.
+     * @example
+     * // Delete one States
+     * const States = await prisma.states.delete({
+     *   where: {
+     *     // ... filter to delete one States
+     *   }
+     * })
+     * 
+     */
+    delete<T extends statesDeleteArgs>(args: SelectSubset<T, statesDeleteArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one States.
+     * @param {statesUpdateArgs} args - Arguments to update one States.
+     * @example
+     * // Update one States
+     * const states = await prisma.states.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends statesUpdateArgs>(args: SelectSubset<T, statesUpdateArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more States.
+     * @param {statesDeleteManyArgs} args - Arguments to filter States to delete.
+     * @example
+     * // Delete a few States
+     * const { count } = await prisma.states.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends statesDeleteManyArgs>(args?: SelectSubset<T, statesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more States.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {statesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many States
+     * const states = await prisma.states.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends statesUpdateManyArgs>(args: SelectSubset<T, statesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one States.
+     * @param {statesUpsertArgs} args - Arguments to update or create a States.
+     * @example
+     * // Update or create a States
+     * const states = await prisma.states.upsert({
+     *   create: {
+     *     // ... data to create a States
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the States we want to update
+     *   }
+     * })
+     */
+    upsert<T extends statesUpsertArgs>(args: SelectSubset<T, statesUpsertArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of States.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {statesCountArgs} args - Arguments to filter States to count.
+     * @example
+     * // Count the number of States
+     * const count = await prisma.states.count({
+     *   where: {
+     *     // ... the filter for the States we want to count
+     *   }
+     * })
+    **/
+    count<T extends statesCountArgs>(
+      args?: Subset<T, statesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StatesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a States.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StatesAggregateArgs>(args: Subset<T, StatesAggregateArgs>): Prisma.PrismaPromise<GetStatesAggregateType<T>>
+
+    /**
+     * Group by States.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {statesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends statesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: statesGroupByArgs['orderBy'] }
+        : { orderBy?: statesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, statesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStatesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the states model
+   */
+  readonly fields: statesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for states.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__statesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the states model
+   */
+  interface statesFieldRefs {
+    readonly id: FieldRef<"states", 'Int'>
+    readonly country_id: FieldRef<"states", 'BigInt'>
+    readonly name: FieldRef<"states", 'String'>
+    readonly code: FieldRef<"states", 'String'>
+    readonly slug: FieldRef<"states", 'String'>
+    readonly status: FieldRef<"states", 'Int'>
+    readonly created_at: FieldRef<"states", 'DateTime'>
+    readonly updated_at: FieldRef<"states", 'DateTime'>
+    readonly deleted_at: FieldRef<"states", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * states findUnique
+   */
+  export type statesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * Filter, which states to fetch.
+     */
+    where: statesWhereUniqueInput
+  }
+
+  /**
+   * states findUniqueOrThrow
+   */
+  export type statesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * Filter, which states to fetch.
+     */
+    where: statesWhereUniqueInput
+  }
+
+  /**
+   * states findFirst
+   */
+  export type statesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * Filter, which states to fetch.
+     */
+    where?: statesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of states to fetch.
+     */
+    orderBy?: statesOrderByWithRelationInput | statesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for states.
+     */
+    cursor?: statesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` states from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` states.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of states.
+     */
+    distinct?: StatesScalarFieldEnum | StatesScalarFieldEnum[]
+  }
+
+  /**
+   * states findFirstOrThrow
+   */
+  export type statesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * Filter, which states to fetch.
+     */
+    where?: statesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of states to fetch.
+     */
+    orderBy?: statesOrderByWithRelationInput | statesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for states.
+     */
+    cursor?: statesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` states from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` states.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of states.
+     */
+    distinct?: StatesScalarFieldEnum | StatesScalarFieldEnum[]
+  }
+
+  /**
+   * states findMany
+   */
+  export type statesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * Filter, which states to fetch.
+     */
+    where?: statesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of states to fetch.
+     */
+    orderBy?: statesOrderByWithRelationInput | statesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing states.
+     */
+    cursor?: statesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` states from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` states.
+     */
+    skip?: number
+    distinct?: StatesScalarFieldEnum | StatesScalarFieldEnum[]
+  }
+
+  /**
+   * states create
+   */
+  export type statesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a states.
+     */
+    data: XOR<statesCreateInput, statesUncheckedCreateInput>
+  }
+
+  /**
+   * states createMany
+   */
+  export type statesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many states.
+     */
+    data: statesCreateManyInput | statesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * states update
+   */
+  export type statesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a states.
+     */
+    data: XOR<statesUpdateInput, statesUncheckedUpdateInput>
+    /**
+     * Choose, which states to update.
+     */
+    where: statesWhereUniqueInput
+  }
+
+  /**
+   * states updateMany
+   */
+  export type statesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update states.
+     */
+    data: XOR<statesUpdateManyMutationInput, statesUncheckedUpdateManyInput>
+    /**
+     * Filter which states to update
+     */
+    where?: statesWhereInput
+    /**
+     * Limit how many states to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * states upsert
+   */
+  export type statesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the states to update in case it exists.
+     */
+    where: statesWhereUniqueInput
+    /**
+     * In case the states found by the `where` argument doesn't exist, create a new states with this data.
+     */
+    create: XOR<statesCreateInput, statesUncheckedCreateInput>
+    /**
+     * In case the states was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<statesUpdateInput, statesUncheckedUpdateInput>
+  }
+
+  /**
+   * states delete
+   */
+  export type statesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+    /**
+     * Filter which states to delete.
+     */
+    where: statesWhereUniqueInput
+  }
+
+  /**
+   * states deleteMany
+   */
+  export type statesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which states to delete
+     */
+    where?: statesWhereInput
+    /**
+     * Limit how many states to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * states without action
+   */
+  export type statesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the states
+     */
+    select?: statesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the states
+     */
+    omit?: statesOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model cities
+   */
+
+  export type AggregateCities = {
+    _count: CitiesCountAggregateOutputType | null
+    _avg: CitiesAvgAggregateOutputType | null
+    _sum: CitiesSumAggregateOutputType | null
+    _min: CitiesMinAggregateOutputType | null
+    _max: CitiesMaxAggregateOutputType | null
+  }
+
+  export type CitiesAvgAggregateOutputType = {
+    id: number | null
+    state_id: number | null
+    leagues_allowed: number | null
+    status: number | null
+  }
+
+  export type CitiesSumAggregateOutputType = {
+    id: bigint | null
+    state_id: bigint | null
+    leagues_allowed: number | null
+    status: number | null
+  }
+
+  export type CitiesMinAggregateOutputType = {
+    id: bigint | null
+    state_id: bigint | null
+    name: string | null
+    slug: string | null
+    leagues_allowed: number | null
+    status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type CitiesMaxAggregateOutputType = {
+    id: bigint | null
+    state_id: bigint | null
+    name: string | null
+    slug: string | null
+    leagues_allowed: number | null
+    status: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type CitiesCountAggregateOutputType = {
+    id: number
+    state_id: number
+    name: number
+    slug: number
+    leagues_allowed: number
+    status: number
+    created_at: number
+    updated_at: number
+    deleted_at: number
+    _all: number
+  }
+
+
+  export type CitiesAvgAggregateInputType = {
+    id?: true
+    state_id?: true
+    leagues_allowed?: true
+    status?: true
+  }
+
+  export type CitiesSumAggregateInputType = {
+    id?: true
+    state_id?: true
+    leagues_allowed?: true
+    status?: true
+  }
+
+  export type CitiesMinAggregateInputType = {
+    id?: true
+    state_id?: true
+    name?: true
+    slug?: true
+    leagues_allowed?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type CitiesMaxAggregateInputType = {
+    id?: true
+    state_id?: true
+    name?: true
+    slug?: true
+    leagues_allowed?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type CitiesCountAggregateInputType = {
+    id?: true
+    state_id?: true
+    name?: true
+    slug?: true
+    leagues_allowed?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+    _all?: true
+  }
+
+  export type CitiesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which cities to aggregate.
+     */
+    where?: citiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cities to fetch.
+     */
+    orderBy?: citiesOrderByWithRelationInput | citiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: citiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned cities
+    **/
+    _count?: true | CitiesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CitiesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CitiesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CitiesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CitiesMaxAggregateInputType
+  }
+
+  export type GetCitiesAggregateType<T extends CitiesAggregateArgs> = {
+        [P in keyof T & keyof AggregateCities]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCities[P]>
+      : GetScalarType<T[P], AggregateCities[P]>
+  }
+
+
+
+
+  export type citiesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: citiesWhereInput
+    orderBy?: citiesOrderByWithAggregationInput | citiesOrderByWithAggregationInput[]
+    by: CitiesScalarFieldEnum[] | CitiesScalarFieldEnum
+    having?: citiesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CitiesCountAggregateInputType | true
+    _avg?: CitiesAvgAggregateInputType
+    _sum?: CitiesSumAggregateInputType
+    _min?: CitiesMinAggregateInputType
+    _max?: CitiesMaxAggregateInputType
+  }
+
+  export type CitiesGroupByOutputType = {
+    id: bigint
+    state_id: bigint
+    name: string
+    slug: string | null
+    leagues_allowed: number
+    status: number
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+    _count: CitiesCountAggregateOutputType | null
+    _avg: CitiesAvgAggregateOutputType | null
+    _sum: CitiesSumAggregateOutputType | null
+    _min: CitiesMinAggregateOutputType | null
+    _max: CitiesMaxAggregateOutputType | null
+  }
+
+  type GetCitiesGroupByPayload<T extends citiesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CitiesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CitiesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CitiesGroupByOutputType[P]>
+            : GetScalarType<T[P], CitiesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type citiesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    state_id?: boolean
+    name?: boolean
+    slug?: boolean
+    leagues_allowed?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }, ExtArgs["result"]["cities"]>
+
+
+
+  export type citiesSelectScalar = {
+    id?: boolean
+    state_id?: boolean
+    name?: boolean
+    slug?: boolean
+    leagues_allowed?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }
+
+  export type citiesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "state_id" | "name" | "slug" | "leagues_allowed" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["cities"]>
+
+  export type $citiesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "cities"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      state_id: bigint
+      name: string
+      slug: string | null
+      leagues_allowed: number
+      status: number
+      created_at: Date | null
+      updated_at: Date | null
+      deleted_at: Date | null
+    }, ExtArgs["result"]["cities"]>
+    composites: {}
+  }
+
+  type citiesGetPayload<S extends boolean | null | undefined | citiesDefaultArgs> = $Result.GetResult<Prisma.$citiesPayload, S>
+
+  type citiesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<citiesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CitiesCountAggregateInputType | true
+    }
+
+  export interface citiesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['cities'], meta: { name: 'cities' } }
+    /**
+     * Find zero or one Cities that matches the filter.
+     * @param {citiesFindUniqueArgs} args - Arguments to find a Cities
+     * @example
+     * // Get one Cities
+     * const cities = await prisma.cities.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends citiesFindUniqueArgs>(args: SelectSubset<T, citiesFindUniqueArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Cities that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {citiesFindUniqueOrThrowArgs} args - Arguments to find a Cities
+     * @example
+     * // Get one Cities
+     * const cities = await prisma.cities.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends citiesFindUniqueOrThrowArgs>(args: SelectSubset<T, citiesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Cities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {citiesFindFirstArgs} args - Arguments to find a Cities
+     * @example
+     * // Get one Cities
+     * const cities = await prisma.cities.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends citiesFindFirstArgs>(args?: SelectSubset<T, citiesFindFirstArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Cities that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {citiesFindFirstOrThrowArgs} args - Arguments to find a Cities
+     * @example
+     * // Get one Cities
+     * const cities = await prisma.cities.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends citiesFindFirstOrThrowArgs>(args?: SelectSubset<T, citiesFindFirstOrThrowArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Cities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {citiesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Cities
+     * const cities = await prisma.cities.findMany()
+     * 
+     * // Get first 10 Cities
+     * const cities = await prisma.cities.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const citiesWithIdOnly = await prisma.cities.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends citiesFindManyArgs>(args?: SelectSubset<T, citiesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Cities.
+     * @param {citiesCreateArgs} args - Arguments to create a Cities.
+     * @example
+     * // Create one Cities
+     * const Cities = await prisma.cities.create({
+     *   data: {
+     *     // ... data to create a Cities
+     *   }
+     * })
+     * 
+     */
+    create<T extends citiesCreateArgs>(args: SelectSubset<T, citiesCreateArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Cities.
+     * @param {citiesCreateManyArgs} args - Arguments to create many Cities.
+     * @example
+     * // Create many Cities
+     * const cities = await prisma.cities.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends citiesCreateManyArgs>(args?: SelectSubset<T, citiesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Cities.
+     * @param {citiesDeleteArgs} args - Arguments to delete one Cities.
+     * @example
+     * // Delete one Cities
+     * const Cities = await prisma.cities.delete({
+     *   where: {
+     *     // ... filter to delete one Cities
+     *   }
+     * })
+     * 
+     */
+    delete<T extends citiesDeleteArgs>(args: SelectSubset<T, citiesDeleteArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Cities.
+     * @param {citiesUpdateArgs} args - Arguments to update one Cities.
+     * @example
+     * // Update one Cities
+     * const cities = await prisma.cities.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends citiesUpdateArgs>(args: SelectSubset<T, citiesUpdateArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Cities.
+     * @param {citiesDeleteManyArgs} args - Arguments to filter Cities to delete.
+     * @example
+     * // Delete a few Cities
+     * const { count } = await prisma.cities.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends citiesDeleteManyArgs>(args?: SelectSubset<T, citiesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Cities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {citiesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Cities
+     * const cities = await prisma.cities.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends citiesUpdateManyArgs>(args: SelectSubset<T, citiesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Cities.
+     * @param {citiesUpsertArgs} args - Arguments to update or create a Cities.
+     * @example
+     * // Update or create a Cities
+     * const cities = await prisma.cities.upsert({
+     *   create: {
+     *     // ... data to create a Cities
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Cities we want to update
+     *   }
+     * })
+     */
+    upsert<T extends citiesUpsertArgs>(args: SelectSubset<T, citiesUpsertArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Cities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {citiesCountArgs} args - Arguments to filter Cities to count.
+     * @example
+     * // Count the number of Cities
+     * const count = await prisma.cities.count({
+     *   where: {
+     *     // ... the filter for the Cities we want to count
+     *   }
+     * })
+    **/
+    count<T extends citiesCountArgs>(
+      args?: Subset<T, citiesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CitiesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Cities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitiesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CitiesAggregateArgs>(args: Subset<T, CitiesAggregateArgs>): Prisma.PrismaPromise<GetCitiesAggregateType<T>>
+
+    /**
+     * Group by Cities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {citiesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends citiesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: citiesGroupByArgs['orderBy'] }
+        : { orderBy?: citiesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, citiesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCitiesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the cities model
+   */
+  readonly fields: citiesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for cities.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__citiesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the cities model
+   */
+  interface citiesFieldRefs {
+    readonly id: FieldRef<"cities", 'BigInt'>
+    readonly state_id: FieldRef<"cities", 'BigInt'>
+    readonly name: FieldRef<"cities", 'String'>
+    readonly slug: FieldRef<"cities", 'String'>
+    readonly leagues_allowed: FieldRef<"cities", 'Int'>
+    readonly status: FieldRef<"cities", 'Int'>
+    readonly created_at: FieldRef<"cities", 'DateTime'>
+    readonly updated_at: FieldRef<"cities", 'DateTime'>
+    readonly deleted_at: FieldRef<"cities", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * cities findUnique
+   */
+  export type citiesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * Filter, which cities to fetch.
+     */
+    where: citiesWhereUniqueInput
+  }
+
+  /**
+   * cities findUniqueOrThrow
+   */
+  export type citiesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * Filter, which cities to fetch.
+     */
+    where: citiesWhereUniqueInput
+  }
+
+  /**
+   * cities findFirst
+   */
+  export type citiesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * Filter, which cities to fetch.
+     */
+    where?: citiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cities to fetch.
+     */
+    orderBy?: citiesOrderByWithRelationInput | citiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for cities.
+     */
+    cursor?: citiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of cities.
+     */
+    distinct?: CitiesScalarFieldEnum | CitiesScalarFieldEnum[]
+  }
+
+  /**
+   * cities findFirstOrThrow
+   */
+  export type citiesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * Filter, which cities to fetch.
+     */
+    where?: citiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cities to fetch.
+     */
+    orderBy?: citiesOrderByWithRelationInput | citiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for cities.
+     */
+    cursor?: citiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of cities.
+     */
+    distinct?: CitiesScalarFieldEnum | CitiesScalarFieldEnum[]
+  }
+
+  /**
+   * cities findMany
+   */
+  export type citiesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * Filter, which cities to fetch.
+     */
+    where?: citiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cities to fetch.
+     */
+    orderBy?: citiesOrderByWithRelationInput | citiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing cities.
+     */
+    cursor?: citiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cities.
+     */
+    skip?: number
+    distinct?: CitiesScalarFieldEnum | CitiesScalarFieldEnum[]
+  }
+
+  /**
+   * cities create
+   */
+  export type citiesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a cities.
+     */
+    data: XOR<citiesCreateInput, citiesUncheckedCreateInput>
+  }
+
+  /**
+   * cities createMany
+   */
+  export type citiesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many cities.
+     */
+    data: citiesCreateManyInput | citiesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * cities update
+   */
+  export type citiesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a cities.
+     */
+    data: XOR<citiesUpdateInput, citiesUncheckedUpdateInput>
+    /**
+     * Choose, which cities to update.
+     */
+    where: citiesWhereUniqueInput
+  }
+
+  /**
+   * cities updateMany
+   */
+  export type citiesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update cities.
+     */
+    data: XOR<citiesUpdateManyMutationInput, citiesUncheckedUpdateManyInput>
+    /**
+     * Filter which cities to update
+     */
+    where?: citiesWhereInput
+    /**
+     * Limit how many cities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * cities upsert
+   */
+  export type citiesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the cities to update in case it exists.
+     */
+    where: citiesWhereUniqueInput
+    /**
+     * In case the cities found by the `where` argument doesn't exist, create a new cities with this data.
+     */
+    create: XOR<citiesCreateInput, citiesUncheckedCreateInput>
+    /**
+     * In case the cities was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<citiesUpdateInput, citiesUncheckedUpdateInput>
+  }
+
+  /**
+   * cities delete
+   */
+  export type citiesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
+    /**
+     * Filter which cities to delete.
+     */
+    where: citiesWhereUniqueInput
+  }
+
+  /**
+   * cities deleteMany
+   */
+  export type citiesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which cities to delete
+     */
+    where?: citiesWhereInput
+    /**
+     * Limit how many cities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * cities without action
+   */
+  export type citiesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cities
+     */
+    select?: citiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cities
+     */
+    omit?: citiesOmit<ExtArgs> | null
   }
 
 
@@ -24924,7 +29061,15 @@ export namespace Prisma {
   export type Ask_testing1ScalarFieldEnum = (typeof Ask_testing1ScalarFieldEnum)[keyof typeof Ask_testing1ScalarFieldEnum]
 
 
-  export const AsktournamentsScalarFieldEnum: {
+  export const Testing_dateScalarFieldEnum: {
+    id: 'id',
+    startdate: 'startdate'
+  };
+
+  export type Testing_dateScalarFieldEnum = (typeof Testing_dateScalarFieldEnum)[keyof typeof Testing_dateScalarFieldEnum]
+
+
+  export const Ask_tournamentsScalarFieldEnum: {
     id: 'id',
     uuid: 'uuid',
     sport_id: 'sport_id',
@@ -24934,18 +29079,18 @@ export namespace Prisma {
     description: 'description',
     content: 'content',
     tournament_type: 'tournament_type',
-    tourstartdate: 'tourstartdate',
-    tourenddate: 'tourenddate',
+    startdate: 'startdate',
+    enddate: 'enddate',
     address: 'address',
     country_id: 'country_id',
     state_id: 'state_id',
     city_id: 'city_id',
-    tourbannerimage: 'tourbannerimage',
-    tourthumbnail: 'tourthumbnail',
-    tourwebsite: 'tourwebsite',
-    tourbrochure: 'tourbrochure',
-    prizemoney: 'prizemoney',
-    tournament_fees: 'tournament_fees',
+    bannerimage: 'bannerimage',
+    thumbnail: 'thumbnail',
+    url: 'url',
+    brochure: 'brochure',
+    prize: 'prize',
+    fees: 'fees',
     participation_limit: 'participation_limit',
     publish_status: 'publish_status',
     created_at: 'created_at',
@@ -24953,7 +29098,54 @@ export namespace Prisma {
     deleted_at: 'deleted_at'
   };
 
-  export type AsktournamentsScalarFieldEnum = (typeof AsktournamentsScalarFieldEnum)[keyof typeof AsktournamentsScalarFieldEnum]
+  export type Ask_tournamentsScalarFieldEnum = (typeof Ask_tournamentsScalarFieldEnum)[keyof typeof Ask_tournamentsScalarFieldEnum]
+
+
+  export const CountriesScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    iso_2: 'iso_2',
+    iso_3: 'iso_3',
+    phone_code: 'phone_code',
+    currency: 'currency',
+    flag: 'flag',
+    status: 'status',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type CountriesScalarFieldEnum = (typeof CountriesScalarFieldEnum)[keyof typeof CountriesScalarFieldEnum]
+
+
+  export const StatesScalarFieldEnum: {
+    id: 'id',
+    country_id: 'country_id',
+    name: 'name',
+    code: 'code',
+    slug: 'slug',
+    status: 'status',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type StatesScalarFieldEnum = (typeof StatesScalarFieldEnum)[keyof typeof StatesScalarFieldEnum]
+
+
+  export const CitiesScalarFieldEnum: {
+    id: 'id',
+    state_id: 'state_id',
+    name: 'name',
+    slug: 'slug',
+    leagues_allowed: 'leagues_allowed',
+    status: 'status',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type CitiesScalarFieldEnum = (typeof CitiesScalarFieldEnum)[keyof typeof CitiesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -25206,7 +29398,7 @@ export namespace Prisma {
   export type ask_testing1OrderByRelevanceFieldEnum = (typeof ask_testing1OrderByRelevanceFieldEnum)[keyof typeof ask_testing1OrderByRelevanceFieldEnum]
 
 
-  export const asktournamentsOrderByRelevanceFieldEnum: {
+  export const ask_tournamentsOrderByRelevanceFieldEnum: {
     uuid: 'uuid',
     sport_id: 'sport_id',
     name: 'name',
@@ -25215,14 +29407,44 @@ export namespace Prisma {
     content: 'content',
     tournament_type: 'tournament_type',
     address: 'address',
-    tourbannerimage: 'tourbannerimage',
-    tourthumbnail: 'tourthumbnail',
-    tourwebsite: 'tourwebsite',
-    tourbrochure: 'tourbrochure',
-    prizemoney: 'prizemoney'
+    bannerimage: 'bannerimage',
+    thumbnail: 'thumbnail',
+    url: 'url',
+    brochure: 'brochure',
+    prize: 'prize',
+    fees: 'fees'
   };
 
-  export type asktournamentsOrderByRelevanceFieldEnum = (typeof asktournamentsOrderByRelevanceFieldEnum)[keyof typeof asktournamentsOrderByRelevanceFieldEnum]
+  export type ask_tournamentsOrderByRelevanceFieldEnum = (typeof ask_tournamentsOrderByRelevanceFieldEnum)[keyof typeof ask_tournamentsOrderByRelevanceFieldEnum]
+
+
+  export const countriesOrderByRelevanceFieldEnum: {
+    name: 'name',
+    iso_2: 'iso_2',
+    iso_3: 'iso_3',
+    phone_code: 'phone_code',
+    currency: 'currency',
+    flag: 'flag'
+  };
+
+  export type countriesOrderByRelevanceFieldEnum = (typeof countriesOrderByRelevanceFieldEnum)[keyof typeof countriesOrderByRelevanceFieldEnum]
+
+
+  export const statesOrderByRelevanceFieldEnum: {
+    name: 'name',
+    code: 'code',
+    slug: 'slug'
+  };
+
+  export type statesOrderByRelevanceFieldEnum = (typeof statesOrderByRelevanceFieldEnum)[keyof typeof statesOrderByRelevanceFieldEnum]
+
+
+  export const citiesOrderByRelevanceFieldEnum: {
+    name: 'name',
+    slug: 'slug'
+  };
+
+  export type citiesOrderByRelevanceFieldEnum = (typeof citiesOrderByRelevanceFieldEnum)[keyof typeof citiesOrderByRelevanceFieldEnum]
 
 
   /**
@@ -27078,164 +31300,438 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"ask_testing1"> | string | null
   }
 
-  export type asktournamentsWhereInput = {
-    AND?: asktournamentsWhereInput | asktournamentsWhereInput[]
-    OR?: asktournamentsWhereInput[]
-    NOT?: asktournamentsWhereInput | asktournamentsWhereInput[]
-    id?: IntFilter<"asktournaments"> | number
-    uuid?: StringFilter<"asktournaments"> | string
-    sport_id?: StringNullableFilter<"asktournaments"> | string | null
-    user_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    name?: StringNullableFilter<"asktournaments"> | string | null
-    slug_name?: StringNullableFilter<"asktournaments"> | string | null
-    description?: StringNullableFilter<"asktournaments"> | string | null
-    content?: StringNullableFilter<"asktournaments"> | string | null
-    tournament_type?: StringNullableFilter<"asktournaments"> | string | null
-    tourstartdate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    tourenddate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    address?: StringNullableFilter<"asktournaments"> | string | null
-    country_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    state_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    city_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    tourbannerimage?: StringNullableFilter<"asktournaments"> | string | null
-    tourthumbnail?: StringNullableFilter<"asktournaments"> | string | null
-    tourwebsite?: StringNullableFilter<"asktournaments"> | string | null
-    tourbrochure?: StringNullableFilter<"asktournaments"> | string | null
-    prizemoney?: StringNullableFilter<"asktournaments"> | string | null
-    tournament_fees?: DecimalNullableFilter<"asktournaments"> | Decimal | DecimalJsLike | number | string | null
-    participation_limit?: IntFilter<"asktournaments"> | number
-    publish_status?: IntFilter<"asktournaments"> | number
-    created_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+  export type testing_dateWhereInput = {
+    AND?: testing_dateWhereInput | testing_dateWhereInput[]
+    OR?: testing_dateWhereInput[]
+    NOT?: testing_dateWhereInput | testing_dateWhereInput[]
+    id?: IntFilter<"testing_date"> | number
+    startdate?: DateTimeNullableFilter<"testing_date"> | Date | string | null
   }
 
-  export type asktournamentsOrderByWithRelationInput = {
+  export type testing_dateOrderByWithRelationInput = {
     id?: SortOrder
-    uuid?: SortOrder
-    sport_id?: SortOrderInput | SortOrder
-    user_id?: SortOrderInput | SortOrder
-    name?: SortOrderInput | SortOrder
-    slug_name?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    content?: SortOrderInput | SortOrder
-    tournament_type?: SortOrderInput | SortOrder
-    tourstartdate?: SortOrderInput | SortOrder
-    tourenddate?: SortOrderInput | SortOrder
-    address?: SortOrderInput | SortOrder
-    country_id?: SortOrderInput | SortOrder
-    state_id?: SortOrderInput | SortOrder
-    city_id?: SortOrderInput | SortOrder
-    tourbannerimage?: SortOrderInput | SortOrder
-    tourthumbnail?: SortOrderInput | SortOrder
-    tourwebsite?: SortOrderInput | SortOrder
-    tourbrochure?: SortOrderInput | SortOrder
-    prizemoney?: SortOrderInput | SortOrder
-    tournament_fees?: SortOrderInput | SortOrder
-    participation_limit?: SortOrder
-    publish_status?: SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    deleted_at?: SortOrderInput | SortOrder
-    _relevance?: asktournamentsOrderByRelevanceInput
+    startdate?: SortOrderInput | SortOrder
   }
 
-  export type asktournamentsWhereUniqueInput = Prisma.AtLeast<{
+  export type testing_dateWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: asktournamentsWhereInput | asktournamentsWhereInput[]
-    OR?: asktournamentsWhereInput[]
-    NOT?: asktournamentsWhereInput | asktournamentsWhereInput[]
-    uuid?: StringFilter<"asktournaments"> | string
-    sport_id?: StringNullableFilter<"asktournaments"> | string | null
-    user_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    name?: StringNullableFilter<"asktournaments"> | string | null
-    slug_name?: StringNullableFilter<"asktournaments"> | string | null
-    description?: StringNullableFilter<"asktournaments"> | string | null
-    content?: StringNullableFilter<"asktournaments"> | string | null
-    tournament_type?: StringNullableFilter<"asktournaments"> | string | null
-    tourstartdate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    tourenddate?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    address?: StringNullableFilter<"asktournaments"> | string | null
-    country_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    state_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    city_id?: BigIntNullableFilter<"asktournaments"> | bigint | number | null
-    tourbannerimage?: StringNullableFilter<"asktournaments"> | string | null
-    tourthumbnail?: StringNullableFilter<"asktournaments"> | string | null
-    tourwebsite?: StringNullableFilter<"asktournaments"> | string | null
-    tourbrochure?: StringNullableFilter<"asktournaments"> | string | null
-    prizemoney?: StringNullableFilter<"asktournaments"> | string | null
-    tournament_fees?: DecimalNullableFilter<"asktournaments"> | Decimal | DecimalJsLike | number | string | null
-    participation_limit?: IntFilter<"asktournaments"> | number
-    publish_status?: IntFilter<"asktournaments"> | number
-    created_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"asktournaments"> | Date | string | null
+    AND?: testing_dateWhereInput | testing_dateWhereInput[]
+    OR?: testing_dateWhereInput[]
+    NOT?: testing_dateWhereInput | testing_dateWhereInput[]
+    startdate?: DateTimeNullableFilter<"testing_date"> | Date | string | null
   }, "id">
 
-  export type asktournamentsOrderByWithAggregationInput = {
+  export type testing_dateOrderByWithAggregationInput = {
+    id?: SortOrder
+    startdate?: SortOrderInput | SortOrder
+    _count?: testing_dateCountOrderByAggregateInput
+    _avg?: testing_dateAvgOrderByAggregateInput
+    _max?: testing_dateMaxOrderByAggregateInput
+    _min?: testing_dateMinOrderByAggregateInput
+    _sum?: testing_dateSumOrderByAggregateInput
+  }
+
+  export type testing_dateScalarWhereWithAggregatesInput = {
+    AND?: testing_dateScalarWhereWithAggregatesInput | testing_dateScalarWhereWithAggregatesInput[]
+    OR?: testing_dateScalarWhereWithAggregatesInput[]
+    NOT?: testing_dateScalarWhereWithAggregatesInput | testing_dateScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"testing_date"> | number
+    startdate?: DateTimeNullableWithAggregatesFilter<"testing_date"> | Date | string | null
+  }
+
+  export type ask_tournamentsWhereInput = {
+    AND?: ask_tournamentsWhereInput | ask_tournamentsWhereInput[]
+    OR?: ask_tournamentsWhereInput[]
+    NOT?: ask_tournamentsWhereInput | ask_tournamentsWhereInput[]
+    id?: IntFilter<"ask_tournaments"> | number
+    uuid?: StringFilter<"ask_tournaments"> | string
+    sport_id?: StringFilter<"ask_tournaments"> | string
+    user_id?: BigIntNullableFilter<"ask_tournaments"> | bigint | number | null
+    name?: StringFilter<"ask_tournaments"> | string
+    slug_name?: StringFilter<"ask_tournaments"> | string
+    description?: StringNullableFilter<"ask_tournaments"> | string | null
+    content?: StringNullableFilter<"ask_tournaments"> | string | null
+    tournament_type?: StringNullableFilter<"ask_tournaments"> | string | null
+    startdate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    address?: StringNullableFilter<"ask_tournaments"> | string | null
+    country_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    state_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    city_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
+    thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
+    url?: StringNullableFilter<"ask_tournaments"> | string | null
+    brochure?: StringNullableFilter<"ask_tournaments"> | string | null
+    prize?: StringNullableFilter<"ask_tournaments"> | string | null
+    fees?: StringNullableFilter<"ask_tournaments"> | string | null
+    participation_limit?: IntNullableFilter<"ask_tournaments"> | number | null
+    publish_status?: IntFilter<"ask_tournaments"> | number
+    created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+  }
+
+  export type ask_tournamentsOrderByWithRelationInput = {
     id?: SortOrder
     uuid?: SortOrder
-    sport_id?: SortOrderInput | SortOrder
+    sport_id?: SortOrder
     user_id?: SortOrderInput | SortOrder
-    name?: SortOrderInput | SortOrder
-    slug_name?: SortOrderInput | SortOrder
+    name?: SortOrder
+    slug_name?: SortOrder
     description?: SortOrderInput | SortOrder
     content?: SortOrderInput | SortOrder
     tournament_type?: SortOrderInput | SortOrder
-    tourstartdate?: SortOrderInput | SortOrder
-    tourenddate?: SortOrderInput | SortOrder
+    startdate?: SortOrderInput | SortOrder
+    enddate?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
-    country_id?: SortOrderInput | SortOrder
-    state_id?: SortOrderInput | SortOrder
-    city_id?: SortOrderInput | SortOrder
-    tourbannerimage?: SortOrderInput | SortOrder
-    tourthumbnail?: SortOrderInput | SortOrder
-    tourwebsite?: SortOrderInput | SortOrder
-    tourbrochure?: SortOrderInput | SortOrder
-    prizemoney?: SortOrderInput | SortOrder
-    tournament_fees?: SortOrderInput | SortOrder
-    participation_limit?: SortOrder
+    country_id?: SortOrder
+    state_id?: SortOrder
+    city_id?: SortOrder
+    bannerimage?: SortOrderInput | SortOrder
+    thumbnail?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    brochure?: SortOrderInput | SortOrder
+    prize?: SortOrderInput | SortOrder
+    fees?: SortOrderInput | SortOrder
+    participation_limit?: SortOrderInput | SortOrder
     publish_status?: SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     deleted_at?: SortOrderInput | SortOrder
-    _count?: asktournamentsCountOrderByAggregateInput
-    _avg?: asktournamentsAvgOrderByAggregateInput
-    _max?: asktournamentsMaxOrderByAggregateInput
-    _min?: asktournamentsMinOrderByAggregateInput
-    _sum?: asktournamentsSumOrderByAggregateInput
+    _relevance?: ask_tournamentsOrderByRelevanceInput
   }
 
-  export type asktournamentsScalarWhereWithAggregatesInput = {
-    AND?: asktournamentsScalarWhereWithAggregatesInput | asktournamentsScalarWhereWithAggregatesInput[]
-    OR?: asktournamentsScalarWhereWithAggregatesInput[]
-    NOT?: asktournamentsScalarWhereWithAggregatesInput | asktournamentsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"asktournaments"> | number
-    uuid?: StringWithAggregatesFilter<"asktournaments"> | string
-    sport_id?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    user_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
-    name?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    slug_name?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    description?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    content?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    tournament_type?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    tourstartdate?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
-    tourenddate?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
-    address?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    country_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
-    state_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
-    city_id?: BigIntNullableWithAggregatesFilter<"asktournaments"> | bigint | number | null
-    tourbannerimage?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    tourthumbnail?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    tourwebsite?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    tourbrochure?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    prizemoney?: StringNullableWithAggregatesFilter<"asktournaments"> | string | null
-    tournament_fees?: DecimalNullableWithAggregatesFilter<"asktournaments"> | Decimal | DecimalJsLike | number | string | null
-    participation_limit?: IntWithAggregatesFilter<"asktournaments"> | number
-    publish_status?: IntWithAggregatesFilter<"asktournaments"> | number
-    created_at?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
-    updated_at?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
-    deleted_at?: DateTimeNullableWithAggregatesFilter<"asktournaments"> | Date | string | null
+  export type ask_tournamentsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    uuid?: string
+    slug_name?: string
+    AND?: ask_tournamentsWhereInput | ask_tournamentsWhereInput[]
+    OR?: ask_tournamentsWhereInput[]
+    NOT?: ask_tournamentsWhereInput | ask_tournamentsWhereInput[]
+    sport_id?: StringFilter<"ask_tournaments"> | string
+    user_id?: BigIntNullableFilter<"ask_tournaments"> | bigint | number | null
+    name?: StringFilter<"ask_tournaments"> | string
+    description?: StringNullableFilter<"ask_tournaments"> | string | null
+    content?: StringNullableFilter<"ask_tournaments"> | string | null
+    tournament_type?: StringNullableFilter<"ask_tournaments"> | string | null
+    startdate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    address?: StringNullableFilter<"ask_tournaments"> | string | null
+    country_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    state_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    city_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
+    thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
+    url?: StringNullableFilter<"ask_tournaments"> | string | null
+    brochure?: StringNullableFilter<"ask_tournaments"> | string | null
+    prize?: StringNullableFilter<"ask_tournaments"> | string | null
+    fees?: StringNullableFilter<"ask_tournaments"> | string | null
+    participation_limit?: IntNullableFilter<"ask_tournaments"> | number | null
+    publish_status?: IntFilter<"ask_tournaments"> | number
+    created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+  }, "id" | "uuid" | "slug_name">
+
+  export type ask_tournamentsOrderByWithAggregationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    sport_id?: SortOrder
+    user_id?: SortOrderInput | SortOrder
+    name?: SortOrder
+    slug_name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    tournament_type?: SortOrderInput | SortOrder
+    startdate?: SortOrderInput | SortOrder
+    enddate?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    country_id?: SortOrder
+    state_id?: SortOrder
+    city_id?: SortOrder
+    bannerimage?: SortOrderInput | SortOrder
+    thumbnail?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    brochure?: SortOrderInput | SortOrder
+    prize?: SortOrderInput | SortOrder
+    fees?: SortOrderInput | SortOrder
+    participation_limit?: SortOrderInput | SortOrder
+    publish_status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: ask_tournamentsCountOrderByAggregateInput
+    _avg?: ask_tournamentsAvgOrderByAggregateInput
+    _max?: ask_tournamentsMaxOrderByAggregateInput
+    _min?: ask_tournamentsMinOrderByAggregateInput
+    _sum?: ask_tournamentsSumOrderByAggregateInput
+  }
+
+  export type ask_tournamentsScalarWhereWithAggregatesInput = {
+    AND?: ask_tournamentsScalarWhereWithAggregatesInput | ask_tournamentsScalarWhereWithAggregatesInput[]
+    OR?: ask_tournamentsScalarWhereWithAggregatesInput[]
+    NOT?: ask_tournamentsScalarWhereWithAggregatesInput | ask_tournamentsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ask_tournaments"> | number
+    uuid?: StringWithAggregatesFilter<"ask_tournaments"> | string
+    sport_id?: StringWithAggregatesFilter<"ask_tournaments"> | string
+    user_id?: BigIntNullableWithAggregatesFilter<"ask_tournaments"> | bigint | number | null
+    name?: StringWithAggregatesFilter<"ask_tournaments"> | string
+    slug_name?: StringWithAggregatesFilter<"ask_tournaments"> | string
+    description?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    content?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    tournament_type?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    startdate?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
+    enddate?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
+    address?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    country_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
+    state_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
+    city_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
+    bannerimage?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    thumbnail?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    url?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    brochure?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    prize?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    fees?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    participation_limit?: IntNullableWithAggregatesFilter<"ask_tournaments"> | number | null
+    publish_status?: IntWithAggregatesFilter<"ask_tournaments"> | number
+    created_at?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
+  }
+
+  export type countriesWhereInput = {
+    AND?: countriesWhereInput | countriesWhereInput[]
+    OR?: countriesWhereInput[]
+    NOT?: countriesWhereInput | countriesWhereInput[]
+    id?: BigIntFilter<"countries"> | bigint | number
+    name?: StringFilter<"countries"> | string
+    iso_2?: StringNullableFilter<"countries"> | string | null
+    iso_3?: StringNullableFilter<"countries"> | string | null
+    phone_code?: StringNullableFilter<"countries"> | string | null
+    currency?: StringNullableFilter<"countries"> | string | null
+    flag?: StringNullableFilter<"countries"> | string | null
+    status?: IntFilter<"countries"> | number
+    created_at?: DateTimeNullableFilter<"countries"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"countries"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"countries"> | Date | string | null
+  }
+
+  export type countriesOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    iso_2?: SortOrderInput | SortOrder
+    iso_3?: SortOrderInput | SortOrder
+    phone_code?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    flag?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _relevance?: countriesOrderByRelevanceInput
+  }
+
+  export type countriesWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: countriesWhereInput | countriesWhereInput[]
+    OR?: countriesWhereInput[]
+    NOT?: countriesWhereInput | countriesWhereInput[]
+    name?: StringFilter<"countries"> | string
+    iso_2?: StringNullableFilter<"countries"> | string | null
+    iso_3?: StringNullableFilter<"countries"> | string | null
+    phone_code?: StringNullableFilter<"countries"> | string | null
+    currency?: StringNullableFilter<"countries"> | string | null
+    flag?: StringNullableFilter<"countries"> | string | null
+    status?: IntFilter<"countries"> | number
+    created_at?: DateTimeNullableFilter<"countries"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"countries"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"countries"> | Date | string | null
+  }, "id">
+
+  export type countriesOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    iso_2?: SortOrderInput | SortOrder
+    iso_3?: SortOrderInput | SortOrder
+    phone_code?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    flag?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: countriesCountOrderByAggregateInput
+    _avg?: countriesAvgOrderByAggregateInput
+    _max?: countriesMaxOrderByAggregateInput
+    _min?: countriesMinOrderByAggregateInput
+    _sum?: countriesSumOrderByAggregateInput
+  }
+
+  export type countriesScalarWhereWithAggregatesInput = {
+    AND?: countriesScalarWhereWithAggregatesInput | countriesScalarWhereWithAggregatesInput[]
+    OR?: countriesScalarWhereWithAggregatesInput[]
+    NOT?: countriesScalarWhereWithAggregatesInput | countriesScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"countries"> | bigint | number
+    name?: StringWithAggregatesFilter<"countries"> | string
+    iso_2?: StringNullableWithAggregatesFilter<"countries"> | string | null
+    iso_3?: StringNullableWithAggregatesFilter<"countries"> | string | null
+    phone_code?: StringNullableWithAggregatesFilter<"countries"> | string | null
+    currency?: StringNullableWithAggregatesFilter<"countries"> | string | null
+    flag?: StringNullableWithAggregatesFilter<"countries"> | string | null
+    status?: IntWithAggregatesFilter<"countries"> | number
+    created_at?: DateTimeNullableWithAggregatesFilter<"countries"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"countries"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"countries"> | Date | string | null
+  }
+
+  export type statesWhereInput = {
+    AND?: statesWhereInput | statesWhereInput[]
+    OR?: statesWhereInput[]
+    NOT?: statesWhereInput | statesWhereInput[]
+    id?: IntFilter<"states"> | number
+    country_id?: BigIntFilter<"states"> | bigint | number
+    name?: StringFilter<"states"> | string
+    code?: StringNullableFilter<"states"> | string | null
+    slug?: StringNullableFilter<"states"> | string | null
+    status?: IntFilter<"states"> | number
+    created_at?: DateTimeNullableFilter<"states"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"states"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"states"> | Date | string | null
+  }
+
+  export type statesOrderByWithRelationInput = {
+    id?: SortOrder
+    country_id?: SortOrder
+    name?: SortOrder
+    code?: SortOrderInput | SortOrder
+    slug?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _relevance?: statesOrderByRelevanceInput
+  }
+
+  export type statesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: statesWhereInput | statesWhereInput[]
+    OR?: statesWhereInput[]
+    NOT?: statesWhereInput | statesWhereInput[]
+    country_id?: BigIntFilter<"states"> | bigint | number
+    name?: StringFilter<"states"> | string
+    code?: StringNullableFilter<"states"> | string | null
+    slug?: StringNullableFilter<"states"> | string | null
+    status?: IntFilter<"states"> | number
+    created_at?: DateTimeNullableFilter<"states"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"states"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"states"> | Date | string | null
+  }, "id">
+
+  export type statesOrderByWithAggregationInput = {
+    id?: SortOrder
+    country_id?: SortOrder
+    name?: SortOrder
+    code?: SortOrderInput | SortOrder
+    slug?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: statesCountOrderByAggregateInput
+    _avg?: statesAvgOrderByAggregateInput
+    _max?: statesMaxOrderByAggregateInput
+    _min?: statesMinOrderByAggregateInput
+    _sum?: statesSumOrderByAggregateInput
+  }
+
+  export type statesScalarWhereWithAggregatesInput = {
+    AND?: statesScalarWhereWithAggregatesInput | statesScalarWhereWithAggregatesInput[]
+    OR?: statesScalarWhereWithAggregatesInput[]
+    NOT?: statesScalarWhereWithAggregatesInput | statesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"states"> | number
+    country_id?: BigIntWithAggregatesFilter<"states"> | bigint | number
+    name?: StringWithAggregatesFilter<"states"> | string
+    code?: StringNullableWithAggregatesFilter<"states"> | string | null
+    slug?: StringNullableWithAggregatesFilter<"states"> | string | null
+    status?: IntWithAggregatesFilter<"states"> | number
+    created_at?: DateTimeNullableWithAggregatesFilter<"states"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"states"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"states"> | Date | string | null
+  }
+
+  export type citiesWhereInput = {
+    AND?: citiesWhereInput | citiesWhereInput[]
+    OR?: citiesWhereInput[]
+    NOT?: citiesWhereInput | citiesWhereInput[]
+    id?: BigIntFilter<"cities"> | bigint | number
+    state_id?: BigIntFilter<"cities"> | bigint | number
+    name?: StringFilter<"cities"> | string
+    slug?: StringNullableFilter<"cities"> | string | null
+    leagues_allowed?: IntFilter<"cities"> | number
+    status?: IntFilter<"cities"> | number
+    created_at?: DateTimeNullableFilter<"cities"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"cities"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"cities"> | Date | string | null
+  }
+
+  export type citiesOrderByWithRelationInput = {
+    id?: SortOrder
+    state_id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrderInput | SortOrder
+    leagues_allowed?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _relevance?: citiesOrderByRelevanceInput
+  }
+
+  export type citiesWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: citiesWhereInput | citiesWhereInput[]
+    OR?: citiesWhereInput[]
+    NOT?: citiesWhereInput | citiesWhereInput[]
+    state_id?: BigIntFilter<"cities"> | bigint | number
+    name?: StringFilter<"cities"> | string
+    slug?: StringNullableFilter<"cities"> | string | null
+    leagues_allowed?: IntFilter<"cities"> | number
+    status?: IntFilter<"cities"> | number
+    created_at?: DateTimeNullableFilter<"cities"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"cities"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"cities"> | Date | string | null
+  }, "id">
+
+  export type citiesOrderByWithAggregationInput = {
+    id?: SortOrder
+    state_id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrderInput | SortOrder
+    leagues_allowed?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: citiesCountOrderByAggregateInput
+    _avg?: citiesAvgOrderByAggregateInput
+    _max?: citiesMaxOrderByAggregateInput
+    _min?: citiesMinOrderByAggregateInput
+    _sum?: citiesSumOrderByAggregateInput
+  }
+
+  export type citiesScalarWhereWithAggregatesInput = {
+    AND?: citiesScalarWhereWithAggregatesInput | citiesScalarWhereWithAggregatesInput[]
+    OR?: citiesScalarWhereWithAggregatesInput[]
+    NOT?: citiesScalarWhereWithAggregatesInput | citiesScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"cities"> | bigint | number
+    state_id?: BigIntWithAggregatesFilter<"cities"> | bigint | number
+    name?: StringWithAggregatesFilter<"cities"> | string
+    slug?: StringNullableWithAggregatesFilter<"cities"> | string | null
+    leagues_allowed?: IntWithAggregatesFilter<"cities"> | number
+    status?: IntWithAggregatesFilter<"cities"> | number
+    created_at?: DateTimeNullableWithAggregatesFilter<"cities"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"cities"> | Date | string | null
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"cities"> | Date | string | null
   }
 
   export type academiesCreateInput = {
@@ -29259,204 +33755,496 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type asktournamentsCreateInput = {
-    id: number
-    uuid: string
-    sport_id?: string | null
+  export type testing_dateCreateInput = {
+    startdate?: Date | string | null
+  }
+
+  export type testing_dateUncheckedCreateInput = {
+    id?: number
+    startdate?: Date | string | null
+  }
+
+  export type testing_dateUpdateInput = {
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type testing_dateUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type testing_dateCreateManyInput = {
+    id?: number
+    startdate?: Date | string | null
+  }
+
+  export type testing_dateUpdateManyMutationInput = {
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type testing_dateUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ask_tournamentsCreateInput = {
+    uuid?: string
+    sport_id: string
     user_id?: bigint | number | null
-    name?: string | null
-    slug_name?: string | null
+    name: string
+    slug_name: string
     description?: string | null
     content?: string | null
     tournament_type?: string | null
-    tourstartdate?: Date | string | null
-    tourenddate?: Date | string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
     address?: string | null
-    country_id?: bigint | number | null
-    state_id?: bigint | number | null
-    city_id?: bigint | number | null
-    tourbannerimage?: string | null
-    tourthumbnail?: string | null
-    tourwebsite?: string | null
-    tourbrochure?: string | null
-    prizemoney?: string | null
-    tournament_fees?: Decimal | DecimalJsLike | number | string | null
-    participation_limit?: number
+    country_id: bigint | number
+    state_id: bigint | number
+    city_id: bigint | number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
   }
 
-  export type asktournamentsUncheckedCreateInput = {
-    id: number
-    uuid: string
-    sport_id?: string | null
+  export type ask_tournamentsUncheckedCreateInput = {
+    id?: number
+    uuid?: string
+    sport_id: string
     user_id?: bigint | number | null
-    name?: string | null
-    slug_name?: string | null
+    name: string
+    slug_name: string
     description?: string | null
     content?: string | null
     tournament_type?: string | null
-    tourstartdate?: Date | string | null
-    tourenddate?: Date | string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
     address?: string | null
-    country_id?: bigint | number | null
-    state_id?: bigint | number | null
-    city_id?: bigint | number | null
-    tourbannerimage?: string | null
-    tourthumbnail?: string | null
-    tourwebsite?: string | null
-    tourbrochure?: string | null
-    prizemoney?: string | null
-    tournament_fees?: Decimal | DecimalJsLike | number | string | null
-    participation_limit?: number
+    country_id: bigint | number
+    state_id: bigint | number
+    city_id: bigint | number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
   }
 
-  export type asktournamentsUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type ask_tournamentsUpdateInput = {
     uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: StringFieldUpdateOperationsInput | string
     user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
     tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
-    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    participation_limit?: IntFieldUpdateOperationsInput | number
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type asktournamentsUncheckedUpdateInput = {
+  export type ask_tournamentsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: StringFieldUpdateOperationsInput | string
     user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
     tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
-    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    participation_limit?: IntFieldUpdateOperationsInput | number
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type asktournamentsCreateManyInput = {
-    id: number
-    uuid: string
-    sport_id?: string | null
+  export type ask_tournamentsCreateManyInput = {
+    id?: number
+    uuid?: string
+    sport_id: string
     user_id?: bigint | number | null
-    name?: string | null
-    slug_name?: string | null
+    name: string
+    slug_name: string
     description?: string | null
     content?: string | null
     tournament_type?: string | null
-    tourstartdate?: Date | string | null
-    tourenddate?: Date | string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
     address?: string | null
-    country_id?: bigint | number | null
-    state_id?: bigint | number | null
-    city_id?: bigint | number | null
-    tourbannerimage?: string | null
-    tourthumbnail?: string | null
-    tourwebsite?: string | null
-    tourbrochure?: string | null
-    prizemoney?: string | null
-    tournament_fees?: Decimal | DecimalJsLike | number | string | null
-    participation_limit?: number
+    country_id: bigint | number
+    state_id: bigint | number
+    city_id: bigint | number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
   }
 
-  export type asktournamentsUpdateManyMutationInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type ask_tournamentsUpdateManyMutationInput = {
     uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: StringFieldUpdateOperationsInput | string
     user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
     tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
-    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    participation_limit?: IntFieldUpdateOperationsInput | number
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type asktournamentsUncheckedUpdateManyInput = {
+  export type ask_tournamentsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: StringFieldUpdateOperationsInput | string
     user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
     tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    tourstartdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tourenddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    state_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    city_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tourbannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    tourthumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tourwebsite?: NullableStringFieldUpdateOperationsInput | string | null
-    tourbrochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prizemoney?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_fees?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    participation_limit?: IntFieldUpdateOperationsInput | number
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type countriesCreateInput = {
+    id: bigint | number
+    name: string
+    iso_2?: string | null
+    iso_3?: string | null
+    phone_code?: string | null
+    currency?: string | null
+    flag?: string | null
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type countriesUncheckedCreateInput = {
+    id: bigint | number
+    name: string
+    iso_2?: string | null
+    iso_3?: string | null
+    phone_code?: string | null
+    currency?: string | null
+    flag?: string | null
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type countriesUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
+    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type countriesUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
+    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type countriesCreateManyInput = {
+    id: bigint | number
+    name: string
+    iso_2?: string | null
+    iso_3?: string | null
+    phone_code?: string | null
+    currency?: string | null
+    flag?: string | null
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type countriesUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
+    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type countriesUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
+    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type statesCreateInput = {
+    country_id: bigint | number
+    name: string
+    code?: string | null
+    slug?: string | null
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type statesUncheckedCreateInput = {
+    id?: number
+    country_id: bigint | number
+    name: string
+    code?: string | null
+    slug?: string | null
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type statesUpdateInput = {
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type statesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type statesCreateManyInput = {
+    id?: number
+    country_id: bigint | number
+    name: string
+    code?: string | null
+    slug?: string | null
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type statesUpdateManyMutationInput = {
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type statesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type citiesCreateInput = {
+    id: bigint | number
+    state_id: bigint | number
+    name: string
+    slug?: string | null
+    leagues_allowed?: number
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type citiesUncheckedCreateInput = {
+    id: bigint | number
+    state_id: bigint | number
+    name: string
+    slug?: string | null
+    leagues_allowed?: number
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type citiesUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    leagues_allowed?: IntFieldUpdateOperationsInput | number
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type citiesUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    leagues_allowed?: IntFieldUpdateOperationsInput | number
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type citiesCreateManyInput = {
+    id: bigint | number
+    state_id: bigint | number
+    name: string
+    slug?: string | null
+    leagues_allowed?: number
+    status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type citiesUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    leagues_allowed?: IntFieldUpdateOperationsInput | number
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type citiesUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    leagues_allowed?: IntFieldUpdateOperationsInput | number
+    status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31070,13 +35858,36 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type asktournamentsOrderByRelevanceInput = {
-    fields: asktournamentsOrderByRelevanceFieldEnum | asktournamentsOrderByRelevanceFieldEnum[]
+  export type testing_dateCountOrderByAggregateInput = {
+    id?: SortOrder
+    startdate?: SortOrder
+  }
+
+  export type testing_dateAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type testing_dateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    startdate?: SortOrder
+  }
+
+  export type testing_dateMinOrderByAggregateInput = {
+    id?: SortOrder
+    startdate?: SortOrder
+  }
+
+  export type testing_dateSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ask_tournamentsOrderByRelevanceInput = {
+    fields: ask_tournamentsOrderByRelevanceFieldEnum | ask_tournamentsOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type asktournamentsCountOrderByAggregateInput = {
+  export type ask_tournamentsCountOrderByAggregateInput = {
     id?: SortOrder
     uuid?: SortOrder
     sport_id?: SortOrder
@@ -31086,18 +35897,18 @@ export namespace Prisma {
     description?: SortOrder
     content?: SortOrder
     tournament_type?: SortOrder
-    tourstartdate?: SortOrder
-    tourenddate?: SortOrder
+    startdate?: SortOrder
+    enddate?: SortOrder
     address?: SortOrder
     country_id?: SortOrder
     state_id?: SortOrder
     city_id?: SortOrder
-    tourbannerimage?: SortOrder
-    tourthumbnail?: SortOrder
-    tourwebsite?: SortOrder
-    tourbrochure?: SortOrder
-    prizemoney?: SortOrder
-    tournament_fees?: SortOrder
+    bannerimage?: SortOrder
+    thumbnail?: SortOrder
+    url?: SortOrder
+    brochure?: SortOrder
+    prize?: SortOrder
+    fees?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
     created_at?: SortOrder
@@ -31105,18 +35916,17 @@ export namespace Prisma {
     deleted_at?: SortOrder
   }
 
-  export type asktournamentsAvgOrderByAggregateInput = {
+  export type ask_tournamentsAvgOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
     country_id?: SortOrder
     state_id?: SortOrder
     city_id?: SortOrder
-    tournament_fees?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
   }
 
-  export type asktournamentsMaxOrderByAggregateInput = {
+  export type ask_tournamentsMaxOrderByAggregateInput = {
     id?: SortOrder
     uuid?: SortOrder
     sport_id?: SortOrder
@@ -31126,18 +35936,18 @@ export namespace Prisma {
     description?: SortOrder
     content?: SortOrder
     tournament_type?: SortOrder
-    tourstartdate?: SortOrder
-    tourenddate?: SortOrder
+    startdate?: SortOrder
+    enddate?: SortOrder
     address?: SortOrder
     country_id?: SortOrder
     state_id?: SortOrder
     city_id?: SortOrder
-    tourbannerimage?: SortOrder
-    tourthumbnail?: SortOrder
-    tourwebsite?: SortOrder
-    tourbrochure?: SortOrder
-    prizemoney?: SortOrder
-    tournament_fees?: SortOrder
+    bannerimage?: SortOrder
+    thumbnail?: SortOrder
+    url?: SortOrder
+    brochure?: SortOrder
+    prize?: SortOrder
+    fees?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
     created_at?: SortOrder
@@ -31145,7 +35955,7 @@ export namespace Prisma {
     deleted_at?: SortOrder
   }
 
-  export type asktournamentsMinOrderByAggregateInput = {
+  export type ask_tournamentsMinOrderByAggregateInput = {
     id?: SortOrder
     uuid?: SortOrder
     sport_id?: SortOrder
@@ -31155,18 +35965,18 @@ export namespace Prisma {
     description?: SortOrder
     content?: SortOrder
     tournament_type?: SortOrder
-    tourstartdate?: SortOrder
-    tourenddate?: SortOrder
+    startdate?: SortOrder
+    enddate?: SortOrder
     address?: SortOrder
     country_id?: SortOrder
     state_id?: SortOrder
     city_id?: SortOrder
-    tourbannerimage?: SortOrder
-    tourthumbnail?: SortOrder
-    tourwebsite?: SortOrder
-    tourbrochure?: SortOrder
-    prizemoney?: SortOrder
-    tournament_fees?: SortOrder
+    bannerimage?: SortOrder
+    thumbnail?: SortOrder
+    url?: SortOrder
+    brochure?: SortOrder
+    prize?: SortOrder
+    fees?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
     created_at?: SortOrder
@@ -31174,15 +35984,182 @@ export namespace Prisma {
     deleted_at?: SortOrder
   }
 
-  export type asktournamentsSumOrderByAggregateInput = {
+  export type ask_tournamentsSumOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
     country_id?: SortOrder
     state_id?: SortOrder
     city_id?: SortOrder
-    tournament_fees?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
+  }
+
+  export type countriesOrderByRelevanceInput = {
+    fields: countriesOrderByRelevanceFieldEnum | countriesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type countriesCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    iso_2?: SortOrder
+    iso_3?: SortOrder
+    phone_code?: SortOrder
+    currency?: SortOrder
+    flag?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type countriesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+  }
+
+  export type countriesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    iso_2?: SortOrder
+    iso_3?: SortOrder
+    phone_code?: SortOrder
+    currency?: SortOrder
+    flag?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type countriesMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    iso_2?: SortOrder
+    iso_3?: SortOrder
+    phone_code?: SortOrder
+    currency?: SortOrder
+    flag?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type countriesSumOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+  }
+
+  export type statesOrderByRelevanceInput = {
+    fields: statesOrderByRelevanceFieldEnum | statesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type statesCountOrderByAggregateInput = {
+    id?: SortOrder
+    country_id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    slug?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type statesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    country_id?: SortOrder
+    status?: SortOrder
+  }
+
+  export type statesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    country_id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    slug?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type statesMinOrderByAggregateInput = {
+    id?: SortOrder
+    country_id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    slug?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type statesSumOrderByAggregateInput = {
+    id?: SortOrder
+    country_id?: SortOrder
+    status?: SortOrder
+  }
+
+  export type citiesOrderByRelevanceInput = {
+    fields: citiesOrderByRelevanceFieldEnum | citiesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type citiesCountOrderByAggregateInput = {
+    id?: SortOrder
+    state_id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    leagues_allowed?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type citiesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    state_id?: SortOrder
+    leagues_allowed?: SortOrder
+    status?: SortOrder
+  }
+
+  export type citiesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    state_id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    leagues_allowed?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type citiesMinOrderByAggregateInput = {
+    id?: SortOrder
+    state_id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    leagues_allowed?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type citiesSumOrderByAggregateInput = {
+    id?: SortOrder
+    state_id?: SortOrder
+    leagues_allowed?: SortOrder
+    status?: SortOrder
   }
 
   export type academy_seo_contentsCreateNestedManyWithoutAcademiesInput = {
