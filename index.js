@@ -5,6 +5,9 @@ const prisma = require("./lib/prisma.js")
 const tournamentRoutes = require('./routes/tournamentRoutes.js')
 const sportsRoutes = require('./routes/sportsRoutes.js');
 const academyRoutes = require('./routes/academyRoutes.js');
+const authRoutes = require('./routes/authRoutes.js');
+const previewRoutes = require('./routes/previewRoutes.js')
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -16,6 +19,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/tournament', tournamentRoutes)
 app.use('/api', sportsRoutes)
 app.use('/api/academies',academyRoutes)
+app.use('/api', authRoutes)
+app.use("/preview", previewRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: "Backend is running..." })

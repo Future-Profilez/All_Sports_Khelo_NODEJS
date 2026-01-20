@@ -18,7 +18,7 @@ model ask_users {
   name           String?    @db.VarChar(255)
   phone          String?    @unique @db.VarChar(20)
   email          String?    @unique @db.VarChar(255)
-  password       String     @db.VarChar(255)
+  password       String     @db.VarChar(255) 
   otp_verified   Boolean    @default(false)
   otp            String?    @db.VarChar(255)
   otp_expires_at DateTime?  @db.Timestamp(0)
