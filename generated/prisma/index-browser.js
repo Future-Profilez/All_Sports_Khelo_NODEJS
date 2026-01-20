@@ -120,6 +120,35 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.Ask_test_userScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  avatar: 'avatar',
+  city: 'city',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.Ask_test_dataScalarFieldEnum = {
+  id: 'id',
+  testname: 'testname',
+  testage: 'testage',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.Ask_usersScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  password: 'password',
+  otp_verified: 'otp_verified',
+  otp: 'otp',
+  otp_expires_at: 'otp_expires_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.AcademiesScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -484,9 +513,28 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.ask_test_userOrderByRelevanceFieldEnum = {
+  name: 'name',
+  avatar: 'avatar',
+  city: 'city'
+};
+
+exports.Prisma.ask_test_dataOrderByRelevanceFieldEnum = {
+  testname: 'testname',
+  testage: 'testage'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.ask_usersOrderByRelevanceFieldEnum = {
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  password: 'password',
+  otp: 'otp'
 };
 
 exports.Prisma.academiesOrderByRelevanceFieldEnum = {
@@ -706,6 +754,9 @@ exports.sports_status = exports.$Enums.sports_status = {
 };
 
 exports.Prisma.ModelName = {
+  ask_test_user: 'ask_test_user',
+  ask_test_data: 'ask_test_data',
+  ask_users: 'ask_users',
   academies: 'academies',
   academy_seo_contents: 'academy_seo_contents',
   academy_amenities: 'academy_amenities',
