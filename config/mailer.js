@@ -1,8 +1,6 @@
 const nodemailer = require('nodemailer');
 const { getEmailOtpTemplate } = require('../utils/emailTemplate');
 
-console.log("user:", process.env.SMTP_USER)
-console.log("pass:", process.env.SMTP_PASS)
 const transporter = nodemailer.createTransport({
     service: "gmail",
     // host: process.env.SMTP_HOST,

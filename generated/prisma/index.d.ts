@@ -1045,11 +1045,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-<<<<<<< HEAD
-      modelProps: "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_my_notes" | "ask_notes_detail" | "ask_testing" | "ask_test_sports" | "ask_testing1" | "testing_date" | "ask_tournaments" | "countries" | "states" | "cities"
-=======
-      modelProps: "ask_test_user" | "ask_test_data" | "ask_users" | "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "asktournaments" | "ask_my_notes" | "ask_notes_detail"
->>>>>>> e746168d24e40a589dc10d29a4cbbafefee675b6
+      modelProps: "ask_test_user" | "ask_test_data" | "ask_users" | "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_my_notes" | "ask_notes_detail" | "ask_testing" | "ask_test_sports" | "ask_testing1" | "testing_date" | "ask_tournaments" | "countries" | "states" | "cities"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -34482,7 +34478,6 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"ask_notes_detail"> | Date | string
   }
 
-<<<<<<< HEAD
   export type ask_testingWhereInput = {
     AND?: ask_testingWhereInput | ask_testingWhereInput[]
     OR?: ask_testingWhereInput[]
@@ -35045,7 +35040,8 @@ export namespace Prisma {
     created_at?: DateTimeNullableWithAggregatesFilter<"cities"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"cities"> | Date | string | null
     deleted_at?: DateTimeNullableWithAggregatesFilter<"cities"> | Date | string | null
-=======
+  }
+
   export type ask_test_userCreateInput = {
     name: string
     avatar: string
@@ -35238,7 +35234,6 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> e746168d24e40a589dc10d29a4cbbafefee675b6
   }
 
   export type academiesCreateInput = {
@@ -37152,7 +37147,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-<<<<<<< HEAD
   export type ask_testingCreateInput = {
     title?: string | null
     description?: string | null
@@ -37758,16 +37752,6 @@ export namespace Prisma {
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[]
-    notIn?: bigint[] | number[]
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-=======
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -37777,7 +37761,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
->>>>>>> e746168d24e40a589dc10d29a4cbbafefee675b6
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -39341,133 +39324,6 @@ export namespace Prisma {
     tournament_id?: SortOrder
   }
 
-<<<<<<< HEAD
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-=======
-  export type asktournamentsOrderByRelevanceInput = {
-    fields: asktournamentsOrderByRelevanceFieldEnum | asktournamentsOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type asktournamentsCountOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    sport_id?: SortOrder
-    name?: SortOrder
-    slug_name?: SortOrder
-    description?: SortOrder
-    tournament_type?: SortOrder
-    user_id?: SortOrder
-    tourstartdate?: SortOrder
-    tourenddate?: SortOrder
-    venue?: SortOrder
-    tourbannerimage?: SortOrder
-    tourthumbnail?: SortOrder
-    tourwebsite?: SortOrder
-    tourbrochure?: SortOrder
-    prizemoney?: SortOrder
-    tournament_fees?: SortOrder
-    country_id?: SortOrder
-    state_id?: SortOrder
-    city_id?: SortOrder
-    address?: SortOrder
-    participation_limit?: SortOrder
-    publish_status?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type asktournamentsAvgOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    tournament_fees?: SortOrder
-    country_id?: SortOrder
-    state_id?: SortOrder
-    city_id?: SortOrder
-    participation_limit?: SortOrder
-    publish_status?: SortOrder
-  }
-
-  export type asktournamentsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    sport_id?: SortOrder
-    name?: SortOrder
-    slug_name?: SortOrder
-    description?: SortOrder
-    tournament_type?: SortOrder
-    user_id?: SortOrder
-    tourstartdate?: SortOrder
-    tourenddate?: SortOrder
-    venue?: SortOrder
-    tourbannerimage?: SortOrder
-    tourthumbnail?: SortOrder
-    tourwebsite?: SortOrder
-    tourbrochure?: SortOrder
-    prizemoney?: SortOrder
-    tournament_fees?: SortOrder
-    country_id?: SortOrder
-    state_id?: SortOrder
-    city_id?: SortOrder
-    address?: SortOrder
-    participation_limit?: SortOrder
-    publish_status?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type asktournamentsMinOrderByAggregateInput = {
-    id?: SortOrder
-    uuid?: SortOrder
-    sport_id?: SortOrder
-    name?: SortOrder
-    slug_name?: SortOrder
-    description?: SortOrder
-    tournament_type?: SortOrder
-    user_id?: SortOrder
-    tourstartdate?: SortOrder
-    tourenddate?: SortOrder
-    venue?: SortOrder
-    tourbannerimage?: SortOrder
-    tourthumbnail?: SortOrder
-    tourwebsite?: SortOrder
-    tourbrochure?: SortOrder
-    prizemoney?: SortOrder
-    tournament_fees?: SortOrder
-    country_id?: SortOrder
-    state_id?: SortOrder
-    city_id?: SortOrder
-    address?: SortOrder
-    participation_limit?: SortOrder
-    publish_status?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    deleted_at?: SortOrder
-  }
-
-  export type asktournamentsSumOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    tournament_fees?: SortOrder
-    country_id?: SortOrder
-    state_id?: SortOrder
-    city_id?: SortOrder
-    participation_limit?: SortOrder
-    publish_status?: SortOrder
->>>>>>> e746168d24e40a589dc10d29a4cbbafefee675b6
-  }
-
   export type ask_my_notesOrderByRelevanceInput = {
     fields: ask_my_notesOrderByRelevanceFieldEnum | ask_my_notesOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -39540,7 +39396,6 @@ export namespace Prisma {
     note_id?: SortOrder
   }
 
-<<<<<<< HEAD
   export type ask_testingOrderByRelevanceInput = {
     fields: ask_testingOrderByRelevanceFieldEnum | ask_testingOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -39936,7 +39791,8 @@ export namespace Prisma {
     state_id?: SortOrder
     leagues_allowed?: SortOrder
     status?: SortOrder
-=======
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -39963,7 +39819,6 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
->>>>>>> e746168d24e40a589dc10d29a4cbbafefee675b6
   }
 
   export type academy_seo_contentsCreateNestedManyWithoutAcademiesInput = {
