@@ -46,11 +46,11 @@ exports.add_ask_tournament = async (req, res) => {
 
     const bannerimage = req.files?.bannerimage
       ? BASE_URL + req.files.bannerimage[0].filename
-      : null;
-
+      : req.body.bannerimage || null;
+    console.log("banner image ",bannerimage);
     const thumbnail = req.files?.thumbnail
       ? BASE_URL + req.files.thumbnail[0].filename
-      : null;
+      : req.body.thumbnail || null;
 
     const brochure = req.files?.brochure
       ? BASE_URL + req.files.brochure[0].filename

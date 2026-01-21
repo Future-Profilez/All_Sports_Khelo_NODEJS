@@ -15,7 +15,7 @@ const { list_ask_tournaments, asktournamentOverview, add_ask_tournament } = requ
 
 
 // ASK ROUTES
-router.post('/createtournament', 
+router.post('/create', 
     upload.fields([
     { name: "bannerimage", maxCount: 1 },
     { name: "thumbnail", maxCount: 1 },
