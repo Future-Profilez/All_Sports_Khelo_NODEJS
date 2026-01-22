@@ -17,13 +17,32 @@ exports.add_ask_tournament = async (req, res) => {
       country_id,
       state_id,
       city_id,
-      url,
-      prize,
+      url, 
+      prize, 
       fees,
       participation_limit,
       publish_status,
     } = req.body;
-    console.log("req.body ", req.body);
+    console.log("bannerimage ",  req.body?.bannerimage); 
+
+    console.log("bannerimage_path", req?.body?.bannerimage_path);
+    console.log("Added File", req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename);
+    
+    const bannerImagePath = () => { 
+      if(req?.body?.bannerimage_path){
+        return `/uploads/default${req?.body?.bannerimage_path}`
+      } else { 
+        return `/uploads/${req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename}`
+      }
+    }
+
+    const thumbnailImagePath = () => {
+      if(req?.body?.thumbnail_path){
+        return `/uploads/default${req?.body?.thumbnail_path}`
+      } else{
+        return `/uploads/userthumnail/${req?.files?.thumbnail && req?.files?.thumbnail[0]?.filename}`
+      }
+    }
 
     if (!sport_id || !name) {
       return res.status(200).json({
@@ -52,9 +71,10 @@ exports.add_ask_tournament = async (req, res) => {
       ? BASE_URL + req.files.thumbnail[0].filename
       : req.body.thumbnail || null;
 
-    const brochure = req.files?.brochure
-      ? BASE_URL + req.files.brochure[0].filename
-      : null;
+    const brochure = 'fsdf'
+    // const brochure = req.files?.brochure
+    //   ? BASE_URL + req.files.brochure[0].filename
+    //   : null;
     // console.log("model ",await prisma);
     const tournament = await prisma.ask_tournaments.create({
       data: {
@@ -71,8 +91,8 @@ exports.add_ask_tournament = async (req, res) => {
         country_id,
         state_id,
         city_id,
-        bannerimage,
-        thumbnail,
+        bannerimage : bannerImagePath(),
+        thumbnail: thumbnailImagePath(),
         brochure,
         url,
         prize,
