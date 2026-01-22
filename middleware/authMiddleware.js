@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken')
 
 exports.protect = async (req, res, next) => {
     try {
-        const tokenkey = req.headers.authorization || req.headers.Authorization;
-        const token = tokenkey.split(" ")[1];
+        const tokenkey = req?.headers?.authorization || req?.headers?.Authorization;
+        const token = tokenkey && tokenkey.split(" ")[1];
 
         if (!token) {
             return res.status(200).json({ success: false, message: "Unauthorize user" })
