@@ -331,42 +331,6 @@ model tournament_galleries_folders {
   deleted_at    DateTime? @db.Timestamp(0)
 }
 
-model ask_my_notes {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  body      String?  @db.LongText
-  createdAt DateTime @default(now()) @db.Timestamp(0)
-}
-
-model ask_notes_detail {
-  id        Int      @id @default(autoincrement())
-  note_id   Int
-  content   String?  @db.LongText
-  createdAt DateTime @default(now()) @db.Timestamp(0)
-}
-
-model ask_testing {
-  id          Int     @id @default(autoincrement())
-  title       String? @db.VarChar(255)
-  description String? @db.VarChar(255)
-}
-
-model ask_test_sports {
-  id   Int    @id @default(autoincrement())
-  name String @db.VarChar(255)
-}
-
-model ask_testing1 {
-  id          Int     @id @default(autoincrement())
-  title       String? @db.VarChar(255)
-  description String? @db.VarChar(255)
-}
-
-model testing_date {
-  id        Int       @id @default(autoincrement())
-  startdate DateTime?
-}
-
 model ask_tournaments {
   id                  Int       @id @default(autoincrement())
   uuid                String    @unique @default(uuid()) @db.Char(36)
@@ -380,9 +344,9 @@ model ask_tournaments {
   startdate           DateTime?
   enddate             DateTime?
   address             String?   @db.VarChar(255)
-  country_id          BigInt    @db.UnsignedBigInt
-  state_id            BigInt    @db.UnsignedBigInt
-  city_id             BigInt    @db.UnsignedBigInt
+  country_id          BigInt    @unique @db.UnsignedBigInt
+  state_id            BigInt    @unique @db.UnsignedBigInt
+  city_id             BigInt    @unique @db.UnsignedBigInt
   bannerimage         String?   @db.VarChar(255)
   thumbnail           String?   @db.VarChar(255)
   url                 String?   @db.VarChar(255)
@@ -394,6 +358,10 @@ model ask_tournaments {
   created_at          DateTime? @db.Timestamp(0)
   updated_at          DateTime? @db.Timestamp(0)
   deleted_at          DateTime? @db.Timestamp(0)
+
+  country countries[] @relation("AskTournamentCountry")
+  state   states[]    @relation("AskTournamentState")
+  city    cities[]    @relation("AskTournamentCity")
 }
 
 model countries {
@@ -408,28 +376,32 @@ model countries {
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
   deleted_at DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments @relation("AskTournamentCountry", fields: [id], references: [country_id])
 }
 
 model states {
-  id         Int       @id @default(autoincrement())
-  country_id BigInt    @db.UnsignedBigInt
-  name       String    @db.VarChar(255)
-  code       String?   @db.VarChar(10)
-  slug       String?   @db.VarChar(255)
-  status     Int       @default(1) @db.TinyInt
-  created_at DateTime? @db.Timestamp(0)
-  updated_at DateTime? @db.Timestamp(0)
-  deleted_at DateTime? @db.Timestamp(0)
+  id              Int             @id @default(autoincrement())
+  country_id      BigInt          @db.UnsignedBigInt
+  name            String          @db.VarChar(255)
+  code            String?         @db.VarChar(10)
+  slug            String?         @db.VarChar(255)
+  status          Int             @default(1) @db.TinyInt
+  created_at      DateTime?       @db.Timestamp(0)
+  updated_at      DateTime?       @db.Timestamp(0)
+  deleted_at      DateTime?       @db.Timestamp(0)
+  ask_tournaments ask_tournaments @relation("AskTournamentState", fields: [country_id], references: [state_id])
 }
 
 model cities {
-  id              BigInt    @id @db.UnsignedBigInt
-  state_id        BigInt    @db.UnsignedBigInt
-  name            String    @db.VarChar(100)
-  slug            String?   @db.VarChar(255)
-  leagues_allowed Int       @default(0) @db.TinyInt
-  status          Int       @default(1) @db.TinyInt
-  created_at      DateTime? @db.Timestamp(0)
-  updated_at      DateTime? @db.Timestamp(0)
-  deleted_at      DateTime? @db.Timestamp(0)
+  id              BigInt          @id @db.UnsignedBigInt
+  state_id        BigInt          @db.UnsignedBigInt
+  name            String          @db.VarChar(100)
+  slug            String?         @db.VarChar(255)
+  leagues_allowed Int             @default(0) @db.TinyInt
+  status          Int             @default(1) @db.TinyInt
+  created_at      DateTime?       @db.Timestamp(0)
+  updated_at      DateTime?       @db.Timestamp(0)
+  deleted_at      DateTime?       @db.Timestamp(0)
+  ask_tournaments ask_tournaments @relation("AskTournamentCity", fields: [state_id], references: [city_id])
 }

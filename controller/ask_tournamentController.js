@@ -17,29 +17,29 @@ exports.add_ask_tournament = async (req, res) => {
       country_id,
       state_id,
       city_id,
-      url, 
-      prize, 
+      url,
+      prize,
       fees,
       participation_limit,
       publish_status,
     } = req.body;
-    console.log("bannerimage ",  req.body?.bannerimage); 
+    console.log("bannerimage ", req.body?.bannerimage);
 
     console.log("bannerimage_path", req?.body?.bannerimage_path);
     console.log("Added File", req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename);
-    
-    const bannerImagePath = () => { 
-      if(req?.body?.bannerimage_path){
+
+    const bannerImagePath = () => {
+      if (req?.body?.bannerimage_path) {
         return `/uploads/default${req?.body?.bannerimage_path}`
-      } else { 
+      } else {
         return `/uploads/${req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename}`
       }
     }
 
     const thumbnailImagePath = () => {
-      if(req?.body?.thumbnail_path){
+      if (req?.body?.thumbnail_path) {
         return `/uploads/default${req?.body?.thumbnail_path}`
-      } else{
+      } else {
         return `/uploads/userthumnail/${req?.files?.thumbnail && req?.files?.thumbnail[0]?.filename}`
       }
     }
@@ -66,7 +66,7 @@ exports.add_ask_tournament = async (req, res) => {
     const bannerimage = req.files?.bannerimage
       ? BASE_URL + req.files.bannerimage[0].filename
       : req.body.bannerimage || null;
-    console.log("banner image ",bannerimage);
+    console.log("banner image ", bannerimage);
     const thumbnail = req.files?.thumbnail
       ? BASE_URL + req.files.thumbnail[0].filename
       : req.body.thumbnail || null;
@@ -91,7 +91,7 @@ exports.add_ask_tournament = async (req, res) => {
         country_id,
         state_id,
         city_id,
-        bannerimage : bannerImagePath(),
+        bannerimage: bannerImagePath(),
         thumbnail: thumbnailImagePath(),
         brochure,
         url,
@@ -118,12 +118,27 @@ exports.add_ask_tournament = async (req, res) => {
 
 exports.list_ask_tournaments = async (req, res) => {
   try {
-    const all_tournaments = await prisma.ask_tournaments.findMany();
-    const data = convertBigIntToString(all_tournaments)
+    const all_tournaments = await prisma.ask_tournaments.findMany({
+      include: {
+            country: true,
+            state:true,
+            city:true
+        },
+    });
+    const data = convertBigIntToString(all_tournaments);
+
+    const updateddata = data.map((item, i) => {
+      return {
+        ...item,
+        thumbnail: item?.thumbnail ? `${process.env.APP_URL}${item?.thumbnail}` : false,
+        bannerimage: item?.bannerimage ? `${process.env.APP_URL}${item?.bannerimage}` : false
+      }
+    })
+
     return res.status(200).json({
       message: "All tournaments fetched successfully!",
       status: false,
-      data: data
+      data: updateddata
     })
   } catch (error) {
     console.log(error)
@@ -144,17 +159,27 @@ exports.asktournamentOverview = async (req, res) => {
         slug_name: slug,
       },
     });
-    if (!data) {
+    const content = convertBigIntToString(data);
+    const updateddata = {
+      ...content,
+      thumbnail: content?.thumbnail
+        ? `${process.env.APP_URL}${content.thumbnail}`
+        : false,
+      bannerimage: content?.bannerimage
+        ? `${process.env.APP_URL}${content.bannerimage}`
+        : false,
+    };
+
+    if (!updateddata) {
       return res.status(200).json({
         status: false,
         message: "Tournament not found"
       });
     }
-    const content = convertBigIntToString(data);
     return res.status(200).json({
       status: true,
       message: "Tournament content fetched successfully!",
-      content: content,
+      content: updateddata,
     });
   } catch (error) {
     console.log(error);

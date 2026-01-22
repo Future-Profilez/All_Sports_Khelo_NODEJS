@@ -405,42 +405,6 @@ exports.Prisma.Tournament_galleries_foldersScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
-exports.Prisma.Ask_my_notesScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  body: 'body',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.Ask_notes_detailScalarFieldEnum = {
-  id: 'id',
-  note_id: 'note_id',
-  content: 'content',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.Ask_testingScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description'
-};
-
-exports.Prisma.Ask_test_sportsScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.Ask_testing1ScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description'
-};
-
-exports.Prisma.Testing_dateScalarFieldEnum = {
-  id: 'id',
-  startdate: 'startdate'
-};
-
 exports.Prisma.Ask_tournamentsScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
@@ -688,29 +652,6 @@ exports.Prisma.tournament_galleries_foldersOrderByRelevanceFieldEnum = {
   folder_name: 'folder_name'
 };
 
-exports.Prisma.ask_my_notesOrderByRelevanceFieldEnum = {
-  title: 'title',
-  body: 'body'
-};
-
-exports.Prisma.ask_notes_detailOrderByRelevanceFieldEnum = {
-  content: 'content'
-};
-
-exports.Prisma.ask_testingOrderByRelevanceFieldEnum = {
-  title: 'title',
-  description: 'description'
-};
-
-exports.Prisma.ask_test_sportsOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.ask_testing1OrderByRelevanceFieldEnum = {
-  title: 'title',
-  description: 'description'
-};
-
 exports.Prisma.ask_tournamentsOrderByRelevanceFieldEnum = {
   uuid: 'uuid',
   sport_id: 'sport_id',
@@ -772,12 +713,6 @@ exports.Prisma.ModelName = {
   tournament_contents: 'tournament_contents',
   tournament_galleries: 'tournament_galleries',
   tournament_galleries_folders: 'tournament_galleries_folders',
-  ask_my_notes: 'ask_my_notes',
-  ask_notes_detail: 'ask_notes_detail',
-  ask_testing: 'ask_testing',
-  ask_test_sports: 'ask_test_sports',
-  ask_testing1: 'ask_testing1',
-  testing_date: 'testing_date',
   ask_tournaments: 'ask_tournaments',
   countries: 'countries',
   states: 'states',
