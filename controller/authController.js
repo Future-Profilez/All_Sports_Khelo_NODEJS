@@ -97,6 +97,18 @@ exports.verifyOtp = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal server error", error })
     }
 }
+exports.checkIsloggedIn = async (req, res) => {
+    try {
+         if(req?.user){
+             return res.status(200).json({ success: true, message: "You are logged in already.", user:req?.user })
+        } else { 
+                return res.status(200).json({ success: false, message: "Unauthenticated !!" })
+         }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ success: false, message: "Internal server error", error })
+    }
+}
 
 exports.login = async (req, res) => {
     try {
