@@ -52,7 +52,10 @@ exports.add_ask_tournament = async (req, res) => {
     }
     const startDateObj = new Date(startdate);
     const endDateObj = new Date(enddate);
-
+    const updateduser_id = Number(user_id);
+    const updatedstate_id = Number(state_id);
+    const updatedcity_id = Number(city_id)
+    const updatedcountry_id = Number(country_id);
     if (endDateObj < startDateObj) {
       return res.status(200).json({
         status: false,
@@ -79,7 +82,7 @@ exports.add_ask_tournament = async (req, res) => {
     const tournament = await prisma.ask_tournaments.create({
       data: {
         sport_id,
-        user_id,
+        user_id: updateduser_id,
         name,
         slug_name,
         description,
@@ -88,9 +91,9 @@ exports.add_ask_tournament = async (req, res) => {
         startdate: startDateObj,
         enddate: endDateObj,
         address,
-        country_id,
-        state_id,
-        city_id,
+        country_id: updatedcountry_id,
+        state_id: updatedstate_id,
+        city_id: updatedcity_id,
         bannerimage: bannerImagePath(),
         thumbnail: thumbnailImagePath(),
         brochure,
