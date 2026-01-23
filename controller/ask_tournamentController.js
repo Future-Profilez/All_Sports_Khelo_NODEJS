@@ -23,10 +23,10 @@ exports.add_ask_tournament = async (req, res) => {
       participation_limit,
       publish_status,
     } = req.body;
-    console.log("bannerimage ", req.body?.bannerimage);
+    // console.log("bannerimage ", req.body?.bannerimage);
 
-    console.log("bannerimage_path", req?.body?.bannerimage_path);
-    console.log("Added File", req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename);
+    // console.log("bannerimage_path", req?.body?.bannerimage_path);
+    // console.log("Added File", req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename);
 
     const bannerImagePath = () => {
       if (req?.body?.bannerimage_path) {
@@ -66,7 +66,7 @@ exports.add_ask_tournament = async (req, res) => {
     const bannerimage = req.files?.bannerimage
       ? BASE_URL + req.files.bannerimage[0].filename
       : req.body.bannerimage || null;
-    console.log("banner image ", bannerimage);
+    // console.log("banner image ", bannerimage);
     const thumbnail = req.files?.thumbnail
       ? BASE_URL + req.files.thumbnail[0].filename
       : req.body.thumbnail || null;
