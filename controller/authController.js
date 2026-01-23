@@ -87,8 +87,8 @@ exports.verifyOtp = async (req, res) => {
             where: { email },
             data: {
                 otp_verified: true,
-                otp:null,
-                otp_expires_at:null
+                otp: null,
+                otp_expires_at: null
             },
         });
         return res.status(200).json({ success: true, message: "Otp verification successfully." })
@@ -99,11 +99,11 @@ exports.verifyOtp = async (req, res) => {
 }
 exports.checkIsloggedIn = async (req, res) => {
     try {
-         if(req?.user){
-             return res.status(200).json({ success: true, message: "You are logged in already.", user:req?.user })
-        } else { 
-                return res.status(200).json({ success: false, message: "Unauthenticated !!" })
-         }
+        if (req?.user) {
+            return res.status(200).json({ success: true, message: "You are logged in already.", user: req?.user })
+        } else {
+            return res.status(200).json({ success: false, message: "Unauthenticated !!" })
+        }
     } catch (error) {
         console.log(error)
         return res.status(500).json({ success: false, message: "Internal server error", error })
@@ -120,7 +120,7 @@ exports.login = async (req, res) => {
         }
 
         if (!user.otp_verified) {
-            return res.status(403).json({success: false, message:"Verify your otp first"})
+            return res.status(403).json({ success: false, message: "Verify your otp first" })
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -132,7 +132,9 @@ exports.login = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "1d" }
         )
-        return res.status(200).json({ success: true, message: "Login successfully", token, user })
+        const { password: _, ...safeUser } = user;
+
+        return res.status(200).json({ success: true, message: "Login successfully", token, user: safeUser });
     } catch (error) {
         console.log(error)
         return res.status(500).json({ success: false, message: "Internal server error", error })
