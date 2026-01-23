@@ -279,3 +279,53 @@ exports.asktournamentOverview = async (req, res) => {
     });
   }
 };
+
+exports.send_enquiry = async (req, res) => {
+    try {
+        const {
+            name,
+            phone,
+            email,
+            description,
+            mark_as_read,
+            tournament_id,
+            gender
+        } = req.body;
+        if (!name || !tournament_id || !phone) {
+            return req.status(200).json({
+                status: false,
+                message: "Required fields missing"
+            })
+        }
+        const tour_enquiry = await prisma.ask_tournament_enquiries.create({
+            data: {
+                name,
+                phone,
+                email,
+                description,
+                mark_as_read,
+                tournament_id,
+                gender
+            },
+        });
+        if(!tour_enquiry){
+            return res.status(200).json({
+                status:false,
+                message:"Unable to send your enquiry. Try after some time",
+              
+            })
+        }
+        return res.status(200).json({
+            status:true,
+            message:"Enquiry send succesfully",
+            data:convertBigIntToString(tour_enquiry)
+        })
+    } catch (error) {
+        console.log("ERROR : ", error);
+        return res.status(500).json({
+            status: false,
+            error: error,
+            message: "Something went wrong"
+        })
+    }
+}

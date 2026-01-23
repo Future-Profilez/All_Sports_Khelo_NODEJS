@@ -4,7 +4,7 @@ const express = require("express")
 // const { tournament } = require("../validation/tournamentValidation.js")
 const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
-const { list_ask_tournaments, asktournamentOverview, add_ask_tournament } = require("../controller/ask_tournamentController");
+const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry } = require("../controller/ask_tournamentController");
 const { protect } = require("../middleware/authMiddleware");
 
 
@@ -27,6 +27,9 @@ router.post('/create',
 
 router.get('/ask/tournaments/:type',list_ask_tournaments);
 router.get('/:slug', asktournamentOverview)
+
+//Enquiry routes
+router.post('/add/enquiry',send_enquiry);
 
 
 module.exports = router

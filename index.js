@@ -22,6 +22,7 @@ app.use('/api', sportsRoutes)
 app.use('/api/academies',academyRoutes)
 app.use('/api',addressRoutes);
 
+
 app.use('/api', authRoutes)
 app.use("/preview", previewRoutes);
 

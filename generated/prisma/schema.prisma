@@ -409,3 +409,23 @@ model cities {
   deleted_at      DateTime?         @db.Timestamp(0)
   ask_tournaments ask_tournaments[]
 }
+
+model ask_tournament_enquiries {
+  id            Int            @id @default(autoincrement())
+  name          String         @db.VarChar(255)
+  phone         String?        @db.VarChar(20)
+  email         String?        @db.VarChar(255)
+  description   String?        @db.VarChar(255)
+  mark_as_read  Int?           @default(0) @db.TinyInt
+  tournament_id Int
+  gender        player_gender?
+  created_at    DateTime?      @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?      @db.Timestamp(0)
+  deleted_at    DateTime?      @db.Timestamp(0)
+}
+
+enum player_gender {
+  male
+  female
+  other
+}

@@ -472,6 +472,20 @@ exports.Prisma.CitiesScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
+exports.Prisma.Ask_tournament_enquiriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  description: 'description',
+  mark_as_read: 'mark_as_read',
+  tournament_id: 'tournament_id',
+  gender: 'gender',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -688,10 +702,23 @@ exports.Prisma.citiesOrderByRelevanceFieldEnum = {
   name: 'name',
   slug: 'slug'
 };
+
+exports.Prisma.ask_tournament_enquiriesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  description: 'description'
+};
 exports.sports_status = exports.$Enums.sports_status = {
   active: 'active',
   inactive: 'inactive',
   archived: 'archived'
+};
+
+exports.player_gender = exports.$Enums.player_gender = {
+  male: 'male',
+  female: 'female',
+  other: 'other'
 };
 
 exports.Prisma.ModelName = {
@@ -716,7 +743,8 @@ exports.Prisma.ModelName = {
   ask_tournaments: 'ask_tournaments',
   countries: 'countries',
   states: 'states',
-  cities: 'cities'
+  cities: 'cities',
+  ask_tournament_enquiries: 'ask_tournament_enquiries'
 };
 
 /**
