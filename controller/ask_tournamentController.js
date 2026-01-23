@@ -118,14 +118,37 @@ exports.add_ask_tournament = async (req, res) => {
 
 exports.list_ask_tournaments = async (req, res) => {
   try {
-    const all_tournaments = await prisma.ask_tournaments.findMany({
-      include: {
-            country: true,
-            state:true,
-            city:true
+   const typeParam = req.params.type;
+    let list_ask_tournaments_whereClause;
+    if (Number(typeParam) !== 0) {
+      list_ask_tournaments_whereClause = await prisma.ask_tournaments.findMany({
+        where : {
+          user_id  : Number(typeParam)
         },
-    });
-    const data = convertBigIntToString(all_tournaments);
+        include: {
+          country: true,
+          state: true,
+          city: true,
+        },
+        orderBy: {
+          id: "desc",
+        }
+      });
+    } else { 
+      list_ask_tournaments_whereClause = await prisma.ask_tournaments.findMany({
+        include: {
+          country: true,
+          state: true,
+          city: true,
+        },
+        orderBy: {
+          id: "desc",
+        }
+      });
+    }
+    
+
+    const data = convertBigIntToString(list_ask_tournaments_whereClause);
 
     const updateddata = data.map((item, i) => {
       return {
@@ -151,12 +174,75 @@ exports.list_ask_tournaments = async (req, res) => {
   }
 };
 
+// exports.list_ask_tournaments = async (req, res) => {
+//   try {
+//     const typeParam = req.params.type;
+
+//     // ✅ validate param first
+//     if (!typeParam || isNaN(typeParam)) {
+//       return res.status(400).json({
+//         status: false,
+//         message: "Invalid type parameter",
+//       });
+//     }
+
+//     const isAll = typeParam === "0";
+
+//     const whereClause = isAll
+//       ? {}
+//       : { user_id: BigInt(typeParam) };
+
+//     const all_ask_tournaments = await prisma.ask_tournaments.findMany({
+//       where: whereClause,
+//       include: {
+//         country: true,
+//         state: true,
+//         city: true,
+//       },
+//       orderBy: {
+//         id: "desc",
+//       },
+//     });
+
+//     const data = convertBigIntToString(all_ask_tournaments);
+
+//     const updateddata = data.map((item) => ({
+//       ...item,
+//       thumbnail: item.thumbnail
+//         ? `${process.env.APP_URL}${item.thumbnail}`
+//         : false,
+//       bannerimage: item.bannerimage
+//         ? `${process.env.APP_URL}${item.bannerimage}`
+//         : false,
+//     }));
+
+//     return res.status(200).json({
+//       status: true,
+//       message: "All tournaments fetched successfully!",
+//       data: updateddata,
+//     });
+
+//   } catch (error) {
+//     console.error("Prisma error:", error);
+//     return res.status(500).json({
+//       status: false,
+//       message: "Internal server error",
+//       error: error.message,
+//     });
+//   }
+// };
+
 exports.asktournamentOverview = async (req, res) => {
   try {
     const slug = req?.params?.slug;
     const data = await prisma.ask_tournaments.findFirst({
       where: {
         slug_name: slug,
+      },
+      include: {
+        country: true,
+        state: true,
+        city: true
       },
     });
     const content = convertBigIntToString(data);

@@ -2595,6 +2595,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type Ask_usersCountOutputType
+   */
+
+  export type Ask_usersCountOutputType = {
+    ask_tournaments: number
+  }
+
+  export type Ask_usersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ask_tournaments?: boolean | Ask_usersCountOutputTypeCountAsk_tournamentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Ask_usersCountOutputType without action
+   */
+  export type Ask_usersCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ask_usersCountOutputType
+     */
+    select?: Ask_usersCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Ask_usersCountOutputType without action
+   */
+  export type Ask_usersCountOutputTypeCountAsk_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_tournamentsWhereInput
+  }
+
+
+  /**
    * Count Type AcademiesCountOutputType
    */
 
@@ -2720,51 +2751,95 @@ export namespace Prisma {
 
 
   /**
-   * Count Type Ask_tournamentsCountOutputType
+   * Count Type CountriesCountOutputType
    */
 
-  export type Ask_tournamentsCountOutputType = {
-    country: number
-    state: number
-    city: number
+  export type CountriesCountOutputType = {
+    ask_tournaments: number
   }
 
-  export type Ask_tournamentsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    country?: boolean | Ask_tournamentsCountOutputTypeCountCountryArgs
-    state?: boolean | Ask_tournamentsCountOutputTypeCountStateArgs
-    city?: boolean | Ask_tournamentsCountOutputTypeCountCityArgs
+  export type CountriesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ask_tournaments?: boolean | CountriesCountOutputTypeCountAsk_tournamentsArgs
   }
 
   // Custom InputTypes
   /**
-   * Ask_tournamentsCountOutputType without action
+   * CountriesCountOutputType without action
    */
-  export type Ask_tournamentsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CountriesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Ask_tournamentsCountOutputType
+     * Select specific fields to fetch from the CountriesCountOutputType
      */
-    select?: Ask_tournamentsCountOutputTypeSelect<ExtArgs> | null
+    select?: CountriesCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * Ask_tournamentsCountOutputType without action
+   * CountriesCountOutputType without action
    */
-  export type Ask_tournamentsCountOutputTypeCountCountryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: countriesWhereInput
+  export type CountriesCountOutputTypeCountAsk_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_tournamentsWhereInput
+  }
+
+
+  /**
+   * Count Type StatesCountOutputType
+   */
+
+  export type StatesCountOutputType = {
+    ask_tournaments: number
+  }
+
+  export type StatesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ask_tournaments?: boolean | StatesCountOutputTypeCountAsk_tournamentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StatesCountOutputType without action
+   */
+  export type StatesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatesCountOutputType
+     */
+    select?: StatesCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * Ask_tournamentsCountOutputType without action
+   * StatesCountOutputType without action
    */
-  export type Ask_tournamentsCountOutputTypeCountStateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: statesWhereInput
+  export type StatesCountOutputTypeCountAsk_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_tournamentsWhereInput
+  }
+
+
+  /**
+   * Count Type CitiesCountOutputType
+   */
+
+  export type CitiesCountOutputType = {
+    ask_tournaments: number
+  }
+
+  export type CitiesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ask_tournaments?: boolean | CitiesCountOutputTypeCountAsk_tournamentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CitiesCountOutputType without action
+   */
+  export type CitiesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CitiesCountOutputType
+     */
+    select?: CitiesCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * Ask_tournamentsCountOutputType without action
+   * CitiesCountOutputType without action
    */
-  export type Ask_tournamentsCountOutputTypeCountCityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: citiesWhereInput
+  export type CitiesCountOutputTypeCountAsk_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_tournamentsWhereInput
   }
 
 
@@ -4839,6 +4914,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
+    ask_tournaments?: boolean | ask_users$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | Ask_usersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ask_users"]>
 
 
@@ -4858,10 +4935,16 @@ export namespace Prisma {
   }
 
   export type ask_usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phone" | "email" | "password" | "otp_verified" | "otp" | "otp_expires_at" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["ask_users"]>
+  export type ask_usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ask_tournaments?: boolean | ask_users$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | Ask_usersCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $ask_usersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ask_users"
-    objects: {}
+    objects: {
+      ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string | null
@@ -5214,6 +5297,7 @@ export namespace Prisma {
    */
   export interface Prisma__ask_usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    ask_tournaments<T extends ask_users$ask_tournamentsArgs<ExtArgs> = {}>(args?: Subset<T, ask_users$ask_tournamentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5271,6 +5355,10 @@ export namespace Prisma {
      */
     omit?: ask_usersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
+    /**
      * Filter, which ask_users to fetch.
      */
     where: ask_usersWhereUniqueInput
@@ -5289,6 +5377,10 @@ export namespace Prisma {
      */
     omit?: ask_usersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
+    /**
      * Filter, which ask_users to fetch.
      */
     where: ask_usersWhereUniqueInput
@@ -5306,6 +5398,10 @@ export namespace Prisma {
      * Omit specific fields from the ask_users
      */
     omit?: ask_usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
     /**
      * Filter, which ask_users to fetch.
      */
@@ -5355,6 +5451,10 @@ export namespace Prisma {
      */
     omit?: ask_usersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
+    /**
      * Filter, which ask_users to fetch.
      */
     where?: ask_usersWhereInput
@@ -5403,6 +5503,10 @@ export namespace Prisma {
      */
     omit?: ask_usersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
+    /**
      * Filter, which ask_users to fetch.
      */
     where?: ask_usersWhereInput
@@ -5446,6 +5550,10 @@ export namespace Prisma {
      */
     omit?: ask_usersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
+    /**
      * The data needed to create a ask_users.
      */
     data: XOR<ask_usersCreateInput, ask_usersUncheckedCreateInput>
@@ -5474,6 +5582,10 @@ export namespace Prisma {
      * Omit specific fields from the ask_users
      */
     omit?: ask_usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
     /**
      * The data needed to update a ask_users.
      */
@@ -5515,6 +5627,10 @@ export namespace Prisma {
      */
     omit?: ask_usersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
+    /**
      * The filter to search for the ask_users to update in case it exists.
      */
     where: ask_usersWhereUniqueInput
@@ -5541,6 +5657,10 @@ export namespace Prisma {
      */
     omit?: ask_usersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
+    /**
      * Filter which ask_users to delete.
      */
     where: ask_usersWhereUniqueInput
@@ -5561,6 +5681,30 @@ export namespace Prisma {
   }
 
   /**
+   * ask_users.ask_tournaments
+   */
+  export type ask_users$ask_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_tournamentsInclude<ExtArgs> | null
+    where?: ask_tournamentsWhereInput
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    cursor?: ask_tournamentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Ask_tournamentsScalarFieldEnum | Ask_tournamentsScalarFieldEnum[]
+  }
+
+  /**
    * ask_users without action
    */
   export type ask_usersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5572,6 +5716,10 @@ export namespace Prisma {
      * Omit specific fields from the ask_users
      */
     omit?: ask_usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_usersInclude<ExtArgs> | null
   }
 
 
@@ -21862,9 +22010,9 @@ export namespace Prisma {
 
   export type Ask_tournamentsSumAggregateOutputType = {
     id: number | null
-    user_id: bigint | null
+    user_id: number | null
     country_id: bigint | null
-    state_id: bigint | null
+    state_id: number | null
     city_id: bigint | null
     participation_limit: number | null
     publish_status: number | null
@@ -21874,7 +22022,7 @@ export namespace Prisma {
     id: number | null
     uuid: string | null
     sport_id: string | null
-    user_id: bigint | null
+    user_id: number | null
     name: string | null
     slug_name: string | null
     description: string | null
@@ -21884,7 +22032,7 @@ export namespace Prisma {
     enddate: Date | null
     address: string | null
     country_id: bigint | null
-    state_id: bigint | null
+    state_id: number | null
     city_id: bigint | null
     bannerimage: string | null
     thumbnail: string | null
@@ -21903,7 +22051,7 @@ export namespace Prisma {
     id: number | null
     uuid: string | null
     sport_id: string | null
-    user_id: bigint | null
+    user_id: number | null
     name: string | null
     slug_name: string | null
     description: string | null
@@ -21913,7 +22061,7 @@ export namespace Prisma {
     enddate: Date | null
     address: string | null
     country_id: bigint | null
-    state_id: bigint | null
+    state_id: number | null
     city_id: bigint | null
     bannerimage: string | null
     thumbnail: string | null
@@ -22157,7 +22305,7 @@ export namespace Prisma {
     id: number
     uuid: string
     sport_id: string
-    user_id: bigint | null
+    user_id: number
     name: string
     slug_name: string
     description: string | null
@@ -22167,7 +22315,7 @@ export namespace Prisma {
     enddate: Date | null
     address: string | null
     country_id: bigint
-    state_id: bigint
+    state_id: number
     city_id: bigint
     bannerimage: string | null
     thumbnail: string | null
@@ -22228,10 +22376,10 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
-    country?: boolean | ask_tournaments$countryArgs<ExtArgs>
-    state?: boolean | ask_tournaments$stateArgs<ExtArgs>
-    city?: boolean | ask_tournaments$cityArgs<ExtArgs>
-    _count?: boolean | Ask_tournamentsCountOutputTypeDefaultArgs<ExtArgs>
+    country?: boolean | countriesDefaultArgs<ExtArgs>
+    state?: boolean | statesDefaultArgs<ExtArgs>
+    city?: boolean | citiesDefaultArgs<ExtArgs>
+    user?: boolean | ask_usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ask_tournaments"]>
 
 
@@ -22267,24 +22415,25 @@ export namespace Prisma {
 
   export type ask_tournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "user_id" | "name" | "slug_name" | "description" | "content" | "tournament_type" | "startdate" | "enddate" | "address" | "country_id" | "state_id" | "city_id" | "bannerimage" | "thumbnail" | "url" | "brochure" | "prize" | "fees" | "participation_limit" | "publish_status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["ask_tournaments"]>
   export type ask_tournamentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    country?: boolean | ask_tournaments$countryArgs<ExtArgs>
-    state?: boolean | ask_tournaments$stateArgs<ExtArgs>
-    city?: boolean | ask_tournaments$cityArgs<ExtArgs>
-    _count?: boolean | Ask_tournamentsCountOutputTypeDefaultArgs<ExtArgs>
+    country?: boolean | countriesDefaultArgs<ExtArgs>
+    state?: boolean | statesDefaultArgs<ExtArgs>
+    city?: boolean | citiesDefaultArgs<ExtArgs>
+    user?: boolean | ask_usersDefaultArgs<ExtArgs>
   }
 
   export type $ask_tournamentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ask_tournaments"
     objects: {
-      country: Prisma.$countriesPayload<ExtArgs>[]
-      state: Prisma.$statesPayload<ExtArgs>[]
-      city: Prisma.$citiesPayload<ExtArgs>[]
+      country: Prisma.$countriesPayload<ExtArgs>
+      state: Prisma.$statesPayload<ExtArgs>
+      city: Prisma.$citiesPayload<ExtArgs>
+      user: Prisma.$ask_usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       uuid: string
       sport_id: string
-      user_id: bigint | null
+      user_id: number
       name: string
       slug_name: string
       description: string | null
@@ -22294,7 +22443,7 @@ export namespace Prisma {
       enddate: Date | null
       address: string | null
       country_id: bigint
-      state_id: bigint
+      state_id: number
       city_id: bigint
       bannerimage: string | null
       thumbnail: string | null
@@ -22647,9 +22796,10 @@ export namespace Prisma {
    */
   export interface Prisma__ask_tournamentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    country<T extends ask_tournaments$countryArgs<ExtArgs> = {}>(args?: Subset<T, ask_tournaments$countryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    state<T extends ask_tournaments$stateArgs<ExtArgs> = {}>(args?: Subset<T, ask_tournaments$stateArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    city<T extends ask_tournaments$cityArgs<ExtArgs> = {}>(args?: Subset<T, ask_tournaments$cityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    country<T extends countriesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, countriesDefaultArgs<ExtArgs>>): Prisma__countriesClient<$Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    state<T extends statesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, statesDefaultArgs<ExtArgs>>): Prisma__statesClient<$Result.GetResult<Prisma.$statesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    city<T extends citiesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, citiesDefaultArgs<ExtArgs>>): Prisma__citiesClient<$Result.GetResult<Prisma.$citiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends ask_usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ask_usersDefaultArgs<ExtArgs>>): Prisma__ask_usersClient<$Result.GetResult<Prisma.$ask_usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22682,7 +22832,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ask_tournaments", 'Int'>
     readonly uuid: FieldRef<"ask_tournaments", 'String'>
     readonly sport_id: FieldRef<"ask_tournaments", 'String'>
-    readonly user_id: FieldRef<"ask_tournaments", 'BigInt'>
+    readonly user_id: FieldRef<"ask_tournaments", 'Int'>
     readonly name: FieldRef<"ask_tournaments", 'String'>
     readonly slug_name: FieldRef<"ask_tournaments", 'String'>
     readonly description: FieldRef<"ask_tournaments", 'String'>
@@ -22692,7 +22842,7 @@ export namespace Prisma {
     readonly enddate: FieldRef<"ask_tournaments", 'DateTime'>
     readonly address: FieldRef<"ask_tournaments", 'String'>
     readonly country_id: FieldRef<"ask_tournaments", 'BigInt'>
-    readonly state_id: FieldRef<"ask_tournaments", 'BigInt'>
+    readonly state_id: FieldRef<"ask_tournaments", 'Int'>
     readonly city_id: FieldRef<"ask_tournaments", 'BigInt'>
     readonly bannerimage: FieldRef<"ask_tournaments", 'String'>
     readonly thumbnail: FieldRef<"ask_tournaments", 'String'>
@@ -23048,78 +23198,6 @@ export namespace Prisma {
   }
 
   /**
-   * ask_tournaments.country
-   */
-  export type ask_tournaments$countryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the countries
-     */
-    select?: countriesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the countries
-     */
-    omit?: countriesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: countriesInclude<ExtArgs> | null
-    where?: countriesWhereInput
-    orderBy?: countriesOrderByWithRelationInput | countriesOrderByWithRelationInput[]
-    cursor?: countriesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CountriesScalarFieldEnum | CountriesScalarFieldEnum[]
-  }
-
-  /**
-   * ask_tournaments.state
-   */
-  export type ask_tournaments$stateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the states
-     */
-    select?: statesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the states
-     */
-    omit?: statesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: statesInclude<ExtArgs> | null
-    where?: statesWhereInput
-    orderBy?: statesOrderByWithRelationInput | statesOrderByWithRelationInput[]
-    cursor?: statesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StatesScalarFieldEnum | StatesScalarFieldEnum[]
-  }
-
-  /**
-   * ask_tournaments.city
-   */
-  export type ask_tournaments$cityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the cities
-     */
-    select?: citiesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the cities
-     */
-    omit?: citiesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: citiesInclude<ExtArgs> | null
-    where?: citiesWhereInput
-    orderBy?: citiesOrderByWithRelationInput | citiesOrderByWithRelationInput[]
-    cursor?: citiesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CitiesScalarFieldEnum | CitiesScalarFieldEnum[]
-  }
-
-  /**
    * ask_tournaments without action
    */
   export type ask_tournamentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -23388,7 +23466,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
-    ask_tournaments?: boolean | ask_tournamentsDefaultArgs<ExtArgs>
+    ask_tournaments?: boolean | countries$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | CountriesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["countries"]>
 
 
@@ -23409,13 +23488,14 @@ export namespace Prisma {
 
   export type countriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "iso_2" | "iso_3" | "phone_code" | "currency" | "flag" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["countries"]>
   export type countriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ask_tournaments?: boolean | ask_tournamentsDefaultArgs<ExtArgs>
+    ask_tournaments?: boolean | countries$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | CountriesCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $countriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "countries"
     objects: {
-      ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>
+      ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -23769,7 +23849,7 @@ export namespace Prisma {
    */
   export interface Prisma__countriesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    ask_tournaments<T extends ask_tournamentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ask_tournamentsDefaultArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    ask_tournaments<T extends countries$ask_tournamentsArgs<ExtArgs> = {}>(args?: Subset<T, countries$ask_tournamentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24153,6 +24233,30 @@ export namespace Prisma {
   }
 
   /**
+   * countries.ask_tournaments
+   */
+  export type countries$ask_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_tournamentsInclude<ExtArgs> | null
+    where?: ask_tournamentsWhereInput
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    cursor?: ask_tournamentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Ask_tournamentsScalarFieldEnum | Ask_tournamentsScalarFieldEnum[]
+  }
+
+  /**
    * countries without action
    */
   export type countriesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -24409,7 +24513,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
-    ask_tournaments?: boolean | ask_tournamentsDefaultArgs<ExtArgs>
+    ask_tournaments?: boolean | states$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | StatesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["states"]>
 
 
@@ -24428,13 +24533,14 @@ export namespace Prisma {
 
   export type statesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country_id" | "name" | "code" | "slug" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["states"]>
   export type statesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ask_tournaments?: boolean | ask_tournamentsDefaultArgs<ExtArgs>
+    ask_tournaments?: boolean | states$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | StatesCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $statesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "states"
     objects: {
-      ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>
+      ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -24786,7 +24892,7 @@ export namespace Prisma {
    */
   export interface Prisma__statesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    ask_tournaments<T extends ask_tournamentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ask_tournamentsDefaultArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    ask_tournaments<T extends states$ask_tournamentsArgs<ExtArgs> = {}>(args?: Subset<T, states$ask_tournamentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25168,6 +25274,30 @@ export namespace Prisma {
   }
 
   /**
+   * states.ask_tournaments
+   */
+  export type states$ask_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_tournamentsInclude<ExtArgs> | null
+    where?: ask_tournamentsWhereInput
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    cursor?: ask_tournamentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Ask_tournamentsScalarFieldEnum | Ask_tournamentsScalarFieldEnum[]
+  }
+
+  /**
    * states without action
    */
   export type statesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25428,7 +25558,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
-    ask_tournaments?: boolean | ask_tournamentsDefaultArgs<ExtArgs>
+    ask_tournaments?: boolean | cities$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | CitiesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cities"]>
 
 
@@ -25447,13 +25578,14 @@ export namespace Prisma {
 
   export type citiesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "state_id" | "name" | "slug" | "leagues_allowed" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["cities"]>
   export type citiesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ask_tournaments?: boolean | ask_tournamentsDefaultArgs<ExtArgs>
+    ask_tournaments?: boolean | cities$ask_tournamentsArgs<ExtArgs>
+    _count?: boolean | CitiesCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $citiesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "cities"
     objects: {
-      ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>
+      ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -25805,7 +25937,7 @@ export namespace Prisma {
    */
   export interface Prisma__citiesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    ask_tournaments<T extends ask_tournamentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ask_tournamentsDefaultArgs<ExtArgs>>): Prisma__ask_tournamentsClient<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    ask_tournaments<T extends cities$ask_tournamentsArgs<ExtArgs> = {}>(args?: Subset<T, cities$ask_tournamentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_tournamentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26184,6 +26316,30 @@ export namespace Prisma {
      * Limit how many cities to delete.
      */
     limit?: number
+  }
+
+  /**
+   * cities.ask_tournaments
+   */
+  export type cities$ask_tournamentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_tournaments
+     */
+    select?: ask_tournamentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_tournaments
+     */
+    omit?: ask_tournamentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ask_tournamentsInclude<ExtArgs> | null
+    where?: ask_tournamentsWhereInput
+    orderBy?: ask_tournamentsOrderByWithRelationInput | ask_tournamentsOrderByWithRelationInput[]
+    cursor?: ask_tournamentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Ask_tournamentsScalarFieldEnum | Ask_tournamentsScalarFieldEnum[]
   }
 
   /**
@@ -27110,6 +27266,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ask_users"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ask_users"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"ask_users"> | Date | string | null
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }
 
   export type ask_usersOrderByWithRelationInput = {
@@ -27124,6 +27281,7 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     deleted_at?: SortOrderInput | SortOrder
+    ask_tournaments?: ask_tournamentsOrderByRelationAggregateInput
     _relevance?: ask_usersOrderByRelevanceInput
   }
 
@@ -27142,6 +27300,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ask_users"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ask_users"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"ask_users"> | Date | string | null
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }, "id" | "phone" | "email">
 
   export type ask_usersOrderByWithAggregationInput = {
@@ -28746,7 +28905,7 @@ export namespace Prisma {
     id?: IntFilter<"ask_tournaments"> | number
     uuid?: StringFilter<"ask_tournaments"> | string
     sport_id?: StringFilter<"ask_tournaments"> | string
-    user_id?: BigIntNullableFilter<"ask_tournaments"> | bigint | number | null
+    user_id?: IntFilter<"ask_tournaments"> | number
     name?: StringFilter<"ask_tournaments"> | string
     slug_name?: StringFilter<"ask_tournaments"> | string
     description?: StringNullableFilter<"ask_tournaments"> | string | null
@@ -28756,7 +28915,7 @@ export namespace Prisma {
     enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     address?: StringNullableFilter<"ask_tournaments"> | string | null
     country_id?: BigIntFilter<"ask_tournaments"> | bigint | number
-    state_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    state_id?: IntFilter<"ask_tournaments"> | number
     city_id?: BigIntFilter<"ask_tournaments"> | bigint | number
     bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
     thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
@@ -28769,16 +28928,17 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
-    country?: CountriesListRelationFilter
-    state?: StatesListRelationFilter
-    city?: CitiesListRelationFilter
+    country?: XOR<CountriesScalarRelationFilter, countriesWhereInput>
+    state?: XOR<StatesScalarRelationFilter, statesWhereInput>
+    city?: XOR<CitiesScalarRelationFilter, citiesWhereInput>
+    user?: XOR<Ask_usersScalarRelationFilter, ask_usersWhereInput>
   }
 
   export type ask_tournamentsOrderByWithRelationInput = {
     id?: SortOrder
     uuid?: SortOrder
     sport_id?: SortOrder
-    user_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
     name?: SortOrder
     slug_name?: SortOrder
     description?: SortOrderInput | SortOrder
@@ -28801,9 +28961,10 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     deleted_at?: SortOrderInput | SortOrder
-    country?: countriesOrderByRelationAggregateInput
-    state?: statesOrderByRelationAggregateInput
-    city?: citiesOrderByRelationAggregateInput
+    country?: countriesOrderByWithRelationInput
+    state?: statesOrderByWithRelationInput
+    city?: citiesOrderByWithRelationInput
+    user?: ask_usersOrderByWithRelationInput
     _relevance?: ask_tournamentsOrderByRelevanceInput
   }
 
@@ -28812,13 +28973,12 @@ export namespace Prisma {
     uuid?: string
     slug_name?: string
     country_id?: bigint | number
-    state_id?: bigint | number
     city_id?: bigint | number
     AND?: ask_tournamentsWhereInput | ask_tournamentsWhereInput[]
     OR?: ask_tournamentsWhereInput[]
     NOT?: ask_tournamentsWhereInput | ask_tournamentsWhereInput[]
     sport_id?: StringFilter<"ask_tournaments"> | string
-    user_id?: BigIntNullableFilter<"ask_tournaments"> | bigint | number | null
+    user_id?: IntFilter<"ask_tournaments"> | number
     name?: StringFilter<"ask_tournaments"> | string
     description?: StringNullableFilter<"ask_tournaments"> | string | null
     content?: StringNullableFilter<"ask_tournaments"> | string | null
@@ -28826,6 +28986,7 @@ export namespace Prisma {
     startdate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     address?: StringNullableFilter<"ask_tournaments"> | string | null
+    state_id?: IntFilter<"ask_tournaments"> | number
     bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
     thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
     url?: StringNullableFilter<"ask_tournaments"> | string | null
@@ -28837,16 +28998,17 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
-    country?: CountriesListRelationFilter
-    state?: StatesListRelationFilter
-    city?: CitiesListRelationFilter
-  }, "id" | "uuid" | "slug_name" | "country_id" | "state_id" | "city_id">
+    country?: XOR<CountriesScalarRelationFilter, countriesWhereInput>
+    state?: XOR<StatesScalarRelationFilter, statesWhereInput>
+    city?: XOR<CitiesScalarRelationFilter, citiesWhereInput>
+    user?: XOR<Ask_usersScalarRelationFilter, ask_usersWhereInput>
+  }, "id" | "uuid" | "slug_name" | "country_id" | "city_id">
 
   export type ask_tournamentsOrderByWithAggregationInput = {
     id?: SortOrder
     uuid?: SortOrder
     sport_id?: SortOrder
-    user_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
     name?: SortOrder
     slug_name?: SortOrder
     description?: SortOrderInput | SortOrder
@@ -28883,7 +29045,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"ask_tournaments"> | number
     uuid?: StringWithAggregatesFilter<"ask_tournaments"> | string
     sport_id?: StringWithAggregatesFilter<"ask_tournaments"> | string
-    user_id?: BigIntNullableWithAggregatesFilter<"ask_tournaments"> | bigint | number | null
+    user_id?: IntWithAggregatesFilter<"ask_tournaments"> | number
     name?: StringWithAggregatesFilter<"ask_tournaments"> | string
     slug_name?: StringWithAggregatesFilter<"ask_tournaments"> | string
     description?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
@@ -28893,7 +29055,7 @@ export namespace Prisma {
     enddate?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
     address?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
     country_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
-    state_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
+    state_id?: IntWithAggregatesFilter<"ask_tournaments"> | number
     city_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
     bannerimage?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
     thumbnail?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
@@ -28923,7 +29085,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"countries"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"countries"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"countries"> | Date | string | null
-    ask_tournaments?: XOR<Ask_tournamentsScalarRelationFilter, ask_tournamentsWhereInput>
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }
 
   export type countriesOrderByWithRelationInput = {
@@ -28938,7 +29100,7 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     deleted_at?: SortOrderInput | SortOrder
-    ask_tournaments?: ask_tournamentsOrderByWithRelationInput
+    ask_tournaments?: ask_tournamentsOrderByRelationAggregateInput
     _relevance?: countriesOrderByRelevanceInput
   }
 
@@ -28957,7 +29119,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"countries"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"countries"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"countries"> | Date | string | null
-    ask_tournaments?: XOR<Ask_tournamentsScalarRelationFilter, ask_tournamentsWhereInput>
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }, "id">
 
   export type countriesOrderByWithAggregationInput = {
@@ -29009,7 +29171,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"states"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"states"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"states"> | Date | string | null
-    ask_tournaments?: XOR<Ask_tournamentsScalarRelationFilter, ask_tournamentsWhereInput>
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }
 
   export type statesOrderByWithRelationInput = {
@@ -29022,7 +29184,7 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     deleted_at?: SortOrderInput | SortOrder
-    ask_tournaments?: ask_tournamentsOrderByWithRelationInput
+    ask_tournaments?: ask_tournamentsOrderByRelationAggregateInput
     _relevance?: statesOrderByRelevanceInput
   }
 
@@ -29039,7 +29201,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"states"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"states"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"states"> | Date | string | null
-    ask_tournaments?: XOR<Ask_tournamentsScalarRelationFilter, ask_tournamentsWhereInput>
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }, "id">
 
   export type statesOrderByWithAggregationInput = {
@@ -29087,7 +29249,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"cities"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"cities"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"cities"> | Date | string | null
-    ask_tournaments?: XOR<Ask_tournamentsScalarRelationFilter, ask_tournamentsWhereInput>
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }
 
   export type citiesOrderByWithRelationInput = {
@@ -29100,7 +29262,7 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     deleted_at?: SortOrderInput | SortOrder
-    ask_tournaments?: ask_tournamentsOrderByWithRelationInput
+    ask_tournaments?: ask_tournamentsOrderByRelationAggregateInput
     _relevance?: citiesOrderByRelevanceInput
   }
 
@@ -29117,7 +29279,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"cities"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"cities"> | Date | string | null
     deleted_at?: DateTimeNullableFilter<"cities"> | Date | string | null
-    ask_tournaments?: XOR<Ask_tournamentsScalarRelationFilter, ask_tournamentsWhereInput>
+    ask_tournaments?: Ask_tournamentsListRelationFilter
   }, "id">
 
   export type citiesOrderByWithAggregationInput = {
@@ -29262,6 +29424,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
+    ask_tournaments?: ask_tournamentsCreateNestedManyWithoutUserInput
   }
 
   export type ask_usersUncheckedCreateInput = {
@@ -29276,6 +29439,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type ask_usersUpdateInput = {
@@ -29289,6 +29453,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ask_tournaments?: ask_tournamentsUpdateManyWithoutUserNestedInput
   }
 
   export type ask_usersUncheckedUpdateInput = {
@@ -29303,6 +29468,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ask_usersCreateManyInput = {
@@ -31168,7 +31334,6 @@ export namespace Prisma {
   export type ask_tournamentsCreateInput = {
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
     name: string
     slug_name: string
     description?: string | null
@@ -31177,9 +31342,6 @@ export namespace Prisma {
     startdate?: Date | string | null
     enddate?: Date | string | null
     address?: string | null
-    country_id: bigint | number
-    state_id: bigint | number
-    city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
     url?: string | null
@@ -31191,16 +31353,17 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    country?: countriesCreateNestedManyWithoutAsk_tournamentsInput
-    state?: statesCreateNestedManyWithoutAsk_tournamentsInput
-    city?: citiesCreateNestedManyWithoutAsk_tournamentsInput
+    country: countriesCreateNestedOneWithoutAsk_tournamentsInput
+    state: statesCreateNestedOneWithoutAsk_tournamentsInput
+    city: citiesCreateNestedOneWithoutAsk_tournamentsInput
+    user: ask_usersCreateNestedOneWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsUncheckedCreateInput = {
     id?: number
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
+    user_id: number
     name: string
     slug_name: string
     description?: string | null
@@ -31210,7 +31373,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: bigint | number
+    state_id: number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -31223,15 +31386,11 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    country?: countriesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
-    state?: statesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
-    city?: citiesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsUpdateInput = {
     uuid?: StringFieldUpdateOperationsInput | string
     sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     name?: StringFieldUpdateOperationsInput | string
     slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31240,9 +31399,6 @@ export namespace Prisma {
     startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31254,16 +31410,17 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    country?: countriesUpdateManyWithoutAsk_tournamentsNestedInput
-    state?: statesUpdateManyWithoutAsk_tournamentsNestedInput
-    city?: citiesUpdateManyWithoutAsk_tournamentsNestedInput
+    country?: countriesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    state?: statesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    city?: citiesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    user?: ask_usersUpdateOneRequiredWithoutAsk_tournamentsNestedInput
   }
 
   export type ask_tournamentsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31273,7 +31430,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: IntFieldUpdateOperationsInput | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31286,16 +31443,13 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    country?: countriesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
-    state?: statesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
-    city?: citiesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
   }
 
   export type ask_tournamentsCreateManyInput = {
     id?: number
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
+    user_id: number
     name: string
     slug_name: string
     description?: string | null
@@ -31305,7 +31459,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: bigint | number
+    state_id: number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -31323,7 +31477,6 @@ export namespace Prisma {
   export type ask_tournamentsUpdateManyMutationInput = {
     uuid?: StringFieldUpdateOperationsInput | string
     sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     name?: StringFieldUpdateOperationsInput | string
     slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31332,9 +31485,6 @@ export namespace Prisma {
     startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31352,7 +31502,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31362,7 +31512,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: IntFieldUpdateOperationsInput | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31378,6 +31528,7 @@ export namespace Prisma {
   }
 
   export type countriesCreateInput = {
+    id: bigint | number
     name: string
     iso_2?: string | null
     iso_3?: string | null
@@ -31388,7 +31539,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    ask_tournaments: ask_tournamentsCreateNestedOneWithoutCountryInput
+    ask_tournaments?: ask_tournamentsCreateNestedManyWithoutCountryInput
   }
 
   export type countriesUncheckedCreateInput = {
@@ -31403,9 +31554,11 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedCreateNestedManyWithoutCountryInput
   }
 
   export type countriesUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     iso_2?: NullableStringFieldUpdateOperationsInput | string | null
     iso_3?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31416,7 +31569,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    ask_tournaments?: ask_tournamentsUpdateOneRequiredWithoutCountryNestedInput
+    ask_tournaments?: ask_tournamentsUpdateManyWithoutCountryNestedInput
   }
 
   export type countriesUncheckedUpdateInput = {
@@ -31431,6 +31584,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedUpdateManyWithoutCountryNestedInput
   }
 
   export type countriesCreateManyInput = {
@@ -31448,6 +31602,7 @@ export namespace Prisma {
   }
 
   export type countriesUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     iso_2?: NullableStringFieldUpdateOperationsInput | string | null
     iso_3?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31475,6 +31630,7 @@ export namespace Prisma {
   }
 
   export type statesCreateInput = {
+    country_id: bigint | number
     name: string
     code?: string | null
     slug?: string | null
@@ -31482,7 +31638,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    ask_tournaments: ask_tournamentsCreateNestedOneWithoutStateInput
+    ask_tournaments?: ask_tournamentsCreateNestedManyWithoutStateInput
   }
 
   export type statesUncheckedCreateInput = {
@@ -31495,9 +31651,11 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedCreateNestedManyWithoutStateInput
   }
 
   export type statesUpdateInput = {
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31505,7 +31663,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    ask_tournaments?: ask_tournamentsUpdateOneRequiredWithoutStateNestedInput
+    ask_tournaments?: ask_tournamentsUpdateManyWithoutStateNestedInput
   }
 
   export type statesUncheckedUpdateInput = {
@@ -31518,6 +31676,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedUpdateManyWithoutStateNestedInput
   }
 
   export type statesCreateManyInput = {
@@ -31533,6 +31692,7 @@ export namespace Prisma {
   }
 
   export type statesUpdateManyMutationInput = {
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31556,6 +31716,7 @@ export namespace Prisma {
 
   export type citiesCreateInput = {
     id: bigint | number
+    state_id: bigint | number
     name: string
     slug?: string | null
     leagues_allowed?: number
@@ -31563,7 +31724,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    ask_tournaments: ask_tournamentsCreateNestedOneWithoutCityInput
+    ask_tournaments?: ask_tournamentsCreateNestedManyWithoutCityInput
   }
 
   export type citiesUncheckedCreateInput = {
@@ -31576,10 +31737,12 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedCreateNestedManyWithoutCityInput
   }
 
   export type citiesUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: NullableStringFieldUpdateOperationsInput | string | null
     leagues_allowed?: IntFieldUpdateOperationsInput | number
@@ -31587,7 +31750,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    ask_tournaments?: ask_tournamentsUpdateOneRequiredWithoutCityNestedInput
+    ask_tournaments?: ask_tournamentsUpdateManyWithoutCityNestedInput
   }
 
   export type citiesUncheckedUpdateInput = {
@@ -31600,6 +31763,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ask_tournaments?: ask_tournamentsUncheckedUpdateManyWithoutCityNestedInput
   }
 
   export type citiesCreateManyInput = {
@@ -31616,6 +31780,7 @@ export namespace Prisma {
 
   export type citiesUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: NullableStringFieldUpdateOperationsInput | string | null
     leagues_allowed?: IntFieldUpdateOperationsInput | number
@@ -31826,9 +31991,19 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type Ask_tournamentsListRelationFilter = {
+    every?: ask_tournamentsWhereInput
+    some?: ask_tournamentsWhereInput
+    none?: ask_tournamentsWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ask_tournamentsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ask_usersOrderByRelevanceInput = {
@@ -33209,34 +33384,24 @@ export namespace Prisma {
     tournament_id?: SortOrder
   }
 
-  export type CountriesListRelationFilter = {
-    every?: countriesWhereInput
-    some?: countriesWhereInput
-    none?: countriesWhereInput
+  export type CountriesScalarRelationFilter = {
+    is?: countriesWhereInput
+    isNot?: countriesWhereInput
   }
 
-  export type StatesListRelationFilter = {
-    every?: statesWhereInput
-    some?: statesWhereInput
-    none?: statesWhereInput
+  export type StatesScalarRelationFilter = {
+    is?: statesWhereInput
+    isNot?: statesWhereInput
   }
 
-  export type CitiesListRelationFilter = {
-    every?: citiesWhereInput
-    some?: citiesWhereInput
-    none?: citiesWhereInput
+  export type CitiesScalarRelationFilter = {
+    is?: citiesWhereInput
+    isNot?: citiesWhereInput
   }
 
-  export type countriesOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type statesOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type citiesOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type Ask_usersScalarRelationFilter = {
+    is?: ask_usersWhereInput
+    isNot?: ask_usersWhereInput
   }
 
   export type ask_tournamentsOrderByRelevanceInput = {
@@ -33350,11 +33515,6 @@ export namespace Prisma {
     city_id?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
-  }
-
-  export type Ask_tournamentsScalarRelationFilter = {
-    is?: ask_tournamentsWhereInput
-    isNot?: ask_tournamentsWhereInput
   }
 
   export type countriesOrderByRelevanceInput = {
@@ -33541,6 +33701,20 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type ask_tournamentsCreateNestedManyWithoutUserInput = {
+    create?: XOR<ask_tournamentsCreateWithoutUserInput, ask_tournamentsUncheckedCreateWithoutUserInput> | ask_tournamentsCreateWithoutUserInput[] | ask_tournamentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutUserInput | ask_tournamentsCreateOrConnectWithoutUserInput[]
+    createMany?: ask_tournamentsCreateManyUserInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+  }
+
+  export type ask_tournamentsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ask_tournamentsCreateWithoutUserInput, ask_tournamentsUncheckedCreateWithoutUserInput> | ask_tournamentsCreateWithoutUserInput[] | ask_tournamentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutUserInput | ask_tournamentsCreateOrConnectWithoutUserInput[]
+    createMany?: ask_tournamentsCreateManyUserInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -33551,6 +33725,34 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type ask_tournamentsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutUserInput, ask_tournamentsUncheckedCreateWithoutUserInput> | ask_tournamentsCreateWithoutUserInput[] | ask_tournamentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutUserInput | ask_tournamentsCreateOrConnectWithoutUserInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutUserInput | ask_tournamentsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ask_tournamentsCreateManyUserInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutUserInput | ask_tournamentsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutUserInput | ask_tournamentsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
+  }
+
+  export type ask_tournamentsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutUserInput, ask_tournamentsUncheckedCreateWithoutUserInput> | ask_tournamentsCreateWithoutUserInput[] | ask_tournamentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutUserInput | ask_tournamentsCreateOrConnectWithoutUserInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutUserInput | ask_tournamentsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ask_tournamentsCreateManyUserInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutUserInput | ask_tournamentsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutUserInput | ask_tournamentsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
   }
 
   export type academy_seo_contentsCreateNestedManyWithoutAcademiesInput = {
@@ -34105,172 +34307,186 @@ export namespace Prisma {
     update?: XOR<XOR<tournamentsUpdateToOneWithWhereWithoutContentsInput, tournamentsUpdateWithoutContentsInput>, tournamentsUncheckedUpdateWithoutContentsInput>
   }
 
-  export type countriesCreateNestedManyWithoutAsk_tournamentsInput = {
-    create?: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput> | countriesCreateWithoutAsk_tournamentsInput[] | countriesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: countriesCreateOrConnectWithoutAsk_tournamentsInput | countriesCreateOrConnectWithoutAsk_tournamentsInput[]
-    createMany?: countriesCreateManyAsk_tournamentsInputEnvelope
-    connect?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
+  export type countriesCreateNestedOneWithoutAsk_tournamentsInput = {
+    create?: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: countriesCreateOrConnectWithoutAsk_tournamentsInput
+    connect?: countriesWhereUniqueInput
   }
 
-  export type statesCreateNestedManyWithoutAsk_tournamentsInput = {
-    create?: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput> | statesCreateWithoutAsk_tournamentsInput[] | statesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: statesCreateOrConnectWithoutAsk_tournamentsInput | statesCreateOrConnectWithoutAsk_tournamentsInput[]
-    createMany?: statesCreateManyAsk_tournamentsInputEnvelope
-    connect?: statesWhereUniqueInput | statesWhereUniqueInput[]
+  export type statesCreateNestedOneWithoutAsk_tournamentsInput = {
+    create?: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: statesCreateOrConnectWithoutAsk_tournamentsInput
+    connect?: statesWhereUniqueInput
   }
 
-  export type citiesCreateNestedManyWithoutAsk_tournamentsInput = {
-    create?: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput> | citiesCreateWithoutAsk_tournamentsInput[] | citiesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: citiesCreateOrConnectWithoutAsk_tournamentsInput | citiesCreateOrConnectWithoutAsk_tournamentsInput[]
-    createMany?: citiesCreateManyAsk_tournamentsInputEnvelope
-    connect?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
+  export type citiesCreateNestedOneWithoutAsk_tournamentsInput = {
+    create?: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: citiesCreateOrConnectWithoutAsk_tournamentsInput
+    connect?: citiesWhereUniqueInput
   }
 
-  export type countriesUncheckedCreateNestedManyWithoutAsk_tournamentsInput = {
-    create?: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput> | countriesCreateWithoutAsk_tournamentsInput[] | countriesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: countriesCreateOrConnectWithoutAsk_tournamentsInput | countriesCreateOrConnectWithoutAsk_tournamentsInput[]
-    createMany?: countriesCreateManyAsk_tournamentsInputEnvelope
-    connect?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
+  export type ask_usersCreateNestedOneWithoutAsk_tournamentsInput = {
+    create?: XOR<ask_usersCreateWithoutAsk_tournamentsInput, ask_usersUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: ask_usersCreateOrConnectWithoutAsk_tournamentsInput
+    connect?: ask_usersWhereUniqueInput
   }
 
-  export type statesUncheckedCreateNestedManyWithoutAsk_tournamentsInput = {
-    create?: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput> | statesCreateWithoutAsk_tournamentsInput[] | statesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: statesCreateOrConnectWithoutAsk_tournamentsInput | statesCreateOrConnectWithoutAsk_tournamentsInput[]
-    createMany?: statesCreateManyAsk_tournamentsInputEnvelope
-    connect?: statesWhereUniqueInput | statesWhereUniqueInput[]
+  export type countriesUpdateOneRequiredWithoutAsk_tournamentsNestedInput = {
+    create?: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: countriesCreateOrConnectWithoutAsk_tournamentsInput
+    upsert?: countriesUpsertWithoutAsk_tournamentsInput
+    connect?: countriesWhereUniqueInput
+    update?: XOR<XOR<countriesUpdateToOneWithWhereWithoutAsk_tournamentsInput, countriesUpdateWithoutAsk_tournamentsInput>, countriesUncheckedUpdateWithoutAsk_tournamentsInput>
   }
 
-  export type citiesUncheckedCreateNestedManyWithoutAsk_tournamentsInput = {
-    create?: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput> | citiesCreateWithoutAsk_tournamentsInput[] | citiesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: citiesCreateOrConnectWithoutAsk_tournamentsInput | citiesCreateOrConnectWithoutAsk_tournamentsInput[]
-    createMany?: citiesCreateManyAsk_tournamentsInputEnvelope
-    connect?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
+  export type statesUpdateOneRequiredWithoutAsk_tournamentsNestedInput = {
+    create?: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: statesCreateOrConnectWithoutAsk_tournamentsInput
+    upsert?: statesUpsertWithoutAsk_tournamentsInput
+    connect?: statesWhereUniqueInput
+    update?: XOR<XOR<statesUpdateToOneWithWhereWithoutAsk_tournamentsInput, statesUpdateWithoutAsk_tournamentsInput>, statesUncheckedUpdateWithoutAsk_tournamentsInput>
   }
 
-  export type countriesUpdateManyWithoutAsk_tournamentsNestedInput = {
-    create?: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput> | countriesCreateWithoutAsk_tournamentsInput[] | countriesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: countriesCreateOrConnectWithoutAsk_tournamentsInput | countriesCreateOrConnectWithoutAsk_tournamentsInput[]
-    upsert?: countriesUpsertWithWhereUniqueWithoutAsk_tournamentsInput | countriesUpsertWithWhereUniqueWithoutAsk_tournamentsInput[]
-    createMany?: countriesCreateManyAsk_tournamentsInputEnvelope
-    set?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    disconnect?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    delete?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    connect?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    update?: countriesUpdateWithWhereUniqueWithoutAsk_tournamentsInput | countriesUpdateWithWhereUniqueWithoutAsk_tournamentsInput[]
-    updateMany?: countriesUpdateManyWithWhereWithoutAsk_tournamentsInput | countriesUpdateManyWithWhereWithoutAsk_tournamentsInput[]
-    deleteMany?: countriesScalarWhereInput | countriesScalarWhereInput[]
+  export type citiesUpdateOneRequiredWithoutAsk_tournamentsNestedInput = {
+    create?: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: citiesCreateOrConnectWithoutAsk_tournamentsInput
+    upsert?: citiesUpsertWithoutAsk_tournamentsInput
+    connect?: citiesWhereUniqueInput
+    update?: XOR<XOR<citiesUpdateToOneWithWhereWithoutAsk_tournamentsInput, citiesUpdateWithoutAsk_tournamentsInput>, citiesUncheckedUpdateWithoutAsk_tournamentsInput>
   }
 
-  export type statesUpdateManyWithoutAsk_tournamentsNestedInput = {
-    create?: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput> | statesCreateWithoutAsk_tournamentsInput[] | statesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: statesCreateOrConnectWithoutAsk_tournamentsInput | statesCreateOrConnectWithoutAsk_tournamentsInput[]
-    upsert?: statesUpsertWithWhereUniqueWithoutAsk_tournamentsInput | statesUpsertWithWhereUniqueWithoutAsk_tournamentsInput[]
-    createMany?: statesCreateManyAsk_tournamentsInputEnvelope
-    set?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    disconnect?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    delete?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    connect?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    update?: statesUpdateWithWhereUniqueWithoutAsk_tournamentsInput | statesUpdateWithWhereUniqueWithoutAsk_tournamentsInput[]
-    updateMany?: statesUpdateManyWithWhereWithoutAsk_tournamentsInput | statesUpdateManyWithWhereWithoutAsk_tournamentsInput[]
-    deleteMany?: statesScalarWhereInput | statesScalarWhereInput[]
+  export type ask_usersUpdateOneRequiredWithoutAsk_tournamentsNestedInput = {
+    create?: XOR<ask_usersCreateWithoutAsk_tournamentsInput, ask_usersUncheckedCreateWithoutAsk_tournamentsInput>
+    connectOrCreate?: ask_usersCreateOrConnectWithoutAsk_tournamentsInput
+    upsert?: ask_usersUpsertWithoutAsk_tournamentsInput
+    connect?: ask_usersWhereUniqueInput
+    update?: XOR<XOR<ask_usersUpdateToOneWithWhereWithoutAsk_tournamentsInput, ask_usersUpdateWithoutAsk_tournamentsInput>, ask_usersUncheckedUpdateWithoutAsk_tournamentsInput>
   }
 
-  export type citiesUpdateManyWithoutAsk_tournamentsNestedInput = {
-    create?: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput> | citiesCreateWithoutAsk_tournamentsInput[] | citiesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: citiesCreateOrConnectWithoutAsk_tournamentsInput | citiesCreateOrConnectWithoutAsk_tournamentsInput[]
-    upsert?: citiesUpsertWithWhereUniqueWithoutAsk_tournamentsInput | citiesUpsertWithWhereUniqueWithoutAsk_tournamentsInput[]
-    createMany?: citiesCreateManyAsk_tournamentsInputEnvelope
-    set?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    disconnect?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    delete?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    connect?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    update?: citiesUpdateWithWhereUniqueWithoutAsk_tournamentsInput | citiesUpdateWithWhereUniqueWithoutAsk_tournamentsInput[]
-    updateMany?: citiesUpdateManyWithWhereWithoutAsk_tournamentsInput | citiesUpdateManyWithWhereWithoutAsk_tournamentsInput[]
-    deleteMany?: citiesScalarWhereInput | citiesScalarWhereInput[]
+  export type ask_tournamentsCreateNestedManyWithoutCountryInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput> | ask_tournamentsCreateWithoutCountryInput[] | ask_tournamentsUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCountryInput | ask_tournamentsCreateOrConnectWithoutCountryInput[]
+    createMany?: ask_tournamentsCreateManyCountryInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
   }
 
-  export type countriesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput = {
-    create?: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput> | countriesCreateWithoutAsk_tournamentsInput[] | countriesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: countriesCreateOrConnectWithoutAsk_tournamentsInput | countriesCreateOrConnectWithoutAsk_tournamentsInput[]
-    upsert?: countriesUpsertWithWhereUniqueWithoutAsk_tournamentsInput | countriesUpsertWithWhereUniqueWithoutAsk_tournamentsInput[]
-    createMany?: countriesCreateManyAsk_tournamentsInputEnvelope
-    set?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    disconnect?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    delete?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    connect?: countriesWhereUniqueInput | countriesWhereUniqueInput[]
-    update?: countriesUpdateWithWhereUniqueWithoutAsk_tournamentsInput | countriesUpdateWithWhereUniqueWithoutAsk_tournamentsInput[]
-    updateMany?: countriesUpdateManyWithWhereWithoutAsk_tournamentsInput | countriesUpdateManyWithWhereWithoutAsk_tournamentsInput[]
-    deleteMany?: countriesScalarWhereInput | countriesScalarWhereInput[]
+  export type ask_tournamentsUncheckedCreateNestedManyWithoutCountryInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput> | ask_tournamentsCreateWithoutCountryInput[] | ask_tournamentsUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCountryInput | ask_tournamentsCreateOrConnectWithoutCountryInput[]
+    createMany?: ask_tournamentsCreateManyCountryInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
   }
 
-  export type statesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput = {
-    create?: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput> | statesCreateWithoutAsk_tournamentsInput[] | statesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: statesCreateOrConnectWithoutAsk_tournamentsInput | statesCreateOrConnectWithoutAsk_tournamentsInput[]
-    upsert?: statesUpsertWithWhereUniqueWithoutAsk_tournamentsInput | statesUpsertWithWhereUniqueWithoutAsk_tournamentsInput[]
-    createMany?: statesCreateManyAsk_tournamentsInputEnvelope
-    set?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    disconnect?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    delete?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    connect?: statesWhereUniqueInput | statesWhereUniqueInput[]
-    update?: statesUpdateWithWhereUniqueWithoutAsk_tournamentsInput | statesUpdateWithWhereUniqueWithoutAsk_tournamentsInput[]
-    updateMany?: statesUpdateManyWithWhereWithoutAsk_tournamentsInput | statesUpdateManyWithWhereWithoutAsk_tournamentsInput[]
-    deleteMany?: statesScalarWhereInput | statesScalarWhereInput[]
+  export type ask_tournamentsUpdateManyWithoutCountryNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput> | ask_tournamentsCreateWithoutCountryInput[] | ask_tournamentsUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCountryInput | ask_tournamentsCreateOrConnectWithoutCountryInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutCountryInput | ask_tournamentsUpsertWithWhereUniqueWithoutCountryInput[]
+    createMany?: ask_tournamentsCreateManyCountryInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutCountryInput | ask_tournamentsUpdateWithWhereUniqueWithoutCountryInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutCountryInput | ask_tournamentsUpdateManyWithWhereWithoutCountryInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
   }
 
-  export type citiesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput = {
-    create?: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput> | citiesCreateWithoutAsk_tournamentsInput[] | citiesUncheckedCreateWithoutAsk_tournamentsInput[]
-    connectOrCreate?: citiesCreateOrConnectWithoutAsk_tournamentsInput | citiesCreateOrConnectWithoutAsk_tournamentsInput[]
-    upsert?: citiesUpsertWithWhereUniqueWithoutAsk_tournamentsInput | citiesUpsertWithWhereUniqueWithoutAsk_tournamentsInput[]
-    createMany?: citiesCreateManyAsk_tournamentsInputEnvelope
-    set?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    disconnect?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    delete?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    connect?: citiesWhereUniqueInput | citiesWhereUniqueInput[]
-    update?: citiesUpdateWithWhereUniqueWithoutAsk_tournamentsInput | citiesUpdateWithWhereUniqueWithoutAsk_tournamentsInput[]
-    updateMany?: citiesUpdateManyWithWhereWithoutAsk_tournamentsInput | citiesUpdateManyWithWhereWithoutAsk_tournamentsInput[]
-    deleteMany?: citiesScalarWhereInput | citiesScalarWhereInput[]
+  export type ask_tournamentsUncheckedUpdateManyWithoutCountryNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput> | ask_tournamentsCreateWithoutCountryInput[] | ask_tournamentsUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCountryInput | ask_tournamentsCreateOrConnectWithoutCountryInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutCountryInput | ask_tournamentsUpsertWithWhereUniqueWithoutCountryInput[]
+    createMany?: ask_tournamentsCreateManyCountryInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutCountryInput | ask_tournamentsUpdateWithWhereUniqueWithoutCountryInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutCountryInput | ask_tournamentsUpdateManyWithWhereWithoutCountryInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
   }
 
-  export type ask_tournamentsCreateNestedOneWithoutCountryInput = {
-    create?: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput>
-    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCountryInput
-    connect?: ask_tournamentsWhereUniqueInput
+  export type ask_tournamentsCreateNestedManyWithoutStateInput = {
+    create?: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput> | ask_tournamentsCreateWithoutStateInput[] | ask_tournamentsUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutStateInput | ask_tournamentsCreateOrConnectWithoutStateInput[]
+    createMany?: ask_tournamentsCreateManyStateInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
   }
 
-  export type ask_tournamentsUpdateOneRequiredWithoutCountryNestedInput = {
-    create?: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput>
-    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCountryInput
-    upsert?: ask_tournamentsUpsertWithoutCountryInput
-    connect?: ask_tournamentsWhereUniqueInput
-    update?: XOR<XOR<ask_tournamentsUpdateToOneWithWhereWithoutCountryInput, ask_tournamentsUpdateWithoutCountryInput>, ask_tournamentsUncheckedUpdateWithoutCountryInput>
+  export type ask_tournamentsUncheckedCreateNestedManyWithoutStateInput = {
+    create?: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput> | ask_tournamentsCreateWithoutStateInput[] | ask_tournamentsUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutStateInput | ask_tournamentsCreateOrConnectWithoutStateInput[]
+    createMany?: ask_tournamentsCreateManyStateInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
   }
 
-  export type ask_tournamentsCreateNestedOneWithoutStateInput = {
-    create?: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput>
-    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutStateInput
-    connect?: ask_tournamentsWhereUniqueInput
+  export type ask_tournamentsUpdateManyWithoutStateNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput> | ask_tournamentsCreateWithoutStateInput[] | ask_tournamentsUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutStateInput | ask_tournamentsCreateOrConnectWithoutStateInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutStateInput | ask_tournamentsUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: ask_tournamentsCreateManyStateInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutStateInput | ask_tournamentsUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutStateInput | ask_tournamentsUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
   }
 
-  export type ask_tournamentsUpdateOneRequiredWithoutStateNestedInput = {
-    create?: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput>
-    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutStateInput
-    upsert?: ask_tournamentsUpsertWithoutStateInput
-    connect?: ask_tournamentsWhereUniqueInput
-    update?: XOR<XOR<ask_tournamentsUpdateToOneWithWhereWithoutStateInput, ask_tournamentsUpdateWithoutStateInput>, ask_tournamentsUncheckedUpdateWithoutStateInput>
+  export type ask_tournamentsUncheckedUpdateManyWithoutStateNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput> | ask_tournamentsCreateWithoutStateInput[] | ask_tournamentsUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutStateInput | ask_tournamentsCreateOrConnectWithoutStateInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutStateInput | ask_tournamentsUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: ask_tournamentsCreateManyStateInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutStateInput | ask_tournamentsUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutStateInput | ask_tournamentsUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
   }
 
-  export type ask_tournamentsCreateNestedOneWithoutCityInput = {
-    create?: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput>
-    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCityInput
-    connect?: ask_tournamentsWhereUniqueInput
+  export type ask_tournamentsCreateNestedManyWithoutCityInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput> | ask_tournamentsCreateWithoutCityInput[] | ask_tournamentsUncheckedCreateWithoutCityInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCityInput | ask_tournamentsCreateOrConnectWithoutCityInput[]
+    createMany?: ask_tournamentsCreateManyCityInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
   }
 
-  export type ask_tournamentsUpdateOneRequiredWithoutCityNestedInput = {
-    create?: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput>
-    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCityInput
-    upsert?: ask_tournamentsUpsertWithoutCityInput
-    connect?: ask_tournamentsWhereUniqueInput
-    update?: XOR<XOR<ask_tournamentsUpdateToOneWithWhereWithoutCityInput, ask_tournamentsUpdateWithoutCityInput>, ask_tournamentsUncheckedUpdateWithoutCityInput>
+  export type ask_tournamentsUncheckedCreateNestedManyWithoutCityInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput> | ask_tournamentsCreateWithoutCityInput[] | ask_tournamentsUncheckedCreateWithoutCityInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCityInput | ask_tournamentsCreateOrConnectWithoutCityInput[]
+    createMany?: ask_tournamentsCreateManyCityInputEnvelope
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+  }
+
+  export type ask_tournamentsUpdateManyWithoutCityNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput> | ask_tournamentsCreateWithoutCityInput[] | ask_tournamentsUncheckedCreateWithoutCityInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCityInput | ask_tournamentsCreateOrConnectWithoutCityInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutCityInput | ask_tournamentsUpsertWithWhereUniqueWithoutCityInput[]
+    createMany?: ask_tournamentsCreateManyCityInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutCityInput | ask_tournamentsUpdateWithWhereUniqueWithoutCityInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutCityInput | ask_tournamentsUpdateManyWithWhereWithoutCityInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
+  }
+
+  export type ask_tournamentsUncheckedUpdateManyWithoutCityNestedInput = {
+    create?: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput> | ask_tournamentsCreateWithoutCityInput[] | ask_tournamentsUncheckedCreateWithoutCityInput[]
+    connectOrCreate?: ask_tournamentsCreateOrConnectWithoutCityInput | ask_tournamentsCreateOrConnectWithoutCityInput[]
+    upsert?: ask_tournamentsUpsertWithWhereUniqueWithoutCityInput | ask_tournamentsUpsertWithWhereUniqueWithoutCityInput[]
+    createMany?: ask_tournamentsCreateManyCityInputEnvelope
+    set?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    disconnect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    delete?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    connect?: ask_tournamentsWhereUniqueInput | ask_tournamentsWhereUniqueInput[]
+    update?: ask_tournamentsUpdateWithWhereUniqueWithoutCityInput | ask_tournamentsUpdateWithWhereUniqueWithoutCityInput[]
+    updateMany?: ask_tournamentsUpdateManyWithWhereWithoutCityInput | ask_tournamentsUpdateManyWithWhereWithoutCityInput[]
+    deleteMany?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -34574,6 +34790,119 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type ask_tournamentsCreateWithoutUserInput = {
+    uuid?: string
+    sport_id: string
+    name: string
+    slug_name: string
+    description?: string | null
+    content?: string | null
+    tournament_type?: string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
+    address?: string | null
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
+    publish_status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+    country: countriesCreateNestedOneWithoutAsk_tournamentsInput
+    state: statesCreateNestedOneWithoutAsk_tournamentsInput
+    city: citiesCreateNestedOneWithoutAsk_tournamentsInput
+  }
+
+  export type ask_tournamentsUncheckedCreateWithoutUserInput = {
+    id?: number
+    uuid?: string
+    sport_id: string
+    name: string
+    slug_name: string
+    description?: string | null
+    content?: string | null
+    tournament_type?: string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
+    address?: string | null
+    country_id: bigint | number
+    state_id: number
+    city_id: bigint | number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
+    publish_status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type ask_tournamentsCreateOrConnectWithoutUserInput = {
+    where: ask_tournamentsWhereUniqueInput
+    create: XOR<ask_tournamentsCreateWithoutUserInput, ask_tournamentsUncheckedCreateWithoutUserInput>
+  }
+
+  export type ask_tournamentsCreateManyUserInputEnvelope = {
+    data: ask_tournamentsCreateManyUserInput | ask_tournamentsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ask_tournamentsUpsertWithWhereUniqueWithoutUserInput = {
+    where: ask_tournamentsWhereUniqueInput
+    update: XOR<ask_tournamentsUpdateWithoutUserInput, ask_tournamentsUncheckedUpdateWithoutUserInput>
+    create: XOR<ask_tournamentsCreateWithoutUserInput, ask_tournamentsUncheckedCreateWithoutUserInput>
+  }
+
+  export type ask_tournamentsUpdateWithWhereUniqueWithoutUserInput = {
+    where: ask_tournamentsWhereUniqueInput
+    data: XOR<ask_tournamentsUpdateWithoutUserInput, ask_tournamentsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ask_tournamentsUpdateManyWithWhereWithoutUserInput = {
+    where: ask_tournamentsScalarWhereInput
+    data: XOR<ask_tournamentsUpdateManyMutationInput, ask_tournamentsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ask_tournamentsScalarWhereInput = {
+    AND?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
+    OR?: ask_tournamentsScalarWhereInput[]
+    NOT?: ask_tournamentsScalarWhereInput | ask_tournamentsScalarWhereInput[]
+    id?: IntFilter<"ask_tournaments"> | number
+    uuid?: StringFilter<"ask_tournaments"> | string
+    sport_id?: StringFilter<"ask_tournaments"> | string
+    user_id?: IntFilter<"ask_tournaments"> | number
+    name?: StringFilter<"ask_tournaments"> | string
+    slug_name?: StringFilter<"ask_tournaments"> | string
+    description?: StringNullableFilter<"ask_tournaments"> | string | null
+    content?: StringNullableFilter<"ask_tournaments"> | string | null
+    tournament_type?: StringNullableFilter<"ask_tournaments"> | string | null
+    startdate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    address?: StringNullableFilter<"ask_tournaments"> | string | null
+    country_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    state_id?: IntFilter<"ask_tournaments"> | number
+    city_id?: BigIntFilter<"ask_tournaments"> | bigint | number
+    bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
+    thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
+    url?: StringNullableFilter<"ask_tournaments"> | string | null
+    brochure?: StringNullableFilter<"ask_tournaments"> | string | null
+    prize?: StringNullableFilter<"ask_tournaments"> | string | null
+    fees?: StringNullableFilter<"ask_tournaments"> | string | null
+    participation_limit?: IntNullableFilter<"ask_tournaments"> | number | null
+    publish_status?: IntFilter<"ask_tournaments"> | number
+    created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
+    deleted_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
   }
 
   export type academy_seo_contentsCreateWithoutAcademiesInput = {
@@ -36698,6 +37027,7 @@ export namespace Prisma {
   }
 
   export type countriesCreateWithoutAsk_tournamentsInput = {
+    id: bigint | number
     name: string
     iso_2?: string | null
     iso_3?: string | null
@@ -36711,6 +37041,7 @@ export namespace Prisma {
   }
 
   export type countriesUncheckedCreateWithoutAsk_tournamentsInput = {
+    id: bigint | number
     name: string
     iso_2?: string | null
     iso_3?: string | null
@@ -36728,12 +37059,8 @@ export namespace Prisma {
     create: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput>
   }
 
-  export type countriesCreateManyAsk_tournamentsInputEnvelope = {
-    data: countriesCreateManyAsk_tournamentsInput | countriesCreateManyAsk_tournamentsInput[]
-    skipDuplicates?: boolean
-  }
-
   export type statesCreateWithoutAsk_tournamentsInput = {
+    country_id: bigint | number
     name: string
     code?: string | null
     slug?: string | null
@@ -36745,6 +37072,7 @@ export namespace Prisma {
 
   export type statesUncheckedCreateWithoutAsk_tournamentsInput = {
     id?: number
+    country_id: bigint | number
     name: string
     code?: string | null
     slug?: string | null
@@ -36759,13 +37087,9 @@ export namespace Prisma {
     create: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput>
   }
 
-  export type statesCreateManyAsk_tournamentsInputEnvelope = {
-    data: statesCreateManyAsk_tournamentsInput | statesCreateManyAsk_tournamentsInput[]
-    skipDuplicates?: boolean
-  }
-
   export type citiesCreateWithoutAsk_tournamentsInput = {
     id: bigint | number
+    state_id: bigint | number
     name: string
     slug?: string | null
     leagues_allowed?: number
@@ -36777,6 +37101,7 @@ export namespace Prisma {
 
   export type citiesUncheckedCreateWithoutAsk_tournamentsInput = {
     id: bigint | number
+    state_id: bigint | number
     name: string
     slug?: string | null
     leagues_allowed?: number
@@ -36791,110 +37116,187 @@ export namespace Prisma {
     create: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput>
   }
 
-  export type citiesCreateManyAsk_tournamentsInputEnvelope = {
-    data: citiesCreateManyAsk_tournamentsInput | citiesCreateManyAsk_tournamentsInput[]
-    skipDuplicates?: boolean
+  export type ask_usersCreateWithoutAsk_tournamentsInput = {
+    name?: string | null
+    phone?: string | null
+    email?: string | null
+    password: string
+    otp_verified?: boolean
+    otp?: string | null
+    otp_expires_at?: Date | string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
   }
 
-  export type countriesUpsertWithWhereUniqueWithoutAsk_tournamentsInput = {
-    where: countriesWhereUniqueInput
+  export type ask_usersUncheckedCreateWithoutAsk_tournamentsInput = {
+    id?: number
+    name?: string | null
+    phone?: string | null
+    email?: string | null
+    password: string
+    otp_verified?: boolean
+    otp?: string | null
+    otp_expires_at?: Date | string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type ask_usersCreateOrConnectWithoutAsk_tournamentsInput = {
+    where: ask_usersWhereUniqueInput
+    create: XOR<ask_usersCreateWithoutAsk_tournamentsInput, ask_usersUncheckedCreateWithoutAsk_tournamentsInput>
+  }
+
+  export type countriesUpsertWithoutAsk_tournamentsInput = {
     update: XOR<countriesUpdateWithoutAsk_tournamentsInput, countriesUncheckedUpdateWithoutAsk_tournamentsInput>
     create: XOR<countriesCreateWithoutAsk_tournamentsInput, countriesUncheckedCreateWithoutAsk_tournamentsInput>
+    where?: countriesWhereInput
   }
 
-  export type countriesUpdateWithWhereUniqueWithoutAsk_tournamentsInput = {
-    where: countriesWhereUniqueInput
+  export type countriesUpdateToOneWithWhereWithoutAsk_tournamentsInput = {
+    where?: countriesWhereInput
     data: XOR<countriesUpdateWithoutAsk_tournamentsInput, countriesUncheckedUpdateWithoutAsk_tournamentsInput>
   }
 
-  export type countriesUpdateManyWithWhereWithoutAsk_tournamentsInput = {
-    where: countriesScalarWhereInput
-    data: XOR<countriesUpdateManyMutationInput, countriesUncheckedUpdateManyWithoutAsk_tournamentsInput>
+  export type countriesUpdateWithoutAsk_tournamentsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
+    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type countriesScalarWhereInput = {
-    AND?: countriesScalarWhereInput | countriesScalarWhereInput[]
-    OR?: countriesScalarWhereInput[]
-    NOT?: countriesScalarWhereInput | countriesScalarWhereInput[]
-    id?: BigIntFilter<"countries"> | bigint | number
-    name?: StringFilter<"countries"> | string
-    iso_2?: StringNullableFilter<"countries"> | string | null
-    iso_3?: StringNullableFilter<"countries"> | string | null
-    phone_code?: StringNullableFilter<"countries"> | string | null
-    currency?: StringNullableFilter<"countries"> | string | null
-    flag?: StringNullableFilter<"countries"> | string | null
-    status?: IntFilter<"countries"> | number
-    created_at?: DateTimeNullableFilter<"countries"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"countries"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"countries"> | Date | string | null
+  export type countriesUncheckedUpdateWithoutAsk_tournamentsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
+    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type statesUpsertWithWhereUniqueWithoutAsk_tournamentsInput = {
-    where: statesWhereUniqueInput
+  export type statesUpsertWithoutAsk_tournamentsInput = {
     update: XOR<statesUpdateWithoutAsk_tournamentsInput, statesUncheckedUpdateWithoutAsk_tournamentsInput>
     create: XOR<statesCreateWithoutAsk_tournamentsInput, statesUncheckedCreateWithoutAsk_tournamentsInput>
+    where?: statesWhereInput
   }
 
-  export type statesUpdateWithWhereUniqueWithoutAsk_tournamentsInput = {
-    where: statesWhereUniqueInput
+  export type statesUpdateToOneWithWhereWithoutAsk_tournamentsInput = {
+    where?: statesWhereInput
     data: XOR<statesUpdateWithoutAsk_tournamentsInput, statesUncheckedUpdateWithoutAsk_tournamentsInput>
   }
 
-  export type statesUpdateManyWithWhereWithoutAsk_tournamentsInput = {
-    where: statesScalarWhereInput
-    data: XOR<statesUpdateManyMutationInput, statesUncheckedUpdateManyWithoutAsk_tournamentsInput>
+  export type statesUpdateWithoutAsk_tournamentsInput = {
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type statesScalarWhereInput = {
-    AND?: statesScalarWhereInput | statesScalarWhereInput[]
-    OR?: statesScalarWhereInput[]
-    NOT?: statesScalarWhereInput | statesScalarWhereInput[]
-    id?: IntFilter<"states"> | number
-    country_id?: BigIntFilter<"states"> | bigint | number
-    name?: StringFilter<"states"> | string
-    code?: StringNullableFilter<"states"> | string | null
-    slug?: StringNullableFilter<"states"> | string | null
-    status?: IntFilter<"states"> | number
-    created_at?: DateTimeNullableFilter<"states"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"states"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"states"> | Date | string | null
+  export type statesUncheckedUpdateWithoutAsk_tournamentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type citiesUpsertWithWhereUniqueWithoutAsk_tournamentsInput = {
-    where: citiesWhereUniqueInput
+  export type citiesUpsertWithoutAsk_tournamentsInput = {
     update: XOR<citiesUpdateWithoutAsk_tournamentsInput, citiesUncheckedUpdateWithoutAsk_tournamentsInput>
     create: XOR<citiesCreateWithoutAsk_tournamentsInput, citiesUncheckedCreateWithoutAsk_tournamentsInput>
+    where?: citiesWhereInput
   }
 
-  export type citiesUpdateWithWhereUniqueWithoutAsk_tournamentsInput = {
-    where: citiesWhereUniqueInput
+  export type citiesUpdateToOneWithWhereWithoutAsk_tournamentsInput = {
+    where?: citiesWhereInput
     data: XOR<citiesUpdateWithoutAsk_tournamentsInput, citiesUncheckedUpdateWithoutAsk_tournamentsInput>
   }
 
-  export type citiesUpdateManyWithWhereWithoutAsk_tournamentsInput = {
-    where: citiesScalarWhereInput
-    data: XOR<citiesUpdateManyMutationInput, citiesUncheckedUpdateManyWithoutAsk_tournamentsInput>
+  export type citiesUpdateWithoutAsk_tournamentsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    leagues_allowed?: IntFieldUpdateOperationsInput | number
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type citiesScalarWhereInput = {
-    AND?: citiesScalarWhereInput | citiesScalarWhereInput[]
-    OR?: citiesScalarWhereInput[]
-    NOT?: citiesScalarWhereInput | citiesScalarWhereInput[]
-    id?: BigIntFilter<"cities"> | bigint | number
-    state_id?: BigIntFilter<"cities"> | bigint | number
-    name?: StringFilter<"cities"> | string
-    slug?: StringNullableFilter<"cities"> | string | null
-    leagues_allowed?: IntFilter<"cities"> | number
-    status?: IntFilter<"cities"> | number
-    created_at?: DateTimeNullableFilter<"cities"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"cities"> | Date | string | null
-    deleted_at?: DateTimeNullableFilter<"cities"> | Date | string | null
+  export type citiesUncheckedUpdateWithoutAsk_tournamentsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    leagues_allowed?: IntFieldUpdateOperationsInput | number
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ask_usersUpsertWithoutAsk_tournamentsInput = {
+    update: XOR<ask_usersUpdateWithoutAsk_tournamentsInput, ask_usersUncheckedUpdateWithoutAsk_tournamentsInput>
+    create: XOR<ask_usersCreateWithoutAsk_tournamentsInput, ask_usersUncheckedCreateWithoutAsk_tournamentsInput>
+    where?: ask_usersWhereInput
+  }
+
+  export type ask_usersUpdateToOneWithWhereWithoutAsk_tournamentsInput = {
+    where?: ask_usersWhereInput
+    data: XOR<ask_usersUpdateWithoutAsk_tournamentsInput, ask_usersUncheckedUpdateWithoutAsk_tournamentsInput>
+  }
+
+  export type ask_usersUpdateWithoutAsk_tournamentsInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    otp_verified?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ask_usersUncheckedUpdateWithoutAsk_tournamentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    otp_verified?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ask_tournamentsCreateWithoutCountryInput = {
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
     name: string
     slug_name: string
     description?: string | null
@@ -36903,9 +37305,6 @@ export namespace Prisma {
     startdate?: Date | string | null
     enddate?: Date | string | null
     address?: string | null
-    country_id: bigint | number
-    state_id: bigint | number
-    city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
     url?: string | null
@@ -36917,15 +37316,16 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    state?: statesCreateNestedManyWithoutAsk_tournamentsInput
-    city?: citiesCreateNestedManyWithoutAsk_tournamentsInput
+    state: statesCreateNestedOneWithoutAsk_tournamentsInput
+    city: citiesCreateNestedOneWithoutAsk_tournamentsInput
+    user: ask_usersCreateNestedOneWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsUncheckedCreateWithoutCountryInput = {
     id?: number
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
+    user_id: number
     name: string
     slug_name: string
     description?: string | null
@@ -36934,8 +37334,7 @@ export namespace Prisma {
     startdate?: Date | string | null
     enddate?: Date | string | null
     address?: string | null
-    country_id: bigint | number
-    state_id: bigint | number
+    state_id: number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -36948,8 +37347,6 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    state?: statesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
-    city?: citiesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsCreateOrConnectWithoutCountryInput = {
@@ -36957,82 +37354,30 @@ export namespace Prisma {
     create: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput>
   }
 
-  export type ask_tournamentsUpsertWithoutCountryInput = {
-    update: XOR<ask_tournamentsUpdateWithoutCountryInput, ask_tournamentsUncheckedUpdateWithoutCountryInput>
-    create: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput>
-    where?: ask_tournamentsWhereInput
+  export type ask_tournamentsCreateManyCountryInputEnvelope = {
+    data: ask_tournamentsCreateManyCountryInput | ask_tournamentsCreateManyCountryInput[]
+    skipDuplicates?: boolean
   }
 
-  export type ask_tournamentsUpdateToOneWithWhereWithoutCountryInput = {
-    where?: ask_tournamentsWhereInput
+  export type ask_tournamentsUpsertWithWhereUniqueWithoutCountryInput = {
+    where: ask_tournamentsWhereUniqueInput
+    update: XOR<ask_tournamentsUpdateWithoutCountryInput, ask_tournamentsUncheckedUpdateWithoutCountryInput>
+    create: XOR<ask_tournamentsCreateWithoutCountryInput, ask_tournamentsUncheckedCreateWithoutCountryInput>
+  }
+
+  export type ask_tournamentsUpdateWithWhereUniqueWithoutCountryInput = {
+    where: ask_tournamentsWhereUniqueInput
     data: XOR<ask_tournamentsUpdateWithoutCountryInput, ask_tournamentsUncheckedUpdateWithoutCountryInput>
   }
 
-  export type ask_tournamentsUpdateWithoutCountryInput = {
-    uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    slug_name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    brochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prize?: NullableStringFieldUpdateOperationsInput | string | null
-    fees?: NullableStringFieldUpdateOperationsInput | string | null
-    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
-    publish_status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    state?: statesUpdateManyWithoutAsk_tournamentsNestedInput
-    city?: citiesUpdateManyWithoutAsk_tournamentsNestedInput
-  }
-
-  export type ask_tournamentsUncheckedUpdateWithoutCountryInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    slug_name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    brochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prize?: NullableStringFieldUpdateOperationsInput | string | null
-    fees?: NullableStringFieldUpdateOperationsInput | string | null
-    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
-    publish_status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    state?: statesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
-    city?: citiesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
+  export type ask_tournamentsUpdateManyWithWhereWithoutCountryInput = {
+    where: ask_tournamentsScalarWhereInput
+    data: XOR<ask_tournamentsUpdateManyMutationInput, ask_tournamentsUncheckedUpdateManyWithoutCountryInput>
   }
 
   export type ask_tournamentsCreateWithoutStateInput = {
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
     name: string
     slug_name: string
     description?: string | null
@@ -37041,9 +37386,6 @@ export namespace Prisma {
     startdate?: Date | string | null
     enddate?: Date | string | null
     address?: string | null
-    country_id: bigint | number
-    state_id: bigint | number
-    city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
     url?: string | null
@@ -37055,15 +37397,16 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    country?: countriesCreateNestedManyWithoutAsk_tournamentsInput
-    city?: citiesCreateNestedManyWithoutAsk_tournamentsInput
+    country: countriesCreateNestedOneWithoutAsk_tournamentsInput
+    city: citiesCreateNestedOneWithoutAsk_tournamentsInput
+    user: ask_usersCreateNestedOneWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsUncheckedCreateWithoutStateInput = {
     id?: number
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
+    user_id: number
     name: string
     slug_name: string
     description?: string | null
@@ -37073,7 +37416,6 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: bigint | number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -37086,8 +37428,6 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    country?: countriesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
-    city?: citiesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsCreateOrConnectWithoutStateInput = {
@@ -37095,82 +37435,30 @@ export namespace Prisma {
     create: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput>
   }
 
-  export type ask_tournamentsUpsertWithoutStateInput = {
-    update: XOR<ask_tournamentsUpdateWithoutStateInput, ask_tournamentsUncheckedUpdateWithoutStateInput>
-    create: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput>
-    where?: ask_tournamentsWhereInput
+  export type ask_tournamentsCreateManyStateInputEnvelope = {
+    data: ask_tournamentsCreateManyStateInput | ask_tournamentsCreateManyStateInput[]
+    skipDuplicates?: boolean
   }
 
-  export type ask_tournamentsUpdateToOneWithWhereWithoutStateInput = {
-    where?: ask_tournamentsWhereInput
+  export type ask_tournamentsUpsertWithWhereUniqueWithoutStateInput = {
+    where: ask_tournamentsWhereUniqueInput
+    update: XOR<ask_tournamentsUpdateWithoutStateInput, ask_tournamentsUncheckedUpdateWithoutStateInput>
+    create: XOR<ask_tournamentsCreateWithoutStateInput, ask_tournamentsUncheckedCreateWithoutStateInput>
+  }
+
+  export type ask_tournamentsUpdateWithWhereUniqueWithoutStateInput = {
+    where: ask_tournamentsWhereUniqueInput
     data: XOR<ask_tournamentsUpdateWithoutStateInput, ask_tournamentsUncheckedUpdateWithoutStateInput>
   }
 
-  export type ask_tournamentsUpdateWithoutStateInput = {
-    uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    slug_name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    brochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prize?: NullableStringFieldUpdateOperationsInput | string | null
-    fees?: NullableStringFieldUpdateOperationsInput | string | null
-    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
-    publish_status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    country?: countriesUpdateManyWithoutAsk_tournamentsNestedInput
-    city?: citiesUpdateManyWithoutAsk_tournamentsNestedInput
-  }
-
-  export type ask_tournamentsUncheckedUpdateWithoutStateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    uuid?: StringFieldUpdateOperationsInput | string
-    sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    slug_name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
-    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    brochure?: NullableStringFieldUpdateOperationsInput | string | null
-    prize?: NullableStringFieldUpdateOperationsInput | string | null
-    fees?: NullableStringFieldUpdateOperationsInput | string | null
-    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
-    publish_status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    country?: countriesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
-    city?: citiesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
+  export type ask_tournamentsUpdateManyWithWhereWithoutStateInput = {
+    where: ask_tournamentsScalarWhereInput
+    data: XOR<ask_tournamentsUpdateManyMutationInput, ask_tournamentsUncheckedUpdateManyWithoutStateInput>
   }
 
   export type ask_tournamentsCreateWithoutCityInput = {
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
     name: string
     slug_name: string
     description?: string | null
@@ -37179,9 +37467,6 @@ export namespace Prisma {
     startdate?: Date | string | null
     enddate?: Date | string | null
     address?: string | null
-    country_id: bigint | number
-    state_id: bigint | number
-    city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
     url?: string | null
@@ -37193,15 +37478,16 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    country?: countriesCreateNestedManyWithoutAsk_tournamentsInput
-    state?: statesCreateNestedManyWithoutAsk_tournamentsInput
+    country: countriesCreateNestedOneWithoutAsk_tournamentsInput
+    state: statesCreateNestedOneWithoutAsk_tournamentsInput
+    user: ask_usersCreateNestedOneWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsUncheckedCreateWithoutCityInput = {
     id?: number
     uuid?: string
     sport_id: string
-    user_id?: bigint | number | null
+    user_id: number
     name: string
     slug_name: string
     description?: string | null
@@ -37211,8 +37497,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: bigint | number
-    city_id: bigint | number
+    state_id: number
     bannerimage?: string | null
     thumbnail?: string | null
     url?: string | null
@@ -37224,8 +37509,6 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
-    country?: countriesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
-    state?: statesUncheckedCreateNestedManyWithoutAsk_tournamentsInput
   }
 
   export type ask_tournamentsCreateOrConnectWithoutCityInput = {
@@ -37233,21 +37516,58 @@ export namespace Prisma {
     create: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput>
   }
 
-  export type ask_tournamentsUpsertWithoutCityInput = {
-    update: XOR<ask_tournamentsUpdateWithoutCityInput, ask_tournamentsUncheckedUpdateWithoutCityInput>
-    create: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput>
-    where?: ask_tournamentsWhereInput
+  export type ask_tournamentsCreateManyCityInputEnvelope = {
+    data: ask_tournamentsCreateManyCityInput | ask_tournamentsCreateManyCityInput[]
+    skipDuplicates?: boolean
   }
 
-  export type ask_tournamentsUpdateToOneWithWhereWithoutCityInput = {
-    where?: ask_tournamentsWhereInput
+  export type ask_tournamentsUpsertWithWhereUniqueWithoutCityInput = {
+    where: ask_tournamentsWhereUniqueInput
+    update: XOR<ask_tournamentsUpdateWithoutCityInput, ask_tournamentsUncheckedUpdateWithoutCityInput>
+    create: XOR<ask_tournamentsCreateWithoutCityInput, ask_tournamentsUncheckedCreateWithoutCityInput>
+  }
+
+  export type ask_tournamentsUpdateWithWhereUniqueWithoutCityInput = {
+    where: ask_tournamentsWhereUniqueInput
     data: XOR<ask_tournamentsUpdateWithoutCityInput, ask_tournamentsUncheckedUpdateWithoutCityInput>
   }
 
-  export type ask_tournamentsUpdateWithoutCityInput = {
+  export type ask_tournamentsUpdateManyWithWhereWithoutCityInput = {
+    where: ask_tournamentsScalarWhereInput
+    data: XOR<ask_tournamentsUpdateManyMutationInput, ask_tournamentsUncheckedUpdateManyWithoutCityInput>
+  }
+
+  export type ask_tournamentsCreateManyUserInput = {
+    id?: number
+    uuid?: string
+    sport_id: string
+    name: string
+    slug_name: string
+    description?: string | null
+    content?: string | null
+    tournament_type?: string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
+    address?: string | null
+    country_id: bigint | number
+    state_id: number
+    city_id: bigint | number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
+    publish_status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type ask_tournamentsUpdateWithoutUserInput = {
     uuid?: StringFieldUpdateOperationsInput | string
     sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     name?: StringFieldUpdateOperationsInput | string
     slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37256,9 +37576,6 @@ export namespace Prisma {
     startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37270,15 +37587,15 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    country?: countriesUpdateManyWithoutAsk_tournamentsNestedInput
-    state?: statesUpdateManyWithoutAsk_tournamentsNestedInput
+    country?: countriesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    state?: statesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    city?: citiesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
   }
 
-  export type ask_tournamentsUncheckedUpdateWithoutCityInput = {
+  export type ask_tournamentsUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     sport_id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     name?: StringFieldUpdateOperationsInput | string
     slug_name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37288,7 +37605,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: IntFieldUpdateOperationsInput | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37301,8 +37618,34 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    country?: countriesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
-    state?: statesUncheckedUpdateManyWithoutAsk_tournamentsNestedInput
+  }
+
+  export type ask_tournamentsUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: IntFieldUpdateOperationsInput | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type academy_seo_contentsCreateManyAcademiesInput = {
@@ -37757,140 +38100,334 @@ export namespace Prisma {
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type countriesCreateManyAsk_tournamentsInput = {
-    name: string
-    iso_2?: string | null
-    iso_3?: string | null
-    phone_code?: string | null
-    currency?: string | null
-    flag?: string | null
-    status?: number
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    deleted_at?: Date | string | null
-  }
-
-  export type statesCreateManyAsk_tournamentsInput = {
+  export type ask_tournamentsCreateManyCountryInput = {
     id?: number
+    uuid?: string
+    sport_id: string
+    user_id: number
     name: string
-    code?: string | null
-    slug?: string | null
-    status?: number
+    slug_name: string
+    description?: string | null
+    content?: string | null
+    tournament_type?: string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
+    address?: string | null
+    state_id: number
+    city_id: bigint | number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
+    publish_status?: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
   }
 
-  export type citiesCreateManyAsk_tournamentsInput = {
-    id: bigint | number
+  export type ask_tournamentsUpdateWithoutCountryInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    state?: statesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    city?: citiesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    user?: ask_usersUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+  }
+
+  export type ask_tournamentsUncheckedUpdateWithoutCountryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    state_id?: IntFieldUpdateOperationsInput | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ask_tournamentsUncheckedUpdateManyWithoutCountryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    state_id?: IntFieldUpdateOperationsInput | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ask_tournamentsCreateManyStateInput = {
+    id?: number
+    uuid?: string
+    sport_id: string
+    user_id: number
     name: string
-    slug?: string | null
-    leagues_allowed?: number
-    status?: number
+    slug_name: string
+    description?: string | null
+    content?: string | null
+    tournament_type?: string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
+    address?: string | null
+    country_id: bigint | number
+    city_id: bigint | number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
+    publish_status?: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
     deleted_at?: Date | string | null
   }
 
-  export type countriesUpdateWithoutAsk_tournamentsInput = {
+  export type ask_tournamentsUpdateWithoutStateInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
-    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
-    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
-    currency?: NullableStringFieldUpdateOperationsInput | string | null
-    flag?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: IntFieldUpdateOperationsInput | number
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    country?: countriesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    city?: citiesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    user?: ask_usersUpdateOneRequiredWithoutAsk_tournamentsNestedInput
   }
 
-  export type countriesUncheckedUpdateWithoutAsk_tournamentsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
-    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
-    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
-    currency?: NullableStringFieldUpdateOperationsInput | string | null
-    flag?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type countriesUncheckedUpdateManyWithoutAsk_tournamentsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    iso_2?: NullableStringFieldUpdateOperationsInput | string | null
-    iso_3?: NullableStringFieldUpdateOperationsInput | string | null
-    phone_code?: NullableStringFieldUpdateOperationsInput | string | null
-    currency?: NullableStringFieldUpdateOperationsInput | string | null
-    flag?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type statesUpdateWithoutAsk_tournamentsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    code?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type statesUncheckedUpdateWithoutAsk_tournamentsInput = {
+  export type ask_tournamentsUncheckedUpdateWithoutStateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    code?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: IntFieldUpdateOperationsInput | number
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type statesUncheckedUpdateManyWithoutAsk_tournamentsInput = {
+  export type ask_tournamentsUncheckedUpdateManyWithoutStateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    code?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: IntFieldUpdateOperationsInput | number
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    city_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type citiesUpdateWithoutAsk_tournamentsInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type ask_tournamentsCreateManyCityInput = {
+    id?: number
+    uuid?: string
+    sport_id: string
+    user_id: number
+    name: string
+    slug_name: string
+    description?: string | null
+    content?: string | null
+    tournament_type?: string | null
+    startdate?: Date | string | null
+    enddate?: Date | string | null
+    address?: string | null
+    country_id: bigint | number
+    state_id: number
+    bannerimage?: string | null
+    thumbnail?: string | null
+    url?: string | null
+    brochure?: string | null
+    prize?: string | null
+    fees?: string | null
+    participation_limit?: number | null
+    publish_status?: number
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    deleted_at?: Date | string | null
+  }
+
+  export type ask_tournamentsUpdateWithoutCityInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    leagues_allowed?: IntFieldUpdateOperationsInput | number
-    status?: IntFieldUpdateOperationsInput | number
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    country?: countriesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    state?: statesUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+    user?: ask_usersUpdateOneRequiredWithoutAsk_tournamentsNestedInput
+  }
+
+  export type ask_tournamentsUncheckedUpdateWithoutCityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: IntFieldUpdateOperationsInput | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type citiesUncheckedUpdateWithoutAsk_tournamentsInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type ask_tournamentsUncheckedUpdateManyWithoutCityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    sport_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    leagues_allowed?: IntFieldUpdateOperationsInput | number
-    status?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type citiesUncheckedUpdateManyWithoutAsk_tournamentsInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    leagues_allowed?: IntFieldUpdateOperationsInput | number
-    status?: IntFieldUpdateOperationsInput | number
+    slug_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    tournament_type?: NullableStringFieldUpdateOperationsInput | string | null
+    startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    country_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    state_id?: IntFieldUpdateOperationsInput | number
+    bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    brochure?: NullableStringFieldUpdateOperationsInput | string | null
+    prize?: NullableStringFieldUpdateOperationsInput | string | null
+    fees?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
+    publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

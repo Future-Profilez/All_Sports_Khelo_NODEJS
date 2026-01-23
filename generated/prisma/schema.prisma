@@ -25,6 +25,8 @@ model ask_users {
   created_at     DateTime? @default(now()) @db.Timestamp(0)
   updated_at     DateTime? @db.Timestamp(0)
   deleted_at     DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
 }
 
 generator client {
@@ -335,7 +337,7 @@ model ask_tournaments {
   id                  Int       @id @default(autoincrement())
   uuid                String    @unique @default(uuid()) @db.Char(36)
   sport_id            String    @db.Char(36)
-  user_id             BigInt?   @db.UnsignedBigInt
+  user_id             Int
   name                String    @db.VarChar(255)
   slug_name           String    @unique @db.VarChar(255)
   description         String?   @db.VarChar(255)
@@ -345,7 +347,7 @@ model ask_tournaments {
   enddate             DateTime?
   address             String?   @db.VarChar(255)
   country_id          BigInt    @unique @db.UnsignedBigInt
-  state_id            BigInt    @unique @db.UnsignedBigInt
+  state_id            Int
   city_id             BigInt    @unique @db.UnsignedBigInt
   bannerimage         String?   @db.VarChar(255)
   thumbnail           String?   @db.VarChar(255)
@@ -359,9 +361,10 @@ model ask_tournaments {
   updated_at          DateTime? @db.Timestamp(0)
   deleted_at          DateTime? @db.Timestamp(0)
 
-  country countries[] @relation("AskTournamentCountry")
-  state   states[]    @relation("AskTournamentState")
-  city    cities[]    @relation("AskTournamentCity")
+  country countries @relation(fields: [country_id], references: [id])
+  state   states    @relation(fields: [state_id], references: [id])
+  city    cities    @relation(fields: [city_id], references: [id])
+  user    ask_users @relation(fields: [user_id], references: [id])
 }
 
 model countries {
@@ -377,31 +380,32 @@ model countries {
   updated_at DateTime? @db.Timestamp(0)
   deleted_at DateTime? @db.Timestamp(0)
 
-  ask_tournaments ask_tournaments @relation("AskTournamentCountry", fields: [id], references: [country_id])
+  ask_tournaments ask_tournaments[]
 }
 
 model states {
-  id              Int             @id @default(autoincrement())
-  country_id      BigInt          @db.UnsignedBigInt
-  name            String          @db.VarChar(255)
-  code            String?         @db.VarChar(10)
-  slug            String?         @db.VarChar(255)
-  status          Int             @default(1) @db.TinyInt
-  created_at      DateTime?       @db.Timestamp(0)
-  updated_at      DateTime?       @db.Timestamp(0)
-  deleted_at      DateTime?       @db.Timestamp(0)
-  ask_tournaments ask_tournaments @relation("AskTournamentState", fields: [country_id], references: [state_id])
+  id         Int       @id @default(autoincrement())
+  country_id BigInt    @db.UnsignedBigInt
+  name       String    @db.VarChar(255)
+  code       String?   @db.VarChar(10)
+  slug       String?   @db.VarChar(255)
+  status     Int       @default(1) @db.TinyInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
 }
 
 model cities {
-  id              BigInt          @id @db.UnsignedBigInt
-  state_id        BigInt          @db.UnsignedBigInt
-  name            String          @db.VarChar(100)
-  slug            String?         @db.VarChar(255)
-  leagues_allowed Int             @default(0) @db.TinyInt
-  status          Int             @default(1) @db.TinyInt
-  created_at      DateTime?       @db.Timestamp(0)
-  updated_at      DateTime?       @db.Timestamp(0)
-  deleted_at      DateTime?       @db.Timestamp(0)
-  ask_tournaments ask_tournaments @relation("AskTournamentCity", fields: [state_id], references: [city_id])
+  id              BigInt            @id @db.UnsignedBigInt
+  state_id        BigInt            @db.UnsignedBigInt
+  name            String            @db.VarChar(100)
+  slug            String?           @db.VarChar(255)
+  leagues_allowed Int               @default(0) @db.TinyInt
+  status          Int               @default(1) @db.TinyInt
+  created_at      DateTime?         @db.Timestamp(0)
+  updated_at      DateTime?         @db.Timestamp(0)
+  deleted_at      DateTime?         @db.Timestamp(0)
+  ask_tournaments ask_tournaments[]
 }

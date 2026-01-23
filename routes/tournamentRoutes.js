@@ -23,7 +23,7 @@ router.post('/create',
   ]), 
   add_ask_tournament);
 
-router.get('/ask/tournaments',list_ask_tournaments);
+router.get('/ask/tournaments/:type',list_ask_tournaments);
 router.get('/:slug', asktournamentOverview)
 
 
