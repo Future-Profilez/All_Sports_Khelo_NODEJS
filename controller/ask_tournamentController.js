@@ -52,7 +52,7 @@ exports.add_ask_tournament = async (req, res) => {
     }
     const startDateObj = new Date(startdate);
     const endDateObj = new Date(enddate);
-    const updateduser_id = Number(user_id);
+    const updateduser_id = Number(req?.user?.id);
     const updatedstate_id = Number(state_id);
     const updatedcity_id = Number(city_id)
     const updatedcountry_id = Number(country_id);

@@ -5,6 +5,7 @@ const express = require("express")
 const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
 const { list_ask_tournaments, asktournamentOverview, add_ask_tournament } = require("../controller/ask_tournamentController");
+const { protect } = require("../middleware/authMiddleware");
 
 
 // TK ROUTES
@@ -15,12 +16,13 @@ const { list_ask_tournaments, asktournamentOverview, add_ask_tournament } = requ
 
 
 // ASK ROUTES
-router.post('/create', 
+router.post('/create',
+  protect, 
     upload.fields([
     { name: "bannerimage", maxCount: 1 },
     { name: "thumbnail", maxCount: 1 },
     { name: "brochure", maxCount: 1 },
-  ]), 
+  ]),protect, 
   add_ask_tournament);
 
 router.get('/ask/tournaments/:type',list_ask_tournaments);
