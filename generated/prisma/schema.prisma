@@ -16,6 +16,7 @@ model ask_test_data {
 model ask_users {
   id             Int       @id @default(autoincrement())
   name           String?   @db.VarChar(255)
+  country_code   String    @db.VarChar(25)
   phone          String?   @unique @db.VarChar(20)
   email          String?   @unique @db.VarChar(255)
   password       String    @db.VarChar(255)
