@@ -22147,6 +22147,7 @@ export namespace Prisma {
     brochure: string | null
     prize: string | null
     fees: string | null
+    organizer_name: string | null
     participation_limit: number | null
     publish_status: number | null
     created_at: Date | null
@@ -22176,6 +22177,7 @@ export namespace Prisma {
     brochure: string | null
     prize: string | null
     fees: string | null
+    organizer_name: string | null
     participation_limit: number | null
     publish_status: number | null
     created_at: Date | null
@@ -22205,6 +22207,7 @@ export namespace Prisma {
     brochure: number
     prize: number
     fees: number
+    organizer_name: number
     participation_limit: number
     publish_status: number
     created_at: number
@@ -22256,6 +22259,7 @@ export namespace Prisma {
     brochure?: true
     prize?: true
     fees?: true
+    organizer_name?: true
     participation_limit?: true
     publish_status?: true
     created_at?: true
@@ -22285,6 +22289,7 @@ export namespace Prisma {
     brochure?: true
     prize?: true
     fees?: true
+    organizer_name?: true
     participation_limit?: true
     publish_status?: true
     created_at?: true
@@ -22314,6 +22319,7 @@ export namespace Prisma {
     brochure?: true
     prize?: true
     fees?: true
+    organizer_name?: true
     participation_limit?: true
     publish_status?: true
     created_at?: true
@@ -22430,6 +22436,7 @@ export namespace Prisma {
     brochure: string | null
     prize: string | null
     fees: string | null
+    organizer_name: string | null
     participation_limit: number | null
     publish_status: number
     created_at: Date | null
@@ -22478,6 +22485,7 @@ export namespace Prisma {
     brochure?: boolean
     prize?: boolean
     fees?: boolean
+    organizer_name?: boolean
     participation_limit?: boolean
     publish_status?: boolean
     created_at?: boolean
@@ -22513,6 +22521,7 @@ export namespace Prisma {
     brochure?: boolean
     prize?: boolean
     fees?: boolean
+    organizer_name?: boolean
     participation_limit?: boolean
     publish_status?: boolean
     created_at?: boolean
@@ -22520,7 +22529,7 @@ export namespace Prisma {
     deleted_at?: boolean
   }
 
-  export type ask_tournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "user_id" | "name" | "slug_name" | "description" | "content" | "tournament_type" | "startdate" | "enddate" | "address" | "country_id" | "state_id" | "city_id" | "bannerimage" | "thumbnail" | "url" | "brochure" | "prize" | "fees" | "participation_limit" | "publish_status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["ask_tournaments"]>
+  export type ask_tournamentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "sport_id" | "user_id" | "name" | "slug_name" | "description" | "content" | "tournament_type" | "startdate" | "enddate" | "address" | "country_id" | "state_id" | "city_id" | "bannerimage" | "thumbnail" | "url" | "brochure" | "prize" | "fees" | "organizer_name" | "participation_limit" | "publish_status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["ask_tournaments"]>
   export type ask_tournamentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     country?: boolean | countriesDefaultArgs<ExtArgs>
     state?: boolean | statesDefaultArgs<ExtArgs>
@@ -22558,6 +22567,7 @@ export namespace Prisma {
       brochure: string | null
       prize: string | null
       fees: string | null
+      organizer_name: string | null
       participation_limit: number | null
       publish_status: number
       created_at: Date | null
@@ -22957,6 +22967,7 @@ export namespace Prisma {
     readonly brochure: FieldRef<"ask_tournaments", 'String'>
     readonly prize: FieldRef<"ask_tournaments", 'String'>
     readonly fees: FieldRef<"ask_tournaments", 'String'>
+    readonly organizer_name: FieldRef<"ask_tournaments", 'String'>
     readonly participation_limit: FieldRef<"ask_tournaments", 'Int'>
     readonly publish_status: FieldRef<"ask_tournaments", 'Int'>
     readonly created_at: FieldRef<"ask_tournaments", 'DateTime'>
@@ -27834,6 +27845,7 @@ export namespace Prisma {
     brochure: 'brochure',
     prize: 'prize',
     fees: 'fees',
+    organizer_name: 'organizer_name',
     participation_limit: 'participation_limit',
     publish_status: 'publish_status',
     created_at: 'created_at',
@@ -28163,7 +28175,8 @@ export namespace Prisma {
     url: 'url',
     brochure: 'brochure',
     prize: 'prize',
-    fees: 'fees'
+    fees: 'fees',
+    organizer_name: 'organizer_name'
   };
 
   export type ask_tournamentsOrderByRelevanceFieldEnum = (typeof ask_tournamentsOrderByRelevanceFieldEnum)[keyof typeof ask_tournamentsOrderByRelevanceFieldEnum]
@@ -30061,6 +30074,7 @@ export namespace Prisma {
     brochure?: StringNullableFilter<"ask_tournaments"> | string | null
     prize?: StringNullableFilter<"ask_tournaments"> | string | null
     fees?: StringNullableFilter<"ask_tournaments"> | string | null
+    organizer_name?: StringNullableFilter<"ask_tournaments"> | string | null
     participation_limit?: IntNullableFilter<"ask_tournaments"> | number | null
     publish_status?: IntFilter<"ask_tournaments"> | number
     created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
@@ -30094,6 +30108,7 @@ export namespace Prisma {
     brochure?: SortOrderInput | SortOrder
     prize?: SortOrderInput | SortOrder
     fees?: SortOrderInput | SortOrder
+    organizer_name?: SortOrderInput | SortOrder
     participation_limit?: SortOrderInput | SortOrder
     publish_status?: SortOrder
     created_at?: SortOrderInput | SortOrder
@@ -30131,6 +30146,7 @@ export namespace Prisma {
     brochure?: StringNullableFilter<"ask_tournaments"> | string | null
     prize?: StringNullableFilter<"ask_tournaments"> | string | null
     fees?: StringNullableFilter<"ask_tournaments"> | string | null
+    organizer_name?: StringNullableFilter<"ask_tournaments"> | string | null
     participation_limit?: IntNullableFilter<"ask_tournaments"> | number | null
     publish_status?: IntFilter<"ask_tournaments"> | number
     created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
@@ -30164,6 +30180,7 @@ export namespace Prisma {
     brochure?: SortOrderInput | SortOrder
     prize?: SortOrderInput | SortOrder
     fees?: SortOrderInput | SortOrder
+    organizer_name?: SortOrderInput | SortOrder
     participation_limit?: SortOrderInput | SortOrder
     publish_status?: SortOrder
     created_at?: SortOrderInput | SortOrder
@@ -30201,6 +30218,7 @@ export namespace Prisma {
     brochure?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
     prize?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
     fees?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
+    organizer_name?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
     participation_limit?: IntNullableWithAggregatesFilter<"ask_tournaments"> | number | null
     publish_status?: IntWithAggregatesFilter<"ask_tournaments"> | number
     created_at?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
@@ -32578,6 +32596,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -32611,6 +32630,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -32635,6 +32655,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32668,6 +32689,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32697,6 +32719,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -32721,6 +32744,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32750,6 +32774,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -34760,6 +34785,7 @@ export namespace Prisma {
     brochure?: SortOrder
     prize?: SortOrder
     fees?: SortOrder
+    organizer_name?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
     created_at?: SortOrder
@@ -34799,6 +34825,7 @@ export namespace Prisma {
     brochure?: SortOrder
     prize?: SortOrder
     fees?: SortOrder
+    organizer_name?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
     created_at?: SortOrder
@@ -34828,6 +34855,7 @@ export namespace Prisma {
     brochure?: SortOrder
     prize?: SortOrder
     fees?: SortOrder
+    organizer_name?: SortOrder
     participation_limit?: SortOrder
     publish_status?: SortOrder
     created_at?: SortOrder
@@ -36235,6 +36263,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -36266,6 +36295,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -36324,6 +36354,7 @@ export namespace Prisma {
     brochure?: StringNullableFilter<"ask_tournaments"> | string | null
     prize?: StringNullableFilter<"ask_tournaments"> | string | null
     fees?: StringNullableFilter<"ask_tournaments"> | string | null
+    organizer_name?: StringNullableFilter<"ask_tournaments"> | string | null
     participation_limit?: IntNullableFilter<"ask_tournaments"> | number | null
     publish_status?: IntFilter<"ask_tournaments"> | number
     created_at?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
@@ -38741,6 +38772,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -38772,6 +38804,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -38822,6 +38855,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -38853,6 +38887,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -38903,6 +38938,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -38934,6 +38970,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -38988,6 +39025,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -39012,6 +39050,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39043,6 +39082,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39071,6 +39111,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39551,6 +39592,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -39575,6 +39617,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39606,6 +39649,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39634,6 +39678,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39662,6 +39707,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -39686,6 +39732,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39717,6 +39764,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39745,6 +39793,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39773,6 +39822,7 @@ export namespace Prisma {
     brochure?: string | null
     prize?: string | null
     fees?: string | null
+    organizer_name?: string | null
     participation_limit?: number | null
     publish_status?: number
     created_at?: Date | string | null
@@ -39797,6 +39847,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39828,6 +39879,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39856,6 +39908,7 @@ export namespace Prisma {
     brochure?: NullableStringFieldUpdateOperationsInput | string | null
     prize?: NullableStringFieldUpdateOperationsInput | string | null
     fees?: NullableStringFieldUpdateOperationsInput | string | null
+    organizer_name?: NullableStringFieldUpdateOperationsInput | string | null
     participation_limit?: NullableIntFieldUpdateOperationsInput | number | null
     publish_status?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

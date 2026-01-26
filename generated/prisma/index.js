@@ -401,6 +401,7 @@ exports.Prisma.Ask_tournamentsScalarFieldEnum = {
   brochure: 'brochure',
   prize: 'prize',
   fees: 'fees',
+  organizer_name: 'organizer_name',
   participation_limit: 'participation_limit',
   publish_status: 'publish_status',
   created_at: 'created_at',
@@ -655,7 +656,8 @@ exports.Prisma.ask_tournamentsOrderByRelevanceFieldEnum = {
   url: 'url',
   brochure: 'brochure',
   prize: 'prize',
-  fees: 'fees'
+  fees: 'fees',
+  organizer_name: 'organizer_name'
 };
 
 exports.Prisma.countriesOrderByRelevanceFieldEnum = {
