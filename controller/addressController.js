@@ -15,11 +15,8 @@ exports.countriesList = async (req, res) => {
 exports.statesList = async (req, res) => {
     try {
         const countryid = req.params.countryid;
-        console.log("countryid", countryid);
-
         const all_states = await prisma.states.findMany({ where: { country_id: countryid } });
         const data = convertBigIntToString(all_states);
-        console.log("data : ", data);
         return res.status(200).json({ message: "states fetched succesfully ", data })
     } catch (error) {
         console.log(error)
@@ -30,10 +27,8 @@ exports.statesList = async (req, res) => {
 exports.cityList = async (req, res) => {
     try {
         const stateid = req.params.stateid;
-        console.log("stateid ", stateid);
         const all_cities = await prisma.cities.findMany({ where: { state_id: stateid } });
         const data = convertBigIntToString(all_cities);
-        console.log("data : ", data);
         return res.status(200).json({ message: "cities fetched succesfully ", data })
     } catch (error) {
         console.log(error)

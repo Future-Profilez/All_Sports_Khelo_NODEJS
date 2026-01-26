@@ -6,7 +6,7 @@ const prisma = require('../lib/prisma.js');
 
 exports.register = async (req, res) => {
     try {
-        const { name, phone, email, password } = req.body;
+        const { name, phone, email, password,country_code } = req.body;
         const isEmailExist = await prisma.ask_users.findUnique({ where: { email } });
         if (isEmailExist && isEmailExist.otp_verified) {
             return res.status(200).json({ success: true, message: "Email already register. Please login" })
@@ -24,6 +24,7 @@ exports.register = async (req, res) => {
                     name,
                     phone,
                     email,
+                    country_code,
                     password: hashedPassword,
                 }
             });
