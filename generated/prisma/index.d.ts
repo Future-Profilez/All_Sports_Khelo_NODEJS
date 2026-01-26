@@ -4787,6 +4787,7 @@ export namespace Prisma {
   export type Ask_usersMinAggregateOutputType = {
     id: number | null
     name: string | null
+    country_code: string | null
     phone: string | null
     email: string | null
     password: string | null
@@ -4801,6 +4802,7 @@ export namespace Prisma {
   export type Ask_usersMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    country_code: string | null
     phone: string | null
     email: string | null
     password: string | null
@@ -4815,6 +4817,7 @@ export namespace Prisma {
   export type Ask_usersCountAggregateOutputType = {
     id: number
     name: number
+    country_code: number
     phone: number
     email: number
     password: number
@@ -4839,6 +4842,7 @@ export namespace Prisma {
   export type Ask_usersMinAggregateInputType = {
     id?: true
     name?: true
+    country_code?: true
     phone?: true
     email?: true
     password?: true
@@ -4853,6 +4857,7 @@ export namespace Prisma {
   export type Ask_usersMaxAggregateInputType = {
     id?: true
     name?: true
+    country_code?: true
     phone?: true
     email?: true
     password?: true
@@ -4867,6 +4872,7 @@ export namespace Prisma {
   export type Ask_usersCountAggregateInputType = {
     id?: true
     name?: true
+    country_code?: true
     phone?: true
     email?: true
     password?: true
@@ -4968,6 +4974,7 @@ export namespace Prisma {
   export type Ask_usersGroupByOutputType = {
     id: number
     name: string | null
+    country_code: string
     phone: string | null
     email: string | null
     password: string
@@ -5001,6 +5008,7 @@ export namespace Prisma {
   export type ask_usersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    country_code?: boolean
     phone?: boolean
     email?: boolean
     password?: boolean
@@ -5019,6 +5027,7 @@ export namespace Prisma {
   export type ask_usersSelectScalar = {
     id?: boolean
     name?: boolean
+    country_code?: boolean
     phone?: boolean
     email?: boolean
     password?: boolean
@@ -5030,7 +5039,7 @@ export namespace Prisma {
     deleted_at?: boolean
   }
 
-  export type ask_usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phone" | "email" | "password" | "otp_verified" | "otp" | "otp_expires_at" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["ask_users"]>
+  export type ask_usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "country_code" | "phone" | "email" | "password" | "otp_verified" | "otp" | "otp_expires_at" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["ask_users"]>
   export type ask_usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ask_tournaments?: boolean | ask_users$ask_tournamentsArgs<ExtArgs>
     _count?: boolean | Ask_usersCountOutputTypeDefaultArgs<ExtArgs>
@@ -5044,6 +5053,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string | null
+      country_code: string
       phone: string | null
       email: string | null
       password: string
@@ -5425,6 +5435,7 @@ export namespace Prisma {
   interface ask_usersFieldRefs {
     readonly id: FieldRef<"ask_users", 'Int'>
     readonly name: FieldRef<"ask_users", 'String'>
+    readonly country_code: FieldRef<"ask_users", 'String'>
     readonly phone: FieldRef<"ask_users", 'String'>
     readonly email: FieldRef<"ask_users", 'String'>
     readonly password: FieldRef<"ask_users", 'String'>
@@ -27485,6 +27496,7 @@ export namespace Prisma {
   export const Ask_usersScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    country_code: 'country_code',
     phone: 'phone',
     email: 'email',
     password: 'password',
@@ -27931,6 +27943,7 @@ export namespace Prisma {
 
   export const ask_usersOrderByRelevanceFieldEnum: {
     name: 'name',
+    country_code: 'country_code',
     phone: 'phone',
     email: 'email',
     password: 'password',
@@ -28377,6 +28390,7 @@ export namespace Prisma {
     NOT?: ask_usersWhereInput | ask_usersWhereInput[]
     id?: IntFilter<"ask_users"> | number
     name?: StringNullableFilter<"ask_users"> | string | null
+    country_code?: StringFilter<"ask_users"> | string
     phone?: StringNullableFilter<"ask_users"> | string | null
     email?: StringNullableFilter<"ask_users"> | string | null
     password?: StringFilter<"ask_users"> | string
@@ -28392,6 +28406,7 @@ export namespace Prisma {
   export type ask_usersOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    country_code?: SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     password?: SortOrder
@@ -28413,6 +28428,7 @@ export namespace Prisma {
     OR?: ask_usersWhereInput[]
     NOT?: ask_usersWhereInput | ask_usersWhereInput[]
     name?: StringNullableFilter<"ask_users"> | string | null
+    country_code?: StringFilter<"ask_users"> | string
     password?: StringFilter<"ask_users"> | string
     otp_verified?: BoolFilter<"ask_users"> | boolean
     otp?: StringNullableFilter<"ask_users"> | string | null
@@ -28426,6 +28442,7 @@ export namespace Prisma {
   export type ask_usersOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    country_code?: SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     password?: SortOrder
@@ -28448,6 +28465,7 @@ export namespace Prisma {
     NOT?: ask_usersScalarWhereWithAggregatesInput | ask_usersScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"ask_users"> | number
     name?: StringNullableWithAggregatesFilter<"ask_users"> | string | null
+    country_code?: StringWithAggregatesFilter<"ask_users"> | string
     phone?: StringNullableWithAggregatesFilter<"ask_users"> | string | null
     email?: StringNullableWithAggregatesFilter<"ask_users"> | string | null
     password?: StringWithAggregatesFilter<"ask_users"> | string
@@ -30620,6 +30638,7 @@ export namespace Prisma {
 
   export type ask_usersCreateInput = {
     name?: string | null
+    country_code: string
     phone?: string | null
     email?: string | null
     password: string
@@ -30635,6 +30654,7 @@ export namespace Prisma {
   export type ask_usersUncheckedCreateInput = {
     id?: number
     name?: string | null
+    country_code: string
     phone?: string | null
     email?: string | null
     password: string
@@ -30649,6 +30669,7 @@ export namespace Prisma {
 
   export type ask_usersUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    country_code?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -30664,6 +30685,7 @@ export namespace Prisma {
   export type ask_usersUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    country_code?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -30679,6 +30701,7 @@ export namespace Prisma {
   export type ask_usersCreateManyInput = {
     id?: number
     name?: string | null
+    country_code: string
     phone?: string | null
     email?: string | null
     password: string
@@ -30692,6 +30715,7 @@ export namespace Prisma {
 
   export type ask_usersUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    country_code?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -30706,6 +30730,7 @@ export namespace Prisma {
   export type ask_usersUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    country_code?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -33315,6 +33340,7 @@ export namespace Prisma {
   export type ask_usersCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    country_code?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     password?: SortOrder
@@ -33333,6 +33359,7 @@ export namespace Prisma {
   export type ask_usersMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    country_code?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     password?: SortOrder
@@ -33347,6 +33374,7 @@ export namespace Prisma {
   export type ask_usersMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    country_code?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     password?: SortOrder
@@ -38516,6 +38544,7 @@ export namespace Prisma {
 
   export type ask_usersCreateWithoutAsk_tournamentsInput = {
     name?: string | null
+    country_code: string
     phone?: string | null
     email?: string | null
     password: string
@@ -38530,6 +38559,7 @@ export namespace Prisma {
   export type ask_usersUncheckedCreateWithoutAsk_tournamentsInput = {
     id?: number
     name?: string | null
+    country_code: string
     phone?: string | null
     email?: string | null
     password: string
@@ -38667,6 +38697,7 @@ export namespace Prisma {
 
   export type ask_usersUpdateWithoutAsk_tournamentsInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    country_code?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -38681,6 +38712,7 @@ export namespace Prisma {
   export type ask_usersUncheckedUpdateWithoutAsk_tournamentsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    country_code?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string

@@ -138,6 +138,7 @@ exports.Prisma.Ask_test_dataScalarFieldEnum = {
 exports.Prisma.Ask_usersScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  country_code: 'country_code',
   phone: 'phone',
   email: 'email',
   password: 'password',
@@ -509,6 +510,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ask_usersOrderByRelevanceFieldEnum = {
   name: 'name',
+  country_code: 'country_code',
   phone: 'phone',
   email: 'email',
   password: 'password',
