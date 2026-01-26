@@ -431,3 +431,13 @@ enum player_gender {
   female
   other
 }
+
+model sports_enquiries {
+  id           Int     @id @default(autoincrement())
+  name         String  @db.VarChar(255)
+  phone        String  @db.VarChar(20)
+  email        String? @db.VarChar(255)
+  organization String? @db.VarChar(255)
+  sport_id     Int
+  description  String? @db.VarChar(255)
+}

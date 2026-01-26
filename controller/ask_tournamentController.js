@@ -121,12 +121,12 @@ exports.add_ask_tournament = async (req, res) => {
 
 exports.list_ask_tournaments = async (req, res) => {
   try {
-   const typeParam = req.params.type;
+    const typeParam = req.params.type;
     let list_ask_tournaments_whereClause;
     if (Number(typeParam) !== 0) {
       list_ask_tournaments_whereClause = await prisma.ask_tournaments.findMany({
-        where : {
-          user_id  : Number(typeParam)
+        where: {
+          user_id: Number(typeParam)
         },
         include: {
           country: true,
@@ -137,7 +137,7 @@ exports.list_ask_tournaments = async (req, res) => {
           id: "desc",
         }
       });
-    } else { 
+    } else {
       list_ask_tournaments_whereClause = await prisma.ask_tournaments.findMany({
         include: {
           country: true,
@@ -149,7 +149,7 @@ exports.list_ask_tournaments = async (req, res) => {
         }
       });
     }
-    
+
 
     const data = convertBigIntToString(list_ask_tournaments_whereClause);
 
@@ -281,51 +281,66 @@ exports.asktournamentOverview = async (req, res) => {
 };
 
 exports.send_enquiry = async (req, res) => {
-    try {
-        const {
-            name,
-            phone,
-            email,
-            description,
-            mark_as_read,
-            tournament_id,
-            gender
-        } = req.body;
-        if (!name || !tournament_id || !phone) {
-            return req.status(200).json({
-                status: false,
-                message: "Required fields missing"
-            })
-        }
-        const tour_enquiry = await prisma.ask_tournament_enquiries.create({
-            data: {
-                name,
-                phone,
-                email,
-                description,
-                mark_as_read,
-                tournament_id,
-                gender
-            },
-        });
-        if(!tour_enquiry){
-            return res.status(200).json({
-                status:false,
-                message:"Unable to send your enquiry. Try after some time",
-              
-            })
-        }
-        return res.status(200).json({
-            status:true,
-            message:"Enquiry send succesfully",
-            data:convertBigIntToString(tour_enquiry)
-        })
-    } catch (error) {
-        console.log("ERROR : ", error);
-        return res.status(500).json({
-            status: false,
-            error: error,
-            message: "Something went wrong"
-        })
+  try {
+    const {
+      name,
+      phone,
+      email,
+      description,
+      mark_as_read,
+      tournament_id,
+      gender
+    } = req.body;
+    if (!name || !tournament_id || !phone) {
+      return res.status(200).json({
+        status: false,
+        message: "Required fields missing"
+      })
     }
+    const tour_enquiry = await prisma.ask_tournament_enquiries.create({
+      data: {
+        name,
+        phone,
+        email,
+        description,
+        mark_as_read,
+        tournament_id,
+        gender
+      },
+    });
+    if (!tour_enquiry) {
+      return res.status(200).json({
+        status: false,
+        message: "Unable to send your enquiry. Try after some time",
+
+      })
+    }
+    return res.status(200).json({
+      status: true,
+      message: "Enquiry send succesfully",
+      data: convertBigIntToString(tour_enquiry)
+    })
+  } catch (error) {
+    console.log("ERROR : ", error);
+    return res.status(500).json({
+      status: false,
+      error: error,
+      message: "Something went wrong"
+    })
+  }
 }
+
+exports.list_enquiries = async (req, res) => {
+  try {
+    const typeParam = req.params.tour_id;
+    const all_enquiries = await prisma.ask_tournament_enquiries.findMany({
+        where: {
+          tournament_id: Number(typeParam)
+        }});
+    const data = convertBigIntToString(all_enquiries)
+    return res.status(200).json({ status:true, message: "Tournament enquiries fetched successfully!", data })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ status:false, message: "Something went wrong" })
+  }
+};

@@ -461,6 +461,16 @@ exports.Prisma.Ask_tournament_enquiriesScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
+exports.Prisma.Sports_enquiriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  organization: 'organization',
+  sport_id: 'sport_id',
+  description: 'description'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -686,6 +696,14 @@ exports.Prisma.ask_tournament_enquiriesOrderByRelevanceFieldEnum = {
   email: 'email',
   description: 'description'
 };
+
+exports.Prisma.sports_enquiriesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  organization: 'organization',
+  description: 'description'
+};
 exports.sports_status = exports.$Enums.sports_status = {
   active: 'active',
   inactive: 'inactive',
@@ -721,7 +739,8 @@ exports.Prisma.ModelName = {
   countries: 'countries',
   states: 'states',
   cities: 'cities',
-  ask_tournament_enquiries: 'ask_tournament_enquiries'
+  ask_tournament_enquiries: 'ask_tournament_enquiries',
+  sports_enquiries: 'sports_enquiries'
 };
 /**
  * Create the Client
