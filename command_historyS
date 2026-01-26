@@ -1,1 +1,2 @@
 npx prisma db execute --file prisma/sql/202601191157_create_ask_tournaments.sql
+npx prisma db execute --file prisma/sql/2026011044_add_new_column_organizer_name_in_tournaments_table.sql

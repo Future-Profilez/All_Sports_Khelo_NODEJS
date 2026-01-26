@@ -20,6 +20,7 @@ model ask_tournaments {
   brochure                      String?   @db.VarChar(255)
   prize                         String?   @db.VarChar(255)
   fees                          String?   @db.VarChar(255)
+  organizer_name                String?   @db.VarChar(255)
   participation_limit           Int?      @db.Int
   publish_status                Int       @default(1) @db.TinyInt
   created_at                    DateTime? @db.Timestamp(0)
