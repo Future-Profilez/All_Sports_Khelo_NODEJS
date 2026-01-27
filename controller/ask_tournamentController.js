@@ -255,30 +255,30 @@ exports.add_ask_tournament = async (req, res) => {
 
 exports.list_ask_tournaments = async (req, res) => {
   try {
-    const typeParam = Number(req.params.type);
+    const typeParam = Number(req?.params?.type);
     const sports_id = req.query?.sports_id;
-
     const include = {
       country: true,
       state: true,
       city: true,
     };
-
-    // empty where = fetch all
     let where = {};
+
+    // Sports ID filter
     if (sports_id !== '' || sports_id !== undefined ) {
       where.sport_id = sports_id;
-    } else if (typeParam && typeParam !== 0) {
-      where.user_id = typeParam;
-    }
+    } 
+    
+    // Logged in user tournaments filter
+    if (typeParam) {
+      where.user_id = Number(req?.user?.id);
+    } 
 
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
       include,
       orderBy: { id: "desc" },
     });
-
-
     const data = convertBigIntToString(tournaments);
     const updateddata = data.map(item => ({
       ...item,
