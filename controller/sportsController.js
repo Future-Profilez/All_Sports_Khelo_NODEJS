@@ -1,4 +1,4 @@
-const prisma = require('../lib/prisma')
+const prisma = require("../lib/prisma");
 const convertBigIntToString = require('../helper/convertBigInt')
 
 exports.fetchSports = async (Req, res) => {
@@ -22,19 +22,21 @@ exports.send_sport_enquiry = async (req, res) => {
             sport_id,
             description
         } = req.body;
+        console.log("req.body ",req.body)
         if (!name || !sport_id || !phone) {
             return res.status(200).json({
                 status: false,
                 message: "Required fields missing"
             })
         }
+        
         const sport_enquiry = await prisma.sports_enquiries.create({
             data: {
                 name,
                 phone,
                 email,
                 organization,
-                sport_id,
+                sport_id: Number(sport_id),
                 description
             },
         });

@@ -438,6 +438,6 @@ model sports_enquiries {
   phone        String  @db.VarChar(20)
   email        String? @db.VarChar(255)
   organization String? @db.VarChar(255)
-  sport_id     Int
+  sport_id     String? @db.VarChar(255)
   description  String? @db.VarChar(255)
 }

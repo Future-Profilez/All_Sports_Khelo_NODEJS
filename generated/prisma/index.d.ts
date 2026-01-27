@@ -27566,12 +27566,10 @@ export namespace Prisma {
 
   export type Sports_enquiriesAvgAggregateOutputType = {
     id: number | null
-    sport_id: number | null
   }
 
   export type Sports_enquiriesSumAggregateOutputType = {
     id: number | null
-    sport_id: number | null
   }
 
   export type Sports_enquiriesMinAggregateOutputType = {
@@ -27580,7 +27578,7 @@ export namespace Prisma {
     phone: string | null
     email: string | null
     organization: string | null
-    sport_id: number | null
+    sport_id: string | null
     description: string | null
   }
 
@@ -27590,7 +27588,7 @@ export namespace Prisma {
     phone: string | null
     email: string | null
     organization: string | null
-    sport_id: number | null
+    sport_id: string | null
     description: string | null
   }
 
@@ -27608,12 +27606,10 @@ export namespace Prisma {
 
   export type Sports_enquiriesAvgAggregateInputType = {
     id?: true
-    sport_id?: true
   }
 
   export type Sports_enquiriesSumAggregateInputType = {
     id?: true
-    sport_id?: true
   }
 
   export type Sports_enquiriesMinAggregateInputType = {
@@ -27739,7 +27735,7 @@ export namespace Prisma {
     phone: string
     email: string | null
     organization: string | null
-    sport_id: number
+    sport_id: string | null
     description: string | null
     _count: Sports_enquiriesCountAggregateOutputType | null
     _avg: Sports_enquiriesAvgAggregateOutputType | null
@@ -27795,7 +27791,7 @@ export namespace Prisma {
       phone: string
       email: string | null
       organization: string | null
-      sport_id: number
+      sport_id: string | null
       description: string | null
     }, ExtArgs["result"]["sports_enquiries"]>
     composites: {}
@@ -28171,7 +28167,7 @@ export namespace Prisma {
     readonly phone: FieldRef<"sports_enquiries", 'String'>
     readonly email: FieldRef<"sports_enquiries", 'String'>
     readonly organization: FieldRef<"sports_enquiries", 'String'>
-    readonly sport_id: FieldRef<"sports_enquiries", 'Int'>
+    readonly sport_id: FieldRef<"sports_enquiries", 'String'>
     readonly description: FieldRef<"sports_enquiries", 'String'>
   }
     
@@ -29264,6 +29260,7 @@ export namespace Prisma {
     phone: 'phone',
     email: 'email',
     organization: 'organization',
+    sport_id: 'sport_id',
     description: 'description'
   };
 
@@ -31613,7 +31610,7 @@ export namespace Prisma {
     phone?: StringFilter<"sports_enquiries"> | string
     email?: StringNullableFilter<"sports_enquiries"> | string | null
     organization?: StringNullableFilter<"sports_enquiries"> | string | null
-    sport_id?: IntFilter<"sports_enquiries"> | number
+    sport_id?: StringNullableFilter<"sports_enquiries"> | string | null
     description?: StringNullableFilter<"sports_enquiries"> | string | null
   }
 
@@ -31623,7 +31620,7 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrderInput | SortOrder
     organization?: SortOrderInput | SortOrder
-    sport_id?: SortOrder
+    sport_id?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     _relevance?: sports_enquiriesOrderByRelevanceInput
   }
@@ -31637,7 +31634,7 @@ export namespace Prisma {
     phone?: StringFilter<"sports_enquiries"> | string
     email?: StringNullableFilter<"sports_enquiries"> | string | null
     organization?: StringNullableFilter<"sports_enquiries"> | string | null
-    sport_id?: IntFilter<"sports_enquiries"> | number
+    sport_id?: StringNullableFilter<"sports_enquiries"> | string | null
     description?: StringNullableFilter<"sports_enquiries"> | string | null
   }, "id">
 
@@ -31647,7 +31644,7 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrderInput | SortOrder
     organization?: SortOrderInput | SortOrder
-    sport_id?: SortOrder
+    sport_id?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     _count?: sports_enquiriesCountOrderByAggregateInput
     _avg?: sports_enquiriesAvgOrderByAggregateInput
@@ -31665,7 +31662,7 @@ export namespace Prisma {
     phone?: StringWithAggregatesFilter<"sports_enquiries"> | string
     email?: StringNullableWithAggregatesFilter<"sports_enquiries"> | string | null
     organization?: StringNullableWithAggregatesFilter<"sports_enquiries"> | string | null
-    sport_id?: IntWithAggregatesFilter<"sports_enquiries"> | number
+    sport_id?: StringNullableWithAggregatesFilter<"sports_enquiries"> | string | null
     description?: StringNullableWithAggregatesFilter<"sports_enquiries"> | string | null
   }
 
@@ -34271,7 +34268,7 @@ export namespace Prisma {
     phone: string
     email?: string | null
     organization?: string | null
-    sport_id: number
+    sport_id?: string | null
     description?: string | null
   }
 
@@ -34281,7 +34278,7 @@ export namespace Prisma {
     phone: string
     email?: string | null
     organization?: string | null
-    sport_id: number
+    sport_id?: string | null
     description?: string | null
   }
 
@@ -34290,7 +34287,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     organization?: NullableStringFieldUpdateOperationsInput | string | null
-    sport_id?: IntFieldUpdateOperationsInput | number
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -34300,7 +34297,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     organization?: NullableStringFieldUpdateOperationsInput | string | null
-    sport_id?: IntFieldUpdateOperationsInput | number
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -34310,7 +34307,7 @@ export namespace Prisma {
     phone: string
     email?: string | null
     organization?: string | null
-    sport_id: number
+    sport_id?: string | null
     description?: string | null
   }
 
@@ -34319,7 +34316,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     organization?: NullableStringFieldUpdateOperationsInput | string | null
-    sport_id?: IntFieldUpdateOperationsInput | number
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -34329,7 +34326,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     organization?: NullableStringFieldUpdateOperationsInput | string | null
-    sport_id?: IntFieldUpdateOperationsInput | number
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -36317,7 +36314,6 @@ export namespace Prisma {
 
   export type sports_enquiriesAvgOrderByAggregateInput = {
     id?: SortOrder
-    sport_id?: SortOrder
   }
 
   export type sports_enquiriesMaxOrderByAggregateInput = {
@@ -36342,7 +36338,6 @@ export namespace Prisma {
 
   export type sports_enquiriesSumOrderByAggregateInput = {
     id?: SortOrder
-    sport_id?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

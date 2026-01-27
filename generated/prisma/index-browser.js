@@ -729,6 +729,7 @@ exports.Prisma.sports_enquiriesOrderByRelevanceFieldEnum = {
   phone: 'phone',
   email: 'email',
   organization: 'organization',
+  sport_id: 'sport_id',
   description: 'description'
 };
 exports.sports_status = exports.$Enums.sports_status = {
