@@ -1,0 +1,3 @@
+npx prisma db execute --file prisma/sql/202601171831_add_ask_users_table.sql
+npx prisma db execute --file prisma/sql/202601261118_add_country_code_column_in_ask_users_table.sql
+

@@ -1,3 +1,35 @@
+model ask_test_user {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  avatar    String   @db.VarChar(255)
+  city      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+}
+
+model ask_test_data {
+  id        Int      @id @default(autoincrement())
+  testname  String   @db.VarChar(255)
+  testage   String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+}
+
+model ask_users {
+  id             Int       @id @default(autoincrement())
+  name           String?   @db.VarChar(255)
+  country_code   String    @db.VarChar(25)
+  phone          String?   @unique @db.VarChar(20)
+  email          String?   @unique @db.VarChar(255)
+  password       String    @db.VarChar(255)
+  otp_verified   Boolean   @default(false)
+  otp            String?   @db.VarChar(255)
+  otp_expires_at DateTime? @db.Timestamp(0)
+  created_at     DateTime? @default(now()) @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+  deleted_at     DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
+}
+
 generator client {
   provider         = "prisma-client-js"
   output           = "../generated/prisma"
@@ -205,52 +237,6 @@ enum sports_status {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model tournament_contents {
-  id            BigInt    @id @db.UnsignedBigInt
-  uuid          String    @db.VarChar(255)
-  tournament_id Int       @db.UnsignedInt
-  name          String?   @db.VarChar(255)
-  value         String?   @db.LongText
-  extra         String?   @db.LongText
-  created_at    DateTime? @db.Timestamp(0)
-  updated_at    DateTime? @db.Timestamp(0)
-  deleted_at    DateTime? @db.Timestamp(0)
-
-  tournament tournaments @relation(fields: [tournament_id], references: [id])
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model tournament_galleries {
-  id                             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  uuid                           String    @db.Char(36)
-  tournament_id                  BigInt?   @db.UnsignedBigInt
-  image                          String?   @db.VarChar(255)
-  tag_users                      String?   @db.LongText
-  tournament_galleries_folder_id BigInt?   @db.UnsignedBigInt
-  face_app_sync                  DateTime? @db.Timestamp(0)
-  created_at                     DateTime? @db.Timestamp(0)
-  updated_at                     DateTime? @db.Timestamp(0)
-  deleted_at                     DateTime? @db.Timestamp(0)
-
-  @@index([tournament_galleries_folder_id], map: "tournament_image_album_id")
-}
-
-model tournament_galleries_folders {
-  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  uuid          String    @db.Char(36)
-  tournament_id BigInt    @db.UnsignedBigInt
-  folder_name   String    @db.VarChar(255)
-  created_at    DateTime? @db.Timestamp(0)
-  updated_at    DateTime? @db.Timestamp(0)
-  deleted_at    DateTime? @db.Timestamp(0)
-}
-
-model ask_notes {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  body      String?  @db.LongText
-  createdAt DateTime @default(now()) @db.Timestamp(0)
-}
 
 model tournaments {
   id                            Int       @id
@@ -306,4 +292,162 @@ model tournaments {
   deleted_at                    DateTime? @db.Timestamp(0)
 
   contents tournament_contents[]
+}
+
+model tournament_contents {
+  id            BigInt    @id @db.UnsignedBigInt
+  uuid          String    @db.VarChar(255)
+  tournament_id Int       @db.UnsignedInt
+  name          String?   @db.VarChar(255)
+  value         String?   @db.LongText
+  extra         String?   @db.LongText
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  tournament tournaments @relation(fields: [tournament_id], references: [id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model tournament_galleries {
+  id                             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid                           String    @db.Char(36)
+  tournament_id                  BigInt?   @db.UnsignedBigInt
+  image                          String?   @db.VarChar(255)
+  tag_users                      String?   @db.LongText
+  tournament_galleries_folder_id BigInt?   @db.UnsignedBigInt
+  face_app_sync                  DateTime? @db.Timestamp(0)
+  created_at                     DateTime? @db.Timestamp(0)
+  updated_at                     DateTime? @db.Timestamp(0)
+  deleted_at                     DateTime? @db.Timestamp(0)
+
+  @@index([tournament_galleries_folder_id], map: "tournament_image_album_id")
+}
+
+model tournament_galleries_folders {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid          String    @db.Char(36)
+  tournament_id BigInt    @db.UnsignedBigInt
+  folder_name   String    @db.VarChar(255)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+}
+
+model ask_tournaments {
+  id                  Int       @id @default(autoincrement())
+  uuid                String    @unique @default(uuid()) @db.Char(36)
+  sport_id            String    @db.Char(36)
+  user_id             Int
+  name                String    @db.VarChar(255)
+  slug_name           String    @unique @db.VarChar(255)
+  description         String?   @db.VarChar(255)
+  content             String?   @db.LongText
+  tournament_type     String?   @db.VarChar(255)
+  startdate           DateTime?
+  enddate             DateTime?
+  address             String?   @db.VarChar(255)
+  country_id          BigInt    @unique @db.UnsignedBigInt
+  state_id            Int
+  city_id             BigInt    @unique @db.UnsignedBigInt
+  bannerimage         String?   @db.VarChar(255)
+  thumbnail           String?   @db.VarChar(255)
+  url                 String?   @db.VarChar(255)
+  brochure            String?   @db.VarChar(255)
+  prize               String?   @db.VarChar(255)
+  fees                String?   @db.VarChar(255)
+  organizer_name      String?   @db.VarChar(255)
+  participation_limit Int?      @db.Int
+  publish_status      Int       @default(1) @db.TinyInt
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+
+  country countries @relation(fields: [country_id], references: [id])
+  state   states    @relation(fields: [state_id], references: [id])
+  city    cities    @relation(fields: [city_id], references: [id])
+  user    ask_users @relation(fields: [user_id], references: [id])
+}
+
+model countries {
+  id         BigInt    @id @db.UnsignedBigInt
+  name       String    @db.VarChar(255)
+  iso_2      String?   @db.VarChar(4)
+  iso_3      String?   @db.VarChar(4)
+  phone_code String?   @db.VarChar(20)
+  currency   String?   @db.VarChar(50)
+  flag       String?   @db.Text
+  status     Int       @default(1) @db.TinyInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
+}
+
+model states {
+  id         Int       @id @default(autoincrement())
+  country_id BigInt    @db.UnsignedBigInt
+  name       String    @db.VarChar(255)
+  code       String?   @db.VarChar(10)
+  slug       String?   @db.VarChar(255)
+  status     Int       @default(1) @db.TinyInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
+}
+
+model cities {
+  id              BigInt            @id @db.UnsignedBigInt
+  state_id        BigInt            @db.UnsignedBigInt
+  name            String            @db.VarChar(100)
+  slug            String?           @db.VarChar(255)
+  leagues_allowed Int               @default(0) @db.TinyInt
+  status          Int               @default(1) @db.TinyInt
+  created_at      DateTime?         @db.Timestamp(0)
+  updated_at      DateTime?         @db.Timestamp(0)
+  deleted_at      DateTime?         @db.Timestamp(0)
+  ask_tournaments ask_tournaments[]
+}
+
+model ask_tournament_enquiries {
+  id            Int            @id @default(autoincrement())
+  name          String         @db.VarChar(255)
+  phone         String?        @db.VarChar(20)
+  email         String?        @db.VarChar(255)
+  description   String?        @db.VarChar(255)
+  mark_as_read  Int?           @default(0) @db.TinyInt
+  tournament_id Int
+  gender        player_gender?
+  created_at    DateTime?      @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?      @db.Timestamp(0)
+  deleted_at    DateTime?      @db.Timestamp(0)
+}
+
+enum player_gender {
+  male
+  female
+  other
+}
+
+model sports_enquiries {
+  id           Int     @id @default(autoincrement())
+  name         String  @db.VarChar(255)
+  phone        String  @db.VarChar(20)
+  email        String? @db.VarChar(255)
+  organization String? @db.VarChar(255)
+  sport_id     String? @db.VarChar(255)
+  description  String? @db.VarChar(255)
+}
+
+model ask_sports_enquiries {
+  id           Int     @id @default(autoincrement())
+  name         String  @db.VarChar(255)
+  phone        String  @db.VarChar(20)
+  email        String? @db.VarChar(255)
+  organization String? @db.VarChar(255)
+  sport_id     String? @db.VarChar(255)
+  description  String? @db.VarChar(255)
 }

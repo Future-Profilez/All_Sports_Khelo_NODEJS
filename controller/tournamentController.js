@@ -122,7 +122,6 @@ exports.tournamentGalleryFolder = async (req, res) => {
     }
 };
 
-
 exports.tournamentGallery = async (req, res) => {
     try {
         const slug = req?.params?.slug;

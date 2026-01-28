@@ -1,62 +1,121 @@
-model ask_notes {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  body      String?  @db.LongText
-  createdAt DateTime @default(now()) @db.Timestamp(0)
-}
-
-model tournaments {
-  id                            Int       @id
-  uuid                          String    @db.Char(36)
-  sport_id                      String?   @db.Char(36)
-  created_by                    BigInt?   @db.UnsignedBigInt
-  name                          String?   @db.VarChar(255)
-  slug_name                     String?   @db.VarChar(255)
-  locality                      String?   @default("local") @db.VarChar(255)
-  events_payload                String?   @db.LongText
-  match_type                    String?   @db.VarChar(255)
-  description                   String?   @db.LongText
-  type                          String?   @default("real") @db.VarChar(255)
+model ask_tournaments {
+  id                            Int       @id @default(autoincrement())
+  uuid                          String    @unique @default(uuid()) @db.Char(36)
+  sport_id                      String    @db.Char(36)
+  user_id                       Int   
+  name                          String    @db.VarChar(255)
+  slug_name                     String    @unique @db.VarChar(255)
+  description                   String?   @db.VarChar(255)
+  content                       String?   @db.LongText
   tournament_type               String?   @db.VarChar(255)
-  user_id                       BigInt?   @db.UnsignedBigInt
-  academy_id                    Int?
-  tourstartdate                 DateTime? @db.Date
-  tourenddate                   DateTime? @db.Date
-  sets                          Int?
-  tournament_set                String?   @db.VarChar(255)
-  tourcategory                  String?   @db.VarChar(255)
-  drawtype                      String?   @db.VarChar(255)
-  agegroup                      String?   @db.VarChar(255)
-  variationid                   String?   @db.VarChar(255)
-  venue                         String?   @db.VarChar(255)
-  official                      String?   @db.VarChar(255)
-  tourimage                     String?   @db.VarChar(255)
-  winnerprize                   String?   @db.VarChar(255)
-  contestantprize               String?   @db.VarChar(255)
-  semifinalprize                String?   @db.VarChar(255)
-  quarterfinalprize             String?   @db.VarChar(255)
-  runnerupprize                 String?   @db.VarChar(255)
-  long                          String?   @db.VarChar(255)
-  lat                           String?   @db.VarChar(255)
-  country_id                    BigInt?   @db.UnsignedBigInt
-  state_id                      BigInt?   @db.UnsignedBigInt
-  city_id                       BigInt?   @db.UnsignedBigInt
-  address                       String?   @db.Text
-  winner_id                     Int?
-  organization_tier_id          String?   @db.Char(36)
-  status                        Boolean   @default(false)
-  participation_limit           Int       @default(1) @db.TinyInt
-  publish_status                Int       @default(0) @db.TinyInt
-  is_old                        Int       @default(1)
-  is_verified                   Int       @default(1)
+  startdate                     DateTime? 
+  enddate                       DateTime? 
+  address                       String?   @db.VarChar(255)
+  country_id                    BigInt    @unique @db.UnsignedBigInt
+  state_id                      Int       
+  city_id                       BigInt    @unique @db.UnsignedBigInt
+  bannerimage                   String?   @db.VarChar(255)
+  thumbnail                     String?   @db.VarChar(255)
+  url                           String?   @db.VarChar(255)
+  brochure                      String?   @db.VarChar(255)
+  prize                         String?   @db.VarChar(255)
+  fees                          String?   @db.VarChar(255)
+  organizer_name                String?   @db.VarChar(255)
+  participation_limit           Int?      @db.Int
+  publish_status                Int       @default(1) @db.TinyInt
   created_at                    DateTime? @db.Timestamp(0)
   updated_at                    DateTime? @db.Timestamp(0)
-  is_whatsapp_message_allowed   Boolean   @default(false)
-  tournament_fees               Decimal?  @db.Decimal(10, 2)
-  is_event_fees                 Boolean   @default(false)
-  is_registration_table_dynamic Boolean   @default(false)
-  is_razorpay_payment_enable    Boolean   @default(false)
   deleted_at                    DateTime? @db.Timestamp(0)
 
-  contents tournament_contents[]
+  country countries @relation(fields: [country_id], references: [id])
+  state   states    @relation(fields: [state_id], references: [id])
+  city    cities    @relation(fields: [city_id], references: [id])
+  user    ask_users @relation(fields: [user_id], references: [id])
+
+}
+
+model countries {
+  id         BigInt    @id @db.UnsignedBigInt
+  name       String    @db.VarChar(255)
+  iso_2      String?   @db.VarChar(4)
+  iso_3      String?   @db.VarChar(4)
+  phone_code String?   @db.VarChar(20)
+  currency   String?   @db.VarChar(50)
+  flag       String?   @db.Text
+  status     Int       @default(1) @db.TinyInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
+
+}
+
+model states {
+  id         Int       @id @default(autoincrement())
+  country_id BigInt    @db.UnsignedBigInt
+  name       String    @db.VarChar(255)
+  code       String?   @db.VarChar(10)
+  slug       String?   @db.VarChar(255)
+  status     Int       @default(1) @db.TinyInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
+}
+
+model cities {
+  id              BigInt    @id @db.UnsignedBigInt
+  state_id        BigInt    @db.UnsignedBigInt
+  name            String    @db.VarChar(100)
+  slug            String?   @db.VarChar(255)
+  leagues_allowed Int       @default(0) @db.TinyInt
+  status          Int       @default(1) @db.TinyInt
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  deleted_at      DateTime? @db.Timestamp(0)
+  ask_tournaments ask_tournaments[]
+}
+
+model ask_tournament_enquiries {
+  id              Int      @id @default(autoincrement())
+  name            String      @db.VarChar(255)
+  phone           String?     @db.VarChar(20)  
+  email           String?     @db.VarChar(255)
+  description     String?     @db.VarChar(255)
+  mark_as_read    Int?        @default(0) @db.TinyInt
+  tournament_id   Int 
+  gender          player_gender?        
+  created_at      DateTime?   @default(now()) @db.Timestamp(0)
+  updated_at      DateTime?   @db.Timestamp(0)
+  deleted_at      DateTime?   @db.Timestamp(0)   
+    
+}
+
+
+enum player_gender {
+  male
+  female
+  other
+}
+
+model sports_enquiries {
+  id              Int         @id @default(autoincrement())
+  name            String      @db.VarChar(255)
+  phone           String      @db.VarChar(20)  
+  email           String?     @db.VarChar(255)
+  organization    String?     @db.VarChar(255)
+  sport_id        String?     @db.VarChar(255)      
+  description     String?     @db.VarChar(255)
+}
+
+model ask_sports_enquiries {
+  id              Int         @id @default(autoincrement())
+  name            String      @db.VarChar(255)
+  phone           String      @db.VarChar(20)  
+  email           String?     @db.VarChar(255)
+  organization    String?     @db.VarChar(255)
+  sport_id        String?     @db.VarChar(255)      
+  description     String?     @db.VarChar(255)
 }

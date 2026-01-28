@@ -1,0 +1,31 @@
+model ask_test_user {
+    id        Int        @id @default(autoincrement())
+    name      String     @db.VarChar(255)
+    avatar    String     @db.VarChar(255)
+    city      String     @db.VarChar(255)
+    createdAt DateTime   @default(now()) @db.Timestamp(0)            
+}
+
+model ask_test_data {
+    id        Int        @id @default(autoincrement())
+    testname  String     @db.VarChar(255)
+    testage   String     @db.VarChar(255)
+    createdAt DateTime   @default(now()) @db.Timestamp(0)
+}
+
+model ask_users {
+  id             Int        @id @default(autoincrement())
+  name           String?    @db.VarChar(255)
+  country_code   String     @db.VarChar(25)
+  phone          String?    @unique @db.VarChar(20)
+  email          String?    @unique @db.VarChar(255)
+  password       String     @db.VarChar(255) 
+  otp_verified   Boolean    @default(false)
+  otp            String?    @db.VarChar(255)
+  otp_expires_at DateTime?  @db.Timestamp(0)
+  created_at     DateTime?  @default(now()) @db.Timestamp(0)
+  updated_at     DateTime?  @db.Timestamp(0)
+  deleted_at     DateTime?  @db.Timestamp(0)
+
+  ask_tournaments ask_tournaments[]
+}
