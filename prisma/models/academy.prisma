@@ -35,7 +35,7 @@ model academies {
   academy_galleries academy_galleries[] @relation("AcademyGalleryRelation")
   academy_achievements academy_achievements[] @relation("AcademyAchievementsRelation")
 }
-
+ 
 model academy_seo_contents {
   id         BigInt    @id @db.UnsignedBigInt
   academy_id BigInt    @db.UnsignedBigInt
