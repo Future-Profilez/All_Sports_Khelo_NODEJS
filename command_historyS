@@ -1,10 +1,7 @@
 npx prisma db execute --file prisma/sql/202601191157_create_ask_tournaments.sql
 npx prisma db execute --file prisma/sql/20260123501_add_ask_tournament_enquiry.sql
 npx prisma db execute --file prisma/sql/2026011044_add_new_column_organizer_name_in_tournaments_table.sql
-npx prisma db execute --file prisma/sql/202601260306_add_sport_enquiry_table.sql
 
-
-npx prisma db execute --file prisma/sql/202601271107_change_sport_id_to_string_in_sports_enquiry.sql
 
 npx prisma db execute --file prisma/sql/202601280350_add_ask_sports_enquiries.sql
 

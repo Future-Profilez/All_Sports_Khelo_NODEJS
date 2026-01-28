@@ -1,7 +1,7 @@
 const prisma = require("../lib/prisma");
 const convertBigIntToString = require('../helper/convertBigInt')
 
-exports.fetchSports = async (Req, res) => {
+exports.fetchSports = async (req, res) => {
     try {
         const sport = await prisma.sports.findMany();
         const data = convertBigIntToString(sport)
