@@ -133,6 +133,11 @@ export type ask_tournament_enquiries = $Result.DefaultSelection<Prisma.$ask_tour
  * 
  */
 export type sports_enquiries = $Result.DefaultSelection<Prisma.$sports_enquiriesPayload>
+/**
+ * Model ask_sports_enquiries
+ * 
+ */
+export type ask_sports_enquiries = $Result.DefaultSelection<Prisma.$ask_sports_enquiriesPayload>
 
 /**
  * Enums
@@ -521,6 +526,16 @@ export class PrismaClient<
     * ```
     */
   get sports_enquiries(): Prisma.sports_enquiriesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.ask_sports_enquiries`: Exposes CRUD operations for the **ask_sports_enquiries** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Ask_sports_enquiries
+    * const ask_sports_enquiries = await prisma.ask_sports_enquiries.findMany()
+    * ```
+    */
+  get ask_sports_enquiries(): Prisma.ask_sports_enquiriesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -978,7 +993,8 @@ export namespace Prisma {
     states: 'states',
     cities: 'cities',
     ask_tournament_enquiries: 'ask_tournament_enquiries',
-    sports_enquiries: 'sports_enquiries'
+    sports_enquiries: 'sports_enquiries',
+    ask_sports_enquiries: 'ask_sports_enquiries'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -994,7 +1010,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "ask_test_user" | "ask_test_data" | "ask_users" | "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_tournaments" | "countries" | "states" | "cities" | "ask_tournament_enquiries" | "sports_enquiries"
+      modelProps: "ask_test_user" | "ask_test_data" | "ask_users" | "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_tournaments" | "countries" | "states" | "cities" | "ask_tournament_enquiries" | "sports_enquiries" | "ask_sports_enquiries"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2582,6 +2598,72 @@ export namespace Prisma {
           }
         }
       }
+      ask_sports_enquiries: {
+        payload: Prisma.$ask_sports_enquiriesPayload<ExtArgs>
+        fields: Prisma.ask_sports_enquiriesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ask_sports_enquiriesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ask_sports_enquiriesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload>
+          }
+          findFirst: {
+            args: Prisma.ask_sports_enquiriesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ask_sports_enquiriesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload>
+          }
+          findMany: {
+            args: Prisma.ask_sports_enquiriesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload>[]
+          }
+          create: {
+            args: Prisma.ask_sports_enquiriesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload>
+          }
+          createMany: {
+            args: Prisma.ask_sports_enquiriesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ask_sports_enquiriesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload>
+          }
+          update: {
+            args: Prisma.ask_sports_enquiriesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload>
+          }
+          deleteMany: {
+            args: Prisma.ask_sports_enquiriesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ask_sports_enquiriesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ask_sports_enquiriesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ask_sports_enquiriesPayload>
+          }
+          aggregate: {
+            args: Prisma.Ask_sports_enquiriesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAsk_sports_enquiries>
+          }
+          groupBy: {
+            args: Prisma.ask_sports_enquiriesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Ask_sports_enquiriesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ask_sports_enquiriesCountArgs<ExtArgs>
+            result: $Utils.Optional<Ask_sports_enquiriesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2698,6 +2780,7 @@ export namespace Prisma {
     cities?: citiesOmit
     ask_tournament_enquiries?: ask_tournament_enquiriesOmit
     sports_enquiries?: sports_enquiriesOmit
+    ask_sports_enquiries?: ask_sports_enquiriesOmit
   }
 
   /* Types for Logging */
@@ -28491,6 +28574,944 @@ export namespace Prisma {
 
 
   /**
+   * Model ask_sports_enquiries
+   */
+
+  export type AggregateAsk_sports_enquiries = {
+    _count: Ask_sports_enquiriesCountAggregateOutputType | null
+    _avg: Ask_sports_enquiriesAvgAggregateOutputType | null
+    _sum: Ask_sports_enquiriesSumAggregateOutputType | null
+    _min: Ask_sports_enquiriesMinAggregateOutputType | null
+    _max: Ask_sports_enquiriesMaxAggregateOutputType | null
+  }
+
+  export type Ask_sports_enquiriesAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Ask_sports_enquiriesSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Ask_sports_enquiriesMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    phone: string | null
+    email: string | null
+    organization: string | null
+    sport_id: string | null
+    description: string | null
+  }
+
+  export type Ask_sports_enquiriesMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    phone: string | null
+    email: string | null
+    organization: string | null
+    sport_id: string | null
+    description: string | null
+  }
+
+  export type Ask_sports_enquiriesCountAggregateOutputType = {
+    id: number
+    name: number
+    phone: number
+    email: number
+    organization: number
+    sport_id: number
+    description: number
+    _all: number
+  }
+
+
+  export type Ask_sports_enquiriesAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Ask_sports_enquiriesSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Ask_sports_enquiriesMinAggregateInputType = {
+    id?: true
+    name?: true
+    phone?: true
+    email?: true
+    organization?: true
+    sport_id?: true
+    description?: true
+  }
+
+  export type Ask_sports_enquiriesMaxAggregateInputType = {
+    id?: true
+    name?: true
+    phone?: true
+    email?: true
+    organization?: true
+    sport_id?: true
+    description?: true
+  }
+
+  export type Ask_sports_enquiriesCountAggregateInputType = {
+    id?: true
+    name?: true
+    phone?: true
+    email?: true
+    organization?: true
+    sport_id?: true
+    description?: true
+    _all?: true
+  }
+
+  export type Ask_sports_enquiriesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ask_sports_enquiries to aggregate.
+     */
+    where?: ask_sports_enquiriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_sports_enquiries to fetch.
+     */
+    orderBy?: ask_sports_enquiriesOrderByWithRelationInput | ask_sports_enquiriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ask_sports_enquiriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_sports_enquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_sports_enquiries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ask_sports_enquiries
+    **/
+    _count?: true | Ask_sports_enquiriesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Ask_sports_enquiriesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Ask_sports_enquiriesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Ask_sports_enquiriesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Ask_sports_enquiriesMaxAggregateInputType
+  }
+
+  export type GetAsk_sports_enquiriesAggregateType<T extends Ask_sports_enquiriesAggregateArgs> = {
+        [P in keyof T & keyof AggregateAsk_sports_enquiries]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAsk_sports_enquiries[P]>
+      : GetScalarType<T[P], AggregateAsk_sports_enquiries[P]>
+  }
+
+
+
+
+  export type ask_sports_enquiriesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ask_sports_enquiriesWhereInput
+    orderBy?: ask_sports_enquiriesOrderByWithAggregationInput | ask_sports_enquiriesOrderByWithAggregationInput[]
+    by: Ask_sports_enquiriesScalarFieldEnum[] | Ask_sports_enquiriesScalarFieldEnum
+    having?: ask_sports_enquiriesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Ask_sports_enquiriesCountAggregateInputType | true
+    _avg?: Ask_sports_enquiriesAvgAggregateInputType
+    _sum?: Ask_sports_enquiriesSumAggregateInputType
+    _min?: Ask_sports_enquiriesMinAggregateInputType
+    _max?: Ask_sports_enquiriesMaxAggregateInputType
+  }
+
+  export type Ask_sports_enquiriesGroupByOutputType = {
+    id: number
+    name: string
+    phone: string
+    email: string | null
+    organization: string | null
+    sport_id: string | null
+    description: string | null
+    _count: Ask_sports_enquiriesCountAggregateOutputType | null
+    _avg: Ask_sports_enquiriesAvgAggregateOutputType | null
+    _sum: Ask_sports_enquiriesSumAggregateOutputType | null
+    _min: Ask_sports_enquiriesMinAggregateOutputType | null
+    _max: Ask_sports_enquiriesMaxAggregateOutputType | null
+  }
+
+  type GetAsk_sports_enquiriesGroupByPayload<T extends ask_sports_enquiriesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Ask_sports_enquiriesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Ask_sports_enquiriesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Ask_sports_enquiriesGroupByOutputType[P]>
+            : GetScalarType<T[P], Ask_sports_enquiriesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ask_sports_enquiriesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    phone?: boolean
+    email?: boolean
+    organization?: boolean
+    sport_id?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["ask_sports_enquiries"]>
+
+
+
+  export type ask_sports_enquiriesSelectScalar = {
+    id?: boolean
+    name?: boolean
+    phone?: boolean
+    email?: boolean
+    organization?: boolean
+    sport_id?: boolean
+    description?: boolean
+  }
+
+  export type ask_sports_enquiriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phone" | "email" | "organization" | "sport_id" | "description", ExtArgs["result"]["ask_sports_enquiries"]>
+
+  export type $ask_sports_enquiriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ask_sports_enquiries"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      phone: string
+      email: string | null
+      organization: string | null
+      sport_id: string | null
+      description: string | null
+    }, ExtArgs["result"]["ask_sports_enquiries"]>
+    composites: {}
+  }
+
+  type ask_sports_enquiriesGetPayload<S extends boolean | null | undefined | ask_sports_enquiriesDefaultArgs> = $Result.GetResult<Prisma.$ask_sports_enquiriesPayload, S>
+
+  type ask_sports_enquiriesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ask_sports_enquiriesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Ask_sports_enquiriesCountAggregateInputType | true
+    }
+
+  export interface ask_sports_enquiriesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ask_sports_enquiries'], meta: { name: 'ask_sports_enquiries' } }
+    /**
+     * Find zero or one Ask_sports_enquiries that matches the filter.
+     * @param {ask_sports_enquiriesFindUniqueArgs} args - Arguments to find a Ask_sports_enquiries
+     * @example
+     * // Get one Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ask_sports_enquiriesFindUniqueArgs>(args: SelectSubset<T, ask_sports_enquiriesFindUniqueArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Ask_sports_enquiries that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ask_sports_enquiriesFindUniqueOrThrowArgs} args - Arguments to find a Ask_sports_enquiries
+     * @example
+     * // Get one Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ask_sports_enquiriesFindUniqueOrThrowArgs>(args: SelectSubset<T, ask_sports_enquiriesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Ask_sports_enquiries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_sports_enquiriesFindFirstArgs} args - Arguments to find a Ask_sports_enquiries
+     * @example
+     * // Get one Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ask_sports_enquiriesFindFirstArgs>(args?: SelectSubset<T, ask_sports_enquiriesFindFirstArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Ask_sports_enquiries that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_sports_enquiriesFindFirstOrThrowArgs} args - Arguments to find a Ask_sports_enquiries
+     * @example
+     * // Get one Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ask_sports_enquiriesFindFirstOrThrowArgs>(args?: SelectSubset<T, ask_sports_enquiriesFindFirstOrThrowArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Ask_sports_enquiries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_sports_enquiriesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.findMany()
+     * 
+     * // Get first 10 Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ask_sports_enquiriesWithIdOnly = await prisma.ask_sports_enquiries.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ask_sports_enquiriesFindManyArgs>(args?: SelectSubset<T, ask_sports_enquiriesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Ask_sports_enquiries.
+     * @param {ask_sports_enquiriesCreateArgs} args - Arguments to create a Ask_sports_enquiries.
+     * @example
+     * // Create one Ask_sports_enquiries
+     * const Ask_sports_enquiries = await prisma.ask_sports_enquiries.create({
+     *   data: {
+     *     // ... data to create a Ask_sports_enquiries
+     *   }
+     * })
+     * 
+     */
+    create<T extends ask_sports_enquiriesCreateArgs>(args: SelectSubset<T, ask_sports_enquiriesCreateArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Ask_sports_enquiries.
+     * @param {ask_sports_enquiriesCreateManyArgs} args - Arguments to create many Ask_sports_enquiries.
+     * @example
+     * // Create many Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ask_sports_enquiriesCreateManyArgs>(args?: SelectSubset<T, ask_sports_enquiriesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Ask_sports_enquiries.
+     * @param {ask_sports_enquiriesDeleteArgs} args - Arguments to delete one Ask_sports_enquiries.
+     * @example
+     * // Delete one Ask_sports_enquiries
+     * const Ask_sports_enquiries = await prisma.ask_sports_enquiries.delete({
+     *   where: {
+     *     // ... filter to delete one Ask_sports_enquiries
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ask_sports_enquiriesDeleteArgs>(args: SelectSubset<T, ask_sports_enquiriesDeleteArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Ask_sports_enquiries.
+     * @param {ask_sports_enquiriesUpdateArgs} args - Arguments to update one Ask_sports_enquiries.
+     * @example
+     * // Update one Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ask_sports_enquiriesUpdateArgs>(args: SelectSubset<T, ask_sports_enquiriesUpdateArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Ask_sports_enquiries.
+     * @param {ask_sports_enquiriesDeleteManyArgs} args - Arguments to filter Ask_sports_enquiries to delete.
+     * @example
+     * // Delete a few Ask_sports_enquiries
+     * const { count } = await prisma.ask_sports_enquiries.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ask_sports_enquiriesDeleteManyArgs>(args?: SelectSubset<T, ask_sports_enquiriesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Ask_sports_enquiries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_sports_enquiriesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ask_sports_enquiriesUpdateManyArgs>(args: SelectSubset<T, ask_sports_enquiriesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Ask_sports_enquiries.
+     * @param {ask_sports_enquiriesUpsertArgs} args - Arguments to update or create a Ask_sports_enquiries.
+     * @example
+     * // Update or create a Ask_sports_enquiries
+     * const ask_sports_enquiries = await prisma.ask_sports_enquiries.upsert({
+     *   create: {
+     *     // ... data to create a Ask_sports_enquiries
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Ask_sports_enquiries we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ask_sports_enquiriesUpsertArgs>(args: SelectSubset<T, ask_sports_enquiriesUpsertArgs<ExtArgs>>): Prisma__ask_sports_enquiriesClient<$Result.GetResult<Prisma.$ask_sports_enquiriesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Ask_sports_enquiries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_sports_enquiriesCountArgs} args - Arguments to filter Ask_sports_enquiries to count.
+     * @example
+     * // Count the number of Ask_sports_enquiries
+     * const count = await prisma.ask_sports_enquiries.count({
+     *   where: {
+     *     // ... the filter for the Ask_sports_enquiries we want to count
+     *   }
+     * })
+    **/
+    count<T extends ask_sports_enquiriesCountArgs>(
+      args?: Subset<T, ask_sports_enquiriesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Ask_sports_enquiriesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Ask_sports_enquiries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Ask_sports_enquiriesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Ask_sports_enquiriesAggregateArgs>(args: Subset<T, Ask_sports_enquiriesAggregateArgs>): Prisma.PrismaPromise<GetAsk_sports_enquiriesAggregateType<T>>
+
+    /**
+     * Group by Ask_sports_enquiries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ask_sports_enquiriesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ask_sports_enquiriesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ask_sports_enquiriesGroupByArgs['orderBy'] }
+        : { orderBy?: ask_sports_enquiriesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ask_sports_enquiriesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsk_sports_enquiriesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ask_sports_enquiries model
+   */
+  readonly fields: ask_sports_enquiriesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ask_sports_enquiries.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ask_sports_enquiriesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ask_sports_enquiries model
+   */
+  interface ask_sports_enquiriesFieldRefs {
+    readonly id: FieldRef<"ask_sports_enquiries", 'Int'>
+    readonly name: FieldRef<"ask_sports_enquiries", 'String'>
+    readonly phone: FieldRef<"ask_sports_enquiries", 'String'>
+    readonly email: FieldRef<"ask_sports_enquiries", 'String'>
+    readonly organization: FieldRef<"ask_sports_enquiries", 'String'>
+    readonly sport_id: FieldRef<"ask_sports_enquiries", 'String'>
+    readonly description: FieldRef<"ask_sports_enquiries", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ask_sports_enquiries findUnique
+   */
+  export type ask_sports_enquiriesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_sports_enquiries to fetch.
+     */
+    where: ask_sports_enquiriesWhereUniqueInput
+  }
+
+  /**
+   * ask_sports_enquiries findUniqueOrThrow
+   */
+  export type ask_sports_enquiriesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_sports_enquiries to fetch.
+     */
+    where: ask_sports_enquiriesWhereUniqueInput
+  }
+
+  /**
+   * ask_sports_enquiries findFirst
+   */
+  export type ask_sports_enquiriesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_sports_enquiries to fetch.
+     */
+    where?: ask_sports_enquiriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_sports_enquiries to fetch.
+     */
+    orderBy?: ask_sports_enquiriesOrderByWithRelationInput | ask_sports_enquiriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ask_sports_enquiries.
+     */
+    cursor?: ask_sports_enquiriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_sports_enquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_sports_enquiries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ask_sports_enquiries.
+     */
+    distinct?: Ask_sports_enquiriesScalarFieldEnum | Ask_sports_enquiriesScalarFieldEnum[]
+  }
+
+  /**
+   * ask_sports_enquiries findFirstOrThrow
+   */
+  export type ask_sports_enquiriesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_sports_enquiries to fetch.
+     */
+    where?: ask_sports_enquiriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_sports_enquiries to fetch.
+     */
+    orderBy?: ask_sports_enquiriesOrderByWithRelationInput | ask_sports_enquiriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ask_sports_enquiries.
+     */
+    cursor?: ask_sports_enquiriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_sports_enquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_sports_enquiries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ask_sports_enquiries.
+     */
+    distinct?: Ask_sports_enquiriesScalarFieldEnum | Ask_sports_enquiriesScalarFieldEnum[]
+  }
+
+  /**
+   * ask_sports_enquiries findMany
+   */
+  export type ask_sports_enquiriesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * Filter, which ask_sports_enquiries to fetch.
+     */
+    where?: ask_sports_enquiriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ask_sports_enquiries to fetch.
+     */
+    orderBy?: ask_sports_enquiriesOrderByWithRelationInput | ask_sports_enquiriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ask_sports_enquiries.
+     */
+    cursor?: ask_sports_enquiriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ask_sports_enquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ask_sports_enquiries.
+     */
+    skip?: number
+    distinct?: Ask_sports_enquiriesScalarFieldEnum | Ask_sports_enquiriesScalarFieldEnum[]
+  }
+
+  /**
+   * ask_sports_enquiries create
+   */
+  export type ask_sports_enquiriesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ask_sports_enquiries.
+     */
+    data: XOR<ask_sports_enquiriesCreateInput, ask_sports_enquiriesUncheckedCreateInput>
+  }
+
+  /**
+   * ask_sports_enquiries createMany
+   */
+  export type ask_sports_enquiriesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ask_sports_enquiries.
+     */
+    data: ask_sports_enquiriesCreateManyInput | ask_sports_enquiriesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ask_sports_enquiries update
+   */
+  export type ask_sports_enquiriesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ask_sports_enquiries.
+     */
+    data: XOR<ask_sports_enquiriesUpdateInput, ask_sports_enquiriesUncheckedUpdateInput>
+    /**
+     * Choose, which ask_sports_enquiries to update.
+     */
+    where: ask_sports_enquiriesWhereUniqueInput
+  }
+
+  /**
+   * ask_sports_enquiries updateMany
+   */
+  export type ask_sports_enquiriesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ask_sports_enquiries.
+     */
+    data: XOR<ask_sports_enquiriesUpdateManyMutationInput, ask_sports_enquiriesUncheckedUpdateManyInput>
+    /**
+     * Filter which ask_sports_enquiries to update
+     */
+    where?: ask_sports_enquiriesWhereInput
+    /**
+     * Limit how many ask_sports_enquiries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ask_sports_enquiries upsert
+   */
+  export type ask_sports_enquiriesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ask_sports_enquiries to update in case it exists.
+     */
+    where: ask_sports_enquiriesWhereUniqueInput
+    /**
+     * In case the ask_sports_enquiries found by the `where` argument doesn't exist, create a new ask_sports_enquiries with this data.
+     */
+    create: XOR<ask_sports_enquiriesCreateInput, ask_sports_enquiriesUncheckedCreateInput>
+    /**
+     * In case the ask_sports_enquiries was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ask_sports_enquiriesUpdateInput, ask_sports_enquiriesUncheckedUpdateInput>
+  }
+
+  /**
+   * ask_sports_enquiries delete
+   */
+  export type ask_sports_enquiriesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+    /**
+     * Filter which ask_sports_enquiries to delete.
+     */
+    where: ask_sports_enquiriesWhereUniqueInput
+  }
+
+  /**
+   * ask_sports_enquiries deleteMany
+   */
+  export type ask_sports_enquiriesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ask_sports_enquiries to delete
+     */
+    where?: ask_sports_enquiriesWhereInput
+    /**
+     * Limit how many ask_sports_enquiries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ask_sports_enquiries without action
+   */
+  export type ask_sports_enquiriesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ask_sports_enquiries
+     */
+    select?: ask_sports_enquiriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ask_sports_enquiries
+     */
+    omit?: ask_sports_enquiriesOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -28954,6 +29975,19 @@ export namespace Prisma {
   export type Sports_enquiriesScalarFieldEnum = (typeof Sports_enquiriesScalarFieldEnum)[keyof typeof Sports_enquiriesScalarFieldEnum]
 
 
+  export const Ask_sports_enquiriesScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    phone: 'phone',
+    email: 'email',
+    organization: 'organization',
+    sport_id: 'sport_id',
+    description: 'description'
+  };
+
+  export type Ask_sports_enquiriesScalarFieldEnum = (typeof Ask_sports_enquiriesScalarFieldEnum)[keyof typeof Ask_sports_enquiriesScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -29265,6 +30299,18 @@ export namespace Prisma {
   };
 
   export type sports_enquiriesOrderByRelevanceFieldEnum = (typeof sports_enquiriesOrderByRelevanceFieldEnum)[keyof typeof sports_enquiriesOrderByRelevanceFieldEnum]
+
+
+  export const ask_sports_enquiriesOrderByRelevanceFieldEnum: {
+    name: 'name',
+    phone: 'phone',
+    email: 'email',
+    organization: 'organization',
+    sport_id: 'sport_id',
+    description: 'description'
+  };
+
+  export type ask_sports_enquiriesOrderByRelevanceFieldEnum = (typeof ask_sports_enquiriesOrderByRelevanceFieldEnum)[keyof typeof ask_sports_enquiriesOrderByRelevanceFieldEnum]
 
 
   /**
@@ -31664,6 +32710,71 @@ export namespace Prisma {
     organization?: StringNullableWithAggregatesFilter<"sports_enquiries"> | string | null
     sport_id?: StringNullableWithAggregatesFilter<"sports_enquiries"> | string | null
     description?: StringNullableWithAggregatesFilter<"sports_enquiries"> | string | null
+  }
+
+  export type ask_sports_enquiriesWhereInput = {
+    AND?: ask_sports_enquiriesWhereInput | ask_sports_enquiriesWhereInput[]
+    OR?: ask_sports_enquiriesWhereInput[]
+    NOT?: ask_sports_enquiriesWhereInput | ask_sports_enquiriesWhereInput[]
+    id?: IntFilter<"ask_sports_enquiries"> | number
+    name?: StringFilter<"ask_sports_enquiries"> | string
+    phone?: StringFilter<"ask_sports_enquiries"> | string
+    email?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+    organization?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+    sport_id?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+    description?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+  }
+
+  export type ask_sports_enquiriesOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    email?: SortOrderInput | SortOrder
+    organization?: SortOrderInput | SortOrder
+    sport_id?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    _relevance?: ask_sports_enquiriesOrderByRelevanceInput
+  }
+
+  export type ask_sports_enquiriesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ask_sports_enquiriesWhereInput | ask_sports_enquiriesWhereInput[]
+    OR?: ask_sports_enquiriesWhereInput[]
+    NOT?: ask_sports_enquiriesWhereInput | ask_sports_enquiriesWhereInput[]
+    name?: StringFilter<"ask_sports_enquiries"> | string
+    phone?: StringFilter<"ask_sports_enquiries"> | string
+    email?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+    organization?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+    sport_id?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+    description?: StringNullableFilter<"ask_sports_enquiries"> | string | null
+  }, "id">
+
+  export type ask_sports_enquiriesOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    email?: SortOrderInput | SortOrder
+    organization?: SortOrderInput | SortOrder
+    sport_id?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    _count?: ask_sports_enquiriesCountOrderByAggregateInput
+    _avg?: ask_sports_enquiriesAvgOrderByAggregateInput
+    _max?: ask_sports_enquiriesMaxOrderByAggregateInput
+    _min?: ask_sports_enquiriesMinOrderByAggregateInput
+    _sum?: ask_sports_enquiriesSumOrderByAggregateInput
+  }
+
+  export type ask_sports_enquiriesScalarWhereWithAggregatesInput = {
+    AND?: ask_sports_enquiriesScalarWhereWithAggregatesInput | ask_sports_enquiriesScalarWhereWithAggregatesInput[]
+    OR?: ask_sports_enquiriesScalarWhereWithAggregatesInput[]
+    NOT?: ask_sports_enquiriesScalarWhereWithAggregatesInput | ask_sports_enquiriesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ask_sports_enquiries"> | number
+    name?: StringWithAggregatesFilter<"ask_sports_enquiries"> | string
+    phone?: StringWithAggregatesFilter<"ask_sports_enquiries"> | string
+    email?: StringNullableWithAggregatesFilter<"ask_sports_enquiries"> | string | null
+    organization?: StringNullableWithAggregatesFilter<"ask_sports_enquiries"> | string | null
+    sport_id?: StringNullableWithAggregatesFilter<"ask_sports_enquiries"> | string | null
+    description?: StringNullableWithAggregatesFilter<"ask_sports_enquiries"> | string | null
   }
 
   export type ask_test_userCreateInput = {
@@ -34330,6 +35441,73 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type ask_sports_enquiriesCreateInput = {
+    name: string
+    phone: string
+    email?: string | null
+    organization?: string | null
+    sport_id?: string | null
+    description?: string | null
+  }
+
+  export type ask_sports_enquiriesUncheckedCreateInput = {
+    id?: number
+    name: string
+    phone: string
+    email?: string | null
+    organization?: string | null
+    sport_id?: string | null
+    description?: string | null
+  }
+
+  export type ask_sports_enquiriesUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    organization?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ask_sports_enquiriesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    organization?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ask_sports_enquiriesCreateManyInput = {
+    id?: number
+    name: string
+    phone: string
+    email?: string | null
+    organization?: string | null
+    sport_id?: string | null
+    description?: string | null
+  }
+
+  export type ask_sports_enquiriesUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    organization?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ask_sports_enquiriesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    organization?: NullableStringFieldUpdateOperationsInput | string | null
+    sport_id?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -36337,6 +37515,50 @@ export namespace Prisma {
   }
 
   export type sports_enquiriesSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ask_sports_enquiriesOrderByRelevanceInput = {
+    fields: ask_sports_enquiriesOrderByRelevanceFieldEnum | ask_sports_enquiriesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ask_sports_enquiriesCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    organization?: SortOrder
+    sport_id?: SortOrder
+    description?: SortOrder
+  }
+
+  export type ask_sports_enquiriesAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ask_sports_enquiriesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    organization?: SortOrder
+    sport_id?: SortOrder
+    description?: SortOrder
+  }
+
+  export type ask_sports_enquiriesMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    organization?: SortOrder
+    sport_id?: SortOrder
+    description?: SortOrder
+  }
+
+  export type ask_sports_enquiriesSumOrderByAggregateInput = {
     id?: SortOrder
   }
 

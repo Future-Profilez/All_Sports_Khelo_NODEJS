@@ -30,7 +30,7 @@ exports.send_sport_enquiry = async (req, res) => {
             })
         }
         
-        const sport_enquiry = await prisma.sports_enquiries.create({
+        const sport_enquiry = await prisma.ask_sports_enquiries.create({
             data: {
                 name,
                 phone,

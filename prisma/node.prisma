@@ -109,3 +109,13 @@ model sports_enquiries {
   sport_id        String?     @db.VarChar(255)      
   description     String?     @db.VarChar(255)
 }
+
+model ask_sports_enquiries {
+  id              Int         @id @default(autoincrement())
+  name            String      @db.VarChar(255)
+  phone           String      @db.VarChar(20)  
+  email           String?     @db.VarChar(255)
+  organization    String?     @db.VarChar(255)
+  sport_id        String?     @db.VarChar(255)      
+  description     String?     @db.VarChar(255)
+}
