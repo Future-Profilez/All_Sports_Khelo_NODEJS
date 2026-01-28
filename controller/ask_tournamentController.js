@@ -49,8 +49,7 @@ exports.add_ask_tournament = async (req, res) => {
     console.log("bannerImagePath ", bannerImagePath());
     console.log("thumbnailImagePath ", thumbnailImagePath());
 
-    console.log("req.body ", req.body);
-    return false;
+ 
     // console.log("bannerimage_path", req?.body?.bannerimage_path);
     // console.log("Added File", req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename);
 
