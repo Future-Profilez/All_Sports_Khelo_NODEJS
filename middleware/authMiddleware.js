@@ -11,13 +11,11 @@ exports.protect = async (req, res, next) => {
         }
 
         const decode = jwt.verify(token, process.env.JWT_SECRET);
-        console.log("decode",decode)
         
         const user = await prisma.ask_users.findFirst({
             where: { id: decode.id },
             select: { id: true, email: true, name: true }
         });
-        console.log("user",user)
         if (!user) {
             return res.status(200).json({ success: false, message: "User not found." })
         }

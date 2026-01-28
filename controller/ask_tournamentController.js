@@ -265,14 +265,14 @@ exports.list_ask_tournaments = async (req, res) => {
     let where = {};
 
     // Sports ID filter
-    if (sports_id !== '' || sports_id !== undefined ) {
+    if (sports_id !== '' || sports_id !== undefined) {
       where.sport_id = sports_id;
-    } 
-    
+    }
+
     // Logged in user tournaments filter
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
-    } 
+    }
 
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
@@ -306,7 +306,35 @@ exports.list_ask_tournaments = async (req, res) => {
   }
 };
 
+exports.delete_ask_tournament = async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) {
+      return res.status(200).json({ status: false, message: "Invalid tournament id." })
+    }
+    if (!req.user?.id) {
+      return res.status(401).json({ status: false, message: "Unauthorized" });
+    }
 
+    const tournament = await prisma.ask_tournaments.findFirst({
+      where: {
+        id,
+        user_id: Number(req.user.id),
+      },
+    });
+
+    if (!tournament) {
+      return res.status(404).json({ status: false, message: "Tournament not found or access denied" });
+    }
+    await prisma.ask_tournaments.delete({
+      where: { id: id }
+    })
+    return res.status(200).json({ status: true, message: "Tournament deleted successfully.", })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ status: false, message: "Internal server error", error })
+  }
+}
 
 
 exports.asktournamentOverview = async (req, res) => {
@@ -408,59 +436,60 @@ exports.list_enquiries = async (req, res) => {
   try {
     const typeParam = req.params.tour_id;
     const all_enquiries = await prisma.ask_tournament_enquiries.findMany({
-        where: {
-          tournament_id: Number(typeParam)
-        }});
+      where: {
+        tournament_id: Number(typeParam)
+      }
+    });
     const data = convertBigIntToString(all_enquiries)
-    return res.status(200).json({ status:true, message: "Tournament enquiries fetched successfully!", data })
+    return res.status(200).json({ status: true, message: "Tournament enquiries fetched successfully!", data })
   } catch (error) {
-    return res.status(500).json({ status:false, message: "Something went wrong" })
+    return res.status(500).json({ status: false, message: "Something went wrong" })
   }
 };
 
-exports.mark_Enquiry = async(req, res)=>{
+exports.mark_Enquiry = async (req, res) => {
   try {
     const id = req.params.id;
     const enquiry = await prisma.ask_tournament_enquiries.update({
-      where: {id: Number(id)},
-      data:{
-        mark_as_read:1
+      where: { id: Number(id) },
+      data: {
+        mark_as_read: 1
       },
     });
-    return res.status(200).json({status: true, message:"Enquiry approved.", enquiry})
+    return res.status(200).json({ status: true, message: "Enquiry approved.", enquiry })
   } catch (error) {
     console.log(error)
-    return res.status(500).json({status: false, message:"Something went wrong"})
+    return res.status(500).json({ status: false, message: "Something went wrong" })
   }
 }
-exports.mark_AllEnquiry = async(req, res)=>{
+exports.mark_AllEnquiry = async (req, res) => {
   try {
     const tournament_id = req.params.id;
     const enquiry = await prisma.ask_tournament_enquiries.updateMany({
-      where: {tournament_id: Number(tournament_id)},
-      data:{
-        mark_as_read:1
+      where: { tournament_id: Number(tournament_id) },
+      data: {
+        mark_as_read: 1
       },
     });
-    return res.status(200).json({status: true, message:"All Enquiries approved.", enquiry})
+    return res.status(200).json({ status: true, message: "All Enquiries approved.", enquiry })
   } catch (error) {
     console.log(error)
-    return res.status(500).json({status: false, message:"Something went wrong"})
+    return res.status(500).json({ status: false, message: "Something went wrong" })
   }
 }
 
 
-exports.delete_enquiries = async(req, res) =>{
+exports.delete_enquiries = async (req, res) => {
   try {
     const id = req.params.id;
     const enquiry = await prisma.ask_tournament_enquiries.delete({
-      where:{
+      where: {
         id: Number(id)
       }
     });
-    return res.status(200).json({status:true, message:"Enquriy delete successfully.",enquiry})
+    return res.status(200).json({ status: true, message: "Enquriy delete successfully.", enquiry })
   } catch (error) {
     console.log(error)
-    return res.status(500).json({message:"Something went wrong"},error)
+    return res.status(500).json({ message: "Something went wrong" }, error)
   }
 }
