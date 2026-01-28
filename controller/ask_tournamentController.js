@@ -346,7 +346,35 @@ exports.list_ask_tournaments = async (req, res) => {
   }
 };
 
+exports.delete_ask_tournament = async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) {
+      return res.status(200).json({ status: false, message: "Invalid tournament id." })
+    }
+    if (!req.user?.id) {
+      return res.status(401).json({ status: false, message: "Unauthorized" });
+    }
 
+    const tournament = await prisma.ask_tournaments.findFirst({
+      where: {
+        id,
+        user_id: Number(req.user.id),
+      },
+    });
+
+    if (!tournament) {
+      return res.status(404).json({ status: false, message: "Tournament not found or access denied" });
+    }
+    await prisma.ask_tournaments.delete({
+      where: { id: id }
+    })
+    return res.status(200).json({ status: true, message: "Tournament deleted successfully.", })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ status: false, message: "Internal server error", error })
+  }
+}
 
 
 exports.asktournamentOverview = async (req, res) => {
