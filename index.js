@@ -6,7 +6,8 @@ const sportsRoutes = require('./routes/sportsRoutes.js');
 const academyRoutes = require('./routes/academyRoutes.js');
 const addressRoutes = require('./routes/addressRoutes.js');
 const authRoutes = require('./routes/authRoutes.js');
-const previewRoutes = require('./routes/previewRoutes.js')
+const previewRoutes = require('./routes/previewRoutes.js');
+const path = require('path');
 
 dotenv.config();
 const app = express();

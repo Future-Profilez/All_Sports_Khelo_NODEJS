@@ -120,21 +120,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.Ask_test_userScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  avatar: 'avatar',
-  city: 'city',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.Ask_test_dataScalarFieldEnum = {
-  id: 'id',
-  testname: 'testname',
-  testage: 'testage',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.Ask_usersScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -488,16 +473,6 @@ exports.Prisma.Ask_tournament_enquiriesScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
-exports.Prisma.Sports_enquiriesScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  phone: 'phone',
-  email: 'email',
-  organization: 'organization',
-  sport_id: 'sport_id',
-  description: 'description'
-};
-
 exports.Prisma.Ask_sports_enquiriesScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -511,17 +486,6 @@ exports.Prisma.Ask_sports_enquiriesScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.ask_test_userOrderByRelevanceFieldEnum = {
-  name: 'name',
-  avatar: 'avatar',
-  city: 'city'
-};
-
-exports.Prisma.ask_test_dataOrderByRelevanceFieldEnum = {
-  testname: 'testname',
-  testage: 'testage'
 };
 
 exports.Prisma.NullsOrder = {
@@ -734,15 +698,6 @@ exports.Prisma.ask_tournament_enquiriesOrderByRelevanceFieldEnum = {
   description: 'description'
 };
 
-exports.Prisma.sports_enquiriesOrderByRelevanceFieldEnum = {
-  name: 'name',
-  phone: 'phone',
-  email: 'email',
-  organization: 'organization',
-  sport_id: 'sport_id',
-  description: 'description'
-};
-
 exports.Prisma.ask_sports_enquiriesOrderByRelevanceFieldEnum = {
   name: 'name',
   phone: 'phone',
@@ -764,8 +719,6 @@ exports.player_gender = exports.$Enums.player_gender = {
 };
 
 exports.Prisma.ModelName = {
-  ask_test_user: 'ask_test_user',
-  ask_test_data: 'ask_test_data',
   ask_users: 'ask_users',
   academies: 'academies',
   academy_seo_contents: 'academy_seo_contents',
@@ -787,7 +740,6 @@ exports.Prisma.ModelName = {
   states: 'states',
   cities: 'cities',
   ask_tournament_enquiries: 'ask_tournament_enquiries',
-  sports_enquiries: 'sports_enquiries',
   ask_sports_enquiries: 'ask_sports_enquiries'
 };
 

@@ -23,6 +23,7 @@ exports.add_ask_tournament = async (req, res) => {
       participation_limit,
       publish_status,
     } = req.body;
+    console.log("sid", req.body.sport_id)
    
     const bannerImagePath = () => {
       if(req?.body?.bannerimage_path || req?.files?.bannerimage ){
