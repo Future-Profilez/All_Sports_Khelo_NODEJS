@@ -7,13 +7,16 @@ async function testConnection() {
   console.log('Host:', process.env.DATABASE_HOST || '127.0.0.1');
   console.log('User:', process.env.DATABASE_USER || 'root');
   console.log('DB:', process.env.DATABASE_NAME || 'tenn_prod');
+  console.log('Port:', process.env.DATABASE_PORT || 3306);
 
   const pool = mariadb.createPool({
     host: process.env.DATABASE_HOST || '127.0.0.1',
     user: process.env.DATABASE_USER || 'root',
     password: process.env.DATABASE_PASSWORD || '',
     database: process.env.DATABASE_NAME || 'tenn_prod',
-    connectionLimit: 5
+    port: parseInt(process.env.DATABASE_PORT || 3306),
+    connectionLimit: 5,
+    acquireTimeout: 20000
   });
 
   try {
