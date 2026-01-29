@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const { PrismaClient } = require('@prisma/client');
+// Use the configured prisma instance with adapter
+const prisma = require('../lib/prisma');
 const { execSync } = require('child_process');
 
-const prisma = new PrismaClient();
 const SQL_DIR = path.join(__dirname, '../prisma/sql');
 
 async function main() {

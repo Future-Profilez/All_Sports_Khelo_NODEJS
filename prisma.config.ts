@@ -1,19 +1,9 @@
-import "dotenv/config";
-import { defineConfig, env } from "prisma/config";
+import { defineConfig } from '@prisma/config';
 
 export default defineConfig({
-  schema: "prisma",
-  migrations: {
-    path: "prisma/migrations",
-    initShadowDb: `
-      SET SESSION sql_mode = REPLACE(@@sql_mode, 'NO_ZERO_DATE', '');
-      SET SESSION sql_mode = REPLACE(@@sql_mode, 'NO_ZERO_IN_DATE', '');
-    `,
-  },
-  experimental: {
-    externalTables: true,
-  },
+  schema: 'prisma/schema.prisma',
   datasource: {
-    url: env("DATABASE_URL"),
+    provider: 'mysql',
+    url: process.env.DATABASE_URL,
   },
 });
