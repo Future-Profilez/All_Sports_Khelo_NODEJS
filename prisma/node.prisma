@@ -12,7 +12,7 @@ model ask_tournaments {
   enddate                       DateTime? 
   address                       String?   @db.VarChar(255)
   country_id                    BigInt    @unique @db.UnsignedBigInt
-  state_id                      Int       
+  state_id                      BigInt    @unique @db.UnsignedBigInt 
   city_id                       BigInt    @unique @db.UnsignedBigInt
   bannerimage                   String?   @db.VarChar(255)
   thumbnail                     String?   @db.VarChar(255)
@@ -52,7 +52,7 @@ model countries {
 }
 
 model states {
-  id         Int       @id @default(autoincrement())
+  id         BigInt    @id @db.UnsignedBigInt
   country_id BigInt    @db.UnsignedBigInt
   name       String    @db.VarChar(255)
   code       String?   @db.VarChar(10)

@@ -280,7 +280,7 @@ exports.list_ask_tournaments = async (req, res) => {
       city: true,
     };
     let where = {};
-    console.log("search name ", search);
+    console.log("state_id name ", state_id);
     // Sports ID filter
     if (sports_id !== '' || sports_id !== undefined) {
       where.sport_id = sports_id;
@@ -319,7 +319,8 @@ exports.list_ask_tournaments = async (req, res) => {
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
       include,
-      orderBy: { id: "desc" },
+      // orderBy: {startdate: "asc",}
+      orderBy: {startdate: "desc",}
     });
     const data = convertBigIntToString(tournaments);
     const updateddata = data.map(item => ({
