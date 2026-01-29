@@ -1,11 +1,13 @@
 
 /generated/prisma
+/generated
+generated
 
 # Node Modules
 /node_modules
 node_modules
 /lib/prisma.js
 lib/prisma.js
-# DotEnv
+# DotEnv 
 .env
 introspected.tmp.prisma
