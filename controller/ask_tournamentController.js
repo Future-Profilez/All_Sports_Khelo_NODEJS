@@ -266,6 +266,7 @@ exports.add_ask_tournament = async (req, res) => {
 exports.list_ask_tournaments = async (req, res) => {
   try {
     const typeParam = Number(req?.params?.type);
+    console.log("id", typeParam)
     const sports_id = req.query?.sports_id;
     const country_id = req.query?.country_id;
     const state_id = req.query?.state_id;
@@ -313,6 +314,7 @@ exports.list_ask_tournaments = async (req, res) => {
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
     }
+    console.log("where",where);
 
     const tournaments = await prisma.ask_tournaments.findMany({
       where,

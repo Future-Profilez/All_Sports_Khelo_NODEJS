@@ -26,6 +26,7 @@ router.post('/create',
   add_ask_tournament);
 
 // router.get('/ask/tournaments/:type',list_ask_tournaments);
+router.get('/ask/mytournaments/:type',protect, list_ask_tournaments);
 router.get('/ask/tournaments/:type', list_ask_tournaments);
 router.get('/:slug', asktournamentOverview)
 router.delete('/deletetournament/:id', protect, delete_ask_tournament)
