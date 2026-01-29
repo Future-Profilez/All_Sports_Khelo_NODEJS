@@ -5,4 +5,6 @@ npx prisma db execute --file prisma/sql/2026011044_add_new_column_organizer_name
 
 npx prisma db execute --file prisma/sql/202601280350_add_ask_sports_enquiries.sql
 
+npx prisma db execute --file prisma/sql/202601280700_update_ask_tournament_table_state_id_column_int_to_bigint.sql
+
 

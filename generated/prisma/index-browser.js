@@ -488,16 +488,6 @@ exports.Prisma.Ask_tournament_enquiriesScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
-exports.Prisma.Sports_enquiriesScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  phone: 'phone',
-  email: 'email',
-  organization: 'organization',
-  sport_id: 'sport_id',
-  description: 'description'
-};
-
 exports.Prisma.Ask_sports_enquiriesScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -734,15 +724,6 @@ exports.Prisma.ask_tournament_enquiriesOrderByRelevanceFieldEnum = {
   description: 'description'
 };
 
-exports.Prisma.sports_enquiriesOrderByRelevanceFieldEnum = {
-  name: 'name',
-  phone: 'phone',
-  email: 'email',
-  organization: 'organization',
-  sport_id: 'sport_id',
-  description: 'description'
-};
-
 exports.Prisma.ask_sports_enquiriesOrderByRelevanceFieldEnum = {
   name: 'name',
   phone: 'phone',
@@ -787,7 +768,6 @@ exports.Prisma.ModelName = {
   states: 'states',
   cities: 'cities',
   ask_tournament_enquiries: 'ask_tournament_enquiries',
-  sports_enquiries: 'sports_enquiries',
   ask_sports_enquiries: 'ask_sports_enquiries'
 };
 
