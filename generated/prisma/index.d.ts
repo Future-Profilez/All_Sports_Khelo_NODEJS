@@ -22202,7 +22202,7 @@ export namespace Prisma {
     id: number | null
     user_id: number | null
     country_id: bigint | null
-    state_id: number | null
+    state_id: bigint | null
     city_id: bigint | null
     participation_limit: number | null
     publish_status: number | null
@@ -22222,7 +22222,7 @@ export namespace Prisma {
     enddate: Date | null
     address: string | null
     country_id: bigint | null
-    state_id: number | null
+    state_id: bigint | null
     city_id: bigint | null
     bannerimage: string | null
     thumbnail: string | null
@@ -22252,7 +22252,7 @@ export namespace Prisma {
     enddate: Date | null
     address: string | null
     country_id: bigint | null
-    state_id: number | null
+    state_id: bigint | null
     city_id: bigint | null
     bannerimage: string | null
     thumbnail: string | null
@@ -22511,7 +22511,7 @@ export namespace Prisma {
     enddate: Date | null
     address: string | null
     country_id: bigint
-    state_id: number
+    state_id: bigint
     city_id: bigint
     bannerimage: string | null
     thumbnail: string | null
@@ -22642,7 +22642,7 @@ export namespace Prisma {
       enddate: Date | null
       address: string | null
       country_id: bigint
-      state_id: number
+      state_id: bigint
       city_id: bigint
       bannerimage: string | null
       thumbnail: string | null
@@ -23042,7 +23042,7 @@ export namespace Prisma {
     readonly enddate: FieldRef<"ask_tournaments", 'DateTime'>
     readonly address: FieldRef<"ask_tournaments", 'String'>
     readonly country_id: FieldRef<"ask_tournaments", 'BigInt'>
-    readonly state_id: FieldRef<"ask_tournaments", 'Int'>
+    readonly state_id: FieldRef<"ask_tournaments", 'BigInt'>
     readonly city_id: FieldRef<"ask_tournaments", 'BigInt'>
     readonly bannerimage: FieldRef<"ask_tournaments", 'String'>
     readonly thumbnail: FieldRef<"ask_tournaments", 'String'>
@@ -24495,13 +24495,13 @@ export namespace Prisma {
   }
 
   export type StatesSumAggregateOutputType = {
-    id: number | null
+    id: bigint | null
     country_id: bigint | null
     status: number | null
   }
 
   export type StatesMinAggregateOutputType = {
-    id: number | null
+    id: bigint | null
     country_id: bigint | null
     name: string | null
     code: string | null
@@ -24513,7 +24513,7 @@ export namespace Prisma {
   }
 
   export type StatesMaxAggregateOutputType = {
-    id: number | null
+    id: bigint | null
     country_id: bigint | null
     name: string | null
     code: string | null
@@ -24674,7 +24674,7 @@ export namespace Prisma {
   }
 
   export type StatesGroupByOutputType = {
-    id: number
+    id: bigint
     country_id: bigint
     name: string
     code: string | null
@@ -24744,7 +24744,7 @@ export namespace Prisma {
       ask_tournaments: Prisma.$ask_tournamentsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: bigint
       country_id: bigint
       name: string
       code: string | null
@@ -25123,7 +25123,7 @@ export namespace Prisma {
    * Fields of the states model
    */
   interface statesFieldRefs {
-    readonly id: FieldRef<"states", 'Int'>
+    readonly id: FieldRef<"states", 'BigInt'>
     readonly country_id: FieldRef<"states", 'BigInt'>
     readonly name: FieldRef<"states", 'String'>
     readonly code: FieldRef<"states", 'String'>
@@ -31112,7 +31112,7 @@ export namespace Prisma {
     enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     address?: StringNullableFilter<"ask_tournaments"> | string | null
     country_id?: BigIntFilter<"ask_tournaments"> | bigint | number
-    state_id?: IntFilter<"ask_tournaments"> | number
+    state_id?: BigIntFilter<"ask_tournaments"> | bigint | number
     city_id?: BigIntFilter<"ask_tournaments"> | bigint | number
     bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
     thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
@@ -31172,6 +31172,7 @@ export namespace Prisma {
     uuid?: string
     slug_name?: string
     country_id?: bigint | number
+    state_id?: bigint | number
     city_id?: bigint | number
     AND?: ask_tournamentsWhereInput | ask_tournamentsWhereInput[]
     OR?: ask_tournamentsWhereInput[]
@@ -31185,7 +31186,6 @@ export namespace Prisma {
     startdate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     address?: StringNullableFilter<"ask_tournaments"> | string | null
-    state_id?: IntFilter<"ask_tournaments"> | number
     bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
     thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
     url?: StringNullableFilter<"ask_tournaments"> | string | null
@@ -31202,7 +31202,7 @@ export namespace Prisma {
     state?: XOR<StatesScalarRelationFilter, statesWhereInput>
     city?: XOR<CitiesScalarRelationFilter, citiesWhereInput>
     user?: XOR<Ask_usersScalarRelationFilter, ask_usersWhereInput>
-  }, "id" | "uuid" | "slug_name" | "country_id" | "city_id">
+  }, "id" | "uuid" | "slug_name" | "country_id" | "state_id" | "city_id">
 
   export type ask_tournamentsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -31256,7 +31256,7 @@ export namespace Prisma {
     enddate?: DateTimeNullableWithAggregatesFilter<"ask_tournaments"> | Date | string | null
     address?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
     country_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
-    state_id?: IntWithAggregatesFilter<"ask_tournaments"> | number
+    state_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
     city_id?: BigIntWithAggregatesFilter<"ask_tournaments"> | bigint | number
     bannerimage?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
     thumbnail?: StringNullableWithAggregatesFilter<"ask_tournaments"> | string | null
@@ -31364,7 +31364,7 @@ export namespace Prisma {
     AND?: statesWhereInput | statesWhereInput[]
     OR?: statesWhereInput[]
     NOT?: statesWhereInput | statesWhereInput[]
-    id?: IntFilter<"states"> | number
+    id?: BigIntFilter<"states"> | bigint | number
     country_id?: BigIntFilter<"states"> | bigint | number
     name?: StringFilter<"states"> | string
     code?: StringNullableFilter<"states"> | string | null
@@ -31391,7 +31391,7 @@ export namespace Prisma {
   }
 
   export type statesWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: bigint | number
     AND?: statesWhereInput | statesWhereInput[]
     OR?: statesWhereInput[]
     NOT?: statesWhereInput | statesWhereInput[]
@@ -31427,7 +31427,7 @@ export namespace Prisma {
     AND?: statesScalarWhereWithAggregatesInput | statesScalarWhereWithAggregatesInput[]
     OR?: statesScalarWhereWithAggregatesInput[]
     NOT?: statesScalarWhereWithAggregatesInput | statesScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"states"> | number
+    id?: BigIntWithAggregatesFilter<"states"> | bigint | number
     country_id?: BigIntWithAggregatesFilter<"states"> | bigint | number
     name?: StringWithAggregatesFilter<"states"> | string
     code?: StringNullableWithAggregatesFilter<"states"> | string | null
@@ -33733,7 +33733,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: number
+    state_id: bigint | number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -33792,7 +33792,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33822,7 +33822,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: number
+    state_id: bigint | number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -33877,7 +33877,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33996,6 +33996,7 @@ export namespace Prisma {
   }
 
   export type statesCreateInput = {
+    id: bigint | number
     country_id: bigint | number
     name: string
     code?: string | null
@@ -34008,7 +34009,7 @@ export namespace Prisma {
   }
 
   export type statesUncheckedCreateInput = {
-    id?: number
+    id: bigint | number
     country_id: bigint | number
     name: string
     code?: string | null
@@ -34021,6 +34022,7 @@ export namespace Prisma {
   }
 
   export type statesUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34033,7 +34035,7 @@ export namespace Prisma {
   }
 
   export type statesUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34046,7 +34048,7 @@ export namespace Prisma {
   }
 
   export type statesCreateManyInput = {
-    id?: number
+    id: bigint | number
     country_id: bigint | number
     name: string
     code?: string | null
@@ -34058,6 +34060,7 @@ export namespace Prisma {
   }
 
   export type statesUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34069,7 +34072,7 @@ export namespace Prisma {
   }
 
   export type statesUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37509,7 +37512,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: number
+    state_id: bigint | number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -37568,7 +37571,7 @@ export namespace Prisma {
     enddate?: DateTimeNullableFilter<"ask_tournaments"> | Date | string | null
     address?: StringNullableFilter<"ask_tournaments"> | string | null
     country_id?: BigIntFilter<"ask_tournaments"> | bigint | number
-    state_id?: IntFilter<"ask_tournaments"> | number
+    state_id?: BigIntFilter<"ask_tournaments"> | bigint | number
     city_id?: BigIntFilter<"ask_tournaments"> | bigint | number
     bannerimage?: StringNullableFilter<"ask_tournaments"> | string | null
     thumbnail?: StringNullableFilter<"ask_tournaments"> | string | null
@@ -39739,6 +39742,7 @@ export namespace Prisma {
   }
 
   export type statesCreateWithoutAsk_tournamentsInput = {
+    id: bigint | number
     country_id: bigint | number
     name: string
     code?: string | null
@@ -39750,7 +39754,7 @@ export namespace Prisma {
   }
 
   export type statesUncheckedCreateWithoutAsk_tournamentsInput = {
-    id?: number
+    id: bigint | number
     country_id: bigint | number
     name: string
     code?: string | null
@@ -39880,6 +39884,7 @@ export namespace Prisma {
   }
 
   export type statesUpdateWithoutAsk_tournamentsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39891,7 +39896,7 @@ export namespace Prisma {
   }
 
   export type statesUncheckedUpdateWithoutAsk_tournamentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -40018,7 +40023,7 @@ export namespace Prisma {
     startdate?: Date | string | null
     enddate?: Date | string | null
     address?: string | null
-    state_id: number
+    state_id: bigint | number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -40185,7 +40190,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: number
+    state_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
     url?: string | null
@@ -40239,7 +40244,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: number
+    state_id: bigint | number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -40296,7 +40301,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -40325,7 +40330,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -40806,7 +40811,7 @@ export namespace Prisma {
     startdate?: Date | string | null
     enddate?: Date | string | null
     address?: string | null
-    state_id: number
+    state_id: bigint | number
     city_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
@@ -40863,7 +40868,7 @@ export namespace Prisma {
     startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -40892,7 +40897,7 @@ export namespace Prisma {
     startdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     city_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
@@ -41037,7 +41042,7 @@ export namespace Prisma {
     enddate?: Date | string | null
     address?: string | null
     country_id: bigint | number
-    state_id: number
+    state_id: bigint | number
     bannerimage?: string | null
     thumbnail?: string | null
     url?: string | null
@@ -41094,7 +41099,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -41123,7 +41128,7 @@ export namespace Prisma {
     enddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     country_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    state_id?: IntFieldUpdateOperationsInput | number
+    state_id?: BigIntFieldUpdateOperationsInput | bigint | number
     bannerimage?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
