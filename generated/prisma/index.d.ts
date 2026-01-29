@@ -962,11 +962,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-<<<<<<< HEAD
       modelProps: "ask_users" | "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_tournaments" | "countries" | "states" | "cities" | "ask_tournament_enquiries" | "ask_sports_enquiries"
-=======
-      modelProps: "ask_test_user" | "ask_test_data" | "ask_users" | "academies" | "academy_seo_contents" | "academy_amenities" | "academy_details" | "academy_timings" | "academy_urls" | "academy_programs" | "academy_coaches" | "academy_galleries" | "academy_achievements" | "sports" | "tournaments" | "tournament_contents" | "tournament_galleries" | "tournament_galleries_folders" | "ask_tournaments" | "countries" | "states" | "cities" | "ask_tournament_enquiries" | "ask_sports_enquiries"
->>>>>>> 2c97ff712acc5798035853cc65cd5398f1e8b7bb
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
