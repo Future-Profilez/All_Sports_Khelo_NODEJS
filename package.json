@@ -34,5 +34,8 @@
   },
   "devDependencies": {
     "ngrok": "^5.0.0-beta.2"
+  },
+  "prisma": {
+    "schema": "prisma/schema"
   }
 }
