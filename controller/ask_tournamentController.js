@@ -24,9 +24,9 @@ exports.add_ask_tournament = async (req, res) => {
       publish_status,
     } = req.body;
     console.log("sid", req.body.sport_id)
-   
+
     const bannerImagePath = () => {
-      if(req?.body?.bannerimage_path || req?.files?.bannerimage ){
+      if (req?.body?.bannerimage_path || req?.files?.bannerimage) {
         if (req?.body?.bannerimage_path) {
           return `/uploads/${req?.body?.bannerimage_path}`
         } else {
@@ -37,7 +37,7 @@ exports.add_ask_tournament = async (req, res) => {
     }
 
     const thumbnailImagePath = () => {
-      if(req?.body?.thumbnail_path || req?.files?.thumbnail){
+      if (req?.body?.thumbnail_path || req?.files?.thumbnail) {
         if (req?.body?.thumbnail_path) {
           return `/uploads/${req?.body?.thumbnail_path}`
         } else {
@@ -50,7 +50,7 @@ exports.add_ask_tournament = async (req, res) => {
     console.log("bannerImagePath ", bannerImagePath());
     console.log("thumbnailImagePath ", thumbnailImagePath());
 
- 
+
     // console.log("bannerimage_path", req?.body?.bannerimage_path);
     // console.log("Added File", req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename);
 
@@ -297,7 +297,7 @@ exports.list_ask_tournaments = async (req, res) => {
     if (city_id && city_id != undefined) {
       where.city_id = Number(city_id);
     }
-    if(startDate && startDate!=undefined && endDate && endDate!=undefined){
+    if (startDate && startDate != undefined && endDate && endDate != undefined) {
       where
     }
     if (search && search.trim() !== "") {
@@ -314,13 +314,13 @@ exports.list_ask_tournaments = async (req, res) => {
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
     }
-    console.log("where",where);
+    console.log("where", where);
 
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
       include,
       // orderBy: {startdate: "asc",}
-      orderBy: {startdate: "desc",}
+      orderBy: { startdate: "desc", }
     });
     const data = convertBigIntToString(tournaments);
     const updateddata = data.map(item => ({
@@ -492,24 +492,49 @@ exports.list_enquiries = async (req, res) => {
 
 exports.mark_Enquiry = async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = Number(req.params.id);
+
+    if (!id || isNaN(id)) {
+      return res.status(400).json({ status: false, message: "Invalid enquiry id" });
+    }
+
+    const enquiryExists = await prisma.ask_tournament_enquiries.findUnique({
+      where: { id },
+    });
+
+    if (!enquiryExists) {
+      return res.status(404).json({
+        status: false,
+        message: "Enquiry not found",
+      });
+    }
+
     const enquiry = await prisma.ask_tournament_enquiries.update({
-      where: { id: Number(id) },
+      where: { id },
       data: {
-        mark_as_read: 1
+        mark_as_read: 1,
       },
     });
-    return res.status(200).json({ status: true, message: "Enquiry approved.", enquiry })
+
+    return res.status(200).json({ status: true, message: "Enquiry marked as read successfully", enquiry, });
+
   } catch (error) {
-    console.log(error)
-    return res.status(500).json({ status: false, message: "Something went wrong" })
+    console.error("mark_Enquiry error:", error);
+    return res.status(500).json({ status: false, message: "Internal server error", });
   }
-}
+};
+
 exports.mark_AllEnquiry = async (req, res) => {
   try {
-    const tournament_id = req.params.id;
+    const tournament_id = Number(req.params.id);
+      if (!id || isNaN(id)) {
+      return res.status(400).json({
+        status: false,
+        message: "Invalid tournament id",
+      });
+    }
     const enquiry = await prisma.ask_tournament_enquiries.updateMany({
-      where: { tournament_id: Number(tournament_id) },
+      where: { tournament_id: tournament_id },
       data: {
         mark_as_read: 1
       },
