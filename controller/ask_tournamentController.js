@@ -24,9 +24,9 @@ exports.add_ask_tournament = async (req, res) => {
       publish_status,
     } = req.body;
     console.log("sid", req.body.sport_id)
-   
+
     const bannerImagePath = () => {
-      if(req?.body?.bannerimage_path || req?.files?.bannerimage ){
+      if (req?.body?.bannerimage_path || req?.files?.bannerimage) {
         if (req?.body?.bannerimage_path) {
           return `/uploads/${req?.body?.bannerimage_path}`
         } else {
@@ -37,7 +37,7 @@ exports.add_ask_tournament = async (req, res) => {
     }
 
     const thumbnailImagePath = () => {
-      if(req?.body?.thumbnail_path || req?.files?.thumbnail){
+      if (req?.body?.thumbnail_path || req?.files?.thumbnail) {
         if (req?.body?.thumbnail_path) {
           return `/uploads/${req?.body?.thumbnail_path}`
         } else {
@@ -47,10 +47,10 @@ exports.add_ask_tournament = async (req, res) => {
       return `/uploads/tournament-default-thumb/1.png`
     }
 
-    console.log("bannerImagePath ", bannerImagePath());
-    console.log("thumbnailImagePath ", thumbnailImagePath());
+    // console.log("bannerImagePath ", bannerImagePath());
+    // console.log("thumbnailImagePath ", thumbnailImagePath());
 
- 
+
     // console.log("bannerimage_path", req?.body?.bannerimage_path);
     // console.log("Added File", req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename);
 
@@ -60,6 +60,26 @@ exports.add_ask_tournament = async (req, res) => {
         message: "Required fields missing",
       });
     }
+    if (fees && isNaN(Number(fees))) {
+      return res.status(200).json({
+        status: false,
+        message: "Fees must be a number",
+      });
+    }
+
+    if (participation_limit && Number(participation_limit) <= 0) {
+      return res.status(200).json({
+        status: false,
+        message: "Participation limit must be greater than 0",
+      });
+    }
+    if (description && description.length > 500) {
+      return res.status(200).json({
+        status: false,
+        message: "Description cannot exceed 500 characters",
+      });
+    }
+
     const startDateObj = new Date(startdate);
     const endDateObj = new Date(enddate);
     const updateduser_id = Number(req?.user?.id);
@@ -72,8 +92,16 @@ exports.add_ask_tournament = async (req, res) => {
         message: "End date cannot be before start date",
       });
     }
-
     const slug_name = toSlug(name);
+    const existingTournament = await prisma.ask_tournaments.findFirst({
+      where: { slug_name },
+    });
+    if (existingTournament) {
+      return res.status(200).json({
+        status: false,
+        message: "Tournament name already exists in our database. List your tournament with some other unique name",
+      });
+    }
     const BASE_URL = process.env.APP_URL + "/uploads/";
 
     const bannerimage = req.files?.bannerimage
@@ -297,7 +325,7 @@ exports.list_ask_tournaments = async (req, res) => {
     if (city_id && city_id != undefined) {
       where.city_id = Number(city_id);
     }
-    if(startDate && startDate!=undefined && endDate && endDate!=undefined){
+    if (startDate && startDate != undefined && endDate && endDate != undefined) {
       where
     }
     if (search && search.trim() !== "") {
@@ -314,13 +342,13 @@ exports.list_ask_tournaments = async (req, res) => {
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
     }
-    console.log("where",where);
+    console.log("where", where);
 
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
       include,
       // orderBy: {startdate: "asc",}
-      orderBy: {startdate: "desc",}
+      orderBy: { startdate: "desc", }
     });
     const data = convertBigIntToString(tournaments);
     const updateddata = data.map(item => ({
