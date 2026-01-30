@@ -32,7 +32,7 @@ router.get('/:slug', asktournamentOverview)
 router.delete('/deletetournament/:id', protect, delete_ask_tournament)
 
 //Enquiry routes
-router.post('/add/enquiry', protect, send_enquiry);
+router.post('/add/enquiry', send_enquiry);
 router.get('/enquiries/:tour_id', list_enquiries);
 router.delete('/enquiry/:id', protect, delete_enquiries);
 router.put('/mark/:id', protect, mark_Enquiry);
