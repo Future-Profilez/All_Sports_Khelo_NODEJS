@@ -1,7 +1,7 @@
 
-# /generated/prisma
-# /generated
-# generated
+/generated/prisma
+/generated
+generated
 
 # Node Modules
 /node_modules
