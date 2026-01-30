@@ -1,4 +1,3 @@
--- CreateTable
 CREATE TABLE `ask_users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NULL,
