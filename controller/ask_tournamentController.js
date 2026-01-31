@@ -453,6 +453,142 @@ exports.asktournamentOverview = async (req, res) => {
   }
 };
 
+exports.editTournament = async (req, res) => {
+  try {
+    const slug_name = req.params.slug_name;
+    const existingtour = await prisma.ask_tournaments.findUnique({
+      where: { slug_name }
+    });
+    if (!existingtour) {
+      return res.status(200).json({
+        status: false,
+        message: "This Tournament doesnt exist in our database"
+      })
+    }
+    const {
+      sport_id,
+      user_id,
+      name,
+      description,
+      content,
+      tournament_type,
+      startdate,
+      enddate,
+      address,
+      country_id,
+      state_id,
+      city_id,
+      url,
+      prize,
+      fees,
+      participation_limit,
+      publish_status,
+    } = req.body;
+    const startDateObj = new Date(startdate);
+    const endDateObj = new Date(enddate);
+    const updatedstate_id = Number(state_id);
+    const updatedcity_id = Number(city_id)
+    const updatedcountry_id = Number(country_id);
+    if (endDateObj < startDateObj) {
+      return res.status(200).json({
+        status: false,
+        message: "End date cannot be before start date",
+      });
+    }
+    
+
+    const bannerImagePath = () => {
+      if (req?.body?.bannerimage_path || req?.files?.bannerimage) {
+        if (req?.body?.bannerimage_path) {
+          return `/uploads/${req?.body?.bannerimage_path}`
+        } else {
+          return `/uploads/${req?.files?.bannerimage && req?.files?.bannerimage[0]?.filename}`
+        }
+      }
+      return `/uploads/tournament-default-banner/1.png`
+    }
+    
+    const thumbnailImagePath = () => {
+      if (req?.body?.thumbnail_path || req?.files?.thumbnail) {
+        if (req?.body?.thumbnail_path) {
+          return `/uploads/${req?.body?.thumbnail_path}`
+        } else {
+          return `/uploads/${req?.files?.thumbnail && req?.files?.thumbnail[0]?.filename}`
+        }
+      }
+      return `/uploads/tournament-default-thumb/1.png`
+    }
+
+
+    
+    if (fees && isNaN(Number(fees))) {
+      return res.status(200).json({
+        status: false,
+        message: "Fees must be a number",
+      });
+    }
+
+    if (participation_limit && Number(participation_limit) <= 0) {
+      return res.status(200).json({
+        status: false,
+        message: "Participation limit must be greater than 0",
+      });
+    }
+    if (description && description.length > 500) {
+      return res.status(200).json({
+        status: false,
+        message: "Description cannot exceed 500 characters",
+      });
+    }
+    const updatedSlug = name ? toSlug(name) : existingtour.slug_name;
+    const updatedTour = await prisma.ask_tournaments.update({
+      data: {
+        sport_id,
+        user_id,
+        name,
+        slug_name: updatedSlug,
+        description,
+        content,
+        tournament_type,
+        startdate: startDateObj,
+        enddate: endDateObj,
+        address,
+        country_id: updatedcountry_id,
+        state_id: updatedstate_id,
+        city_id: updatedcity_id,
+        // bannerimage: bannerImagePath(),
+        // thumbnail: thumbnailImagePath(),
+        brochure,
+        url,
+        prize,
+        fees,
+        participation_limit: Number(participation_limit),
+        publish_status: Number(publish_status),
+      },
+    })
+    if (!updatedTour) {
+      return res.status(200).json({
+        status: false,
+        message: "Unable to edit tournament. Try again later",
+        error: updatedTour
+      })
+    }
+    return res.status(200).json({
+      status: true,
+      message: "Tournament updated successfully",
+      data: updatedTour
+    })
+  } catch (error) {
+    console.log("ERROR ", error);
+    return res.status(500).json({
+      status: false,
+      message: "Something went wrong",
+      error: error
+    })
+  }
+};
+
+
 exports.send_enquiry = async (req, res) => {
   try {
     const {
@@ -555,7 +691,7 @@ exports.mark_Enquiry = async (req, res) => {
 exports.mark_AllEnquiry = async (req, res) => {
   try {
     const tournament_id = Number(req.params.id);
-      if (!id || isNaN(id)) {
+    if (!id || isNaN(id)) {
       return res.status(400).json({
         status: false,
         message: "Invalid tournament id",
@@ -587,5 +723,68 @@ exports.delete_enquiries = async (req, res) => {
   } catch (error) {
     console.log(error)
     return res.status(500).json({ message: "Something went wrong" }, error)
+  }
+}
+
+
+//**********address**********
+exports.tournamentCountriesList = async (req, res) => {
+  try {
+    const all_tournament_countries = await prisma.ask_tournaments.findMany({
+      distinct: ['country_id'],
+      select: {
+        country: true
+      }
+    });
+    const data = convertBigIntToString(all_tournament_countries);
+    const all_country = data.map(item => ({
+      ...item?.country
+    }));
+    return res.status(200).json({ message: "Countries fetched successfully!", data: all_country })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: "Something went wrong" })
+  }
+}
+
+exports.tournamentStatesList = async (req, res) => {
+  try {
+    const countryid = req?.params?.countryid || 105;
+    const all_states = await prisma.ask_tournaments.findMany({
+      where: { country_id: countryid },
+      distinct: ['state_id'],
+      select: {
+        state: true
+      }
+    });
+    const data = convertBigIntToString(all_states);
+    const all_states_lists = data.map(item => ({
+      ...item?.state
+    }));
+    return res.status(200).json({ message: "Countries fetched successfully!", data: all_states_lists })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: "Something went wrong" })
+  }
+}
+
+exports.tournamentCitiesList = async (req, res) => {
+  try {
+    const stateid = req?.params?.stateid || 105;
+    const all_cities = await prisma.ask_tournaments.findMany({
+      where: { state_id: stateid },
+      distinct: ['city_id'],
+      select: {
+        city: true
+      }
+    });
+    const data = convertBigIntToString(all_cities);
+    const all_cities_lists = data.map(item => ({
+      ...item?.city
+    }));
+    return res.status(200).json({ message: "Cities fetched successfully!", data: all_cities_lists })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: "Something went wrong" })
   }
 }

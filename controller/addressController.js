@@ -1,6 +1,7 @@
 const prisma = require('../lib/prisma.js')
 const convertBigIntToString = require('../helper/convertBigInt')
 
+
 exports.countriesList = async (req, res) => {
     try {
         const all_countries = await prisma.countries.findMany();
@@ -11,6 +12,8 @@ exports.countriesList = async (req, res) => {
         return res.status(500).json({ message: "Something went wrong" })
     }
 }
+
+
 
 exports.statesList = async (req, res) => {
     try {
