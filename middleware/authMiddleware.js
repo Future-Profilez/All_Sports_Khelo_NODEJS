@@ -26,3 +26,4 @@ exports.protect = async (req, res, next) => {
         return res.status(200).json({ success: false, message: "Internal server error" });
     }
 }
+

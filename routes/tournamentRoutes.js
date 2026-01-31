@@ -4,7 +4,7 @@ const express = require("express")
 // const { tournament } = require("../validation/tournamentValidation.js")
 const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
-const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament } = require("../controller/ask_tournamentController");
+const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament } = require("../controller/ask_tournamentController");
 const { protect } = require("../middleware/authMiddleware");
 
 
@@ -30,6 +30,7 @@ router.get('/ask/mytournaments/:type',protect, list_ask_tournaments);
 router.get('/ask/tournaments/:type', list_ask_tournaments);
 router.get('/:slug', asktournamentOverview)
 router.delete('/deletetournament/:id', protect, delete_ask_tournament)
+router.post('/edit/:slug_name',protect, editTournament);
 
 //Enquiry routes
 router.post('/add/enquiry', send_enquiry);
@@ -37,6 +38,11 @@ router.get('/enquiries/:tour_id', list_enquiries);
 router.delete('/enquiry/:id', protect, delete_enquiries);
 router.put('/mark/:id', protect, mark_Enquiry);
 router.put('/markall/:id', protect, mark_AllEnquiry);
+
+//Address Routes
+router.get('/countries/lists',tournamentCountriesList)
+router.get('/states/lists/:countryid',tournamentStatesList)
+router.get('/cities/lists/:stateid',tournamentCitiesList)
 
 
 module.exports = router
