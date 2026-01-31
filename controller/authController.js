@@ -6,7 +6,7 @@ const prisma = require('../lib/prisma.js');
 
 exports.register = async (req, res) => {
     try {
-        const { name, phone, email, password,country_code } = req.body;
+        const { name, phone, email, password, country_code } = req.body;
         const isEmailExist = await prisma.ask_users.findUnique({ where: { email } });
         if (isEmailExist && isEmailExist.otp_verified) {
             return res.status(200).json({ status: true, message: "Email already register. Please login" })
@@ -64,7 +64,7 @@ exports.sendOtp = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.status(500).json({ status: false, message: "Internal server error", error })
-    } 
+    }
 }
 
 exports.verifyOtp = async (req, res) => {
@@ -139,5 +139,46 @@ exports.login = async (req, res) => {
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: false, message: "Internal server error", error })
+    }
+}
+
+exports.updateProfile = async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        const { name, email, oldpassword, newpassword } = req.body;
+        const user = await prisma.ask_users.findUnique({ where: { id: id } });
+        if (!user) {
+            return res.status(200).json({ status: false, message: "User not found." });
+        }
+
+        const emailChanged = email && email !== req.user.email;
+        if (emailChanged) {
+            await prisma.ask_users.update({
+                where: { id: id },
+                data: {
+                    otp_verified: false
+                }
+            })
+        }
+
+        const isMatch = bcrypt.compare(oldpassword, user.password);
+        if (!isMatch) {
+            return req.status(400).json({status:false, message:"Old password is incorrect."});
+        }
+
+        const hashedPassword = bcrypt.hash(newpassword, 10);
+        await prisma.ask_users.update({
+            where:{id: id},
+            data:{
+                name,
+                email,
+                phone: hashedPassword,
+                updated_at: new Date()
+            }
+        });
+        return res.status(200).json({status:false, message:"Profile updated successfully."})
+    } catch {
+        console.log(error);
+        return res.return(500).json({ status: false, message: "Internal server error", error })
     }
 }
