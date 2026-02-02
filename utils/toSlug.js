@@ -1,7 +1,5 @@
 const toSlug = (str) => {
-        console.log("slug str ",str);
     if (str) {
-        console.log("str : ",str);
       return str
         .toLowerCase()
         .trim()

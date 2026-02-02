@@ -30,7 +30,7 @@ router.get('/ask/mytournaments/:type',protect, list_ask_tournaments);
 router.get('/ask/tournaments/:type', list_ask_tournaments);
 router.get('/:slug', asktournamentOverview)
 router.delete('/deletetournament/:id', protect, delete_ask_tournament)
-router.post('/edit/:slug_name',protect, editTournament);
+router.post('/edit/:slug',protect, editTournament);
 
 //Enquiry routes
 router.post('/add/enquiry', send_enquiry);

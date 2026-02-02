@@ -19,7 +19,6 @@ exports.academies = async (req, res) => {
             // }
         });
         const data = convertBigIntToString(list);
-        console.log('no of academies :', data.length);
         if (data && data.length < 1) {
             return res.status(200).json({
                 status: false,
