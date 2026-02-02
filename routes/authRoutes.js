@@ -1,5 +1,5 @@
 const express = require('express')
-const {register, verifyOtp, login, sendOtp, checkIsloggedIn, updateProfile} = require('../controller/authController.js')
+const {register, verifyOtp, login, sendOtp, checkIsloggedIn, updateProfile, fetchUser} = require('../controller/authController.js')
 const { protect } = require('../middleware/authMiddleware.js')
 const router = express.Router()
 
@@ -10,5 +10,6 @@ router.post('/login', login)
 router.get('/checkLogin', protect, checkIsloggedIn)
 
 // Profile
-router.put('/profile/update/:id',updateProfile)
-module.exports = router;
+router.get('/profile/:id', fetchUser)
+router.put('/profile/update/:id',protect,updateProfile)
+module.exports = router;    
