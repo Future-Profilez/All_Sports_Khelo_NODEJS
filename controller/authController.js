@@ -38,9 +38,9 @@ exports.register = async (req, res) => {
 
 exports.sendOtp = async (req, res) => {
     try {
-        const { email } = req.body;
+        const { userId, email } = req.body;
 
-        const user = await prisma.ask_users.findUnique({ where: { email } });
+        const user = await prisma.ask_users.findUnique({ where: { id: Number(userId) } });
         if (!user) {
             return res.status(200).json({ status: false, message: "User not found." })
         }
@@ -52,7 +52,7 @@ exports.sendOtp = async (req, res) => {
         const otp = generateOTP();
 
         await prisma.ask_users.update({
-            where: { email },
+            where: { id: Number(userId) },
             data: {
                 otp,
                 otp_expires_at: otpExpiry(),
@@ -98,18 +98,60 @@ exports.verifyOtp = async (req, res) => {
         return res.status(500).json({ status: false, message: "Internal server error", error })
     }
 }
+// exports.checkIsloggedIn = async (req, res) => {
+//     try {
+//         if (req?.user) {
+//             return res.status(200).json({ status: true, message: "You are logged in already.", user: req?.user })
+//         } else {
+//             return res.status(200).json({ status: false, message: "Unauthenticated !!" })
+//         }
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(500).json({ status: false, message: "Internal server error", error })
+//     }
+// }
+
 exports.checkIsloggedIn = async (req, res) => {
-    try {
-        if (req?.user) {
-            return res.status(200).json({ status: true, message: "You are logged in already.", user: req?.user })
-        } else {
-            return res.status(200).json({ status: false, message: "Unauthenticated !!" })
-        }
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({ status: false, message: "Internal server error", error })
+  try {
+    if (!req.user?.id) {
+      return res.status(401).json({
+        status: false,
+        message: "Unauthenticated"
+      });
     }
-}
+
+    const user = await prisma.ask_users.findUnique({
+      where: { id: req.user.id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        otp_verified: true
+      }
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        status: false,
+        message: "User not found"
+      });
+    }
+
+    return res.status(200).json({
+      status: true,
+      message: "You are logged in",
+      user
+    });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error"
+    });
+  }
+};
+
 
 exports.login = async (req, res) => {
     try {
@@ -118,10 +160,6 @@ exports.login = async (req, res) => {
         const user = await prisma.ask_users.findUnique({ where: { email } });
         if (!user) {
             return res.status(200).json({ status: false, message: "User not found" })
-        }
-
-        if (!user.otp_verified) {
-            return res.status(403).json({ status: false, message: "Verify your otp first" })
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
