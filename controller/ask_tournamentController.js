@@ -46,8 +46,7 @@ exports.add_ask_tournament = async (req, res) => {
       return `/uploads/tournament-default-thumb/1.png`
     }
 
- 
-    if (!sport_id || !name) {
+    if (!sport_id || !name || !country_id || !state_id) {
       return res.status(200).json({
         status: false,
         message: "Required fields missing",
@@ -295,8 +294,12 @@ exports.list_ask_tournaments = async (req, res) => {
     const include = {
       country: true,
       state: true,
-      city: true,
+      // city: true,
     };
+    // const include = {
+    //   city: city_id ? true : false,
+    // };
+    
     let where = {};
     // Sports ID filter
     if (sports_id !== '' || sports_id !== undefined) {
@@ -335,16 +338,35 @@ exports.list_ask_tournaments = async (req, res) => {
       // orderBy: {startdate: "asc",}
       orderBy: { startdate: "desc", }
     });
-    const data = convertBigIntToString(tournaments);
-    const updateddata = data.map(item => ({
-      ...item,
-      thumbnail: item?.thumbnail
-        ? `${process.env.APP_URL}${item.thumbnail}`
-        : false,
-      bannerimage: item?.bannerimage
-        ? `${process.env.APP_URL}${item.bannerimage}`
-        : false,
-    }));
+
+    
+     async function getCityData(c_id) {
+      if (!c_id) return null;
+
+      const city = await prisma.cities.findFirst({
+        where: { id: c_id },
+      });
+
+      return city ? convertBigIntToString(city) : null;
+    }
+      
+      
+      const data = convertBigIntToString(tournaments);
+       const updateddata = await Promise.all(
+          data.map(async (item) => {
+            const city = await getCityData(item.city_id);
+            return {
+              ...item,
+              city: city, // full city object or null
+              thumbnail: item?.thumbnail
+                ? `${process.env.APP_URL}${item.thumbnail}`
+                : false,
+              bannerimage: item?.bannerimage
+                ? `${process.env.APP_URL}${item.bannerimage}`
+                : false,
+            };
+          })
+        );
 
     return res.status(200).json({
       status: true,
@@ -403,12 +425,20 @@ exports.asktournamentOverview = async (req, res) => {
       include: {
         country: true,
         state: true,
-        city: true
+        city: false
       },
     });
+    let city = null;
+    if (data?.city_id) {
+      city = await prisma.cities.findUnique({
+        where: { id: data.city_id },
+      });
+    }
+    city=convertBigIntToString(city);
     const content = convertBigIntToString(data);
     const updateddata = {
       ...content,
+      city,
       thumbnail: content?.thumbnail
         ? `${process.env.APP_URL}${content.thumbnail}`
         : false,
@@ -450,6 +480,11 @@ exports.editTournament = async (req, res) => {
         message: "This Tournament doesnt exist in our database"
       })
     }
+
+
+    // console.log("red body", req.body);
+
+    // return false;
     const {
       sport_id,
       user_id,
@@ -471,6 +506,12 @@ exports.editTournament = async (req, res) => {
     } = req.body;
     const startDateObj = new Date(startdate);
     const endDateObj = new Date(enddate);
+    if (!sport_id || !name || !country_id || !state_id) {
+      return res.status(200).json({
+        status: false,
+        message: "Required fields missing",
+      });
+    }
     if (endDateObj < startDateObj) {
       return res.status(200).json({
         status: false,
@@ -518,6 +559,9 @@ exports.editTournament = async (req, res) => {
     }
     const updatedSlug = name ? toSlug(name) : existingtour.slug_name;
     const updatedTour = await prisma.ask_tournaments.update({
+      where: {
+        slug_name: existingtour?.slug_name,
+      },
       data: {
         sport_id,
         user_id,
@@ -542,6 +586,8 @@ exports.editTournament = async (req, res) => {
         publish_status: Number(publish_status),
       },
     })
+    console.log("Updated country : ", country_id);
+    console.log("Updated State : ", state_id);
     if (!updatedTour) {
       return res.status(200).json({
         status: false,
@@ -552,7 +598,7 @@ exports.editTournament = async (req, res) => {
     return res.status(200).json({
       status: true,
       message: "Tournament updated successfully",
-      data: updatedTour
+      data: convertBigIntToString(updatedTour),
     })
   } catch (error) {
     console.log("ERROR ", error);
