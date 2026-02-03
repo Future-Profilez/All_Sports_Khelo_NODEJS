@@ -142,16 +142,33 @@ exports.login = async (req, res) => {
     }
 }
 
+exports.fetchUser = async (req, res) => {
+    try {
+        const id = Number(req.params.id)
+        const user = await prisma.ask_users.findUnique({
+            where: { id: id },
+        })
+        if (!user) {
+            return res.status(200).json({ status: false, message: "User not found" });
+        }
+        return res.status(200).json({ status: true, message: "User fetch successfully.", user })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: "Internal server error." });
+    }
+}
+
 exports.updateProfile = async (req, res) => {
     try {
         const id = Number(req.params.id);
-        const { name, email, oldpassword, newpassword } = req.body;
+        const { name, phone, email, oldpassword, newpassword } = req.body;
         const user = await prisma.ask_users.findUnique({ where: { id: id } });
         if (!user) {
             return res.status(200).json({ status: false, message: "User not found." });
         }
 
-        const emailChanged = email && email !== req.user.email;
+        const emailChanged = email && email !== user.email;
         if (emailChanged) {
             await prisma.ask_users.update({
                 where: { id: id },
@@ -161,22 +178,27 @@ exports.updateProfile = async (req, res) => {
             })
         }
 
-        const isMatch = bcrypt.compare(oldpassword, user.password);
-        if (!isMatch) {
-            return req.status(400).json({status:false, message:"Old password is incorrect."});
+         const updateData = {
+            name,
+            email,
+            phone,
+            updated_at: new Date()
+        };
+
+        if (oldpassword && newpassword) {
+            const isMatch = await bcrypt.compare(oldpassword, user.password);
+            if (!isMatch) {
+                return req.status(400).json({ status: false, message: "Old password is incorrect." });
+            }
+
+            updateData.password = await bcrypt.hash(newpassword, 10);
         }
 
-        const hashedPassword = bcrypt.hash(newpassword, 10);
         await prisma.ask_users.update({
-            where:{id: id},
-            data:{
-                name,
-                email,
-                phone: hashedPassword,
-                updated_at: new Date()
-            }
+            where: { id: id },
+            data: updateData
         });
-        return res.status(200).json({status:false, message:"Profile updated successfully."})
+        return res.status(200).json({ status: true, message: "Profile updated successfully." })
     } catch {
         console.log(error);
         return res.return(500).json({ status: false, message: "Internal server error", error })
