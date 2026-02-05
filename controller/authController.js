@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { sendOTPEmail } = require('../config/mailer.js')
+const { sendOTPEmail, sendForgotPasswordEmail } = require('../config/mailer.js')
 const jwt = require('jsonwebtoken');
 const { generateOTP, otpExpiry } = require('../utils/otp');
 const prisma = require('../lib/prisma.js');
@@ -112,44 +112,27 @@ exports.verifyOtp = async (req, res) => {
 // }
 
 exports.checkIsloggedIn = async (req, res) => {
-  try {
-    if (!req.user?.id) {
-      return res.status(401).json({
-        status: false,
-        message: "Unauthenticated"
-      });
+    try {
+        if (!req.user?.id) {
+            return res.status(200).json({ status: false, message: "Unauthenticated" });
+        }
+        const user = await prisma.ask_users.findUnique({
+            where: { id: req.user.id },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                otp_verified: true
+            }
+        });
+        if (!user) {
+            return res.status(200).json({ status: false, message: "User not found" });
+        }
+        return res.status(200).json({ status: true, message: "You are logged in", user });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: "Internal server error" });
     }
-
-    const user = await prisma.ask_users.findUnique({
-      where: { id: req.user.id },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        otp_verified: true
-      }
-    });
-
-    if (!user) {
-      return res.status(401).json({
-        status: false,
-        message: "User not found"
-      });
-    }
-
-    return res.status(200).json({
-      status: true,
-      message: "You are logged in",
-      user
-    });
-
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      status: false,
-      message: "Internal server error"
-    });
-  }
 };
 
 
@@ -216,7 +199,7 @@ exports.updateProfile = async (req, res) => {
             })
         }
 
-         const updateData = {
+        const updateData = {
             name,
             email,
             phone,
@@ -237,8 +220,59 @@ exports.updateProfile = async (req, res) => {
             data: updateData
         });
         return res.status(200).json({ status: true, message: "Profile updated successfully." })
-    } catch {
+    } catch (error) {
         console.log(error);
         return res.return(500).json({ status: false, message: "Internal server error", error })
+    }
+}
+
+exports.forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        const user = await prisma.ask_users.findUnique({ where: { email } });
+        if (!user) {
+            return res.status(200).json({ status: false, message: "User not found" });
+        }
+
+        const resetToken = jwt.sign(
+            { id: user.id, email: user.email, type: "reset" },
+            process.env.JWT_SECRET,
+            { expiresIn: "24h" }
+        )
+
+        const reset_link = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+        sendForgotPasswordEmail(user.email, user.name, reset_link)
+        return res.status(200).json({ status: true, message: "Reset password link sent to your email. Please Verify." })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: "Internal server error", error })
+    }
+}
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const { token, password } = req.body;
+
+        if (!token) {
+            return res.status(200).json({ status: false, message: "Token missing." });
+        }
+        const decode = jwt.verify(token, process.env.JWT_SECRET);
+        if (decode.type !== "reset") {
+            return res.status(200).json({ status: false, message: "Invalid token." });
+        }
+
+        const hashPassword = await bcrypt.hash(password, 10);
+
+        await prisma.ask_users.update({
+            where: { id: decode.id },
+            data: {
+                password: hashPassword,
+            }
+        });
+        return res.status(200).json({ status: true, message: "Password reset successfully." });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: "Internal server error." })
     }
 }
