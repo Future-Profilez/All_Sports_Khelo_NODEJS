@@ -136,7 +136,7 @@ exports.add_ask_tournament = async (req, res) => {
     return res.status(200).json({
       status: true,
       message: "Tournament added successfully",
-      data: convertBigIntToString(tournament),
+      content: convertBigIntToString(tournament),
     });
   } catch (error) {
     console.error("ERROR:", error);
@@ -289,8 +289,8 @@ exports.list_ask_tournaments = async (req, res) => {
     const state_id = req.query?.state_id;
     const city_id = req.query?.city_id;
     const search = req.query?.search;
-    const startDate = req.query?.startDate;
-    const endDate = req.query?.endDate;
+    const startdate = req.query?.startdate;
+    const enddate = req.query?.enddate;
     const include = {
       country: true,
       state: true,
@@ -299,7 +299,7 @@ exports.list_ask_tournaments = async (req, res) => {
     // const include = {
     //   city: city_id ? true : false,
     // };
-    
+
     let where = {};
     // Sports ID filter
     if (sports_id !== '' || sports_id !== undefined) {
@@ -314,8 +314,14 @@ exports.list_ask_tournaments = async (req, res) => {
     if (city_id && city_id != undefined) {
       where.city_id = Number(city_id);
     }
-    if (startDate && startDate != undefined && endDate && endDate != undefined) {
-      where
+    if (startdate && enddate) {
+      const start = new Date(startdate);
+      const end = new Date(enddate);
+
+      where.AND = [
+        { startdate: { lte: end } },  // tournament starts before range ends
+        { enddate: { gte: start } }   // tournament ends after range starts
+      ];
     }
     if (search && search.trim() !== "") {
       where.OR = [
@@ -331,7 +337,6 @@ exports.list_ask_tournaments = async (req, res) => {
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
     }
-
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
       include,
@@ -339,8 +344,8 @@ exports.list_ask_tournaments = async (req, res) => {
       orderBy: { startdate: "desc", }
     });
 
-    
-     async function getCityData(c_id) {
+
+    async function getCityData(c_id) {
       if (!c_id) return null;
 
       const city = await prisma.cities.findFirst({
@@ -349,29 +354,29 @@ exports.list_ask_tournaments = async (req, res) => {
 
       return city ? convertBigIntToString(city) : null;
     }
-      
-      
-      const data = convertBigIntToString(tournaments);
-       const updateddata = await Promise.all(
-          data.map(async (item) => {
-            const city = await getCityData(item.city_id);
-            return {
-              ...item,
-              city: city, // full city object or null
-              thumbnail: item?.thumbnail
-                ? `${process.env.APP_URL}${item.thumbnail}`
-                : false,
-              bannerimage: item?.bannerimage
-                ? `${process.env.APP_URL}${item.bannerimage}`
-                : false,
-            };
-          })
-        );
+
+
+    const data = convertBigIntToString(tournaments);
+    const updateddata = await Promise.all(
+      data.map(async (item) => {
+        const city = await getCityData(item.city_id);
+        return {
+          ...item,
+          city: city, // full city object or null
+          thumbnail: item?.thumbnail
+            ? `${process.env.APP_URL}${item.thumbnail}`
+            : false,
+          bannerimage: item?.bannerimage
+            ? `${process.env.APP_URL}${item.bannerimage}`
+            : false,
+        };
+      })
+    );
 
     return res.status(200).json({
       status: true,
       message: "All tournaments fetched successfully!",
-      data: updateddata,
+      content: updateddata,
     });
 
   } catch (error) {
@@ -434,7 +439,7 @@ exports.asktournamentOverview = async (req, res) => {
         where: { id: data.city_id },
       });
     }
-    city=convertBigIntToString(city);
+    city = convertBigIntToString(city);
     const content = convertBigIntToString(data);
     const updateddata = {
       ...content,
