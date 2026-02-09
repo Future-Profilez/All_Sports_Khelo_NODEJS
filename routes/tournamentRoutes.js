@@ -4,7 +4,7 @@ const express = require("express")
 // const { tournament } = require("../validation/tournamentValidation.js")
 const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
-const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament } = require("../controller/ask_tournamentController");
+const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament, all_tournaments_sports } = require("../controller/ask_tournamentController");
 const { protect } = require("../middleware/authMiddleware");
 
 
@@ -27,6 +27,8 @@ router.post('/create',
 
 // router.get('/ask/tournaments/:type',list_ask_tournaments);
 router.get('/ask/mytournaments/:type',protect, list_ask_tournaments);
+router.get('/ask/all/tournaments/active/sports', all_tournaments_sports);
+
 router.get('/ask/tournaments/:type', list_ask_tournaments);
 router.get('/:slug', asktournamentOverview)
 router.delete('/deletetournament/:id', protect, delete_ask_tournament)

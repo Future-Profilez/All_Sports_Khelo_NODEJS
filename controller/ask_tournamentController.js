@@ -2,6 +2,15 @@ const convertBigIntToString = require("../helper/convertBigInt");
 const prisma = require("../lib/prisma");
 const { toSlug } = require("../utils/toSlug");
 
+
+async function getCityData(c_id) {
+      if (!c_id) return null;
+      const city = await prisma.cities.findFirst({
+        where: { id: c_id },
+      });
+      return city ? convertBigIntToString(city) : null;
+}
+
 exports.add_ask_tournament = async (req, res) => {
   try {
     const {
@@ -109,7 +118,7 @@ exports.add_ask_tournament = async (req, res) => {
     //   : null;
     const tournament = await prisma.ask_tournaments.create({
       data: {
-        sport_id,
+        sport_id : sport_id !== undefined ? sport_id : null,
         user_id: updateduser_id,
         name,
         slug_name,
@@ -333,6 +342,9 @@ exports.list_ask_tournaments = async (req, res) => {
         },
       ];
     }
+
+
+    
     // Logged in user tournaments filter
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
@@ -388,6 +400,44 @@ exports.list_ask_tournaments = async (req, res) => {
     });
   }
 };
+
+
+
+// All sports listing that are included in tournaments
+exports.all_tournaments_sports = async (req, res) => {
+  try {
+    const tournaments = await prisma.ask_tournaments.findMany({
+      select: {
+        sport_id: true,
+      },
+      orderBy: {
+        startdate: "desc",
+      },
+    });
+
+    // Convert BigInt → string if needed
+    const data = convertBigIntToString(tournaments);
+
+    // Get unique sport IDs
+    const activeSportIds = [...new Set(data.map(t => t.sport_id))];
+
+    return res.status(200).json({
+      status: true,
+      message: "All active sports tournaments fetched successfully!",
+      activeSports: activeSportIds,
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error",
+      error,
+    });
+  }
+};
+
+
 
 exports.delete_ask_tournament = async (req, res) => {
   try {
