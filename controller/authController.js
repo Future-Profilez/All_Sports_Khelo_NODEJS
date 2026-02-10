@@ -134,12 +134,16 @@ exports.checkIsloggedIn = async (req, res) => {
             }
         });
         if (!user) {
-            return res.status(200).json({ status: false, message: "User not found" });
+            return res.status(200).json({ status: false, message: "You have to logged in first." });
         }
         return res.status(200).json({ status: true, message: "You are logged in", user });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: false, message: "Internal server error" });
+        return res.status(500).json({ 
+            status: false, 
+            error:error,
+            message: "Internal server error"
+        });
     }
 };
 
@@ -150,12 +154,12 @@ exports.login = async (req, res) => {
 
         const user = await prisma.ask_users.findUnique({ where: { email } });
         if (!user) {
-            return res.status(200).json({ status: false, message: "User not found" })
+            return res.status(200).json({ status: false, message: "Password or email address is invalid." })
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(200).json({ status: false, message: "Invalid credentials" })
+            return res.status(200).json({ status: false, message: "Password or email address is invalid." })
         }
         const token = jwt.sign(
             { id: user.id },
