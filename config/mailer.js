@@ -1,16 +1,11 @@
 const nodemailer = require('nodemailer');
-const { getEmailOtpTemplate } = require('../utils/emailTemplate');
+const { getEmailOtpTemplate, setForgotPasswordTemplate } = require('../utils/emailTemplate');
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
-    // host: process.env.SMTP_HOST,
-    // port: process.env.SMTP_PORT,
-    // secure: false,
     auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
-        // user: "mern.dev.fp01@gmail.com",
-        // pass: "xqblmcptbmvozyrn",
     },
 });
 
@@ -25,9 +20,21 @@ exports.sendOTPEmail = async (email, name, otp) => {
     const html = getEmailOtpTemplate({ name, otp });
 
     return transporter.sendMail({
-        from: `"My App" <${process.env.SMTP_USER}>`,
+        from: `"All Sports Khelo" <${process.env.SMTP_USER}>`,
         to: email,
         subject: "Email OTP verification",
-        html,
+        html,   
     });
 };
+
+exports.sendForgotPasswordEmail = async (email, name, reset_link) => {
+    
+    const html = setForgotPasswordTemplate({ name, reset_link });
+
+    return transporter.sendMail({
+        from:`"All Sports Khelo" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: "Reset your password",
+        html,
+    })
+}

@@ -14,3 +14,17 @@ exports.getEmailOtpTemplate = ({ name, otp }) => {
 
     return html;
 }
+
+exports.setForgotPasswordTemplate = ({name, reset_link}) =>{
+    const filePath = path.join(
+        process.cwd(),
+        "template",
+        "forgotPassword.html"
+    );
+    let html = fs.readFileSync(filePath, 'utf-8');
+
+    html = html.replace('{{name}}', name || "User");
+    html = html.replace('{{reset_link}}', reset_link);
+
+    return html;
+}
