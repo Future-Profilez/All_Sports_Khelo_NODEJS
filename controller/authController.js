@@ -38,9 +38,9 @@ exports.register = async (req, res) => {
 
 exports.sendOtp = async (req, res) => {
     try {
-        const { userId, email } = req.body;
+        const { email } = req.body;
 
-        const user = await prisma.ask_users.findUnique({ where: { id: Number(userId) } });
+        const user = await prisma.ask_users.findUnique({ where: { email } });
         if (!user) {
             return res.status(200).json({ status: false, message: "User not found." })
         }
@@ -52,7 +52,7 @@ exports.sendOtp = async (req, res) => {
         const otp = generateOTP();
 
         await prisma.ask_users.update({
-            where: { id: Number(userId) },
+            where: { email },
             data: {
                 otp,
                 otp_expires_at: otpExpiry(),
@@ -68,36 +68,44 @@ exports.sendOtp = async (req, res) => {
 }
 
 exports.verifyOtp = async (req, res) => {
-    try {
-        const { email, otp } = req.body;
-        const user = await prisma.ask_users.findUnique({ where: { email } });
-        if (!user) {
-            return res.status(200).json({ status: false, message: "User not found" })
-        }
-        if (!user.otp) {
-            return res.status(200).json({ status: false, message: "Otp not generated." })
-        }
-        if (user.otp !== otp) {
-            return res.status(200).json({ status: false, message: "Invalid otp" })
-        }
-        if (user.otp_expires_at < new Date()) {
-            return res.status(200).json({ status: false, message: "Otp expired" })
-        }
+  try {
+    const { email, otp } = req.body;
 
-        await prisma.ask_users.update({
-            where: { email },
-            data: {
-                otp_verified: true,
-                otp: null,
-                otp_expires_at: null
-            },
-        });
-        return res.status(200).json({ status: true, message: "Otp verification successfully." })
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({ status: false, message: "Internal server error", error })
+    const user = await prisma.ask_users.findUnique({ where: { email } });
+
+    if (!user) {
+      return res.json({ status: false, message: "User not found" });
     }
-}
+
+    if (!user.otp) {
+      return res.json({ status: false, message: "Otp not generated" });
+    }
+
+    if (user.otp_expires_at < new Date()) {
+      return res.json({ status: false, message: "Otp expired" });
+    }
+
+    if (user.otp !== otp) {
+      return res.json({ status: false, message: "Invalid OTP" });
+    }
+
+    await prisma.ask_users.update({
+      where: { email },
+      data: {
+        otp_verified: true,
+        otp: null,
+        otp_expires_at: null
+      }
+    });
+
+    return res.json({ status: true, message: "OTP verified successfully" });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: false, message: "Internal server error" });
+  }
+};
+
 // exports.checkIsloggedIn = async (req, res) => {
 //     try {
 //         if (req?.user) {
