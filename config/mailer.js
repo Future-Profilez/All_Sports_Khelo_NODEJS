@@ -18,13 +18,13 @@ transporter.verify()
 exports.sendOTPEmail = async (email, name, otp) => {
 
     const html = getEmailOtpTemplate({ name, otp });
-
-    return transporter.sendMail({
+    const sent = transporter.sendMail({
         from: `"All Sports Khelo" <${process.env.SMTP_USER}>`,
         to: email,
         subject: "Email OTP verification",
         html,   
     });
+    return await sent;
 };
 
 exports.sendForgotPasswordEmail = async (email, name, reset_link) => {
