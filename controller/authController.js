@@ -191,7 +191,7 @@ exports.fetchUser = async (req, res) => {
 exports.updateProfile = async (req, res) => {
     try {
         const id = Number(req.params.id);
-        const { name, phone, email, oldpassword, newpassword } = req.body;
+        const { name, phone, email,country_code, oldpassword, newpassword } = req.body;
         const user = await prisma.ask_users.findUnique({ where: { id: id } });
         if (!user) {
             return res.status(200).json({ status: false, message: "User not found." });
@@ -211,6 +211,7 @@ exports.updateProfile = async (req, res) => {
             name,
             email,
             phone,
+            country_code,
             updated_at: new Date()
         };
 
