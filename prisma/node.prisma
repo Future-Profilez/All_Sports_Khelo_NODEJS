@@ -11,9 +11,9 @@ model ask_tournaments {
   startdate                     DateTime? 
   enddate                       DateTime? 
   address                       String?   @db.VarChar(255)
-  country_id                    BigInt    @unique @db.UnsignedBigInt
-  state_id                      BigInt    @unique @db.UnsignedBigInt 
-  city_id                       BigInt    @unique @db.UnsignedBigInt
+  country_id                    BigInt    @db.UnsignedBigInt
+  state_id                      BigInt    @db.UnsignedBigInt 
+  city_id                       BigInt?   @db.UnsignedBigInt
   bannerimage                   String?   @db.VarChar(255)
   thumbnail                     String?   @db.VarChar(255)
   url                           String?   @db.VarChar(255)
@@ -29,7 +29,7 @@ model ask_tournaments {
 
   country countries @relation(fields: [country_id], references: [id])
   state   states    @relation(fields: [state_id], references: [id])
-  city    cities    @relation(fields: [city_id], references: [id])
+  city    cities?   @relation(fields: [city_id], references: [id])
   user    ask_users @relation(fields: [user_id], references: [id])
 
 }

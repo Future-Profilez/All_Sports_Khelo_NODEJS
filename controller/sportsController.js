@@ -22,7 +22,6 @@ exports.send_sport_enquiry = async (req, res) => {
             sport_id,
             description
         } = req.body;
-        console.log("req.body ",req.body)
         if (!name || !sport_id || !phone) {
             return res.status(200).json({
                 status: false,
