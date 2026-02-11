@@ -31,7 +31,6 @@ async function checkDatabaseConnection() {
 }
 
 checkDatabaseConnection();
-
 app.use('/api/tournament', tournamentRoutes)
 app.use('/api', sportsRoutes)
 app.use('/api/academies',academyRoutes)
@@ -39,8 +38,9 @@ app.use('/api',addressRoutes);
 app.use('/api', authRoutes)
 app.use("/preview", previewRoutes);
 
+const date = new Date();
 app.get('/', (req, res) => {
-    res.json({ message: "Backend is running..." })
+    res.json({ message: "Backend is running... via ... ci cd pipeline", date: date.toISOString() });
 })
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
