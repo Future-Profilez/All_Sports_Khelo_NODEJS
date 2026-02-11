@@ -612,6 +612,10 @@ exports.editTournament = async (req, res) => {
         message: "Description cannot exceed 500 characters",
       });
     }
+
+
+
+    
     const updatedSlug = name ? toSlug(name) : existingtour.slug_name;
     const updatedTour = await prisma.ask_tournaments.update({
       where: {
