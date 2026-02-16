@@ -362,6 +362,7 @@ model ask_tournaments {
   organizer_name                String?   @db.VarChar(255)
   participation_limit           Int?      @db.Int
   publish_status                Int       @default(1) @db.TinyInt
+  bulk_upload                   Int       @default(0) @db.TinyInt
   created_at                    DateTime? @db.Timestamp(0)
   updated_at                    DateTime? @db.Timestamp(0)
   deleted_at                    DateTime? @db.Timestamp(0)
