@@ -8,3 +8,4 @@ npx prisma db execute --file prisma/sql/202601280350_add_ask_sports_enquiries.sq
 npx prisma db execute --file prisma/sql/202601280700_update_ask_tournament_table_state_id_column_int_to_bigint.sql
 
 
+npx prisma migrate diff ^ --from-config-datasource ^ --to-schema prisma ^ --script -o prisma/sql/202602161100_add_new_col_bulk_upload_in_ask_tournaments.sql
