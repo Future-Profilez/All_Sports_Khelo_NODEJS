@@ -16,7 +16,7 @@ const { protect } = require("../middleware/authMiddleware");
 
 
 // ASK ROUTES
-router.post('/create',
+router.post('/create/:bulk',
   protect,
   upload.fields([
     { name: "bannerimage", maxCount: 1 },

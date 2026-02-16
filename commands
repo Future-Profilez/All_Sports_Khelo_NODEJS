@@ -3,22 +3,17 @@ Add Schema into node.prisma file
 check is this modal already exists or not
 npx prisma generate
 
+// MERGE SCHEMAS
+node .\scripts\merge-schema.js
 
 // GENERATE MIGRATION
-npx prisma migrate diff ^ --from-config-datasource ^ --to-schema prisma ^ --script -o prisma/sql/20260118_add_ask_notes.sql
+npx prisma migrate diff --from-schema-datasource prisma/schema.prisma --to-schema-datamodel prisma/schema.prisma --script -o prisma/sql/20260118_add_ask_notes.sql
 
 // remove all content except the actual qury
-
 npx prisma db execute --file prisma/sql/20260118_add_ask_notes.sql
 
 npx prisma generate
 npx prisma db pull --config prisma-introspect.config.ts --force
-
-
-
-
-
-
 
 
 

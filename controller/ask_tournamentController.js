@@ -13,6 +13,23 @@ async function getCityData(c_id) {
 
 exports.add_ask_tournament = async (req, res) => {
   try {
+    //**************BULK UPLOAD********************** */
+    const bulkUpload = Number(req?.params?.bulk);
+    if(bulkUpload){
+      try {
+        const filepath = req.file.path;
+        const workbook = xlsx.readFile(filepath);
+        const sheetName = workbook.sheetNames[0];
+        
+      } catch (error) {
+        console.error("ERROR ",error);
+        return res.status(500).json({
+          status:false,
+          message:"Something went wrong",
+          error:error
+        })
+      }
+    }
     const {
       sport_id,
       user_id,
@@ -612,6 +629,10 @@ exports.editTournament = async (req, res) => {
         message: "Description cannot exceed 500 characters",
       });
     }
+
+
+
+    
     const updatedSlug = name ? toSlug(name) : existingtour.slug_name;
     const updatedTour = await prisma.ask_tournaments.update({
       where: {
