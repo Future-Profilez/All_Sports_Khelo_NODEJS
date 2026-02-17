@@ -16,14 +16,23 @@ const { protect } = require("../middleware/authMiddleware");
 
 
 // ASK ROUTES
-router.post('/create/:bulk',
+router.post('/create',
   protect,
   upload.fields([
     { name: "bannerimage", maxCount: 1 },
     { name: "thumbnail", maxCount: 1 },
     { name: "brochure", maxCount: 1 },
-  ]), protect,
+  ]), 
   add_ask_tournament);
+
+router.post(
+  "/create/:bulk",
+  // upload.single("file"), 
+  upload.fields([
+    { name: "excel", maxCount: 1 },
+  ]), 
+  add_ask_tournament
+);
 
 // router.get('/ask/tournaments/:type',list_ask_tournaments);
 router.get('/ask/mytournaments/:type',protect, list_ask_tournaments);

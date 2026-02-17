@@ -1,32 +1,151 @@
 const convertBigIntToString = require("../helper/convertBigInt");
 const prisma = require("../lib/prisma");
 const { toSlug } = require("../utils/toSlug");
+const XLSX = require("xlsx");
+const fs = require("fs");
 
 
 async function getCityData(c_id) {
-      if (!c_id) return null;
-      const city = await prisma.cities.findFirst({
-        where: { id: c_id },
-      });
-      return city ? convertBigIntToString(city) : null;
+  if (!c_id) return null;
+  const city = await prisma.cities.findFirst({
+    where: { id: c_id },
+  });
+  return city ? convertBigIntToString(city) : null;
+}
+
+async function readExcelFile(excelFile) {
+  console.log("excel file ",excelFile);
+  if (!excelFile) {
+    return res.status(200).json({
+      status: false,
+      message: "Excel/csv file is required"
+    })
+  }
+  const filepath = excelFile.path;
+  console.log("filepath ",filepath);
+  const workbook = XLSX.readFile(filepath);   //read the excel file
+  const sheetName = workbook.SheetNames[0];   //find the first sheet
+  const sheet = workbook.Sheets[sheetName];   //extract first sheet content
+
+  const rows = XLSX.utils.sheet_to_json(sheet);   //converts excel to json
+  console.log("Json data : ",rows);
+  return rows;
 }
 
 exports.add_ask_tournament = async (req, res) => {
   try {
     //**************BULK UPLOAD********************** */
-    const bulkUpload = Number(req?.params?.bulk);
-    if(bulkUpload){
+    const isBulk = req.params?.bulk === "bulk";
+    console.log("is bulk ",isBulk);
+    if (isBulk) {
       try {
-        const filepath = req.file.path;
-        const workbook = xlsx.readFile(filepath);
-        const sheetName = workbook.sheetNames[0];
-        
-      } catch (error) {
-        console.error("ERROR ",error);
+        console.log("excelfile ",req.files.excel[0])
+        const rows = await readExcelFile(req.files.excel[0] || null)
+        console.log("rows ",rows);
+
+        let success = 0;
+        let failedRows = [];
+        if(rows){
+          for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            //****Inline Validations**** */
+            try {
+              if (!row.sport || !row.name || !row.country || !row.state) {
+                throw new Error("Required fields missing...");
+              }
+              const startDateObj = new Date(row.startdate);
+              const endDateObj = new Date(row.enddate);
+  
+              // if (endDateObj < startDateObj) {
+              //   throw new Error("End date must be before start date");
+              // }
+  
+              const sport = await prisma.sports.findFirst({
+                where: { name: row.sport },
+              });
+              if (!sport) throw new Error("Sport not found");
+  
+              const country = await prisma.countries.findFirst({
+                where: { name: row.country },
+              });
+              if (!country) throw new Error("Country not found");
+  
+              const state = await prisma.states.findFirst({
+                where: {
+                  name: row.state,
+                  country_id: country.id,
+                },
+              });
+              if (!state) throw new Error("State not found");
+  
+              const city = await prisma.cities.findFirst({
+                where: {
+                  name: row.city,
+                  state_id: state.id,
+                },
+              });
+              if (!city) throw new Error("City not found");
+  
+              const slug_name = toSlug(row.name);
+  
+              const existing = await prisma.ask_tournaments.findFirst({
+                where: { slug_name },
+              });
+  
+              if (existing) {
+                throw new Error("Tournament name already exists");
+              }
+              fs.unlinkSync(filepath);    //delete the file from server
+              await prisma.ask_tournaments.create({
+                data: {
+                  sport_id: sport.id,
+                  user_id: Number(req.user.id),
+                  name: row.name,
+                  slug_name,
+                  description: row.description || null,
+                  content: row.description || null,
+                  tournament_type: row.tournament_type || null,
+                  startdate: startDateObj,
+                  enddate: endDateObj,
+                  address: row.address || null,
+                  country_id: country.id,
+                  state_id: state.id,
+                  city_id: city.id,
+                  url: row.url || null,
+                  prize: row.prize || null,
+                  fees: row.fees ? Number(row.fees) : null,
+                  publish_status: 1,
+                  bannerimage: "/uploads/tournament-default-banner/1.png",
+                  thumbnail: "/uploads/tournament-default-thumb/1.png",
+                },
+              });
+              success++;
+            }
+            catch (error) {
+              console.log("error ",error);
+              failedRows.push({
+                row: i + 2,
+                name: row.name || 'N/A',
+                error: error,
+              })
+            }
+          }
+          return res.status(200).json({
+            status: true,
+            message: "Tournaments added via bulk upload",
+            total: rows.length,
+            success,
+            failed: failedRows.length,
+            failedRows,
+          })
+        }
+      }
+      catch (error) {
+        console.error("ERROR ", error);
         return res.status(500).json({
-          status:false,
-          message:"Something went wrong",
-          error:error
+          status: false,
+          message: "Something went wrong",
+          error: error
         })
       }
     }
@@ -135,7 +254,7 @@ exports.add_ask_tournament = async (req, res) => {
     //   : null;
     const tournament = await prisma.ask_tournaments.create({
       data: {
-        sport_id : sport_id !== undefined ? sport_id : null,
+        sport_id: sport_id !== undefined ? sport_id : null,
         user_id: updateduser_id,
         name,
         slug_name,
@@ -164,14 +283,17 @@ exports.add_ask_tournament = async (req, res) => {
       message: "Tournament added successfully",
       content: convertBigIntToString(tournament),
     });
-  } catch (error) {
-    console.error("ERROR:", error);
+  }
+  catch (error) {
+    console.error("ERROR ", error);
     return res.status(500).json({
       status: false,
       message: "Something went wrong",
-    });
+      error: error
+    })
   }
-};
+}
+
 
 // exports.list_ask_tournaments = async (req, res) => {
 //   try {
@@ -361,7 +483,7 @@ exports.list_ask_tournaments = async (req, res) => {
     }
 
 
-    
+
     // Logged in user tournaments filter
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
@@ -632,7 +754,7 @@ exports.editTournament = async (req, res) => {
 
 
 
-    
+
     const updatedSlug = name ? toSlug(name) : existingtour.slug_name;
     const updatedTour = await prisma.ask_tournaments.update({
       where: {
