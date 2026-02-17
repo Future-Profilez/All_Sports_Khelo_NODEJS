@@ -27,6 +27,7 @@ router.post('/create',
 
 router.post(
   "/create/:bulk",
+  protect,
   // upload.single("file"), 
   upload.fields([
     { name: "excel", maxCount: 1 },

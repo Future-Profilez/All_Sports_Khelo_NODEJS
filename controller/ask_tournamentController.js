@@ -1,6 +1,7 @@
 const convertBigIntToString = require("../helper/convertBigInt");
 const prisma = require("../lib/prisma");
 const { toSlug } = require("../utils/toSlug");
+const { sports } = require("../utils/sports.json");
 const XLSX = require("xlsx");
 const fs = require("fs");
 
@@ -14,7 +15,7 @@ async function getCityData(c_id) {
 }
 
 async function readExcelFile(excelFile) {
-  console.log("excel file ",excelFile);
+  // console.log("excel file ",excelFile);
   if (!excelFile) {
     return res.status(200).json({
       status: false,
@@ -24,10 +25,13 @@ async function readExcelFile(excelFile) {
   const filepath = excelFile.path;
   console.log("filepath ",filepath);
   const workbook = XLSX.readFile(filepath);   //read the excel file
-  const sheetName = workbook.SheetNames[0];   //find the first sheet
+  // console.log("workbook ",workbook);
+  const sheetName = workbook.SheetNames[0];
+  // console.log("sheetname",sheetName)   //find the first sheet
   const sheet = workbook.Sheets[sheetName];   //extract first sheet content
-
+  // console.log("sheet ",sheet);
   const rows = XLSX.utils.sheet_to_json(sheet);   //converts excel to json
+  fs.unlinkSync(filepath);    //delete the file from server
   console.log("Json data : ",rows);
   return rows;
 }
@@ -50,8 +54,20 @@ exports.add_ask_tournament = async (req, res) => {
             const row = rows[i];
             //****Inline Validations**** */
             try {
-              if (!row.sport || !row.name || !row.country || !row.state) {
-                throw new Error("Required fields missing...");
+              if (!row.sport) {
+                throw new Error("Sport fields missing...");
+              }
+              if(!row.name){
+                throw new Error("tournament name missing");
+              }
+              if(!row.country_name){
+                throw new Error("Country missing");
+              }
+              if(!row.state_name){
+                throw new Error("State missing");
+              }
+              if(!row.city_name){
+                throw new Error("city missing");
               }
               const startDateObj = new Date(row.startdate);
               const endDateObj = new Date(row.enddate);
@@ -60,19 +76,20 @@ exports.add_ask_tournament = async (req, res) => {
               //   throw new Error("End date must be before start date");
               // }
   
-              const sport = await prisma.sports.findFirst({
-                where: { name: row.sport },
-              });
-              if (!sport) throw new Error("Sport not found");
+              // const sport = await prisma.sports.findFirst({
+              //   where: { name: row.sport },
+              // });
+              // if (!sport) throw new Error("Sport not found");
   
               const country = await prisma.countries.findFirst({
-                where: { name: row.country },
+                where: { name: row.country_name },
               });
+              console.log("country ",country);
               if (!country) throw new Error("Country not found");
   
               const state = await prisma.states.findFirst({
                 where: {
-                  name: row.state,
+                  name: row.state_name,
                   country_id: country.id,
                 },
               });
@@ -80,11 +97,11 @@ exports.add_ask_tournament = async (req, res) => {
   
               const city = await prisma.cities.findFirst({
                 where: {
-                  name: row.city,
+                  name: row.city_name,
                   state_id: state.id,
                 },
               });
-              if (!city) throw new Error("City not found");
+              // if (!city) throw new Error("City not found");
   
               const slug_name = toSlug(row.name);
   
@@ -95,22 +112,23 @@ exports.add_ask_tournament = async (req, res) => {
               if (existing) {
                 throw new Error("Tournament name already exists");
               }
-              fs.unlinkSync(filepath);    //delete the file from server
+              
               await prisma.ask_tournaments.create({
                 data: {
-                  sport_id: sport.id,
-                  user_id: Number(req.user.id),
+                  sport_id: row.sport.id,
+                  // sport_id: row.sport,
+                  user_id: Number(req?.user?.id),
                   name: row.name,
                   slug_name,
                   description: row.description || null,
                   content: row.description || null,
                   tournament_type: row.tournament_type || null,
-                  startdate: startDateObj,
-                  enddate: endDateObj,
+                  startdate: row.startdate,
+                  enddate: row.enddate,
                   address: row.address || null,
-                  country_id: country.id,
-                  state_id: state.id,
-                  city_id: city.id,
+                  country_id: country?.id,
+                  state_id: state?.id,
+                  city_id: city?.id,
                   url: row.url || null,
                   prize: row.prize || null,
                   fees: row.fees ? Number(row.fees) : null,
@@ -126,7 +144,7 @@ exports.add_ask_tournament = async (req, res) => {
               failedRows.push({
                 row: i + 2,
                 name: row.name || 'N/A',
-                error: error,
+                error: error.message,
               })
             }
           }
