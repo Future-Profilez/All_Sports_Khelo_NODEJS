@@ -106,10 +106,11 @@ exports.add_ask_tournament = async (req, res) => {
               });
 
               if (existing) {
-                return res.status(200).json({
-                  status: false,
-                  message: "Tournament name already exists",
-                })
+                // return res.status(200).json({
+                //   status: false,
+                //   message: "Tournament name already exists",
+                // })
+                throw new Error("Tournament Name already existe");
               }
               const updateduser_id = Number(req?.user?.id);
 
