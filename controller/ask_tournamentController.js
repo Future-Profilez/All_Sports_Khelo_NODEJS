@@ -40,6 +40,15 @@ async function readExcelFile(excelFile) {
   return rows;
 }
 
+const getSportID = async (name) => { 
+  const item = sports.filter((s, i)=>s?.title == name);
+  const sport = item && item?.length ? item[0] : '';
+  if(sport){
+    // return sport?.id ||'019ab531-da3f-7066-a647-bce5abe65642'
+    return sport?.id ||'0000000000000000000000000000000'
+  }  
+}
+
 exports.add_ask_tournament = async (req, res) => {
   try {
     const isBulk = req.params?.bulk === "bulk";
@@ -88,14 +97,12 @@ exports.add_ask_tournament = async (req, res) => {
               if (!country) throw new Error("Country not found");
 
               const excelSport = String(row.sport).toLowerCase().trim();
-              console.log("excel sport ", excelSport);
               for (let j = 0; j < sports && sports.length; j++) {
                 if (
                   sports[j].title &&
                   sports[j].title.toLowerCase().trim() === excelSport.toLowerCase().trim()
                 ) {
                   sport_id = sports[j].id;
-                  console.log("sport id ", sport_id);
                   break;
                 }
               }
@@ -106,16 +113,17 @@ exports.add_ask_tournament = async (req, res) => {
               });
 
               if (existing) {
-                return res.status(200).json({
-                  status: false,
-                  message: "Tournament name already exists",
-                })
+                // return res.status(200).json({
+                //   status: false,
+                //   message: "Tournament name already exists",
+                // })
+                throw new Error("Tournament Name already exists");
               }
               const updateduser_id = Number(req?.user?.id);
 
+              console.log("getSportID(row.sport), -----------",  await getSportID(row.sport))
               const data = await prisma.ask_tournaments.create({
                 data: {
-                  // user_id: Number(req?.user?.id),
                   user_id: updateduser_id,
                   name: row.name,
                   slug_name,
@@ -135,7 +143,7 @@ exports.add_ask_tournament = async (req, res) => {
                   bannerimage: "/uploads/tournament-default-banner/1.png",
                   thumbnail: "/uploads/tournament-default-thumb/1.png",
                   bulk_upload: 1,
-                  sport_id: '019ab531-da3f-7066-a647-bce5abe65642',
+                  sport_id: await getSportID(row.sport),
                   organizer_name: `${row.organization_name}` || null
                 }
               });
