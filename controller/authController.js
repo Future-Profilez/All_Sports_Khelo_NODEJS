@@ -222,7 +222,7 @@ exports.updateProfile = async (req, res) => {
         if (oldpassword && newpassword) {
             const isMatch = await bcrypt.compare(oldpassword, user.password);
             if (!isMatch) {
-                return req.status(400).json({ status: false, message: "Old password is incorrect." });
+                return res.status(400).json({ status: false, message: "Old password is incorrect." });
             }
 
             updateData.password = await bcrypt.hash(newpassword, 10);
