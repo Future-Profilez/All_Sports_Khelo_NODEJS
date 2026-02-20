@@ -30,36 +30,47 @@ async function readExcelFile(excelFile) {
   // console.log("sheetname",sheetName)   //find the first sheet
   const sheet = workbook.Sheets[sheetName];   //extract first sheet content
   // console.log("sheet ",sheet);
-  const rows = XLSX.utils.sheet_to_json(sheet);   //converts excel to json
+  // const rows = XLSX.utils.sheet_to_json(sheet);   //converts excel to json
+  const rows = XLSX.utils.sheet_to_json(sheet, {
+    raw: false,
+    dateNF: "yyyy-mm-dd"
+  });
   fs.unlinkSync(filepath);    //delete the file from server
   return rows;
 }
 
 exports.add_ask_tournament = async (req, res) => {
   try {
-    //**************BULK UPLOAD********************** */
     const isBulk = req.params?.bulk === "bulk";
     if (isBulk) {
       try {
         const rows = await readExcelFile(req.files.excel[0] || null)
-
         let success = 0;
-        let failedRows = [];
+        let failedRows = []; 
         if (rows) {
           for (let i = 0; i < rows.length; i++) {
-            const row = rows[i];
-            //****Inline Validations**** */
+            const raw = rows[i];
+            let row = {...raw}
+            console.log("row", row)
             try {
               if (!row.name) {
                 throw new Error("tournament name missing");
               }
-              const startDateObj = new Date(row.startdate);
+
+              const startDateObj = new Date(row.startdate)
               const endDateObj = new Date(row.enddate);
+              console.log("row start date ",row.startdate);
+              console.log("start Date object ",startDateObj);
 
-              // if (endDateObj < startDateObj) {
-              //   throw new Error("End date must be before start date");
-              // }
-
+              if (!startDateObj || isNaN(startDateObj.getTime())) {
+                throw new Error("Invalid start date format (Use YYYY-MM-DD)");
+              }
+              if (!endDateObj || isNaN(endDateObj.getTime())) {
+                throw new Error("Invalid end date format (Use YYYY-MM-DD)");
+              }
+              if (endDateObj < startDateObj) {
+                throw new Error("End date must be after start date");
+              }
               if (!row.sport) {
                 throw new Error("Sport field missing");
               }
@@ -78,26 +89,21 @@ exports.add_ask_tournament = async (req, res) => {
                   break;
                 }
               }
-
-              // if (!sport_id) {
-              //   throw new Error(`Sport "${row.sport}" not found`);
-              // }
-
               const slug_name = toSlug(row.name);
 
               const existing = await prisma.ask_tournaments.findFirst({
                 where: { slug_name },
               });
               if (existing) {
-                  return res.status(200).json({
-                   status: false,
-                   message: "Tournament name already exists",
-                 })
+                return res.status(200).json({
+                  status: false,
+                  message: "Tournament name already exists",
+                })
               }
               const updateduser_id = Number(req?.user?.id);
-              
+
               const data = await prisma.ask_tournaments.create({
-                  data : {
+                data: {
                   // user_id: Number(req?.user?.id),
                   user_id: updateduser_id,
                   name: row.name,
@@ -105,8 +111,8 @@ exports.add_ask_tournament = async (req, res) => {
                   description: row.description || null,
                   // content,
                   tournament_type: row.tournament_type || null,
-                  startdate: row.startdate,
-                  enddate: row.enddate,
+                  startdate: startDateObj,
+                  enddate: endDateObj,
                   address: row.address || null,
                   country_id: null,
                   state_id: null,
@@ -118,30 +124,30 @@ exports.add_ask_tournament = async (req, res) => {
                   bannerimage: "/uploads/tournament-default-banner/1.png",
                   thumbnail: "/uploads/tournament-default-thumb/1.png",
                   bulk_upload: 1,
-                  sport_id:  '019ab531-da3f-7066-a647-bce5abe65642'
+                  sport_id: '019ab531-da3f-7066-a647-bce5abe65642',
+                  organizer_name: `${row.organization_name}` || null
                 }
               });
               success++;
-
-               if(data){ 
-                 return res.status(200).json({
-                   status: true,
-                   message: "Tournaments added",
-                   total: rows.length,
-                   success,
-                   failed: failedRows.length,
-                   failedRows,
-                  })
-                } else { 
-                 return res.status(200).json({
-                   status: false,
-                   message: "Tournaments adding failed.",
-                   total: rows.length,
-                   success,
-                   failed: failedRows.length,
-                   failedRows,
-                 })
-               }
+              //  if(data){ 
+              //    return res.status(200).json({
+              //      status: true,
+              //      message: "Tournaments added",
+              //      total: rows.length,
+              //      success,
+              //      failed: failedRows.length,
+              //      failedRows,
+              //     })
+              //   } else { 
+              //    return res.status(200).json({
+              //      status: false,
+              //      message: "Tournaments adding failed.",
+              //      total: rows.length,
+              //      success,
+              //      failed: failedRows.length,
+              //      failedRows,
+              //    })
+              //  }
             }
             catch (error) {
               console.log("error ", error);
@@ -158,7 +164,7 @@ exports.add_ask_tournament = async (req, res) => {
             total: rows.length,
             success,
             failed: failedRows.length,
-            failedRows,
+            failedRows
           })
         }
       }
