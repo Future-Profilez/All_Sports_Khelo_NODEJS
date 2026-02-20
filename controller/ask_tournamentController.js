@@ -30,7 +30,11 @@ async function readExcelFile(excelFile) {
   // console.log("sheetname",sheetName)   //find the first sheet
   const sheet = workbook.Sheets[sheetName];   //extract first sheet content
   // console.log("sheet ",sheet);
-  const rows = XLSX.utils.sheet_to_json(sheet);   //converts excel to json
+  // const rows = XLSX.utils.sheet_to_json(sheet);   //converts excel to json
+  const rows = XLSX.utils.sheet_to_json(sheet, {
+    raw: false,
+    dateNF: "yyyy-mm-dd"
+  });
   fs.unlinkSync(filepath);    //delete the file from server
   console.log("Json data : ", rows);
   return rows;
@@ -38,21 +42,19 @@ async function readExcelFile(excelFile) {
 
 exports.add_ask_tournament = async (req, res) => {
   try {
-    //**************BULK UPLOAD********************** */
     const isBulk = req.params?.bulk === "bulk";
     console.log("is bulk ", isBulk);
     if (isBulk) {
       try {
         console.log("excelfile ", req.files.excel[0])
         const rows = await readExcelFile(req.files.excel[0] || null)
-        console.log("rows ", rows);
-
         let success = 0;
-        let failedRows = [];
+        let failedRows = []; 
         if (rows) {
           for (let i = 0; i < rows.length; i++) {
-            const row = rows[i];
-            //****Inline Validations**** */
+            const raw = rows[i];
+            let row = {...raw}
+            console.log("row", row)
             try {
               if (!row.sport) {
                 throw new Error("Sport fields missing...");
@@ -60,26 +62,24 @@ exports.add_ask_tournament = async (req, res) => {
               if (!row.name) {
                 throw new Error("tournament name missing");
               }
-              if (!row.country_name) {
-                throw new Error("Country missing");
-              }
-              if (!row.state_name) {
-                throw new Error("State missing");
-              }
-              if (!row.city_name) {
-                throw new Error("city missing");
-              }
-              const startDateObj = new Date(row.startdate);
+
+              const startDateObj = new Date(row.startdate)
               const endDateObj = new Date(row.enddate);
+              console.log("row start date ",row.startdate);
+              console.log("start Date object ",startDateObj);
 
-              // if (endDateObj < startDateObj) {
-              //   throw new Error("End date must be before start date");
-              // }
-
-              // const sport = await prisma.sports.findFirst({
-              //   where: { name: row.sport },
-              // });
-              // if (!sport) throw new Error("Sport not found");
+              if (!startDateObj || isNaN(startDateObj.getTime())) {
+                throw new Error("Invalid start date format (Use YYYY-MM-DD)");
+              }
+              if (!endDateObj || isNaN(endDateObj.getTime())) {
+                throw new Error("Invalid end date format (Use YYYY-MM-DD)");
+              }
+              if (endDateObj < startDateObj) {
+                throw new Error("End date must be after start date");
+              }
+              if (!row.sport) {
+                throw new Error("Sport field missing");
+              }
 
               const country = await prisma.countries.findFirst({
                 where: { name: row.country_name },
@@ -87,22 +87,18 @@ exports.add_ask_tournament = async (req, res) => {
               console.log("country ", country);
               if (!country) throw new Error("Country not found");
 
-              const state = await prisma.states.findFirst({
-                where: {
-                  name: row.state_name,
-                  country_id: country.id,
-                },
-              });
-              if (!state) throw new Error("State not found");
-
-              const city = await prisma.cities.findFirst({
-                where: {
-                  name: row.city_name,
-                  state_id: state.id,
-                },
-              });
-              // if (!city) throw new Error("City not found");
-
+              const excelSport = String(row.sport).toLowerCase().trim();
+              console.log("excel sport ", excelSport);
+              for (let j = 0; j < sports && sports.length; j++) {
+                if (
+                  sports[j].title &&
+                  sports[j].title.toLowerCase().trim() === excelSport.toLowerCase().trim()
+                ) {
+                  sport_id = sports[j].id;
+                  console.log("sport id ", sport_id);
+                  break;
+                }
+              }
               const slug_name = toSlug(row.name);
 
               const existing = await prisma.ask_tournaments.findFirst({
@@ -110,21 +106,24 @@ exports.add_ask_tournament = async (req, res) => {
               });
 
               if (existing) {
-                throw new Error("Tournament name already exists");
+                return res.status(200).json({
+                  status: false,
+                  message: "Tournament name already exists",
+                })
               }
+              const updateduser_id = Number(req?.user?.id);
 
-              await prisma.ask_tournaments.create({
+              const data = await prisma.ask_tournaments.create({
                 data: {
-                  sport_id: row.sport.id,
-                  // sport_id: row.sport,
-                  user_id: Number(req?.user?.id),
+                  // user_id: Number(req?.user?.id),
+                  user_id: updateduser_id,
                   name: row.name,
                   slug_name,
                   description: row.description || null,
                   content: row.description || null,
                   tournament_type: row.tournament_type || null,
-                  startdate: row.startdate,
-                  enddate: row.enddate,
+                  startdate: startDateObj,
+                  enddate: endDateObj,
                   address: row.address || null,
                   country_id: country?.id,
                   state_id: state?.id,
@@ -135,9 +134,31 @@ exports.add_ask_tournament = async (req, res) => {
                   publish_status: 1,
                   bannerimage: "/uploads/tournament-default-banner/1.png",
                   thumbnail: "/uploads/tournament-default-thumb/1.png",
-                },
+                  bulk_upload: 1,
+                  sport_id: '019ab531-da3f-7066-a647-bce5abe65642',
+                  organizer_name: `${row.organization_name}` || null
+                }
               });
               success++;
+              //  if(data){ 
+              //    return res.status(200).json({
+              //      status: true,
+              //      message: "Tournaments added",
+              //      total: rows.length,
+              //      success,
+              //      failed: failedRows.length,
+              //      failedRows,
+              //     })
+              //   } else { 
+              //    return res.status(200).json({
+              //      status: false,
+              //      message: "Tournaments adding failed.",
+              //      total: rows.length,
+              //      success,
+              //      failed: failedRows.length,
+              //      failedRows,
+              //    })
+              //  }
             }
             catch (error) {
               console.log("error ", error);
@@ -154,7 +175,7 @@ exports.add_ask_tournament = async (req, res) => {
             total: rows.length,
             success,
             failed: failedRows.length,
-            failedRows,
+            failedRows
           })
         }
       }
