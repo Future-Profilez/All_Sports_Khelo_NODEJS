@@ -1,7 +1,7 @@
 const convertBigIntToString = require("../helper/convertBigInt");
 const prisma = require("../lib/prisma");
 const { toSlug } = require("../utils/toSlug");
-const sports = require("../utils/sports.json");
+const  sports  = require("../utils/sports.json");
 const XLSX = require("xlsx");
 const fs = require("fs");
 
@@ -36,14 +36,18 @@ async function readExcelFile(excelFile) {
     dateNF: "yyyy-mm-dd"
   });
   fs.unlinkSync(filepath);    //delete the file from server
+  console.log("Json data : ", rows);
   return rows;
 }
 
 const getSportID = async (name) => { 
-  const item = sports.filter((s, i)=>s?.title == name);
+  console.log("============sports name ",name);
+  const item = sports?.filter((s, i)=>s?.title == name);
+  console.log("-------------item ",item);
   const sport = item && item?.length ? item[0] : '';
   if(sport){
     // return sport?.id ||'019ab531-da3f-7066-a647-bce5abe65642'
+    console.log("-----------sport id ",sport?.id);
     return sport?.id ||'0000000000000000000000000000000'
   }  
   else{
@@ -58,7 +62,7 @@ exports.add_ask_tournament = async (req, res) => {
       try {
         const rows = await readExcelFile(req.files.excel[0] || null)
         let success = 0;
-        let failedRows = []; 
+        let failedRows = [];
         if (rows) {
           for (let i = 0; i < rows.length; i++) {
             const raw = rows[i];
@@ -113,7 +117,8 @@ exports.add_ask_tournament = async (req, res) => {
               }
               const updateduser_id = Number(req?.user?.id);
 
-              console.log("getSportID(row.sport), -----------",  await getSportID(row.sport))
+              console.log("sport id from table ",row.sport);
+              console.log("getSportID(row.sport), -----------",  await getSportID(row.sport));
               const data = await prisma.ask_tournaments.create({
                 data: {
                   user_id: updateduser_id,
@@ -140,7 +145,7 @@ exports.add_ask_tournament = async (req, res) => {
                 }
               });
               success++;
-              //  if(data){ 
+              //  if(data){
               //    return res.status(200).json({
               //      status: true,
               //      message: "Tournaments added",
@@ -149,7 +154,7 @@ exports.add_ask_tournament = async (req, res) => {
               //      failed: failedRows.length,
               //      failedRows,
               //     })
-              //   } else { 
+              //   } else {
               //    return res.status(200).json({
               //      status: false,
               //      message: "Tournaments adding failed.",
@@ -332,6 +337,7 @@ exports.add_ask_tournament = async (req, res) => {
     })
   }
 }
+
 
 
 // exports.list_ask_tournaments = async (req, res) => {
