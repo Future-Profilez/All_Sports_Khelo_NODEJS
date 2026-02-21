@@ -2,9 +2,11 @@ npx prisma db execute --file prisma/sql/202601191157_create_ask_tournaments.sql
 npx prisma db execute --file prisma/sql/20260123501_add_ask_tournament_enquiry.sql
 npx prisma db execute --file prisma/sql/2026011044_add_new_column_organizer_name_in_tournaments_table.sql
 
-
 npx prisma db execute --file prisma/sql/202601280350_add_ask_sports_enquiries.sql
 
 npx prisma db execute --file prisma/sql/202601280700_update_ask_tournament_table_state_id_column_int_to_bigint.sql
+ 
+npx prisma db execute --file prisma/sql/202602161100_add_new_col_bulk_upload_in_ask_tournaments.sql
 
+npx prisma db execute --file prisma/sql/202602171515_add_null_value_to_ask_tournaments_in_country_city_and_state.sql
 

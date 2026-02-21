@@ -22,8 +22,18 @@ router.post('/create',
     { name: "bannerimage", maxCount: 1 },
     { name: "thumbnail", maxCount: 1 },
     { name: "brochure", maxCount: 1 },
-  ]), protect,
+  ]), 
   add_ask_tournament);
+
+router.post(
+  "/create/:bulk",
+  protect,
+  // upload.single("file"), 
+  upload.fields([
+    { name: "excel", maxCount: 1 },
+  ]), 
+  add_ask_tournament
+);
 
 // router.get('/ask/tournaments/:type',list_ask_tournaments);
 router.get('/ask/mytournaments/:type',protect, list_ask_tournaments);

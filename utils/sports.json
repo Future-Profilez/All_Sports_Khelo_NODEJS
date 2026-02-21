@@ -1,0 +1,161 @@
+[
+    {
+      "image": "/tennis.png",
+      "title": "Lawn Tennis",
+      "link": "/sport/tennis",
+      "id": "019a92fe-7ccf-7282-bccf-ba3ec4f780ce",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/tennis1.jpg",
+        "/tournament-default-banner/tennis2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/tennis1.webp"
+      ]
+    },
+    {
+      "image": "/tabletennis.png",
+      "title": "Table Tennis",
+      "link": "/sport/tabletennis",
+      "id": "019ab531-3b8f-730c-a2a0-4eeb9fca1568",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/tt1.webp",
+        "/tournament-default-banner/tt2.jpg"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/tt1.jpg"
+      ]
+    },
+    {
+      "image": "/pickleballimg.png",
+      "title": "Pickle Ball",
+      "link": "/sport/pickleball",
+      "id": "019ab531-da3f-7066-a647-bce5abe65642",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/pickleball1.webp",
+        "/tournament-default-banner/pickleball2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/4.png",
+        "/tournament-default-banner/pickleball1.webp"
+      ]
+    },
+    {
+      "image": "/paddleCard.png",
+      "title": "Paddle Ball",
+      "link": "/sport/paddleball",
+      "id": "019ab532",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/paddleball1.webp",
+        "/tournament-default-banner/paddleball2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/paddleball1.webp"
+      ]
+    },
+    {
+      "image": "/badmintonHome.png",
+      "title": "Badminton",
+      "link": "/sport/badminton",
+      "id": "019ab533",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/badminton1.webp",
+        "/tournament-default-banner/badminton2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/badminton1.png"
+      ]
+    },
+    {
+      "image": "/squash.png",
+      "title": "Squash",
+      "link": "/sport/squash",
+      "id": "019ab5334",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/squash1.webp",
+        "/tournament-default-banner/squash2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-banner/squash1.webp"
+      ]
+    },
+    {
+      "image": "/handballHome.png",
+      "title": "Handball",
+      "link": "/sport/handball",
+      "id": "019ab5335",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/handball1.webp",
+        "/tournament-default-banner/handball2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-banner/handball1.webp"
+      ]
+    },
+    {
+      "image": "/basket2.png",
+      "title": "BasketBall",
+      "link": "/sport/basketball",
+      "id": "019ab5336",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/basketball1.webp",
+        "/tournament-default-banner/basketball2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/basketball1.png"
+      ]
+    },
+    {
+      "image": "/chessCard.webp",
+      "title": "Chess",
+      "link": "/sport/chess",
+      "id": "019ab5337",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/chess1.webp",
+        "/tournament-default-banner/chess2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/chess1.png"
+      ]
+    },
+    {
+      "image": "/vollyball1.png",
+      "title": "VollyBall",
+      "link": "/sport/vollyball",
+      "id": "019ab5338",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/handball1.webp",
+        "/tournament-default-banner/handball2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-banner/handball1.webp"
+      ]
+    },
+    {
+      "image": "/padelCard.webp",
+      "title": "Padelball",
+      "link": "/sport/padelball",
+      "id": "019ab5339",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/paddleball1.webp",
+        "/tournament-default-banner/paddleball2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/paddleball1.webp"
+      ]
+    },
+    {
+      "image": "/softtennis.png",
+      "title": "Soft Tennis",
+      "link": "/sport/softtennis",
+      "id": "019ab531-da3f-7066-a647-bce5abe202601260350",
+      "PRESET_TOURNAMENT_BANNERS": [
+        "/tournament-default-banner/tennis1.jpg",
+        "/tournament-default-banner/tennis2.webp"
+      ],
+      "PRESET_TOURNAMENT_THUMBNAILS": [
+        "/tournament-default-thumb/tennis1.webp"
+      ]
+    }
+  ]
+
+ 
