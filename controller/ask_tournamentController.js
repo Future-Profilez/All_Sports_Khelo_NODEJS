@@ -50,6 +50,9 @@ const getSportID = async (name) => {
     console.log("-----------sport id ",sport?.id);
     return sport?.id ||'0000000000000000000000000000000'
   }  
+  else{
+     throw new Error("Sports entered is not in our database");
+  }
 }
 
 exports.add_ask_tournament = async (req, res) => {
@@ -76,10 +79,10 @@ exports.add_ask_tournament = async (req, res) => {
               console.log("start Date object ",startDateObj);
 
               if (!startDateObj || isNaN(startDateObj.getTime())) {
-                throw new Error("Invalid start date format (Use YYYY-MM-DD)");
+                throw new Error("Please enter a valid start date (Use YYYY-MM-DD)");
               }
               if (!endDateObj || isNaN(endDateObj.getTime())) {
-                throw new Error("Invalid end date format (Use YYYY-MM-DD)");
+                throw new Error("Please enter a valid end date (Use YYYY-MM-DD)");
               }
               if (endDateObj < startDateObj) {
                 throw new Error("End date must be after start date");
@@ -110,7 +113,7 @@ exports.add_ask_tournament = async (req, res) => {
                 //   status: false,
                 //   message: "Tournament name already exists",
                 // })
-                throw new Error("Tournament Name already exists");
+                throw new Error(`Tournament ${row.name} already exists in our database.`);
               }
               const updateduser_id = Number(req?.user?.id);
 
