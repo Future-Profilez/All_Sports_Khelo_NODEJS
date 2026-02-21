@@ -51,7 +51,7 @@ const getSportID = async (name) => {
     return sport?.id ||'0000000000000000000000000000000'
   }  
   else{
-     throw new Error("Sports entered is not in our database");
+     throw new Error(`Sports entered - ${name} is not in our database`);
   }
 }
 
