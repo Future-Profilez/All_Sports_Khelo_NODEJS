@@ -16,7 +16,7 @@ npx prisma generate
 npx prisma db pull --config prisma-introspect.config.ts --force
 
 
-
+npx prisma migrate diff --from-schema-datasource prisma/schema.prisma --to-schema-datamodel prisma/schema.prisma --script -o prisma/sql/202602211300_add_ask_notes.sql
 
 
 
