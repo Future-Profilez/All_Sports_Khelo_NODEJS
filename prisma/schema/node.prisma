@@ -1,11 +1,11 @@
 model ask_tournaments {
   id                            Int       @id @default(autoincrement())
   uuid                          String    @unique @default(uuid()) @db.Char(36)
-  sport_id                      String    @db.Char(36)
+  sport_id                      String    @db.VarChar(100)
   user_id                       Int   
   name                          String    @db.VarChar(255)
   slug_name                     String    @unique @db.VarChar(255)
-  description                   String?   @db.VarChar(255)
+  description                   String?   @db.LongText
   content                       String?   @db.LongText
   tournament_type               String?   @db.VarChar(255)
   startdate                     DateTime? 

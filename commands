@@ -21,7 +21,6 @@ npx prisma db pull --config prisma-introspect.config.ts --force
 
 
 
-
 AVOID THESE commands
 npx prisma migrate dev
 npx prisma migrate reset

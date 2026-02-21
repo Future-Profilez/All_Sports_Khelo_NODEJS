@@ -41,13 +41,10 @@ async function readExcelFile(excelFile) {
 }
 
 const getSportID = async (name) => { 
-  console.log("============sports name ",name);
   const item = sports?.filter((s, i)=>s?.title == name);
-  console.log("-------------item ",item);
   const sport = item && item?.length ? item[0] : '';
   if(sport){
     // return sport?.id ||'019ab531-da3f-7066-a647-bce5abe65642'
-    console.log("-----------sport id ",sport?.id);
     return sport?.id ||'0000000000000000000000000000000'
   }  
   else{
@@ -117,8 +114,6 @@ exports.add_ask_tournament = async (req, res) => {
               }
               const updateduser_id = Number(req?.user?.id);
 
-              console.log("sport id from table ",row.sport);
-              console.log("getSportID(row.sport), -----------",  await getSportID(row.sport));
               const data = await prisma.ask_tournaments.create({
                 data: {
                   user_id: updateduser_id,
@@ -145,25 +140,6 @@ exports.add_ask_tournament = async (req, res) => {
                 }
               });
               success++;
-              //  if(data){
-              //    return res.status(200).json({
-              //      status: true,
-              //      message: "Tournaments added",
-              //      total: rows.length,
-              //      success,
-              //      failed: failedRows.length,
-              //      failedRows,
-              //     })
-              //   } else {
-              //    return res.status(200).json({
-              //      status: false,
-              //      message: "Tournaments adding failed.",
-              //      total: rows.length,
-              //      success,
-              //      failed: failedRows.length,
-              //      failedRows,
-              //    })
-              //  }
             }
             catch (error) {
               console.log("error ", error);
