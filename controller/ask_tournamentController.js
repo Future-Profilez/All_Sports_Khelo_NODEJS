@@ -1,10 +1,10 @@
 const convertBigIntToString = require("../helper/convertBigInt");
 const prisma = require("../lib/prisma");
 const { toSlug } = require("../utils/toSlug");
-const  sports  = require("../utils/sports.json");
+const sports = require("../utils/sports.json");
 const XLSX = require("xlsx");
 const fs = require("fs");
-
+const { downloadImage } = require("../utils/downloadImage");
 
 async function getCityData(c_id) {
   if (!c_id) return null;
@@ -13,7 +13,6 @@ async function getCityData(c_id) {
   });
   return city ? convertBigIntToString(city) : null;
 }
-
 async function readExcelFile(excelFile) {
   // console.log("excel file ",excelFile);
   if (!excelFile) {
@@ -39,19 +38,17 @@ async function readExcelFile(excelFile) {
   console.log("Json data : ", rows);
   return rows;
 }
-
-const getSportID = async (name) => { 
-  const item = sports?.filter((s, i)=>s?.title == name);
+const getSportID = async (name) => {
+  const item = sports?.filter((s, i) => s?.title == name);
   const sport = item && item?.length ? item[0] : '';
-  if(sport){
+  if (sport) {
     // return sport?.id ||'019ab531-da3f-7066-a647-bce5abe65642'
-    return sport?.id ||'0000000000000000000000000000000'
-  }  
-  else{
-     throw new Error(`Sports entered - ${name} is not in our database`);
+    return sport?.id || '0000000000000000000000000000000'
+  }
+  else {
+    throw new Error(`Sports entered - ${name} is not in our database`);
   }
 }
-
 exports.add_ask_tournament = async (req, res) => {
   try {
     const isBulk = req.params?.bulk === "bulk";
@@ -63,7 +60,7 @@ exports.add_ask_tournament = async (req, res) => {
         if (rows) {
           for (let i = 0; i < rows.length; i++) {
             const raw = rows[i];
-            let row = {...raw}
+            let row = { ...raw }
             console.log("row", row)
             try {
               if (!row.name) {
@@ -72,8 +69,8 @@ exports.add_ask_tournament = async (req, res) => {
 
               const startDateObj = new Date(row.startdate)
               const endDateObj = new Date(row.enddate);
-              console.log("row start date ",row.startdate);
-              console.log("start Date object ",startDateObj);
+              console.log("row start date ", row.startdate);
+              console.log("start Date object ", startDateObj);
 
               if (!startDateObj || isNaN(startDateObj.getTime())) {
                 throw new Error("Please enter a valid start date (Use YYYY-MM-DD)");
@@ -87,9 +84,29 @@ exports.add_ask_tournament = async (req, res) => {
               if (!row.sport) {
                 throw new Error("Sport field missing");
               }
+              let bannerPath = "/uploads/tournament-default-banner/ASKhomeBanner.png";
+              let thumbPath = "/uploads/tournament-default-thumb/ASKhomeBanner.png";
 
+              if (row.bannerImage && row.bannerImage.startsWith("http")) {
+                const savedBanner = await downloadImage(
+                  row.bannerImage,
+                  "tournament-default-banner"
+                );
+                console.log("saved banner ",savedBanner);
+                console.log("row banner ",row.bannerImage)
+                if (savedBanner) bannerPath = savedBanner;
+              }
+
+              if (row.thumbnail && row.thumbnail.startsWith("http")) {
+                const savedThumb = await downloadImage(
+                  row.thumbnail,
+                  "tournament-default-thumb"
+                );
+                console.log("saved thumnnail ",savedThumb);
+                console.log("row thumbnail  ",row.thumbnail);
+                if (savedThumb) thumbPath = savedThumb;
+              }
               let sport_id = null;
-
               const excelSport = String(row.sport).toLowerCase().trim();
               for (let j = 0; j < sports && sports.length; j++) {
                 if (
@@ -132,8 +149,8 @@ exports.add_ask_tournament = async (req, res) => {
                   prize: `${row.prize}` || null,
                   fees: row.fees ? `${row.fees}` : null,
                   publish_status: 1,
-                  bannerimage: "/uploads/tournament-default-banner/1.png",
-                  thumbnail: "/uploads/tournament-default-thumb/1.png",
+                  bannerimage: bannerPath,
+                  thumbnail: thumbPath,
                   bulk_upload: 1,
                   sport_id: await getSportID(row.sport),
                   organizer_name: `${row.organization_name}` || null
