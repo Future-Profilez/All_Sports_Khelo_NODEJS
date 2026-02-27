@@ -932,7 +932,7 @@ exports.mark_Enquiry = async (req, res) => {
 exports.mark_AllEnquiry = async (req, res) => {
   try {
     const tournament_id = Number(req.params.id);
-    if (!id || isNaN(id)) {
+    if (!tournament_id || isNaN(tournament_id)) {
       return res.status(400).json({
         status: false,
         message: "Invalid tournament id",
