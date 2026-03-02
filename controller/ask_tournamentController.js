@@ -92,8 +92,8 @@ exports.add_ask_tournament = async (req, res) => {
                   row.bannerImage,
                   "tournament-default-banner"
                 );
-                console.log("saved banner ",savedBanner);
-                console.log("row banner ",row.bannerImage)
+                console.log("saved banner ", savedBanner);
+                console.log("row banner ", row.bannerImage)
                 if (savedBanner) bannerPath = savedBanner;
               }
 
@@ -102,8 +102,8 @@ exports.add_ask_tournament = async (req, res) => {
                   row.thumbnail,
                   "tournament-default-thumb"
                 );
-                console.log("saved thumnnail ",savedThumb);
-                console.log("row thumbnail  ",row.thumbnail);
+                console.log("saved thumnnail ", savedThumb);
+                console.log("row thumbnail  ", row.thumbnail);
                 if (savedThumb) thumbPath = savedThumb;
               }
               let sport_id = null;
@@ -519,9 +519,6 @@ exports.list_ask_tournaments = async (req, res) => {
         },
       ];
     }
-
-
-
     // Logged in user tournaments filter
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
@@ -530,7 +527,7 @@ exports.list_ask_tournaments = async (req, res) => {
       where,
       include,
       // orderBy: {startdate: "asc",}
-      orderBy: { startdate: "desc", }
+      orderBy: { created_at: "desc", }
     });
 
 
@@ -983,7 +980,6 @@ exports.delete_enquiries = async (req, res) => {
     return res.status(500).json({ message: "Something went wrong" }, error)
   }
 }
-
 
 //**********address**********
 exports.tournamentCountriesList = async (req, res) => {
