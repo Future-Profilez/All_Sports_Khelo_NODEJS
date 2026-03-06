@@ -256,7 +256,7 @@ exports.forgotPassword = async (req, res) => {
 
         const reset_link = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
         sendForgotPasswordEmail(user.email, user.name, reset_link)
-        return res.status(200).json({ status: true, message: "Reset password link sent to your email. Please Verify.", reset_link })
+        return res.status(200).json({ status: true, message: "Reset password link sent to your email. Please Verify." })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ status: false, message: "Internal server error", error })
