@@ -1,7 +1,9 @@
 Add Schema into node.prisma file
 
-check is this modal already exists or not
+// check is this modal already exists or not
 npx prisma generate
+
+
 
 // MERGE SCHEMAS
 node .\scripts\merge-schema.js
