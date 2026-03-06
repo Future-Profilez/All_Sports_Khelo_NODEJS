@@ -49,6 +49,7 @@ const getSportID = async (name) => {
     throw new Error(`Sports entered - ${name} is not in our database`);
   }
 }
+
 exports.add_ask_tournament = async (req, res) => {
   try {
     const isBulk = req.params?.bulk === "bulk";
