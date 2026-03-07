@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { title } = require('process');
 const puppeteer = require('puppeteer');
 
 // const chessTournaments = async () => {
@@ -110,4 +111,60 @@ const puppeteer = require('puppeteer');
 // }
 
 // squashTournament();
+
+// const handballTournament = async () => {
+//     const browser = await puppeteer.launch();
+//     const page = await browser.newPage();
+
+//     await page.goto("https://handballfederationofindia.com/calendar/", {
+//         waitUntil: "networkidle2"
+//     });
+
+//     const tournaments = await page.evaluate(() => {
+//         const cards = document.querySelectorAll(".etn-event-item");
+
+//         return Array.from(cards).map(card => {
+//             return {
+//                 title: card.querySelector(".etn-event-title a")?.innerText,
+//                 link: card.querySelector(".etn-event-title a")?.href,
+//                 location: card.querySelector(".etn-event-location")?.innerText.trim(),
+//                 image: card.querySelector(".etn-event-thumb img")?.src,
+//                 startDate: card.querySelector(".etn-event-date span:nth-child(1)")?.innerText,
+//                 endDate: card.querySelector(".etn-event-date span:nth-child(2)")?.innerText,
+//             };
+//         });
+//     });
+//     console.log(tournaments);
+
+//     await browser.close();
+// };
+
+// handballTournament();
+
+
+// const pickleballTournament = async () =>{
+//     const browser = await puppeteer.launch();
+//     const page = await browser.newPage();
+
+//     await page.goto("https://www.ipaofficial.com/tournaments",{
+//         waitUntil:"networkidle2"
+//     });
+
+//     const tournaments = await page.evaluate(()=>{
+//         const cards = document.querySelectorAll(".gallery-item-container");
+
+//         return Array.from(cards).map(card =>{
+//             return{
+//                 title: card.querySelector('[data-hook="item-title"] span')?.innerText || "",
+//                 description: card.querySelector('[data-hook="item-description"]')?.innerText || "",
+//                 image: card.querySelector('[data-hook="gallery-item-image-img]')?.src || "",
+//             };
+//         });
+//     });
+
+//     console.log(tournaments);
+//     await browser.close();
+// }
+
+// pickleballTournament();
 
