@@ -50,6 +50,60 @@ const getSportID = async (name) => {
   }
 }
 
+exports.saveTournament = async(row, user_id) => {
+  try {
+
+    const startDateObj = new Date(row.startdate);
+    const endDateObj = new Date(row.enddate);
+
+    if (!row.name) throw new Error("Tournament name missing");
+
+    if (endDateObj < startDateObj) {
+      throw new Error("End date must be after start date");
+    }
+
+    const slug_name = toSlug(row.name);
+
+    const existing = await prisma.ask_tournaments.findFirst({
+      where: { slug_name },
+    });
+
+    if (existing) {
+      throw new Error(`Tournament ${row.name} already exists`);
+    }
+
+    const tournament = await prisma.ask_tournaments.create({
+      data: {
+        user_id,
+        name: row.name,
+        slug_name,
+        description: row.description || null,
+        tournament_type: row.tournament_type || null,
+        startdate: startDateObj,
+        enddate: endDateObj,
+        address: row.address || null,
+        url: row.url || null,
+        prize: row.prize ? `${row.prize}` : null,
+        fees: row.fees ? `${row.fees}` : null,
+        bannerimage: row.bannerimage || "/uploads/tournament-default-banner/ASKhomeBanner.png",
+        thumbnail: row.thumbnail || "/uploads/tournament-default-thumb/ASKhomeBanner.png",
+        publish_status: 1,
+        bulk_upload: 1,
+        sport_id: row.sport_id,
+        organizer_name: row.organizer_name || null
+      }
+    });
+
+    return tournament;
+
+  } catch (error) {
+    console.log("Save Tournament Error:", error.message);
+    return null;
+  }
+}
+
+
+
 exports.add_ask_tournament = async (req, res) => {
   try {
     const isBulk = req.params?.bulk === "bulk";
@@ -1043,3 +1097,5 @@ exports.tournamentCitiesList = async (req, res) => {
     return res.status(500).json({ message: "Something went wrong" })
   }
 }
+
+

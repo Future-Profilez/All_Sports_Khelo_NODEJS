@@ -1,8 +1,37 @@
 const axios = require('axios');
 const { title } = require('process');
 const puppeteer = require('puppeteer');
+const { saveTournament } = require('./ask_tournamentController');
+const sports = require("../utils/sports.json");
 
-const chessTournaments = async () => {
+function parseDate(dateStr) {
+    if (!dateStr) return null;
+
+    dateStr = dateStr.replace(/\n/g, "").trim();
+
+    // Format: DD.MM.YYYY or DD-MM-YYYY or DD/MM/YYYY
+    const match = dateStr.match(/^(\d{1,2})[.\-/](\d{1,2})[.\-/](\d{4})$/);
+
+    if (match) {
+        const day = match[1].padStart(2, "0");
+        const month = match[2].padStart(2, "0");
+        const year = match[3];
+
+        return new Date(`${year}-${month}-${day}`);
+    }
+
+    // Format like "20 Jan 2026"
+    const d = new Date(dateStr);
+
+    if (isNaN(d.getTime())) {
+        console.log("Invalid date detected:", dateStr);
+        return null;
+    }
+
+    return d;
+}
+
+const extractChessTournaments = async (req,res) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -27,10 +56,30 @@ const chessTournaments = async () => {
         });
     });
     console.log("tournaments : ", tournaments);
+    for (const tournament of tournaments) {
+
+        const formatted = {
+            name: tournament.name,
+            startdate: parseDate(tournament.startDate),
+            enddate: parseDate(tournament.endDate),
+            address: tournament.address,
+            url: tournament.url,
+            sport_id: "019ab5337", // chess sport id
+            organizer_name: "AICF"
+        };
+        console.log("formatted chess data ", formatted);
+        if (!formatted.startdate || !formatted.enddate) {
+            console.log("Skipping tournament due to invalid date:", formatted.name);
+            continue;
+        }
+
+        await saveTournament(formatted, 1); // user_id = 1
+    }
     await browser.close();
+    
 }
 
-chessTournaments();
+extractChessTournaments();
 
 
 const tabletennisTournament = async () => {
@@ -88,29 +137,29 @@ tabletennisTournament();
 
 
 // International
-// const squashTournament = async () => {
-//     try {
-//         const response = await axios.get("https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL");
-//         const tournaments = response.data;
+const squashTournament = async () => {
+    try {
+        const response = await axios.get("https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL");
+        const tournaments = response.data;
 
-//         const formatedTournament = tournaments.map(tournament => {
-//             return {
-//                 TournamentName: tournament.TournamentName,
-//                 TournamentStartDate: tournament.TournamentStartDate,
-//                 TournamentEndDate: tournament.TournamentEndDate,
-//                 Month: tournament.Month,
-//                 Venue: tournament.Venue,
-//                 EntryFees: tournament.EntryFees
-//             }
-//         });
+        const formatedTournament = tournaments.map(tournament => {
+            return {
+                TournamentName: tournament.TournamentName,
+                TournamentStartDate: tournament.TournamentStartDate,
+                TournamentEndDate: tournament.TournamentEndDate,
+                Month: tournament.Month,
+                Venue: tournament.Venue,
+                EntryFees: tournament.EntryFees
+            }
+        });
 
-//         console.log(formatedTournament)
-//     } catch (error) {
-//         console.log("Error:", error.message);
-//     }
-// }
+        console.log(formatedTournament)
+    } catch (error) {
+        console.log("Error:", error.message);
+    }
+}
 
-// squashTournament();
+squashTournament();
 
 const handballTournament = async () => {
     const browser = await puppeteer.launch();
@@ -190,3 +239,10 @@ const pickleballTournament = async () => {
 
 pickleballTournament();
 
+module.exports = {
+    extractChessTournaments,
+    tabletennisTournament,
+    squashTournament,
+    handballTournament,
+    pickleballTournament
+};
