@@ -6,7 +6,7 @@ const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
 const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament, all_tournaments_sports } = require("../controller/ask_tournamentController");
 const { protect } = require("../middleware/authMiddleware");
-
+const { extractChessTournaments } = require("../controller/extractController");
 
 // TK ROUTES
 // router.get('/', tournament),
@@ -22,7 +22,7 @@ router.post('/create',
     { name: "bannerimage", maxCount: 1 },
     { name: "thumbnail", maxCount: 1 },
     { name: "brochure", maxCount: 1 },
-  ]), 
+  ]),
   add_ask_tournament);
 
 router.post(
@@ -31,18 +31,18 @@ router.post(
   // upload.single("file"), 
   upload.fields([
     { name: "excel", maxCount: 1 },
-  ]), 
+  ]),
   add_ask_tournament
 );
 
 // router.get('/ask/tournaments/:type',list_ask_tournaments);
-router.get('/ask/mytournaments/:type',protect, list_ask_tournaments);
+router.get('/ask/mytournaments/:type', protect, list_ask_tournaments);
 router.get('/ask/all/tournaments/active/sports', all_tournaments_sports);
 
 router.get('/ask/tournaments/:type', list_ask_tournaments);
 router.get('/:slug', asktournamentOverview)
 router.delete('/deletetournament/:id', protect, delete_ask_tournament)
-router.post('/edit/:slug',protect, editTournament);
+router.post('/edit/:slug', protect, editTournament);
 
 //Enquiry routes
 router.post('/add/enquiry', send_enquiry);
@@ -52,9 +52,13 @@ router.put('/mark/:id', protect, mark_Enquiry);
 router.put('/markall/:id', protect, mark_AllEnquiry);
 
 //Address Routes
-router.get('/countries/lists',tournamentCountriesList)
-router.get('/states/lists/:countryid',tournamentStatesList)
-router.get('/cities/lists/:stateid',tournamentCitiesList)
+router.get('/countries/lists', tournamentCountriesList)
+router.get('/states/lists/:countryid', tournamentStatesList)
+router.get('/cities/lists/:stateid', tournamentCitiesList)
+
+
+//extract routes
+router.post("/chess/tournaments", extractChessTournaments);
 
 
 module.exports = router

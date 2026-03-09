@@ -1,36 +1,85 @@
 const axios = require('axios');
 const { title } = require('process');
 const puppeteer = require('puppeteer');
+const { saveTournament } = require('./ask_tournamentController');
+const sports = require("../utils/sports.json");
 
-// const chessTournaments = async () => {
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
+function parseDate(dateStr) {
+    if (!dateStr) return null;
 
-//     await page.goto("https://aicf.in/all-events/", {
-//         waitUntil: "networkidle2"
-//     });
+    dateStr = dateStr.replace(/\n/g, "").trim();
 
-//     const tournaments = await page.evaluate(() => {
-//         const rows = document.querySelectorAll("table tbody tr");
+    // Format: DD.MM.YYYY or DD-MM-YYYY or DD/MM/YYYY
+    const match = dateStr.match(/^(\d{1,2})[.\-/](\d{1,2})[.\-/](\d{4})$/);
 
-//         return Array.from(rows).map(row => {
-//             const cols = row.querySelectorAll("td");
+    if (match) {
+        const day = match[1].padStart(2, "0");
+        const month = match[2].padStart(2, "0");
+        const year = match[3];
 
-//             return {
-//                 name: cols[0] ? cols[0].innerText.trim() : null,
-//                 eventCode: cols[1] ? cols[1].innerText.trim() : null,
-//                 startDate: cols[2] ? cols[2].innerText.trim() : null,
-//                 endDate: cols[3] ? cols[3].innerText.trim() : null,
-//                 address: cols[4] ? cols[4].innerText.trim() : null,
-//                 brochure: cols[5] ? cols[5].querySelector("a")?.href : null
-//             };
-//         });
-//     });
-//     console.log("tournaments : ", tournaments);
-//     await browser.close();
-// }
+        return new Date(`${year}-${month}-${day}`);
+    }
 
-// chessTournaments();
+    // Format like "20 Jan 2026"
+    const d = new Date(dateStr);
+
+    if (isNaN(d.getTime())) {
+        console.log("Invalid date detected:", dateStr);
+        return null;
+    }
+
+    return d;
+}
+
+const extractChessTournaments = async (req,res) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    await page.goto("https://aicf.in/all-events/", {
+        waitUntil: "networkidle2"
+    });
+
+    const tournaments = await page.evaluate(() => {
+        const rows = document.querySelectorAll("table tbody tr");
+
+        return Array.from(rows).map(row => {
+            const cols = row.querySelectorAll("td");
+
+            return {
+                name: cols[0] ? cols[0].innerText.trim() : null,
+                eventCode: cols[1] ? cols[1].innerText.trim() : null,
+                startDate: cols[2] ? cols[2].innerText.trim() : null,
+                endDate: cols[3] ? cols[3].innerText.trim() : null,
+                address: cols[4] ? cols[4].innerText.trim() : null,
+                brochure: cols[5] ? cols[5].querySelector("a")?.href : null
+            };
+        });
+    });
+    console.log("tournaments : ", tournaments);
+    for (const tournament of tournaments) {
+
+        const formatted = {
+            name: tournament.name,
+            startdate: parseDate(tournament.startDate),
+            enddate: parseDate(tournament.endDate),
+            address: tournament.address,
+            url: tournament.url,
+            sport_id: "019ab5337", // chess sport id
+            organizer_name: "AICF"
+        };
+        console.log("formatted chess data ", formatted);
+        if (!formatted.startdate || !formatted.enddate) {
+            console.log("Skipping tournament due to invalid date:", formatted.name);
+            continue;
+        }
+
+        await saveTournament(formatted, 1); // user_id = 1
+    }
+    await browser.close();
+    
+}
+
+extractChessTournaments();
 
 
 // const tabletennisTournament = async () => {
@@ -88,29 +137,29 @@ const puppeteer = require('puppeteer');
 
 
 // International
-// const squashTournament = async () => {
-//     try {
-//         const response = await axios.get("https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL");
-//         const tournaments = response.data;
+const squashTournament = async () => {
+    try {
+        const response = await axios.get("https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL");
+        const tournaments = response.data;
 
-//         const formatedTournament = tournaments.map(tournament => {
-//             return {
-//                 TournamentName: tournament.TournamentName,
-//                 TournamentStartDate: tournament.TournamentStartDate,
-//                 TournamentEndDate: tournament.TournamentEndDate,
-//                 Month: tournament.Month,
-//                 Venue: tournament.Venue,
-//                 EntryFees: tournament.EntryFees
-//             }
-//         });
+        const formatedTournament = tournaments.map(tournament => {
+            return {
+                TournamentName: tournament.TournamentName,
+                TournamentStartDate: tournament.TournamentStartDate,
+                TournamentEndDate: tournament.TournamentEndDate,
+                Month: tournament.Month,
+                Venue: tournament.Venue,
+                EntryFees: tournament.EntryFees
+            }
+        });
 
-//         console.log(formatedTournament)
-//     } catch (error) {
-//         console.log("Error:", error.message);
-//     }
-// }
+        console.log(formatedTournament)
+    } catch (error) {
+        console.log("Error:", error.message);
+    }
+}
 
-// squashTournament();
+squashTournament();
 
 // const handballTournament = async () => {
 //     const browser = await puppeteer.launch();
@@ -222,4 +271,12 @@ const basketballTournament = async () => {
     await browser.close();
 };
 
-basketballTournament();
+pickleballTournament();
+
+module.exports = {
+    extractChessTournaments,
+    tabletennisTournament,
+    squashTournament,
+    handballTournament,
+    pickleballTournament
+};
