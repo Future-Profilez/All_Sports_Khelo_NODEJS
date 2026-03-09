@@ -137,29 +137,29 @@ extractChessTournaments();
 
 
 // International
-const squashTournament = async () => {
-    try {
-        const response = await axios.get("https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL");
-        const tournaments = response.data;
+// const squashTournament = async () => {
+//     try {
+//         const response = await axios.get("https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL");
+//         const tournaments = response.data;
 
-        const formatedTournament = tournaments.map(tournament => {
-            return {
-                TournamentName: tournament.TournamentName,
-                TournamentStartDate: tournament.TournamentStartDate,
-                TournamentEndDate: tournament.TournamentEndDate,
-                Month: tournament.Month,
-                Venue: tournament.Venue,
-                EntryFees: tournament.EntryFees
-            }
-        });
+//         const formatedTournament = tournaments.map(tournament => {
+//             return {
+//                 TournamentName: tournament.TournamentName,
+//                 TournamentStartDate: tournament.TournamentStartDate,
+//                 TournamentEndDate: tournament.TournamentEndDate,
+//                 Month: tournament.Month,
+//                 Venue: tournament.Venue,
+//                 EntryFees: tournament.EntryFees
+//             }
+//         });
 
-        console.log(formatedTournament)
-    } catch (error) {
-        console.log("Error:", error.message);
-    }
-}
+//         console.log(formatedTournament)
+//     } catch (error) {
+//         console.log("Error:", error.message);
+//     }
+// }
 
-squashTournament();
+// squashTournament();
 
 // const handballTournament = async () => {
 //     const browser = await puppeteer.launch();
@@ -271,7 +271,7 @@ const basketballTournament = async () => {
     await browser.close();
 };
 
-pickleballTournament();
+basketballTournament();
 
 module.exports = {
     extractChessTournaments,
