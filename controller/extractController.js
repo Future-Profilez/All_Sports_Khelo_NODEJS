@@ -32,58 +32,58 @@ const puppeteer = require('puppeteer');
 // chessTournaments();
 
 
-// const tabletennisTournament = async () => {
+const tabletennisTournament = async () => {
 
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
 
-//     await page.goto("https://www.ttfi.org/events", {
-//         waitUntil: "networkidle2"
-//     });
+    await page.goto("https://www.ttfi.org/events", {
+        waitUntil: "networkidle2"
+    });
 
-//     await page.waitForSelector(".post_footer");
+    await page.waitForSelector(".post_footer");
 
-//     const events = await page.evaluate(() => {
+    const events = await page.evaluate(() => {
 
-//         const cards = document.querySelectorAll(".post_footer");
+        const cards = document.querySelectorAll(".post_footer");
 
-//         return Array.from(cards).map(card => {
+        return Array.from(cards).map(card => {
 
-//             const titleEl = card.querySelector("h6 a");
+            const titleEl = card.querySelector("h6 a");
 
-//             const title = titleEl?.innerText.trim();
+            const title = titleEl?.innerText.trim();
 
-//             const link = titleEl
-//                 ? "https://www.ttfi.org" + titleEl.getAttribute("href")
-//                 : null;
+            const link = titleEl
+                ? "https://www.ttfi.org" + titleEl.getAttribute("href")
+                : null;
 
-//             const date = card
-//                 .querySelector(".news-date")
-//                 ?.innerText.replace("[", "")
-//                 .replace("]", "")
-//                 .trim();
+            const date = card
+                .querySelector(".news-date")
+                ?.innerText.replace("[", "")
+                .replace("]", "")
+                .trim();
 
-//             const venue = card
-//                 .querySelector(".fa-map-marker-alt")
-//                 ?.parentElement.innerText.trim();
+            const venue = card
+                .querySelector(".fa-map-marker-alt")
+                ?.parentElement.innerText.trim();
 
-//             return {
-//                 title,
-//                 date,
-//                 venue,
-//                 link
-//             };
+            return {
+                title,
+                date,
+                venue,
+                link
+            };
 
-//         });
+        });
 
-//     });
+    });
 
-//     console.log(events);
+    console.log(events);
 
-//     await browser.close();
-// }
+    await browser.close();
+}
 
-// tabletennisTournament();
+tabletennisTournament();
 
 
 // International
