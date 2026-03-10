@@ -673,48 +673,6 @@ const extractpickleballTournament = async (req, res) => {
 
 };
 
-<<<<<<< HEAD
-
-const basketballTournament = async (req, res) => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    await page.goto("https://www.basketballfederationindia.org/national-calender/", {
-        waitUntil: "networkidle2",
-    });
-
-    const tournaments = await page.evaluate(() => {
-        const rows = document.querySelectorAll("table tr");
-
-        return Array.from(rows)
-            .slice(1)
-            .map((row) => {
-                const cols = row.querySelectorAll("td");
-
-                return {
-                    category: cols[0]?.innerText.trim() || "",
-                    name: cols[1]?.innerText.trim() || "",
-                    address: cols[2]?.innerText.trim() || "",
-                    date: cols[3]?.innerText.replace(/\n/g, "").trim() || "",
-                    link: cols[1]?.querySelector("a")?.href || null
-                };
-            });
-    });
-
-    console.log(tournaments);
-
-    await browser.close();
-};
-
-module.exports = {
-    extractChessTournaments,
-    tabletennisTournament,
-    squashTournament,
-    handballTournament,
-    pickleballTournament,
-    basketballTournament
-};
-=======
 
 module.exports = {
     extractChessTournaments,
@@ -723,4 +681,3 @@ module.exports = {
     extractHandballTournament,
     extractpickleballTournament
 };
->>>>>>> 57d44e58d6325db4c3c750ddf967b23e9c5132e1
