@@ -34,7 +34,6 @@ function parseDate(dateStr) {
     if (isNaN(d.getTime())) {
         return null;
     }
-
     return d;
 }
 
@@ -526,61 +525,15 @@ const extractHandballTournament = async (req, res) => {
 };
 
 const extractpickleballTournament = async (req, res) => {
-
-    const browser = await puppeteer.launch();
-
     try {
-        const page = await browser.newPage();
-        await page.goto("https://www.ipaofficial.com/tournaments", {
-            waitUntil: "domcontentloaded",
-        });
-        const tournaments = await page.evaluate(() => {
+        const response = await axios.get(
+            "https://api.gorally.app/user/v1/ipc-activities?startDate=2026-01-01"
+        );
 
-            const cards = document.querySelectorAll(".gallery-item-container");
-
-            const clean = (text) =>
-                text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
-
-            return Array.from(cards).map((card) => {
-
-                const title =
-                    card.querySelector('[data-hook="item-title"] span')?.innerText || "";
-
-                const descText =
-                    card.querySelector('[data-hook="item-description"]')?.innerText || "";
-
-                const image =
-                    card.querySelector('[data-hook="gallery-item-image-img"]')?.src || "";
-
-                const lines = descText.split("\n");
-                const data = {};
-
-                lines.forEach((line) => {
-
-                    const parts = line.split(":");
-
-                    if (parts.length === 2) {
-                        const key = parts[0].trim();
-                        const value = parts[1].trim();
-                        data[key] = value;
-                    }
-
-                });
-
-                return {
-                    name: clean(title),
-                    image,
-                    date: data["Date"] || null,
-                    address: data["Venue"] || null,
-                    fees: data["Entry Fee"] || null
-                };
-
-            });
-
-        });
+        const tournaments = response.data?.data || [];
 
         const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        today.setHours(0,0,0,0);
 
         let inserted = 0;
         let skippedPast = 0;
@@ -588,19 +541,12 @@ const extractpickleballTournament = async (req, res) => {
         let skippedRange = 0;
         let skippedDuplicate = 0;
 
-        for (const tournament of tournaments) {
+        for (const event of tournaments) {
 
-            if (!tournament.date) {
-                skippedInvalid++;
-                continue;
-            }
+            const start = new Date(event.startDatetime);
+            const end = new Date(event.endDatetime);
 
-            const parts = tournament.date.split("-");
-
-            const start = parseDate(parts[0]?.trim());
-            const end = parseDate(parts[1]?.trim() || parts[0]?.trim());
-
-            if (!start || !end) {
+            if (isNaN(start) || isNaN(end)) {
                 skippedInvalid++;
                 continue;
             }
@@ -616,15 +562,14 @@ const extractpickleballTournament = async (req, res) => {
             }
 
             const formatted = {
-                name: tournament.name,
+                name: event.name,
                 startdate: start,
                 enddate: end,
-                address: tournament.address,
+                description: event.description?.replace(/<[^>]*>?/gm, ""),
+                address: event.streetAddress || event.venue || event.city,
                 url: null,
-                prize: null,
-                fees: tournament.fees,
-                sport_id: "019ab53311", // your pickleball sport id
-                organizer_name: "Indian Pickleball Association"
+                sport_id: "019ab531-da3f-7066-a647-bce5abe65642", // pickleball sport id
+                organizer_name: event.organizer?.name || "Indian Pickleball Association"
             };
 
             try {
@@ -640,7 +585,7 @@ const extractpickleballTournament = async (req, res) => {
 
         }
 
-        console.log("Pickleball Extraction Summary");
+        console.log("Pickleball API Extraction Summary");
         console.log("Inserted:", inserted);
         console.log("Skipped Past:", skippedPast);
         console.log("Skipped Invalid:", skippedInvalid);
@@ -659,20 +604,17 @@ const extractpickleballTournament = async (req, res) => {
 
     } catch (error) {
 
-        console.error("Pickleball Extraction Error:", error.message);
+        console.error("Pickleball API Extraction Error:", error.message);
 
         return res.status(500).json({
             success: false,
             message: "Extraction failed"
         });
 
-    } finally {
-
-        await browser.close();
-
     }
 
 };
+
 
 
 module.exports = {
@@ -682,6 +624,3 @@ module.exports = {
     extractHandballTournament,
     extractpickleballTournament
 };
-
-
-
