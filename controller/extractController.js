@@ -79,605 +79,620 @@ function parseTTFIDate(dateStr) {
     return { start, end };
 }
 
-const extractChessTournaments = async (req, res) => {
+// const extractChessTournaments = async (req, res) => {
 
-    const browser = await puppeteer.launch();
+//     const browser = await puppeteer.launch();
 
-    try {
+//     try {
 
-        const page = await browser.newPage();
+//         const page = await browser.newPage();
 
-        await page.goto("https://aicf.in/all-events/", {
-            waitUntil: "networkidle2"
-        });
+//         await page.goto("https://aicf.in/all-events/", {
+//             waitUntil: "networkidle2"
+//         });
 
-        const tournaments = await page.evaluate(() => {
+//         const tournaments = await page.evaluate(() => {
 
-            const rows = document.querySelectorAll("table tbody tr");
+//             const rows = document.querySelectorAll("table tbody tr");
 
-            return Array.from(rows).map(row => {
+//             return Array.from(rows).map(row => {
 
-                const cols = row.querySelectorAll("td");
+//                 const cols = row.querySelectorAll("td");
 
-                const clean = (text) =>
-                    text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
+//                 const clean = (text) =>
+//                     text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
 
-                return {
-                    name: clean(cols[0]?.innerText),
-                    startDate: clean(cols[2]?.innerText),
-                    endDate: clean(cols[3]?.innerText),
-                    address: clean(cols[4]?.innerText),
-                    brochure: cols[5]?.querySelector("a")?.href
-                };
+//                 return {
+//                     name: clean(cols[0]?.innerText),
+//                     startDate: clean(cols[2]?.innerText),
+//                     endDate: clean(cols[3]?.innerText),
+//                     address: clean(cols[4]?.innerText),
+//                     brochure: cols[5]?.querySelector("a")?.href
+//                 };
 
-            });
+//             });
 
-        });
+//         });
 
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+//         const today = new Date();
+//         today.setHours(0, 0, 0, 0);
 
-        let inserted = 0;
-        let skippedPast = 0;
-        let skippedInvalid = 0;
-        let skippedRange = 0;
-        let skippedDuplicate = 0;
+//         let inserted = 0;
+//         let skippedPast = 0;
+//         let skippedInvalid = 0;
+//         let skippedRange = 0;
+//         let skippedDuplicate = 0;
 
-        for (const tournament of tournaments) {
+//         for (const tournament of tournaments) {
 
-            const start = parseDate(tournament.startDate);
-            const end = parseDate(tournament.endDate);
+//             const start = parseDate(tournament.startDate);
+//             const end = parseDate(tournament.endDate);
 
-            if (!start || !end) {
-                skippedInvalid++;
-                continue;
-            }
+//             if (!start || !end) {
+//                 skippedInvalid++;
+//                 continue;
+//             }
 
-            if (end < today) {
-                skippedPast++;
-                continue;
-            }
+//             if (end < today) {
+//                 skippedPast++;
+//                 continue;
+//             }
 
-            if (end < start) {
-                skippedRange++;
-                continue;
-            }
+//             if (end < start) {
+//                 skippedRange++;
+//                 continue;
+//             }
 
-            const formatted = {
-                name: tournament.name,
-                startdate: start,
-                enddate: end,
-                address: tournament.address,
-                url: tournament.brochure,
-                sport_id: "019ab5337",
-                organizer_name: "AICF"
-            };
+//             const formatted = {
+//                 name: tournament.name,
+//                 startdate: start,
+//                 enddate: end,
+//                 address: tournament.address,
+//                 url: tournament.brochure,
+//                 sport_id: "019ab5337",
+//                 organizer_name: "AICF"
+//             };
 
-            try {
+//             try {
 
-                await saveTournament(formatted, 1);
-                inserted++;
+//                 await saveTournament(formatted, 1);
+//                 inserted++;
 
-            } catch {
+//             } catch {
 
-                skippedDuplicate++;
+//                 skippedDuplicate++;
 
-            }
+//             }
 
-        }
+//         }
 
-        console.log("Chess Extraction Summary");
-        console.log("Inserted:", inserted);
-        console.log("Skipped Past:", skippedPast);
-        console.log("Skipped Invalid:", skippedInvalid);
-        console.log("Skipped Range:", skippedRange);
-        console.log("Skipped Duplicate:", skippedDuplicate);
+//         console.log("Chess Extraction Summary");
+//         console.log("Inserted:", inserted);
+//         console.log("Skipped Past:", skippedPast);
+//         console.log("Skipped Invalid:", skippedInvalid);
+//         console.log("Skipped Range:", skippedRange);
+//         console.log("Skipped Duplicate:", skippedDuplicate);
 
-        return res.json({
-            success: true,
-            inserted,
-            skippedPast,
-            skippedInvalid,
-            skippedRange,
-            skippedDuplicate,
-            total: tournaments.length
-        });
+//         return res.json({
+//             success: true,
+//             inserted,
+//             skippedPast,
+//             skippedInvalid,
+//             skippedRange,
+//             skippedDuplicate,
+//             total: tournaments.length
+//         });
 
-    } catch (error) {
+//     } catch (error) {
 
-        console.error("Chess Extraction Error:", error.message);
+//         console.error("Chess Extraction Error:", error.message);
 
-        return res.status(500).json({
-            success: false,
-            message: "Extraction failed"
-        });
+//         return res.status(500).json({
+//             success: false,
+//             message: "Extraction failed"
+//         });
 
-    } finally {
+//     } finally {
 
-        await browser.close();
+//         await browser.close();
 
-    }
+//     }
 
-};
+// };
 
 
 
-const extractTableTennisTournament = async (req, res) => {
+// const extractTableTennisTournament = async (req, res) => {
 
-    const browser = await puppeteer.launch();
+//     const browser = await puppeteer.launch();
 
-    try {
+//     try {
 
-        const page = await browser.newPage();
+//         const page = await browser.newPage();
 
-        await page.goto("https://www.ttfi.org/events", {
-            waitUntil: "networkidle2"
-        });
+//         await page.goto("https://www.ttfi.org/events", {
+//             waitUntil: "networkidle2"
+//         });
 
-        await page.waitForSelector(".post_footer");
+//         await page.waitForSelector(".post_footer");
 
-        const events = await page.evaluate(() => {
+//         const events = await page.evaluate(() => {
 
-            const cards = document.querySelectorAll(".post_footer");
+//             const cards = document.querySelectorAll(".post_footer");
 
-            return Array.from(cards).map(card => {
+//             return Array.from(cards).map(card => {
 
-                const titleEl = card.querySelector("h6 a");
+//                 const titleEl = card.querySelector("h6 a");
 
-                const name = titleEl?.innerText.trim();
+//                 const name = titleEl?.innerText.trim();
 
-                const link = titleEl
-                    ? "https://www.ttfi.org" + titleEl.getAttribute("href")
-                    : null;
+//                 const link = titleEl
+//                     ? "https://www.ttfi.org" + titleEl.getAttribute("href")
+//                     : null;
 
-                const date = card
-                    .querySelector(".news-date")
-                    ?.innerText.replace("[", "")
-                    .replace("]", "")
-                    .trim();
+//                 const date = card
+//                     .querySelector(".news-date")
+//                     ?.innerText.replace("[", "")
+//                     .replace("]", "")
+//                     .trim();
 
-                const address = card
-                    .querySelector(".fa-map-marker-alt")
-                    ?.parentElement.innerText.trim();
+//                 const address = card
+//                     .querySelector(".fa-map-marker-alt")
+//                     ?.parentElement.innerText.trim();
 
-                return { name, date, address, link };
+//                 return { name, date, address, link };
 
-            });
+//             });
 
-        });
+//         });
 
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+//         const today = new Date();
+//         today.setHours(0, 0, 0, 0);
 
-        let inserted = 0;
-        let skippedPast = 0;
-        let skippedInvalid = 0;
-        let skippedDuplicate = 0;
+//         let inserted = 0;
+//         let skippedPast = 0;
+//         let skippedInvalid = 0;
+//         let skippedDuplicate = 0;
 
-        for (const event of events) {
+//         for (const event of events) {
 
-            const parsed = parseTTFIDate(event.date);
+//             const parsed = parseTTFIDate(event.date);
 
-            if (!parsed) {
-                skippedInvalid++;
-                continue;
-            }
+//             if (!parsed) {
+//                 skippedInvalid++;
+//                 continue;
+//             }
 
-            // Skip past tournaments
-            if (parsed.end < today) {
-                skippedPast++;
-                continue;
-            }
+//             // Skip past tournaments
+//             if (parsed.end < today) {
+//                 skippedPast++;
+//                 continue;
+//             }
 
-            const formatted = {
-                name: event.name,
-                startdate: parsed.start,
-                enddate: parsed.end,
-                address: event.address,
-                url: event.link,
-                sport_id: "019ab531-3b8f-730c-a2a0-4eeb9fca1568",
-                organizer_name: "TTFI"
-            };
+//             const formatted = {
+//                 name: event.name,
+//                 startdate: parsed.start,
+//                 enddate: parsed.end,
+//                 address: event.address,
+//                 url: event.link,
+//                 sport_id: "019ab531-3b8f-730c-a2a0-4eeb9fca1568",
+//                 organizer_name: "TTFI"
+//             };
 
-            try {
-                await saveTournament(formatted, 1);
-                inserted++;
-            } catch (error) {
-                skippedDuplicate++;
-            }
-        }
+//             try {
+//                 await saveTournament(formatted, 1);
+//                 inserted++;
+//             } catch (error) {
+//                 skippedDuplicate++;
+//             }
+//         }
 
-        console.log("Table Tennis Extraction Summary");
-        console.log("Inserted:", inserted);
-        console.log("Skipped Past:", skippedPast);
-        console.log("Skipped Invalid Date:", skippedInvalid);
-        console.log("Skipped Duplicate:", skippedDuplicate);
+//         console.log("Table Tennis Extraction Summary");
+//         console.log("Inserted:", inserted);
+//         console.log("Skipped Past:", skippedPast);
+//         console.log("Skipped Invalid Date:", skippedInvalid);
+//         console.log("Skipped Duplicate:", skippedDuplicate);
 
-        return res.json({
-            success: true,
-            inserted,
-            skippedPast,
-            skippedInvalid,
-            skippedDuplicate,
-            total: events.length
-        });
+//         return res.json({
+//             success: true,
+//             inserted,
+//             skippedPast,
+//             skippedInvalid,
+//             skippedDuplicate,
+//             total: events.length
+//         });
 
-    } catch (error) {
+//     } catch (error) {
 
-        console.log("Extraction Error:", error);
+//         console.log("Extraction Error:", error);
 
-        return res.status(500).json({
-            success: false,
-            message: "Extraction failed"
-        });
+//         return res.status(500).json({
+//             success: false,
+//             message: "Extraction failed"
+//         });
 
-    } finally {
+//     } finally {
 
-        await browser.close();
+//         await browser.close();
 
-    }
+//     }
 
-};
+// };
 
 
 // International
-const extractSquashTournament = async (req, res) => {
+// const extractSquashTournament = async (req, res) => {
 
+//     try {
+
+//         const response = await axios.get(
+//             "https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL"
+//         );
+
+//         const tournaments = response.data;
+
+//         const today = new Date();
+//         today.setHours(0, 0, 0, 0);
+
+//         let inserted = 0;
+//         let skippedPast = 0;
+//         let skippedInvalid = 0;
+//         let skippedDuplicate = 0;
+
+//         for (const tournament of tournaments) {
+
+//             const start = new Date(tournament.TournamentStartDate);
+//             const end = new Date(tournament.TournamentEndDate);
+
+//             if (isNaN(start) || isNaN(end)) {
+//                 skippedInvalid++;
+//                 continue;
+//             }
+
+//             if (end < today) {
+//                 skippedPast++;
+//                 continue;
+//             }
+
+//             const formatted = {
+//                 name: tournament.TournamentName,
+//                 startdate: start,
+//                 enddate: end,
+//                 address: tournament.Venue,
+//                 url: null,
+//                 sport_id: "019ab5334", // squash sport id
+//                 organizer_name: "India Squash Federation",
+//                 fees: tournament.EntryFees
+//             };
+
+//             try {
+
+//                 await saveTournament(formatted, 1);
+//                 inserted++;
+
+//             } catch (error) {
+
+//                 skippedDuplicate++;
+
+//             }
+
+//         }
+
+//         console.log("Squash Extraction Summary");
+//         console.log("Inserted:", inserted);
+//         console.log("Skipped Past:", skippedPast);
+//         console.log("Skipped Invalid:", skippedInvalid);
+//         console.log("Skipped Duplicate:", skippedDuplicate);
+
+//         return res.json({
+//             success: true,
+//             inserted,
+//             skippedPast,
+//             skippedInvalid,
+//             skippedDuplicate,
+//             total: tournaments.length
+//         });
+
+//     } catch (error) {
+
+//         console.log("Squash API Error:", error.message);
+
+//         return res.status(500).json({
+//             success: false,
+//             message: "Squash extraction failed"
+//         });
+
+//     }
+
+// };
+
+
+
+// const extractHandballTournament = async (req, res) => {
+
+//     const browser = await puppeteer.launch();
+
+//     try {
+
+//         const page = await browser.newPage();
+
+//         await page.goto("https://handballfederationofindia.com/calendar/", {
+//             waitUntil: "networkidle2"
+//         });
+
+//         const tournaments = await page.evaluate(() => {
+
+//             const cards = document.querySelectorAll(".etn-event-item");
+
+//             const clean = (text) =>
+//                 text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
+
+//             return Array.from(cards).map(card => ({
+//                 name: clean(card.querySelector(".etn-event-title a")?.innerText),
+//                 link: card.querySelector(".etn-event-title a")?.href,
+//                 address: clean(card.querySelector(".etn-event-location")?.innerText),
+//                 image: card.querySelector(".etn-event-thumb img")?.src,
+//                 startDate: clean(card.querySelector(".etn-event-date span:nth-child(1)")?.innerText),
+//                 endDate: clean(card.querySelector(".etn-event-date span:nth-child(2)")?.innerText)
+//             }));
+
+//         });
+
+//         const today = new Date();
+//         today.setHours(0, 0, 0, 0);
+
+//         let inserted = 0;
+//         let skippedPast = 0;
+//         let skippedInvalid = 0;
+//         let skippedRange = 0;
+//         let skippedDuplicate = 0;
+
+//         for (const tournament of tournaments) {
+
+//             const start = parseDate(tournament.startDate);
+//             const end = parseDate(tournament.endDate);
+
+//             if (!start || !end) {
+//                 skippedInvalid++;
+//                 continue;
+//             }
+
+//             if (end < today) {
+//                 skippedPast++;
+//                 continue;
+//             }
+
+//             if (end < start) {
+//                 skippedRange++;
+//                 continue;
+//             }
+
+//             const formatted = {
+//                 name: tournament.name,
+//                 startdate: start,
+//                 enddate: end,
+//                 address: tournament.address,
+//                 url: tournament.link,
+//                 sport_id: "019ab5335", // your handball sport id
+//                 organizer_name: "Handball Federation of India"
+//             };
+
+//             try {
+
+//                 await saveTournament(formatted, 1);
+//                 inserted++;
+
+//             } catch {
+
+//                 skippedDuplicate++;
+
+//             }
+
+//         }
+
+//         console.log("Handball Extraction Summary");
+//         console.log("Inserted:", inserted);
+//         console.log("Skipped Past:", skippedPast);
+//         console.log("Skipped Invalid:", skippedInvalid);
+//         console.log("Skipped Range:", skippedRange);
+//         console.log("Skipped Duplicate:", skippedDuplicate);
+
+//         return res.json({
+//             success: true,
+//             inserted,
+//             skippedPast,
+//             skippedInvalid,
+//             skippedRange,
+//             skippedDuplicate,
+//             total: tournaments.length
+//         });
+
+//     } catch (error) {
+
+//         console.error("Handball Extraction Error:", error.message);
+
+//         return res.status(500).json({
+//             success: false,
+//             message: "Extraction failed"
+//         });
+
+//     } finally {
+
+//         await browser.close();
+
+//     }
+
+// };
+
+// const extractpickleballTournament = async (req, res) => {
+
+//     const browser = await puppeteer.launch();
+
+//     try {
+//         const page = await browser.newPage();
+//         await page.goto("https://www.ipaofficial.com/tournaments", {
+//             waitUntil: "domcontentloaded",
+//         });
+//         const tournaments = await page.evaluate(() => {
+
+//             const cards = document.querySelectorAll(".gallery-item-container");
+
+//             const clean = (text) =>
+//                 text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
+
+//             return Array.from(cards).map((card) => {
+
+//                 const title =
+//                     card.querySelector('[data-hook="item-title"] span')?.innerText || "";
+
+//                 const descText =
+//                     card.querySelector('[data-hook="item-description"]')?.innerText || "";
+
+//                 const image =
+//                     card.querySelector('[data-hook="gallery-item-image-img"]')?.src || "";
+
+//                 const lines = descText.split("\n");
+//                 const data = {};
+
+//                 lines.forEach((line) => {
+//                     const parts = line.split(":");
+
+//                     if (parts.length === 2) {
+//                         const key = parts[0].trim();
+//                         const value = parts[1].trim();
+//                         data[key] = value;
+//                     }
+//                 });
+
+//                 return {
+//                     name: clean(title),
+//                     image,
+//                     date: data["Date"] || null,
+//                     address: data["Venue"] || null,
+//                     fees: data["Entry Fee"] || null
+//                 };
+
+//             });
+
+//         });
+
+//         const today = new Date();
+//         today.setHours(0, 0, 0, 0);
+
+//         let inserted = 0;
+//         let skippedPast = 0;
+//         let skippedInvalid = 0;
+//         let skippedRange = 0;
+//         let skippedDuplicate = 0;
+
+//         for (const tournament of tournaments) {
+
+//             if (!tournament.date) {
+//                 skippedInvalid++;
+//                 continue;
+//             }
+
+//             const parts = tournament.date.split("-");
+//             const start = parseDate(parts[0]?.trim());
+//             const end = parseDate(parts[1]?.trim() || parts[0]?.trim());
+
+//             if (!start || !end) {
+//                 skippedInvalid++;
+//                 continue;
+//             }
+
+//             if (end < today) {
+//                 skippedPast++;
+//                 continue;
+//             }
+
+//             if (end < start) {
+//                 skippedRange++;
+//                 continue;
+//             }
+
+//             const formatted = {
+//                 name: tournament.name,
+//                 startdate: start,
+//                 enddate: end,
+//                 address: tournament.address,
+//                 url: null,
+//                 prize: null,
+//                 fees: tournament.fees,
+//                 sport_id: "019ab53311", // your pickleball sport id
+//                 organizer_name: "Indian Pickleball Association"
+//             };
+
+//             try {
+//                 await saveTournament(formatted, 1);
+//                 inserted++;
+//             } catch {
+//                 skippedDuplicate++;
+//             }
+
+//         }
+
+//         console.log("Pickleball Extraction Summary");
+//         console.log("Inserted:", inserted);
+//         console.log("Skipped Past:", skippedPast);
+//         console.log("Skipped Invalid:", skippedInvalid);
+//         console.log("Skipped Range:", skippedRange);
+//         console.log("Skipped Duplicate:", skippedDuplicate);
+
+//         return res.json({
+//             success: true,
+//             inserted,
+//             skippedPast,
+//             skippedInvalid,
+//             skippedRange,
+//             skippedDuplicate,
+//             total: tournaments.length
+//         });
+
+//     } catch (error) {
+//         console.error("Pickleball Extraction Error:", error.message);
+//         return res.status(500).json({
+//             success: false,
+//             message: "Extraction failed"
+//         });
+
+//     } finally {
+//         await browser.close();
+//     }
+
+// };
+
+const extractpickleballTournament = async () => {
     try {
+        const response = await axios.get("https://api.gorally.app/user/v1/ipc-activities?startDate=2026-01-01");
+        const tournaments = response.data?.data || [];
+        console.log(response.data)
 
-        const response = await axios.get(
-            "https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL"
-        );
-
-        const tournaments = response.data;
-
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        let inserted = 0;
-        let skippedPast = 0;
-        let skippedInvalid = 0;
-        let skippedDuplicate = 0;
-
-        for (const tournament of tournaments) {
-
-            const start = new Date(tournament.TournamentStartDate);
-            const end = new Date(tournament.TournamentEndDate);
-
-            if (isNaN(start) || isNaN(end)) {
-                skippedInvalid++;
-                continue;
+        const formattedTournament = tournaments.map((event) => {
+            return {
+                name: event.name,
+                startDate: event.startDatetime,
+                endDate: event.endDatetime,
+                description: event.description?.replace(/<[^>]*>?/gm, ""),
+                city: event.city,
+                venue: event.venue,
+                image: event.activityImageUrl?.[0] || "",
+                address: event.streetAddress,
+                organizer: event.organizer.name
             }
-
-            if (end < today) {
-                skippedPast++;
-                continue;
-            }
-
-            const formatted = {
-                name: tournament.TournamentName,
-                startdate: start,
-                enddate: end,
-                address: tournament.Venue,
-                url: null,
-                sport_id: "019ab5334", // squash sport id
-                organizer_name: "India Squash Federation",
-                fees: tournament.EntryFees
-            };
-
-            try {
-
-                await saveTournament(formatted, 1);
-                inserted++;
-
-            } catch (error) {
-
-                skippedDuplicate++;
-
-            }
-
-        }
-
-        console.log("Squash Extraction Summary");
-        console.log("Inserted:", inserted);
-        console.log("Skipped Past:", skippedPast);
-        console.log("Skipped Invalid:", skippedInvalid);
-        console.log("Skipped Duplicate:", skippedDuplicate);
-
-        return res.json({
-            success: true,
-            inserted,
-            skippedPast,
-            skippedInvalid,
-            skippedDuplicate,
-            total: tournaments.length
         });
-
+        console.log(formattedTournament);
     } catch (error) {
-
-        console.log("Squash API Error:", error.message);
-
-        return res.status(500).json({
-            success: false,
-            message: "Squash extraction failed"
-        });
-
+        console.log("Error:", error.message);
     }
-
-};
-
-
-
-const extractHandballTournament = async (req, res) => {
-
-    const browser = await puppeteer.launch();
-
-    try {
-
-        const page = await browser.newPage();
-
-        await page.goto("https://handballfederationofindia.com/calendar/", {
-            waitUntil: "networkidle2"
-        });
-
-        const tournaments = await page.evaluate(() => {
-
-            const cards = document.querySelectorAll(".etn-event-item");
-
-            const clean = (text) =>
-                text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
-
-            return Array.from(cards).map(card => ({
-                name: clean(card.querySelector(".etn-event-title a")?.innerText),
-                link: card.querySelector(".etn-event-title a")?.href,
-                address: clean(card.querySelector(".etn-event-location")?.innerText),
-                image: card.querySelector(".etn-event-thumb img")?.src,
-                startDate: clean(card.querySelector(".etn-event-date span:nth-child(1)")?.innerText),
-                endDate: clean(card.querySelector(".etn-event-date span:nth-child(2)")?.innerText)
-            }));
-
-        });
-
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        let inserted = 0;
-        let skippedPast = 0;
-        let skippedInvalid = 0;
-        let skippedRange = 0;
-        let skippedDuplicate = 0;
-
-        for (const tournament of tournaments) {
-
-            const start = parseDate(tournament.startDate);
-            const end = parseDate(tournament.endDate);
-
-            if (!start || !end) {
-                skippedInvalid++;
-                continue;
-            }
-
-            if (end < today) {
-                skippedPast++;
-                continue;
-            }
-
-            if (end < start) {
-                skippedRange++;
-                continue;
-            }
-
-            const formatted = {
-                name: tournament.name,
-                startdate: start,
-                enddate: end,
-                address: tournament.address,
-                url: tournament.link,
-                sport_id: "019ab5335", // your handball sport id
-                organizer_name: "Handball Federation of India"
-            };
-
-            try {
-
-                await saveTournament(formatted, 1);
-                inserted++;
-
-            } catch {
-
-                skippedDuplicate++;
-
-            }
-
-        }
-
-        console.log("Handball Extraction Summary");
-        console.log("Inserted:", inserted);
-        console.log("Skipped Past:", skippedPast);
-        console.log("Skipped Invalid:", skippedInvalid);
-        console.log("Skipped Range:", skippedRange);
-        console.log("Skipped Duplicate:", skippedDuplicate);
-
-        return res.json({
-            success: true,
-            inserted,
-            skippedPast,
-            skippedInvalid,
-            skippedRange,
-            skippedDuplicate,
-            total: tournaments.length
-        });
-
-    } catch (error) {
-
-        console.error("Handball Extraction Error:", error.message);
-
-        return res.status(500).json({
-            success: false,
-            message: "Extraction failed"
-        });
-
-    } finally {
-
-        await browser.close();
-
-    }
-
-};
-
-const extractpickleballTournament = async (req, res) => {
-
-    const browser = await puppeteer.launch();
-
-    try {
-        const page = await browser.newPage();
-        await page.goto("https://www.ipaofficial.com/tournaments", {
-            waitUntil: "domcontentloaded",
-        });
-        const tournaments = await page.evaluate(() => {
-
-            const cards = document.querySelectorAll(".gallery-item-container");
-
-            const clean = (text) =>
-                text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
-
-            return Array.from(cards).map((card) => {
-
-                const title =
-                    card.querySelector('[data-hook="item-title"] span')?.innerText || "";
-
-                const descText =
-                    card.querySelector('[data-hook="item-description"]')?.innerText || "";
-
-                const image =
-                    card.querySelector('[data-hook="gallery-item-image-img"]')?.src || "";
-
-                const lines = descText.split("\n");
-                const data = {};
-
-                lines.forEach((line) => {
-
-                    const parts = line.split(":");
-
-                    if (parts.length === 2) {
-                        const key = parts[0].trim();
-                        const value = parts[1].trim();
-                        data[key] = value;
-                    }
-
-                });
-
-                return {
-                    name: clean(title),
-                    image,
-                    date: data["Date"] || null,
-                    address: data["Venue"] || null,
-                    fees: data["Entry Fee"] || null
-                };
-
-            });
-
-        });
-
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        let inserted = 0;
-        let skippedPast = 0;
-        let skippedInvalid = 0;
-        let skippedRange = 0;
-        let skippedDuplicate = 0;
-
-        for (const tournament of tournaments) {
-
-            if (!tournament.date) {
-                skippedInvalid++;
-                continue;
-            }
-
-            const parts = tournament.date.split("-");
-
-            const start = parseDate(parts[0]?.trim());
-            const end = parseDate(parts[1]?.trim() || parts[0]?.trim());
-
-            if (!start || !end) {
-                skippedInvalid++;
-                continue;
-            }
-
-            if (end < today) {
-                skippedPast++;
-                continue;
-            }
-
-            if (end < start) {
-                skippedRange++;
-                continue;
-            }
-
-            const formatted = {
-                name: tournament.name,
-                startdate: start,
-                enddate: end,
-                address: tournament.address,
-                url: null,
-                prize: null,
-                fees: tournament.fees,
-                sport_id: "019ab53311", // your pickleball sport id
-                organizer_name: "Indian Pickleball Association"
-            };
-
-            try {
-
-                await saveTournament(formatted, 1);
-                inserted++;
-
-            } catch {
-
-                skippedDuplicate++;
-
-            }
-
-        }
-
-        console.log("Pickleball Extraction Summary");
-        console.log("Inserted:", inserted);
-        console.log("Skipped Past:", skippedPast);
-        console.log("Skipped Invalid:", skippedInvalid);
-        console.log("Skipped Range:", skippedRange);
-        console.log("Skipped Duplicate:", skippedDuplicate);
-
-        return res.json({
-            success: true,
-            inserted,
-            skippedPast,
-            skippedInvalid,
-            skippedRange,
-            skippedDuplicate,
-            total: tournaments.length
-        });
-
-    } catch (error) {
-
-        console.error("Pickleball Extraction Error:", error.message);
-
-        return res.status(500).json({
-            success: false,
-            message: "Extraction failed"
-        });
-
-    } finally {
-
-        await browser.close();
-
-    }
-
-};
-
-
-module.exports = {
-    extractChessTournaments,
-    extractTableTennisTournament,
-    extractSquashTournament,
-    extractHandballTournament,
-    extractpickleballTournament
-};
+}
+
+extractpickleballTournament();
+
+// module.exports = {
+//     extractChessTournaments,
+//     extractTableTennisTournament,
+//     extractSquashTournament,
+//     extractHandballTournament,
+//     extractpickleballTournament
+// };
