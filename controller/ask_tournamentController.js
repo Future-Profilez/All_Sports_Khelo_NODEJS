@@ -182,7 +182,7 @@ exports.add_ask_tournament = async (req, res) => {
                 //   status: false,
                 //   message: "Tournament name already exists",
                 // })
-                throw new Error(`Tournament ${row.name} already exists in our database.`);
+                throw new Error(`Tournament ${row.name} already exists.`);
               }
               const updateduser_id = Number(req?.user?.id);
 
