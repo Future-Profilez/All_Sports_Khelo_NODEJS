@@ -12,21 +12,37 @@ function parseDate(dateStr) {
     dateStr = dateStr.replace("[", "").replace("]", "");
     dateStr = dateStr.replace(/(\d+)(st|nd|rd|th)/g, "$1");
 
+    let startStr = dateStr;
+    let endStr = dateStr;
+
+    // example: 4 - 11 Jan 2026
     if (dateStr.includes(" - ")) {
-        dateStr = dateStr.split(" - ")[0].trim();
+
+        const parts = dateStr.split(" - ");
+
+        startStr = parts[0] + " " + parts[1].split(" ")[1] + " " + parts[1].split(" ")[2];
+        endStr = parts[1];
+
     }
 
+    // example: Sep / Oct 2026
     if (dateStr.includes("/")) {
-        dateStr = dateStr.split("/")[0].trim();
+
+        const parts = dateStr.split("/");
+
+        startStr = parts[0].trim();
+        endStr = parts[1].trim();
+
     }
 
-    const parsed = new Date(dateStr);
+    const start = new Date(startStr);
+    const end = new Date(endStr);
 
-    if (isNaN(parsed.getTime())) {
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
         return null;
     }
 
-    return parsed;
+    return { start, end };
 }
 
 function parseTTFIDate(dateStr) {
@@ -402,13 +418,6 @@ const extractHandballTournament = async (req, res) => {
             }
 
             if (!start || !end) {
-                console.log({
-                    name: tournament.name,
-                    rawStart: tournament.startdate,
-                    rawEnd: tournament.enddate,
-                    parsedStart: start,
-                    parsedEnd: end
-                });
                 skippedInvalid++;
                 continue;
             }
@@ -419,13 +428,6 @@ const extractHandballTournament = async (req, res) => {
             }
 
             if (end < start) {
-                console.log({
-                    name: tournament.name,
-                    rawStart: tournament.startdate,
-                    rawEnd: tournament.enddate,
-                    parsedStart: start,
-                    parsedEnd: end
-                });
                 skippedRange++;
                 continue;
             }
@@ -642,42 +644,96 @@ const extractpickleballTournament = async (req, res) => {
 //     }
 // };
 
-const basketballTournament = async () => {
+const extractbasketballTournament = async (req, res) => {
     const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+    try {
+        const page = await browser.newPage();
 
-    await page.goto("https://www.basketballfederationindia.org/national-calender/", {
-        waitUntil: "networkidle2",
-    });
-
-    const tournaments = await page.evaluate(() => {
-
-        const rows = document.querySelectorAll("table tr");
-        const data = [];
-
-        rows.forEach((row, index) => {
-
-            // skip header row
-            if (index === 0) return;
-
-            const cols = row.querySelectorAll("td");
-
-            data.push({
-                category: cols[0]?.innerText.trim() || "",
-                competition: cols[1]?.innerText.trim() || "",
-                place: cols[2]?.innerText.trim() || "",
-                dates: cols[3]?.innerText.trim() || "",
-                link: cols[1]?.querySelector("a")?.href || ""
-            });
-
+        await page.goto("https://www.basketballfederationindia.org/national-calender/", {
+            waitUntil: "networkidle2",
         });
 
-        return data;
-    });
+        const tournaments = await page.evaluate(() => {
+            const rows = document.querySelectorAll("table tr");
+            return Array.from(rows).slice(1).map(row => {
 
-    console.log(tournaments);
+                const cols = row.querySelectorAll("td");
+                const clean = (text) =>
+                    text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
 
-    await browser.close();
+                return {
+                    category: clean(cols[0]?.innerText.trim() || ""),
+                    name: clean(cols[1]?.innerText.trim() || ""),
+                    address: clean(cols[2]?.innerText.trim() || ""),
+                    date: clean(cols[3]?.innerText.trim() || ""),
+                    link: clean(cols[1]?.querySelector("a")?.href || "")
+                }
+            })
+        });
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        let inserted = 0;
+        let skippedPast = 0;
+        let skippedInvalid = 0;
+        let skippedDuplicate = 0;
+
+        for (const tournament of tournaments) {
+            const parsed = parseDate(tournament.date);
+
+            if (!parsed) {
+                skippedInvalid++;
+                continue;
+            }
+
+            if (parsed.end < today) {
+                skippedPast++;
+                continue;
+            }
+
+            const formatted = {
+                name: tournament.name,
+                startdate: parsed.start,
+                enddate: parsed.end,
+                address: tournament.address,
+                url: tournament.link,
+                sport_id: "019ab5336"
+            };
+
+            try {
+                await saveTournament(formatted, 1);
+                inserted++;
+            } catch (error) {
+                skippedDuplicate++;
+            }
+        }
+
+        console.log("Basketball extraction summary");
+        console.log("Inserted:", inserted);
+        console.log("Skipped Past:", skippedPast);
+        console.log("Skipped invalid date:", skippedInvalid);
+        console.log("Skipped duplicate:", skippedDuplicate);
+
+        return res.json({
+            success: true,
+            inserted,
+            skippedPast,
+            skippedInvalid,
+            skippedDuplicate,
+            total: tournaments.length
+        });
+
+    } catch (error) {
+        console.error("Basketball Extraction Error:", error.message);
+        return res.status(500).json({
+            success: false,
+            message: "Extraction failed"
+        });
+    } finally {
+        await browser.close();
+    }
+
 };
 
 
@@ -687,5 +743,5 @@ module.exports = {
     extractSquashTournament,
     extractHandballTournament,
     extractpickleballTournament,
-    basketballTournament
+    extractbasketballTournament
 };
