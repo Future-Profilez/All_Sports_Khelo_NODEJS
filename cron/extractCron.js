@@ -13,7 +13,8 @@ const {
     extractAllTournaments
 } = require("../controller/extractController");
 
-cron.schedule("0 */12 * * *", async () => {
+// cron.schedule("0 */12 * * *", async () => {
+cron.schedule("*/5 * * * *", async () => {
     // console.log("Running tournament extraction cron...");
     console.log("⏰ Cron triggered at:", new Date().toISOString());
     try {
