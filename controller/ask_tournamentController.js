@@ -5,6 +5,7 @@ const sports = require("../utils/sports.json");
 const XLSX = require("xlsx");
 const fs = require("fs");
 const { downloadImage } = require("../utils/downloadImage");
+const logger = require("../utils/logger");
 
 async function getCityData(c_id) {
   if (!c_id) return null;
@@ -578,6 +579,10 @@ exports.list_ask_tournaments = async (req, res) => {
     if (typeParam) {
       where.user_id = Number(req?.user?.id);
     }
+
+    
+
+   
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
       include,
