@@ -664,11 +664,37 @@ const extractbasketballTournament = async (req=null, res=null) => {
     }
 };
 
+async function extractAllTournaments() {
+
+    console.log("Starting all tournament extractions...");
+
+    try {
+
+        await Promise.all([
+            extractChessTournaments(),
+            extractTableTennisTournament(),
+            extractSquashTournament(),
+            extractHandballTournament(),
+            extractpickleballTournament(),
+            extractbasketballTournament()
+        ]);
+
+        console.log("All tournament extractions finished.");
+
+    } catch (error) {
+
+        console.error("Extraction error:", error.message);
+
+    }
+
+}
+
 module.exports = {
     extractChessTournaments,
     extractTableTennisTournament,
     extractSquashTournament,
     extractHandballTournament,
     extractpickleballTournament,
-    extractbasketballTournament
+    extractbasketballTournament,
+    extractAllTournaments
 };
