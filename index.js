@@ -10,6 +10,7 @@ const authRoutes = require('./routes/authRoutes.js');
 const previewRoutes = require('./routes/previewRoutes.js');
 const path = require('path');
 
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -33,8 +34,8 @@ async function checkDatabaseConnection() {
 checkDatabaseConnection();
 app.use('/api/tournament', tournamentRoutes)
 app.use('/api', sportsRoutes)
-app.use('/api/academies',academyRoutes)
-app.use('/api',addressRoutes);
+app.use('/api/academies', academyRoutes)
+app.use('/api', addressRoutes);
 app.use('/api', authRoutes)
 app.use("/preview", previewRoutes);
 
@@ -44,4 +45,7 @@ app.get('/', (req, res) => {
 })
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
+    
+    require("./cron/extractCron");
+    console.log("Extraction cron initialized");
 })
