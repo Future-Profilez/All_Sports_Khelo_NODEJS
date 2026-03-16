@@ -76,9 +76,15 @@ function parseTTFIDate(dateStr) {
 
     return { start, end };
 }
-const extractChessTournaments = async (req = null, res=null) => {
+const extractChessTournaments = async (req = null, res = null) => {
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox"
+        ]
+    });
 
     try {
         const page = await browser.newPage();
@@ -160,7 +166,7 @@ const extractChessTournaments = async (req = null, res=null) => {
         console.log("Skipped Range:", skippedRange);
         console.log("Skipped Duplicate:", skippedDuplicate);
 
-        if(res){
+        if (res) {
             return res.json({
                 success: true,
                 inserted,
@@ -173,7 +179,7 @@ const extractChessTournaments = async (req = null, res=null) => {
         }
     } catch (error) {
         console.error("Chess Extraction Error:", error.message);
-        if(res){
+        if (res) {
             return res.status(500).json({
                 success: false,
                 message: "Extraction failed"
@@ -185,10 +191,15 @@ const extractChessTournaments = async (req = null, res=null) => {
 };
 
 
-const extractTableTennisTournament = async (req=null, res=null) => {
+const extractTableTennisTournament = async (req = null, res = null) => {
 
-    const browser = await puppeteer.launch();
-
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox"
+        ]
+    });
     try {
         const page = await browser.newPage();
         await page.goto("https://www.ttfi.org/events", {
@@ -271,7 +282,7 @@ const extractTableTennisTournament = async (req=null, res=null) => {
         console.log("Skipped Invalid Date:", skippedInvalid);
         console.log("Skipped Duplicate:", skippedDuplicate);
 
-        if(res){
+        if (res) {
             return res.json({
                 success: true,
                 inserted,
@@ -284,7 +295,7 @@ const extractTableTennisTournament = async (req=null, res=null) => {
 
     } catch (error) {
         console.log("Extraction Error:", error);
-        if(res){
+        if (res) {
             return res.status(500).json({
                 success: false,
                 message: "Extraction failed"
@@ -298,7 +309,7 @@ const extractTableTennisTournament = async (req=null, res=null) => {
 
 
 // International
-const extractSquashTournament = async (req=null, res=null) => {
+const extractSquashTournament = async (req = null, res = null) => {
     try {
         const response = await axios.get(
             "https://api.indiasquash.com/tournament/tourweb/AL/2026/AL/AL"
@@ -356,7 +367,7 @@ const extractSquashTournament = async (req=null, res=null) => {
         console.log("Skipped Invalid:", skippedInvalid);
         console.log("Skipped Duplicate:", skippedDuplicate);
 
-        if(res){
+        if (res) {
             return res.json({
                 success: true,
                 inserted,
@@ -368,7 +379,7 @@ const extractSquashTournament = async (req=null, res=null) => {
         }
     } catch (error) {
         console.log("Squash API Error:", error.message);
-        if(res){
+        if (res) {
             return res.status(500).json({
                 success: false,
                 message: "Squash extraction failed"
@@ -377,8 +388,14 @@ const extractSquashTournament = async (req=null, res=null) => {
     }
 };
 
-const extractHandballTournament = async (req=null, res=null) => {
-    const browser = await puppeteer.launch();
+const extractHandballTournament = async (req = null, res = null) => {
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox"
+        ]
+    });
     try {
         const page = await browser.newPage();
         await page.goto("https://handballfederationofindia.com/calendar/", {
@@ -464,7 +481,7 @@ const extractHandballTournament = async (req=null, res=null) => {
         console.log("Skipped Range:", skippedRange);
         console.log("Skipped Duplicate:", skippedDuplicate);
 
-        if(res){
+        if (res) {
             return res.json({
                 success: true,
                 inserted,
@@ -478,7 +495,7 @@ const extractHandballTournament = async (req=null, res=null) => {
 
     } catch (error) {
         console.error("Handball Extraction Error:", error.message);
-        if(res){
+        if (res) {
             return res.status(500).json({
                 success: false,
                 message: "Extraction failed"
@@ -490,7 +507,7 @@ const extractHandballTournament = async (req=null, res=null) => {
 
 };
 
-const extractpickleballTournament = async (req=null, res=null) => {
+const extractpickleballTournament = async (req = null, res = null) => {
     try {
         const response = await axios.get(
             "https://api.gorally.app/user/v1/ipc-activities?startDate=2026-01-01"
@@ -554,7 +571,7 @@ const extractpickleballTournament = async (req=null, res=null) => {
         console.log("Skipped Range:", skippedRange);
         console.log("Skipped Duplicate:", skippedDuplicate);
 
-        if(res){
+        if (res) {
             return res.json({
                 success: true,
                 inserted,
@@ -569,7 +586,7 @@ const extractpickleballTournament = async (req=null, res=null) => {
     } catch (error) {
         console.error("Pickleball API Extraction Error:", error.message);
 
-        if(res){
+        if (res) {
             return res.status(500).json({
                 success: false,
                 message: "Extraction failed"
@@ -580,8 +597,14 @@ const extractpickleballTournament = async (req=null, res=null) => {
 };
 
 
-const extractbasketballTournament = async (req=null, res=null) => {
-    const browser = await puppeteer.launch();
+const extractbasketballTournament = async (req = null, res = null) => {
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox"
+        ]
+    });
     try {
         const page = await browser.newPage();
         await page.goto("https://www.basketballfederationindia.org/national-calender/", {
@@ -628,7 +651,7 @@ const extractbasketballTournament = async (req=null, res=null) => {
                 bannerimage: "/uploads/tournament-default-banner/basketball1.webp",
                 thumbnail: "/uploads/tournament-default-thumb/basketball1.png"
             };
-            console.log("formatted",formatted);
+            console.log("formatted", formatted);
             try {
                 await saveTournament(formatted, 1);
                 inserted++;
@@ -641,7 +664,7 @@ const extractbasketballTournament = async (req=null, res=null) => {
         console.log("Skipped Past:", skippedPast);
         console.log("Skipped invalid date:", skippedInvalid);
         console.log("Skipped duplicate:", skippedDuplicate);
-        if(res){
+        if (res) {
             return res.json({
                 success: true,
                 inserted,
@@ -653,7 +676,7 @@ const extractbasketballTournament = async (req=null, res=null) => {
         }
     } catch (error) {
         console.error("Basketball Extraction Error:", error.message);
-        if(res){
+        if (res) {
             return res.status(500).json({
                 success: false,
                 message: "Extraction failed"
