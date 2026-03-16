@@ -9,6 +9,8 @@ const addressRoutes = require('./routes/addressRoutes.js');
 const authRoutes = require('./routes/authRoutes.js');
 const previewRoutes = require('./routes/previewRoutes.js');
 const path = require('path');
+const logger = require('./utils/logger.js');
+
 
 
 dotenv.config();
@@ -41,11 +43,19 @@ app.use("/preview", previewRoutes);
 
 const date = new Date();
 app.get('/', (req, res) => {
-    res.json({ message: "Backend is running... via ... ci cd pipeline sdfsdf", date: date.toISOString() });
+    logger.info("Home route accessed");
+    res.json({ message: "Backend is running... via ... ci cd pipeline", date: date.toISOString() });
 })
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
-    
+    logger.info(`Server is running on port http://localhost:${PORT}`);
     require("./cron/extractCron");
     console.log("Extraction cron initialized");
 })
+process.on("uncaughtException", (err) => {
+  logger.error("Uncaught Exception:", err);
+});
+
+process.on("unhandledRejection", (err) => {
+  logger.error("Unhandled Rejection:", err);
+});
