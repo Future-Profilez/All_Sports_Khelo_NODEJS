@@ -235,6 +235,7 @@
 2026-03-16 17:06:13 [INFO]: undefined tournament extractions finished.
 2026-03-16 17:06:13 [INFO]: 🎉 All tournament extractions completed
 2026-03-16 17:06:13 [INFO]: ⏰ Cron ended at: 2026-03-16T11:36:13.797Z
+<<<<<<< HEAD
 2026-03-16 18:01:37 [INFO]: Server is running on port http://localhost:4000
 2026-03-16 18:02:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:32:00.024Z
 2026-03-16 18:02:04 [INFO]: undefined tournament extractions finished.
@@ -310,10 +311,330 @@
 2026-03-16 18:16:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:46:12.626Z
 2026-03-16 18:18:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:48:00.025Z
 2026-03-16 18:18:02 [INFO]: undefined tournament extractions finished.
+=======
+2026-03-16 17:08:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:38:00.043Z
+2026-03-16 17:08:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:08:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:08:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:08:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:08:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:08:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:08:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:08:12 [INFO]: ⏰ Cron ended at: 2026-03-16T11:38:12.294Z
+2026-03-16 17:10:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:40:00.042Z
+2026-03-16 17:10:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:10:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:10:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:10:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:10:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:10:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:10:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:10:13 [INFO]: ⏰ Cron ended at: 2026-03-16T11:40:13.278Z
+2026-03-16 17:12:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:42:00.030Z
+2026-03-16 17:12:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:12:05 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:12:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:12:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:12:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:12:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:12:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:12:12 [INFO]: ⏰ Cron ended at: 2026-03-16T11:42:12.566Z
+2026-03-16 17:14:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:44:00.035Z
+2026-03-16 17:14:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:14:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:14:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:14:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:14:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:14:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:14:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:14:12 [INFO]: ⏰ Cron ended at: 2026-03-16T11:44:12.837Z
+2026-03-16 17:16:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:46:00.048Z
+2026-03-16 17:16:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:16:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:16:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:16:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:16:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:16:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:16:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:16:13 [INFO]: ⏰ Cron ended at: 2026-03-16T11:46:13.033Z
+2026-03-16 17:18:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:48:00.047Z
+2026-03-16 17:18:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:18:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:18:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:18:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:18:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:18:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:18:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:18:12 [INFO]: ⏰ Cron ended at: 2026-03-16T11:48:12.517Z
+2026-03-16 17:20:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:50:00.019Z
+2026-03-16 17:20:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:20:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:20:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:20:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:20:19 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:20:22 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:20:22 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:20:22 [INFO]: ⏰ Cron ended at: 2026-03-16T11:50:22.281Z
+2026-03-16 17:22:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:52:00.039Z
+2026-03-16 17:22:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:22:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:22:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:22:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:22:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:22:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:22:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:22:13 [INFO]: ⏰ Cron ended at: 2026-03-16T11:52:13.424Z
+2026-03-16 17:24:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:54:00.019Z
+2026-03-16 17:24:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:24:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:24:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:24:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:24:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:24:14 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:24:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:24:14 [INFO]: ⏰ Cron ended at: 2026-03-16T11:54:14.859Z
+2026-03-16 17:26:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:56:00.034Z
+2026-03-16 17:26:04 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:26:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:26:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:26:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:26:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:26:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:26:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:26:13 [INFO]: ⏰ Cron ended at: 2026-03-16T11:56:13.975Z
+2026-03-16 17:28:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T11:58:00.025Z
+2026-03-16 17:28:05 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:28:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:28:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:28:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:28:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:28:15 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:28:15 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:28:15 [INFO]: ⏰ Cron ended at: 2026-03-16T11:58:15.656Z
+2026-03-16 17:30:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:00:00.019Z
+2026-03-16 17:30:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:30:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:30:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:30:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:30:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:30:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:30:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:30:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:00:13.790Z
+2026-03-16 17:32:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:02:00.064Z
+2026-03-16 17:32:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:32:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:32:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:32:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:32:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:32:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:32:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:32:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:02:13.357Z
+2026-03-16 17:34:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:04:00.040Z
+2026-03-16 17:34:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:34:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:34:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:34:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:34:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:34:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:34:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:34:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:04:13.076Z
+2026-03-16 17:36:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:06:00.034Z
+2026-03-16 17:36:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:36:05 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:36:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:36:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:36:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:36:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:36:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:36:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:06:12.205Z
+2026-03-16 17:38:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:08:00.030Z
+2026-03-16 17:38:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:38:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:38:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:38:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:38:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:38:14 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:38:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:38:14 [INFO]: ⏰ Cron ended at: 2026-03-16T12:08:14.230Z
+2026-03-16 17:40:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:10:00.039Z
+2026-03-16 17:40:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:40:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:40:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:40:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:40:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:40:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:40:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:40:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:10:13.412Z
+2026-03-16 17:42:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:12:00.050Z
+2026-03-16 17:42:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:42:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:42:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:42:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:42:16 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:42:19 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:42:19 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:42:19 [INFO]: ⏰ Cron ended at: 2026-03-16T12:12:19.248Z
+2026-03-16 17:44:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:14:00.038Z
+2026-03-16 17:44:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:44:05 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:44:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:44:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:44:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:44:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:44:11 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:44:11 [INFO]: ⏰ Cron ended at: 2026-03-16T12:14:11.941Z
+2026-03-16 17:46:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:16:00.040Z
+2026-03-16 17:46:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:46:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:46:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:46:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:46:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:46:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:46:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:46:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:16:13.876Z
+2026-03-16 17:48:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:18:00.055Z
+2026-03-16 17:48:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:48:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:48:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:48:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:48:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:48:15 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:48:15 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:48:15 [INFO]: ⏰ Cron ended at: 2026-03-16T12:18:15.088Z
+2026-03-16 17:50:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:20:00.036Z
+2026-03-16 17:50:04 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:50:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:50:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:50:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:50:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:50:14 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:50:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:50:14 [INFO]: ⏰ Cron ended at: 2026-03-16T12:20:14.367Z
+2026-03-16 17:52:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:22:00.036Z
+2026-03-16 17:52:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:52:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:52:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:52:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:52:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:52:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:52:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:52:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:22:12.325Z
+2026-03-16 17:54:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:24:00.041Z
+2026-03-16 17:54:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:54:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:54:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:54:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:54:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:54:14 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:54:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:54:14 [INFO]: ⏰ Cron ended at: 2026-03-16T12:24:14.661Z
+2026-03-16 17:56:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:26:00.034Z
+2026-03-16 17:56:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:56:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:56:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:56:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:56:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:56:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:56:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:56:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:26:13.489Z
+2026-03-16 17:58:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:28:00.049Z
+2026-03-16 17:58:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:58:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:58:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:58:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:58:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:58:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 17:58:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 17:58:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:28:12.940Z
+2026-03-16 18:00:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:30:00.029Z
+2026-03-16 18:00:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:00:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:00:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:00:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:00:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:00:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:00:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:00:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:30:12.879Z
+2026-03-16 18:02:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:32:00.045Z
+2026-03-16 18:02:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:02:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:02:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:02:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:02:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:02:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:02:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:02:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:32:12.663Z
+2026-03-16 18:04:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:34:00.034Z
+2026-03-16 18:04:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:04:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:04:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:04:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:04:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:04:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:04:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:04:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:34:13.961Z
+2026-03-16 18:06:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:36:00.039Z
+2026-03-16 18:06:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:06:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:06:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:06:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:06:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:06:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:06:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:06:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:36:12.314Z
+2026-03-16 18:08:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:38:00.033Z
+2026-03-16 18:08:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:08:05 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:08:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:08:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:08:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:08:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:08:11 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:08:11 [INFO]: ⏰ Cron ended at: 2026-03-16T12:38:11.858Z
+2026-03-16 18:10:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:40:00.038Z
+2026-03-16 18:10:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:10:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:10:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:10:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:10:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:10:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:10:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:10:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:40:13.900Z
+2026-03-16 18:12:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:42:00.016Z
+2026-03-16 18:12:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:12:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:12:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:12:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:12:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:12:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:12:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:12:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:42:12.788Z
+2026-03-16 18:14:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:44:00.052Z
+2026-03-16 18:14:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:14:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:14:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:14:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:14:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:14:14 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:14:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:14:14 [INFO]: ⏰ Cron ended at: 2026-03-16T12:44:14.074Z
+2026-03-16 18:16:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:46:00.060Z
+2026-03-16 18:16:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:16:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:16:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:16:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:16:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:16:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:16:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:16:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:46:13.668Z
+2026-03-16 18:18:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:48:00.043Z
+2026-03-16 18:18:03 [INFO]: undefined tournament extractions finished.
+>>>>>>> 02662e0f2b6a7356acefd7e5cf20de87ce420cb5
 2026-03-16 18:18:07 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:18:10 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:18:11 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:18:11 [INFO]: undefined tournament extractions finished.
+<<<<<<< HEAD
 2026-03-16 18:18:13 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:18:13 [INFO]: 🎉 All tournament extractions completed
 2026-03-16 18:18:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:48:13.930Z
@@ -363,6 +684,57 @@
 2026-03-16 18:28:12 [INFO]: 🎉 All tournament extractions completed
 2026-03-16 18:28:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:58:12.759Z
 2026-03-16 18:30:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:00:00.027Z
+=======
+2026-03-16 18:18:14 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:18:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:18:14 [INFO]: ⏰ Cron ended at: 2026-03-16T12:48:14.007Z
+2026-03-16 18:20:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:50:00.036Z
+2026-03-16 18:20:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:20:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:20:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:20:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:20:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:20:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:20:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:20:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:50:12.704Z
+2026-03-16 18:22:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:52:00.043Z
+2026-03-16 18:22:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:22:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:22:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:22:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:22:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:22:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:22:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:22:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:52:12.806Z
+2026-03-16 18:24:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:54:00.035Z
+2026-03-16 18:24:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:24:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:24:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:24:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:24:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:24:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:24:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:24:13 [INFO]: ⏰ Cron ended at: 2026-03-16T12:54:13.235Z
+2026-03-16 18:26:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:56:00.047Z
+2026-03-16 18:26:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:26:05 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:26:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:26:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:26:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:26:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:26:11 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:26:11 [INFO]: ⏰ Cron ended at: 2026-03-16T12:56:11.906Z
+2026-03-16 18:28:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T12:58:00.038Z
+2026-03-16 18:28:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:28:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:28:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:28:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:28:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:28:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:28:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:28:12 [INFO]: ⏰ Cron ended at: 2026-03-16T12:58:12.804Z
+2026-03-16 18:30:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:00:00.039Z
+>>>>>>> 02662e0f2b6a7356acefd7e5cf20de87ce420cb5
 2026-03-16 18:30:02 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:30:06 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:30:09 [INFO]: undefined tournament extractions finished.
@@ -370,6 +742,7 @@
 2026-03-16 18:30:10 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:30:12 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:30:12 [INFO]: 🎉 All tournament extractions completed
+<<<<<<< HEAD
 2026-03-16 18:30:12 [INFO]: ⏰ Cron ended at: 2026-03-16T13:00:12.810Z
 2026-03-16 18:32:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:02:00.026Z
 2026-03-16 18:32:02 [INFO]: undefined tournament extractions finished.
@@ -408,10 +781,51 @@
 2026-03-16 18:38:13 [INFO]: 🎉 All tournament extractions completed
 2026-03-16 18:38:13 [INFO]: ⏰ Cron ended at: 2026-03-16T13:08:13.363Z
 2026-03-16 18:40:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:10:00.017Z
+=======
+2026-03-16 18:30:12 [INFO]: ⏰ Cron ended at: 2026-03-16T13:00:12.677Z
+2026-03-16 18:32:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:02:00.047Z
+2026-03-16 18:32:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:32:05 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:32:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:32:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:32:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:32:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:32:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:32:13 [INFO]: ⏰ Cron ended at: 2026-03-16T13:02:13.359Z
+2026-03-16 18:34:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:04:00.042Z
+2026-03-16 18:34:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:34:07 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:34:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:34:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:34:11 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:34:14 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:34:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:34:14 [INFO]: ⏰ Cron ended at: 2026-03-16T13:04:14.669Z
+2026-03-16 18:36:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:06:00.040Z
+2026-03-16 18:36:03 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:36:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:36:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:36:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:36:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:36:13 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:36:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:36:13 [INFO]: ⏰ Cron ended at: 2026-03-16T13:06:13.265Z
+2026-03-16 18:38:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:08:00.045Z
+2026-03-16 18:38:02 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:38:06 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:38:08 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:38:09 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:38:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:38:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:38:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:38:12 [INFO]: ⏰ Cron ended at: 2026-03-16T13:08:12.546Z
+2026-03-16 18:40:00 [INFO]: ⏰ Cron triggered at: 2026-03-16T13:10:00.021Z
+>>>>>>> 02662e0f2b6a7356acefd7e5cf20de87ce420cb5
 2026-03-16 18:40:02 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:40:06 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:40:08 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:40:09 [INFO]: undefined tournament extractions finished.
+<<<<<<< HEAD
 2026-03-16 18:40:09 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:40:12 [INFO]: undefined tournament extractions finished.
 2026-03-16 18:40:12 [INFO]: 🎉 All tournament extractions completed
@@ -967,6 +1381,101 @@
 2026-03-17 11:58:13 [INFO]: 🎉 All tournament extractions completed
 2026-03-17 11:58:13 [INFO]: ⏰ Cron ended at: 2026-03-17T06:28:13.873Z
 2026-03-17 12:00:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T06:30:00.016Z
+=======
+2026-03-16 18:40:10 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:40:12 [INFO]: undefined tournament extractions finished.
+2026-03-16 18:40:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-16 18:40:12 [INFO]: ⏰ Cron ended at: 2026-03-16T13:10:12.536Z
+2026-03-16 18:41:20 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 09:19:38 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 09:37:30 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 09:37:35 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 09:38:06 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 09:40:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:10:00.143Z
+2026-03-17 09:40:11 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:40:16 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:40:19 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:40:21 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:40:21 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:40:24 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:40:24 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:40:24 [INFO]: ⏰ Cron ended at: 2026-03-17T04:10:24.517Z
+2026-03-17 09:42:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:12:00.035Z
+2026-03-17 09:42:04 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:42:08 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:42:11 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:42:11 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:42:12 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:42:14 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:42:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:42:14 [INFO]: ⏰ Cron ended at: 2026-03-17T04:12:14.948Z
+2026-03-17 09:44:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:14:00.046Z
+2026-03-17 09:44:02 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:44:06 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:44:08 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:44:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:44:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:44:12 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:44:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:44:12 [INFO]: ⏰ Cron ended at: 2026-03-17T04:14:12.185Z
+2026-03-17 09:46:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:16:00.044Z
+2026-03-17 09:46:02 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:46:06 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:46:08 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:46:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:46:10 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:46:13 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:46:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:46:13 [INFO]: ⏰ Cron ended at: 2026-03-17T04:16:13.272Z
+2026-03-17 09:48:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:18:00.025Z
+2026-03-17 09:48:03 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:48:07 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:48:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:48:10 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:48:11 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:48:14 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:48:14 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:48:14 [INFO]: ⏰ Cron ended at: 2026-03-17T04:18:14.576Z
+2026-03-17 09:50:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:20:00.045Z
+2026-03-17 09:50:02 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:50:06 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:50:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:50:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:50:10 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:50:12 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:50:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:50:12 [INFO]: ⏰ Cron ended at: 2026-03-17T04:20:12.299Z
+2026-03-17 09:52:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:22:00.042Z
+2026-03-17 09:52:02 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:52:06 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:52:08 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:52:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:52:09 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:52:12 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:52:12 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:52:12 [INFO]: ⏰ Cron ended at: 2026-03-17T04:22:12.199Z
+2026-03-17 09:54:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T04:24:00.023Z
+2026-03-17 09:54:03 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:54:06 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:54:10 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:54:10 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:54:11 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:54:13 [INFO]: undefined tournament extractions finished.
+2026-03-17 09:54:13 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 09:54:13 [INFO]: ⏰ Cron ended at: 2026-03-17T04:24:13.844Z
+2026-03-17 09:54:19 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:08:32 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:13:27 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:14:19 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:26:35 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:36:32 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:38:15 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:46:03 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:49:43 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:50:04 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 11:51:12 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 12:00:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T06:30:00.043Z
+>>>>>>> 02662e0f2b6a7356acefd7e5cf20de87ce420cb5
 2026-03-17 12:00:03 [INFO]: undefined tournament extractions finished.
 2026-03-17 12:00:07 [INFO]: undefined tournament extractions finished.
 2026-03-17 12:00:10 [INFO]: undefined tournament extractions finished.
@@ -974,6 +1483,7 @@
 2026-03-17 12:00:11 [INFO]: undefined tournament extractions finished.
 2026-03-17 12:00:14 [INFO]: undefined tournament extractions finished.
 2026-03-17 12:00:14 [INFO]: 🎉 All tournament extractions completed
+<<<<<<< HEAD
 2026-03-17 12:00:14 [INFO]: ⏰ Cron ended at: 2026-03-17T06:30:14.129Z
 2026-03-17 12:02:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T06:32:00.029Z
 2026-03-17 12:02:02 [INFO]: undefined tournament extractions finished.
@@ -2586,3 +3096,21 @@
 2026-03-17 17:58:12 [INFO]: undefined tournament extractions finished.
 2026-03-17 17:58:12 [INFO]: 🎉 All tournament extractions completed
 2026-03-17 17:58:12 [INFO]: ⏰ Cron ended at: 2026-03-17T12:28:12.961Z
+=======
+2026-03-17 12:00:14 [INFO]: ⏰ Cron ended at: 2026-03-17T06:30:14.184Z
+2026-03-17 12:01:39 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 12:02:14 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 12:02:16 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 12:09:37 [INFO]: Server is running on port http://localhost:4000
+2026-03-17 12:10:00 [INFO]: ⏰ Cron triggered at: 2026-03-17T06:40:00.027Z
+2026-03-17 12:10:04 [INFO]: undefined tournament extractions finished.
+2026-03-17 12:10:08 [INFO]: undefined tournament extractions finished.
+2026-03-17 12:10:11 [INFO]: undefined tournament extractions finished.
+2026-03-17 12:10:12 [INFO]: undefined tournament extractions finished.
+2026-03-17 12:10:12 [INFO]: undefined tournament extractions finished.
+2026-03-17 12:10:15 [INFO]: undefined tournament extractions finished.
+2026-03-17 12:10:24 [INFO]: undefined tournament extractions finished.
+2026-03-17 12:10:24 [INFO]: 🎉 All tournament extractions completed
+2026-03-17 12:10:24 [INFO]: ⏰ Cron ended at: 2026-03-17T06:40:24.422Z
+2026-03-17 12:11:30 [INFO]: Server is running on port http://localhost:4000
+>>>>>>> 02662e0f2b6a7356acefd7e5cf20de87ce420cb5
