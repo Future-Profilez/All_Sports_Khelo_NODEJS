@@ -3,6 +3,7 @@ const { title } = require('process');
 const puppeteer = require('puppeteer');
 const { saveTournament } = require('./ask_tournamentController');
 const sports = require("../utils/sports.json");
+const logger = require('../utils/logger');
 
 function parseDate(dateStr) {
 
@@ -148,6 +149,7 @@ const extractChessTournaments = async (req = null, res = null) => {
                 address: tournament.address,
                 url: tournament.brochure,
                 sport_id: "019ab5337",
+                user_id: 1,
                 organizer_name: "AICF",
                 bannerimage: "/uploads/tournament-default-banner/chess1.webp",
                 thumbnail: "/uploads/tournament-default-thumb/chess1.png"
@@ -262,6 +264,7 @@ const extractTableTennisTournament = async (req = null, res = null) => {
                 address: event.address,
                 url: event.link,
                 sport_id: "019ab531-3b8f-730c-a2a0-4eeb9fca1568",
+                user_id: 1,
                 organizer_name: "TTFI",
 
                 bannerimage: "/uploads/tournament-default-banner/tennis1.jpg",
@@ -346,6 +349,7 @@ const extractSquashTournament = async (req = null, res = null) => {
                 address: tournament.Venue,
                 url: null,
                 sport_id: "019ab5334", // squash sport id
+                user_id: 1,
                 organizer_name: "India Squash Federation",
                 fees: tournament.EntryFees,
 
@@ -459,6 +463,7 @@ const extractHandballTournament = async (req = null, res = null) => {
                 address: tournament.address,
                 url: tournament.link,
                 sport_id: "019ab5335", // your handball sport id
+                user_id: 1,
                 organizer_name: "Handball Federation of India",
 
                 bannerimage: "/uploads/tournament-default-banner/handball1.webp",
@@ -552,6 +557,7 @@ const extractpickleballTournament = async (req = null, res = null) => {
                 address: event.streetAddress || event.venue || event.city,
                 url: null,
                 sport_id: "019ab531-da3f-7066-a647-bce5abe65642", // pickleball sport id
+                user_id: 1,
                 organizer_name: event.organizer?.name || "Indian Pickleball Association",
                 bannerimage: "/uploads/tournament-default-banner/pickleball1.webp",
                 thumbnail: "/uploads/tournament-default-thumb/pickleball1.webp"
@@ -648,6 +654,7 @@ const extractbasketballTournament = async (req = null, res = null) => {
                 address: tournament.address,
                 url: tournament.link,
                 sport_id: "019ab5336",
+                user_id: 1,
                 bannerimage: "/uploads/tournament-default-banner/basketball1.webp",
                 thumbnail: "/uploads/tournament-default-thumb/basketball1.png"
             };
@@ -687,6 +694,108 @@ const extractbasketballTournament = async (req = null, res = null) => {
     }
 };
 
+const extractBadmintonTournament = async (req = null, res = null) => {
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox"
+        ]
+    });
+    try {
+        const page = await browser.newPage();
+        await page.goto("https://www.badmintonindia.org/beta/events/tournaments/domestic/", {
+            waitUntil: "networkidle2",
+        });
+        const tournaments = await page.evaluate(() => {
+
+            const rows = document.querySelectorAll("table tr");
+
+            const clean = (text) =>
+                text ? text.replace(/\n/g, " ").replace(/\s+/g, " ").trim() : null;
+
+            return Array.from(rows).slice(1).map(row => {
+
+                const type = row.querySelector(".type")?.innerText;
+                const date = row.querySelector(".startdate")?.innerText;
+                const name = row.querySelector(".title")?.innerText;
+                const address = row.querySelector(".venue")?.innerText;
+                const link = row.querySelector(".title a")?.href;
+
+                return {
+                    type: clean(type),
+                    date: clean(date),
+                    name: clean(name),
+                    address: clean(address),
+                    link
+                };
+
+            });
+
+        });
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        let inserted = 0;
+        let skippedPast = 0;
+        let skippedInvalid = 0;
+        let skippedDuplicate = 0;
+        for (const tournament of tournaments) {
+            const parsed = parseTTFIDate(tournament.date);
+            if (!parsed) {
+                skippedInvalid++;
+                continue;
+            }
+            if (parsed.end < today) {
+                skippedPast++;
+                continue;
+            }
+            const formatted = {
+                name: tournament.name,
+                startdate: parsed.start,
+                enddate: parsed.end,
+                address: tournament.address,
+                url: tournament.link,
+                sport_id: "019ab533",
+                user_id: 1,
+                bannerimage: "/uploads/tournament-default-banner/badminton2.webp",
+                thumbnail: "/uploads/tournament-default-thumb/badminton1.png"
+            };
+            console.log("formatted", formatted);
+            try {
+                await saveTournament(formatted, 1);
+                inserted++;
+            } catch (error) {
+                skippedDuplicate++;
+            }
+        }
+        console.log("Basketball extraction summary");
+        console.log("Inserted:", inserted);
+        console.log("Skipped Past:", skippedPast);
+        console.log("Skipped invalid date:", skippedInvalid);
+        console.log("Skipped duplicate:", skippedDuplicate);
+        if (res) {
+            return res.json({
+                success: true,
+                inserted,
+                skippedPast,
+                skippedInvalid,
+                skippedDuplicate,
+                total: tournaments.length
+            });
+        }
+    } catch (error) {
+        logger.error("Badminton extraction error : ", error.message);
+        if (res) {
+            return res.status(500).json({
+                success: false,
+                message: error.message
+            });
+        }
+    } finally {
+        await browser.close();
+    }
+}
+
 async function extractAllTournaments() {
 
     console.log("Starting all tournament extractions...");
@@ -719,5 +828,6 @@ module.exports = {
     extractHandballTournament,
     extractpickleballTournament,
     extractbasketballTournament,
+    extractBadmintonTournament,
     extractAllTournaments
 };
