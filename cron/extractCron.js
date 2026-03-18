@@ -12,7 +12,8 @@ const {
     extractSquashTournament,
     extractbasketballTournament,
     extractAllTournaments,
-    extractBadmintonTournament
+    extractBadmintonTournament,
+    extractTennisTournament
 } = require("../controller/extractController");
 const logger = require("../utils/logger");
 
@@ -42,6 +43,9 @@ cron.schedule("0 */12 * * *", async () => {
 
         await extractBadmintonTournament();
         await extractConsole("Badminton");
+
+        await extractTennisTournament();
+        await extractConsole("Tennis");
 
         
         logger.info(`🎉 All tournament extractions completed`)

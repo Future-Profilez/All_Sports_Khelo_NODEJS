@@ -167,6 +167,7 @@ const extractChessTournaments = async (req = null, res = null) => {
         console.log("Skipped Invalid:", skippedInvalid);
         console.log("Skipped Range:", skippedRange);
         console.log("Skipped Duplicate:", skippedDuplicate);
+        
 
         if (res) {
             return res.json({
@@ -796,6 +797,106 @@ const extractBadmintonTournament = async (req = null, res = null) => {
     }
 }
 
+const extractTennisTournament = async (req = null, res = null) => {
+    try {
+
+        const response = await axios.get(
+            "https://tenniskhelo.com/api/ask/tournament/lists"
+        );
+
+        const tournaments = response.data?.data || [];
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        let inserted = 0;
+        let skippedPast = 0;
+        let skippedInvalid = 0;
+        let skippedDuplicate = 0;
+
+        for (const tournament of tournaments) {
+
+            const start = new Date(tournament.start_date);
+            const end = new Date(tournament.end_date);
+
+            if (isNaN(start) || isNaN(end)) {
+                skippedInvalid++;
+                continue;
+            }
+
+            if (end < today) {
+                skippedPast++;
+                continue;
+            }
+
+            const formatted = {
+
+                name: tournament.name,
+                startdate: start,
+                enddate: end,
+                description: tournament.description,
+
+                address: `${tournament.city?.name || ""}, ${tournament.state?.name || ""}`,
+                city_id:tournament.city?.id,
+                state_id:tournament.state?.id,
+
+                url: `https://tenniskhelo.com/tournament/${tournament.slug}`,
+
+                sport_id: "019a92fe-7ccf-7282-bccf-ba3ec4f780ce",
+                user_id: 1,
+
+                organizer_name: "Tennis Khelo",
+
+                bannerimage: tournament.image || "/uploads/tournament-default-banner/tennis1.jpg",
+                thumbnail: tournament.image || "/uploads/tournament-default-thumb/tennis1.webp"
+            };
+            console.log("banner image ",formatted.bannerimage);
+            console.log("thumbnail image ",formatted.thumbnail);
+
+            try {
+
+                await saveTournament(formatted, 1);
+                inserted++;
+
+            } catch (error) {
+
+                skippedDuplicate++;
+
+            }
+
+        }
+
+        console.log("Tennis Extraction Summary");
+        console.log("Inserted:", inserted);
+        console.log("Skipped Past:", skippedPast);
+        console.log("Skipped Invalid:", skippedInvalid);
+        console.log("Skipped Duplicate:", skippedDuplicate);
+
+        if (res) {
+            return res.json({
+                success: true,
+                inserted,
+                skippedPast,
+                skippedInvalid,
+                skippedDuplicate,
+                total: tournaments.length
+            });
+        }
+
+    } catch (error) {
+
+        console.error("Tennis extraction error:", error.message);
+
+        if (res) {
+            return res.status(500).json({
+                status: false,
+                message: error.message
+            });
+        }
+
+    }
+};
+
 async function extractAllTournaments() {
 
     console.log("Starting all tournament extractions...");
@@ -808,7 +909,8 @@ async function extractAllTournaments() {
             extractSquashTournament(),
             extractHandballTournament(),
             extractpickleballTournament(),
-            extractbasketballTournament()
+            extractbasketballTournament(),
+            extractTennisTournament()
         ]);
 
         console.log("All tournament extractions finished.");
@@ -829,5 +931,6 @@ module.exports = {
     extractpickleballTournament,
     extractbasketballTournament,
     extractBadmintonTournament,
+    extractTennisTournament,
     extractAllTournaments
 };
