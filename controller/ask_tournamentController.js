@@ -51,7 +51,7 @@ const getSportID = async (name) => {
   }
 }
 
-exports.saveTournament = async(row, user_id) => {
+exports.saveTournament = async (row, user_id) => {
   try {
 
     const startDateObj = new Date(row.startdate);
@@ -527,17 +527,17 @@ exports.list_ask_tournaments = async (req, res) => {
   try {
     const typeParam = Number(req?.params?.type);
     const sports_id = req.query?.sports_id;
-    const country_id = req.query?.country_id;
-    const state_id = req.query?.state_id;
-    const city_id = req.query?.city_id;
+    // const country_id = req.query?.country_id;
+    // const state_id = req.query?.state_id;
+    // const city_id = req.query?.city_id;
     const search = req.query?.search;
     const startdate = req.query?.startdate;
     const enddate = req.query?.enddate;
-    const include = {
-      country: true,
-      state: true,
-      // city: true,
-    };
+    // const include = {
+    //   country: true,
+    //   state: true,
+    //   city: true,
+    // };
     // const include = {
     //   city: city_id ? true : false,
     // };
@@ -547,15 +547,15 @@ exports.list_ask_tournaments = async (req, res) => {
     if (sports_id !== '' || sports_id !== undefined) {
       where.sport_id = sports_id;
     }
-    if (country_id && country_id !== undefined) {
-      where.country_id = Number(country_id);
-    }
-    if (state_id && state_id !== undefined) {
-      where.state_id = Number(state_id);
-    }
-    if (city_id && city_id != undefined) {
-      where.city_id = Number(city_id);
-    }
+    // if (country_id && country_id !== undefined) {
+    //   where.country_id = Number(country_id);
+    // }
+    // if (state_id && state_id !== undefined) {
+    //   where.state_id = Number(state_id);
+    // }
+    // if (city_id && city_id != undefined) {
+    //   where.city_id = Number(city_id);
+    // }
     if (startdate && enddate) {
       const start = new Date(startdate);
       const end = new Date(enddate);
@@ -573,6 +573,32 @@ exports.list_ask_tournaments = async (req, res) => {
             // mode: "insensitive",
           },
         },
+        {
+          country: {
+            name: {
+              contains: search,
+            },
+          },
+        },
+        {
+          state: {
+            name: {
+              contains: search,
+            },
+          },
+        },
+        {
+          city: {
+            name: {
+              contains: search,
+            },
+          },
+        },
+        {
+          address: {
+            contains: search,
+          }
+        }
       ];
     }
     // Logged in user tournaments filter
@@ -580,26 +606,26 @@ exports.list_ask_tournaments = async (req, res) => {
       where.user_id = Number(req?.user?.id);
     }
 
-    
-
-   
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
-      include,
-      // orderBy: {startdate: "asc",}
+      include: {
+        country: true,
+        state: true,
+        city: true,
+      },
       orderBy: { created_at: "desc", }
     });
 
 
-    async function getCityData(c_id) {
-      if (!c_id) return null;
+    // async function getCityData(c_id) {
+    //   if (!c_id) return null;
 
-      const city = await prisma.cities.findFirst({
-        where: { id: c_id },
-      });
+    //   const city = await prisma.cities.findFirst({
+    //     where: { id: c_id },
+    //   });
 
-      return city ? convertBigIntToString(city) : null;
-    }
+    //   return city ? convertBigIntToString(city) : null;
+    // }
 
 
     const data = convertBigIntToString(tournaments);

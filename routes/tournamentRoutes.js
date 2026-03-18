@@ -6,7 +6,7 @@ const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
 const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament, all_tournaments_sports } = require("../controller/ask_tournamentController");
 const { protect } = require("../middleware/authMiddleware");
-const { extractChessTournaments, extractTableTennisTournament, extractSquashTournament, extractHandballTournament, extractpickleballTournament, extractbasketballTournament, extractBadmintonTournament } = require("../controller/extractController");
+const { extractChessTournaments, extractTableTennisTournament, extractSquashTournament, extractHandballTournament, extractpickleballTournament, extractbasketballTournament, extractBadmintonTournament, extractTennisTournament } = require("../controller/extractController");
 
 // TK ROUTES
 // router.get('/', tournament),
@@ -65,6 +65,7 @@ router.post("/handball/extraction", extractHandballTournament);
 router.post("/pickleball/extraction", extractpickleballTournament);
 router.post("/basketball/extraction", extractbasketballTournament);
 router.post("/badminton/extraction",extractBadmintonTournament);
+router.post("/tennis/extraction",extractTennisTournament);
 
 
 module.exports = router
