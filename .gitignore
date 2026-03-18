@@ -11,3 +11,8 @@ lib/prisma.js
 # DotEnv 
 .env
 introspected.tmp.prisma
+
+logs
+logs/*
+/logs/error.log
+/logs/combined.log
