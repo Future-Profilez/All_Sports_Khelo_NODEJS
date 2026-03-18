@@ -594,6 +594,11 @@ exports.list_ask_tournaments = async (req, res) => {
             },
           },
         },
+        {
+          address: {
+            contains: search,
+          }
+        }
       ];
     }
     // Logged in user tournaments filter
@@ -601,9 +606,6 @@ exports.list_ask_tournaments = async (req, res) => {
       where.user_id = Number(req?.user?.id);
     }
 
-    
-
-   
     const tournaments = await prisma.ask_tournaments.findMany({
       where,
       include: {
