@@ -847,8 +847,8 @@ const extractTennisTournament = async (req = null, res = null) => {
 
                 organizer_name: "Tennis Khelo",
 
-                bannerimage: tournament.image || "/uploads/tournament-default-banner/tennis1.jpg",
-                thumbnail: tournament.image || "/uploads/tournament-default-thumb/tennis1.webp"
+                bannerimage: "/uploads/tournament-default-banner/tennis1.jpg" || tournament.image,
+                thumbnail:  "/uploads/tournament-default-thumb/tennis1.webp" || tournament.image
             };
             console.log("banner image ",formatted.bannerimage);
             console.log("thumbnail image ",formatted.thumbnail);
