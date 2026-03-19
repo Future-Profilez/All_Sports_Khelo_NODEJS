@@ -12,3 +12,6 @@ npx prisma db execute --file prisma/sql/202602171515_add_null_value_to_ask_tourn
 
 /21/02/2026
 npx prisma db execute --file  prisma/sql/202602211300_modify_ask_tournament_table.sql
+
+19/03/2026
+npx prisma db execute --file prisma/sql/202603190233_add_extraction_and_featured_fields_in_tournament_table.sql
