@@ -152,7 +152,8 @@ const extractChessTournaments = async (req = null, res = null) => {
                 user_id: 1,
                 organizer_name: "AICF",
                 bannerimage: "/uploads/tournament-default-banner/chess1.webp",
-                thumbnail: "/uploads/tournament-default-thumb/chess1.png"
+                thumbnail: "/uploads/tournament-default-thumb/chess1.png",
+                extracted: 1 
             };
             try {
                 await saveTournament(formatted, 1);
@@ -269,7 +270,8 @@ const extractTableTennisTournament = async (req = null, res = null) => {
                 organizer_name: "TTFI",
 
                 bannerimage: "/uploads/tournament-default-banner/tennis1.jpg",
-                thumbnail: "/uploads/tournament-default-thumb/tennis1.webp"
+                thumbnail: "/uploads/tournament-default-thumb/tennis1.webp",
+                extracted: 1 
             };
 
             try {
@@ -355,7 +357,8 @@ const extractSquashTournament = async (req = null, res = null) => {
                 fees: tournament.EntryFees,
 
                 bannerimage: "/uploads/tournament-default-banner/squash1.webp",
-                thumbnail: "/uploads/tournament-default-banner/squash2.webp"
+                thumbnail: "/uploads/tournament-default-banner/squash2.webp",
+                extracted: 1 
             };
 
             try {
@@ -468,7 +471,8 @@ const extractHandballTournament = async (req = null, res = null) => {
                 organizer_name: "Handball Federation of India",
 
                 bannerimage: "/uploads/tournament-default-banner/handball1.webp",
-                thumbnail: "/uploads/tournament-default-thumb/handball1.webp"
+                thumbnail: "/uploads/tournament-default-thumb/handball1.webp",
+                extracted: 1 
             };
 
             try {
@@ -561,7 +565,8 @@ const extractpickleballTournament = async (req = null, res = null) => {
                 user_id: 1,
                 organizer_name: event.organizer?.name || "Indian Pickleball Association",
                 bannerimage: "/uploads/tournament-default-banner/pickleball1.webp",
-                thumbnail: "/uploads/tournament-default-thumb/pickleball1.webp"
+                thumbnail: "/uploads/tournament-default-thumb/pickleball1.webp",
+                extracted: 1 
             };
             try {
                 await saveTournament(formatted, 1);
@@ -657,7 +662,8 @@ const extractbasketballTournament = async (req = null, res = null) => {
                 sport_id: "019ab5336",
                 user_id: 1,
                 bannerimage: "/uploads/tournament-default-banner/basketball1.webp",
-                thumbnail: "/uploads/tournament-default-thumb/basketball1.png"
+                thumbnail: "/uploads/tournament-default-thumb/basketball1.png",
+                extracted: 1 
             };
             console.log("formatted", formatted);
             try {
@@ -759,7 +765,8 @@ const extractBadmintonTournament = async (req = null, res = null) => {
                 sport_id: "019ab533",
                 user_id: 1,
                 bannerimage: "/uploads/tournament-default-banner/badminton2.webp",
-                thumbnail: "/uploads/tournament-default-thumb/badminton1.png"
+                thumbnail: "/uploads/tournament-default-thumb/badminton1.png",
+                extracted: 1 
             };
             console.log("formatted", formatted);
             try {
@@ -848,7 +855,8 @@ const extractTennisTournament = async (req = null, res = null) => {
                 organizer_name: "Tennis Khelo",
 
                 bannerimage: "/uploads/tournament-default-banner/tennis1.jpg" || tournament.image,
-                thumbnail:  "/uploads/tournament-default-thumb/tennis1.webp" || tournament.image
+                thumbnail:  "/uploads/tournament-default-thumb/tennis1.webp" || tournament.image,
+                extracted: 1 
             };
             console.log("banner image ",formatted.bannerimage);
             console.log("thumbnail image ",formatted.thumbnail);
