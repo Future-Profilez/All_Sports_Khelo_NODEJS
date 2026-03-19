@@ -17,8 +17,8 @@ const {
 } = require("../controller/extractController");
 const logger = require("../utils/logger");
 
-// cron.schedule("0 */12 * * *", async () => {
-cron.schedule("*/2 * * * *", async () => {
+cron.schedule("0 */12 * * *", async () => {
+// cron.schedule("*/2 * * * *", async () => {
     // console.log("Running tournament extraction cron...");
     logger.info(`⏰ Cron triggered at: ${new Date().toISOString()}`)
     try {
