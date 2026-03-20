@@ -1129,4 +1129,56 @@ exports.tournamentCitiesList = async (req, res) => {
   }
 }
 
+exports.toggleFeatured = async (req, res) => {
+  try {
+    const tourid = Number(req.params.id);
+
+    const tour = await prisma.ask_tournaments.findUnique({
+      where: { id: tourid },
+    });
+
+    if (!tour) {
+      return res.status(404).json({
+        status: false,
+        message: "Tournament not found",
+      });
+    }
+
+    const now = new Date();
+
+    const isActive =
+      tour.featured_expiry && tour.featured_expiry > now;
+
+    const updated = await prisma.ask_tournaments.update({
+      where: { id: tourid },
+      data: isActive
+        ? {
+          featured: null,
+          featured_expiry: null,
+        }
+        : {
+          featured: now,
+          featured_expiry: new Date(
+            now.getTime() + 7 * 24 * 60 * 60 * 1000
+          ),
+        },
+    });
+
+    return res.status(200).json({
+      status: true,
+      message: isActive
+        ? "Removed from featured"
+        : "Marked as featured for 7 days",
+      data: updated,
+    });
+
+  } catch (error) {
+    console.error("Toggle feature error:", error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error",
+    });
+  }
+};
+
 
