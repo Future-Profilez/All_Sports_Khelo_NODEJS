@@ -4,7 +4,7 @@ const express = require("express")
 // const { tournament } = require("../validation/tournamentValidation.js")
 const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
-const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament, all_tournaments_sports, toggleFeatured } = require("../controller/ask_tournamentController");
+const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament, all_tournaments_sports, toggleFeatured, getFeaturedTournaments } = require("../controller/ask_tournamentController");
 const { protect } = require("../middleware/authMiddleware");
 const { extractChessTournaments, extractTableTennisTournament, extractSquashTournament, extractHandballTournament, extractpickleballTournament, extractbasketballTournament, extractBadmintonTournament, extractTennisTournament } = require("../controller/extractController");
 
@@ -69,6 +69,7 @@ router.post("/tennis/extraction",extractTennisTournament);
 
 //featured routes
 router.post("/featured/:id",toggleFeatured);
+router.get("/featured/list",getFeaturedTournaments);
 
 
 module.exports = router
