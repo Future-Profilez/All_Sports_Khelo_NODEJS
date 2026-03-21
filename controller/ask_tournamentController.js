@@ -1240,7 +1240,7 @@ exports.getFeaturedTournaments = async (req, res) => {
 
     return res.status(200).json({
       status: true,
-      data: tournaments,
+      data: convertBigIntToString(tournaments),
     });
 
   } catch (error) {

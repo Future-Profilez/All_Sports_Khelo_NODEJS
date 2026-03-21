@@ -9,12 +9,12 @@ exports.register = async (req, res) => {
         const { name, phone, email, password, country_code } = req.body;
         const isEmailExist = await prisma.ask_users.findUnique({ where: { email } });
         if (isEmailExist && isEmailExist.otp_verified) {
-            return res.status(200).json({ status: true, message: "Email already register. Please login" })
+            return res.status(200).json({ status: false, message: "Email already register" })
         }
 
         const isPhoneExist = await prisma.ask_users.findUnique({ where: { phone } });
         if (isPhoneExist) {
-            return res.status(200).json({ status: true, message: "Phone already exists." })
+            return res.status(200).json({ status: false, message: "Phone already exists." })
         }
 
         if (!isEmailExist) {
