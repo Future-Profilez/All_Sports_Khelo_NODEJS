@@ -1169,7 +1169,7 @@ exports.toggleFeatured = async (req, res) => {
       message: isActive
         ? "Removed from featured"
         : "Marked as featured for 7 days",
-      data: updated,
+      data: convertBigIntToString(updated),
     });
 
   } catch (error) {
