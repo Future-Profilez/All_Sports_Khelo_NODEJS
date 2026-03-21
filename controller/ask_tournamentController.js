@@ -1207,7 +1207,7 @@ exports.toggleFeatured = async (req, res) => {
       message: isActive
         ? "Removed from featured"
         : "Marked as featured for 7 days",
-      data: updated,
+      data: convertBigIntToString(updated),
     });
 
   } catch (error) {
@@ -1218,3 +1218,37 @@ exports.toggleFeatured = async (req, res) => {
     });
   }
 };
+
+exports.getFeaturedTournaments = async (req, res) => {
+  try {
+    const now = new Date();
+
+    const tournaments = await prisma.ask_tournaments.findMany({
+      where: {
+        featured: { not: null },
+        featured_expiry: {
+          gte: now,
+        },
+        publish_status: 1,
+        deleted_at: null,
+      },
+      orderBy: {
+        featured: "desc", // latest featured first
+      },
+      // take: 10, // limit for homepage
+    });
+
+    return res.status(200).json({
+      status: true,
+      data: tournaments,
+    });
+
+  } catch (error) {
+    console.error("Fetch featured error:", error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error",
+    });
+  }
+};
+
