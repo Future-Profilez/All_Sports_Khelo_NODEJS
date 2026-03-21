@@ -91,7 +91,8 @@ exports.saveTournament = async (row, user_id) => {
         publish_status: 1,
         bulk_upload: 1,
         sport_id: row.sport_id,
-        organizer_name: row.organizer_name || null
+        organizer_name: row.organizer_name || null,
+        extracted: row.extracted ? 1 : 0
       }
     });
 
@@ -527,6 +528,7 @@ exports.list_ask_tournaments = async (req, res) => {
   try {
     const typeParam = Number(req?.params?.type);
     const sports_id = req.query?.sports_id;
+    const extracted = req.query?.extracted;
     // const country_id = req.query?.country_id;
     // const state_id = req.query?.state_id;
     // const city_id = req.query?.city_id;
@@ -565,6 +567,12 @@ exports.list_ask_tournaments = async (req, res) => {
         { enddate: { gte: start } }   // tournament ends after range starts
       ];
     }
+
+    // extracted filter
+    if (extracted !== undefined) {
+      where.extracted = Number(extracted);
+    }
+
     if (search && search.trim() !== "") {
       where.OR = [
         {
@@ -611,7 +619,7 @@ exports.list_ask_tournaments = async (req, res) => {
       include: {
         country: true,
         state: true,
-        city: true,
+        city: true
       },
       orderBy: { created_at: "desc", }
     });
@@ -662,28 +670,58 @@ exports.list_ask_tournaments = async (req, res) => {
 };
 
 
-
 // All sports listing that are included in tournaments
+// exports.all_tournaments_sports = async (req, res) => {
+//   try {
+//     const tournaments = await prisma.ask_tournaments.findMany({
+//       select: {
+//         sport_id: true,
+//       },
+//       orderBy: {
+//         startdate: "desc",
+//       },
+//     });
+
+//     // Convert BigInt → string if needed
+//     const data = convertBigIntToString(tournaments);
+
+//     // Get unique sport IDs
+//     const activeSportIds = [...new Set(data.map(t => t.sport_id))];
+
+//     return res.status(200).json({
+//       status: true,
+//       message: "All active sports tournaments fetched successfully!",
+//       activeSports: activeSportIds,
+//     });
+
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({
+//       status: false,
+//       message: "Internal server error",
+//       error,
+//     });
+//   }
+// };
+
 exports.all_tournaments_sports = async (req, res) => {
   try {
+
+    const includeExtracted = req.query.includeExtracted === "true";
+
+    const where = includeExtracted ? {} : { extracted: 0 };
+
     const tournaments = await prisma.ask_tournaments.findMany({
+      where,
       select: {
         sport_id: true,
-      },
-      orderBy: {
-        startdate: "desc",
-      },
+      }
     });
 
-    // Convert BigInt → string if needed
-    const data = convertBigIntToString(tournaments);
-
-    // Get unique sport IDs
-    const activeSportIds = [...new Set(data.map(t => t.sport_id))];
+    const activeSportIds = [...new Set(tournaments.map(t => t.sport_id))];
 
     return res.status(200).json({
       status: true,
-      message: "All active sports tournaments fetched successfully!",
       activeSports: activeSportIds,
     });
 
@@ -692,7 +730,6 @@ exports.all_tournaments_sports = async (req, res) => {
     return res.status(500).json({
       status: false,
       message: "Internal server error",
-      error,
     });
   }
 };
@@ -1129,4 +1166,168 @@ exports.tournamentCitiesList = async (req, res) => {
   }
 }
 
+exports.toggleFeatured = async (req, res) => {
+  try {
+    const tourid = Number(req.params.id);
+
+    const tour = await prisma.ask_tournaments.findUnique({
+      where: { id: tourid },
+    });
+
+    if (!tour) {
+      return res.status(404).json({
+        status: false,
+        message: "Tournament not found",
+      });
+    }
+
+    const now = new Date();
+
+    const isActive =
+      tour.featured_expiry && tour.featured_expiry > now;
+
+    const updated = await prisma.ask_tournaments.update({
+      where: { id: tourid },
+      data: isActive
+        ? {
+          featured: null,
+          featured_expiry: null,
+        }
+        : {
+          featured: now,
+          featured_expiry: new Date(
+            now.getTime() + 7 * 24 * 60 * 60 * 1000
+          ),
+        },
+    });
+
+    return res.status(200).json({
+      status: true,
+      message: isActive
+        ? "Removed from featured"
+        : "Marked as featured for 7 days",
+      data: convertBigIntToString(updated),
+    });
+
+  } catch (error) {
+    console.error("Toggle feature error:", error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+exports.getFeaturedTournaments = async (req, res) => {
+  try {
+    const now = new Date();
+
+    const tournaments = await prisma.ask_tournaments.findMany({
+      where: {
+        featured: { not: null },
+        featured_expiry: {
+          gte: now,
+        },
+        publish_status: 1,
+        deleted_at: null,
+      },
+      orderBy: {
+        featured: "desc", // latest featured first
+      },
+      // take: 10, // limit for homepage
+    });
+
+
+    const updateddata = tournaments.map((item) => {
+
+      return {
+        ...item,
+        thumbnail: item?.thumbnail
+          ? `${process.env.APP_URL}${item.thumbnail}`
+          : false,
+        bannerimage: item?.bannerimage
+          ? `${process.env.APP_URL}${item.bannerimage}`
+          : false,
+      };
+    });
+
+
+
+    return res.status(200).json({
+      status: true,
+      data: convertBigIntToString(tournaments),
+    });
+
+  } catch (error) {
+    console.error("Fetch featured error:", error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+
+//Listing trending tournaments
+//if enquiry count is more than threshhold(5) then those tournaments are considered trending
+// exports.getTrendingTournaments = async (req, res) => {
+//   try {
+//     const now = new Date();
+
+//     // 🔥 Step 1: group enquiries
+//     const enquiryCounts = await prisma.ask_tournament_enquiries.groupBy({
+//       by: ["tournament_id"],
+//       _count: {
+//         tournament_id: true,
+//       },
+//     });
+
+//     const MIN_ENQUIRIES = 5;
+
+//     const trendingIds = enquiryCounts
+//       .filter((e) => e._count.tournament_id >= MIN_ENQUIRIES)
+//       .map((e) => e.tournament_id);
+
+//     if (trendingIds.length === 0) {
+//       return res.status(200).json({
+//         status: true,
+//         data: [],
+//       });
+//     }
+
+//     // 🔥 Step 2: fetch tournaments
+//     const tournaments = await prisma.ask_tournaments.findMany({
+//       where: {
+//         id: { in: trendingIds },
+//         enddate: { gte: now },
+//         publish_status: 1,
+//         deleted_at: null,
+//       },
+//     });
+
+//     // ✅ STEP 3: SORT HERE (THIS IS YOUR CODE)
+//     const countMap = {};
+
+//     enquiryCounts.forEach((e) => {
+//       countMap[e.tournament_id] = e._count.tournament_id;
+//     });
+
+//     const sorted = tournaments.sort(
+//       (a, b) => countMap[b.id] - countMap[a.id]
+//     );
+
+//     // ✅ STEP 4: return sorted data
+//     return res.status(200).json({
+//       status: true,
+//       data: sorted,
+//     });
+
+//   } catch (error) {
+//     console.error("Trending error:", error);
+//     return res.status(500).json({
+//       status: false,
+//       message: "Internal server error",
+//     });
+//   }
+// };
 
