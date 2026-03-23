@@ -19,6 +19,7 @@ exports.register = async (req, res) => {
 
         if (!isEmailExist) {
             const hashedPassword = await bcrypt.hash(password, 10);
+            const otp = generateOTP();
             const user = await prisma.ask_users.create({
                 data: {
                     name,
@@ -26,10 +27,14 @@ exports.register = async (req, res) => {
                     email,
                     country_code,
                     password: hashedPassword,
+                    otp,
+                    otp_expires_at: otpExpiry(),
                 }
             });
-            return res.status(200).json({ status: true, message: "User register successfully. Please veriy email", user })
+            await sendOTPEmail(email, name, otp);
+            return res.status(200).json({ status: true, message: "User register successfully. Please verify email", user })
         }
+
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: false, message: "Internal server error", error })
@@ -68,42 +73,43 @@ exports.sendOtp = async (req, res) => {
 }
 
 exports.verifyOtp = async (req, res) => {
-  try {
-    const { email, otp } = req.body;
+    try {
+        const { email, otp } = req.body;
+        console.log("data", email, otp);
 
-    const user = await prisma.ask_users.findUnique({ where: { email } });
+        const user = await prisma.ask_users.findUnique({ where: { email } });
 
-    if (!user) {
-      return res.json({ status: false, message: "User not found" });
+        if (!user) {
+            return res.status(200).json({ status: false, message: "User not found" });
+        }
+
+        if (!user.otp) {
+            return res.status(200).json({ status: false, message: "Otp not generated" });
+        }
+
+        if (user.otp_expires_at < new Date()) {
+            return res.status(200).json({ status: false, message: "Otp expired" });
+        }
+
+        if (user.otp !== otp) {
+            return res.status(200).json({ status: false, message: "Invalid OTP" });
+        }
+
+        await prisma.ask_users.update({
+            where: { email },
+            data: {
+                otp_verified: true,
+                otp: null,
+                otp_expires_at: null
+            }
+        });
+
+        return res.status(200).json({ status: true, message: "OTP verified successfully" });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: "Internal server error" });
     }
-
-    if (!user.otp) {
-      return res.json({ status: false, message: "Otp not generated" });
-    }
-
-    if (user.otp_expires_at < new Date()) {
-      return res.json({ status: false, message: "Otp expired" });
-    }
-
-    if (user.otp !== otp) {
-      return res.json({ status: false, message: "Invalid OTP" });
-    }
-
-    await prisma.ask_users.update({
-      where: { email },
-      data: {
-        otp_verified: true,
-        otp: null,
-        otp_expires_at: null
-      }
-    });
-
-    return res.json({ status: true, message: "OTP verified successfully" });
-
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ status: false, message: "Internal server error" });
-  }
 };
 
 // exports.checkIsloggedIn = async (req, res) => {
@@ -139,9 +145,9 @@ exports.checkIsloggedIn = async (req, res) => {
         return res.status(200).json({ status: true, message: "You are logged in", user });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ 
-            status: false, 
-            error:error,
+        return res.status(500).json({
+            status: false,
+            error: error,
             message: "Internal server error"
         });
     }
@@ -195,7 +201,7 @@ exports.fetchUser = async (req, res) => {
 exports.updateProfile = async (req, res) => {
     try {
         const id = Number(req.params.id);
-        const { name, phone, email,country_code, oldpassword, newpassword } = req.body;
+        const { name, phone, email, country_code, oldpassword, newpassword } = req.body;
         const user = await prisma.ask_users.findUnique({ where: { id: id } });
         if (!user) {
             return res.status(200).json({ status: false, message: "User not found." });
