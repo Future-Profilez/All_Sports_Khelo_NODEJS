@@ -619,7 +619,7 @@ exports.list_ask_tournaments = async (req, res) => {
       include: {
         country: true,
         state: true,
-        city: true,
+        city: true
       },
       orderBy: { created_at: "desc", }
     });
@@ -668,7 +668,6 @@ exports.list_ask_tournaments = async (req, res) => {
     });
   }
 };
-
 
 
 // All sports listing that are included in tournaments
@@ -1238,6 +1237,22 @@ exports.getFeaturedTournaments = async (req, res) => {
       // take: 10, // limit for homepage
     });
 
+
+    const updateddata = tournaments.map((item) => {
+
+      return {
+        ...item,
+        thumbnail: item?.thumbnail
+          ? `${process.env.APP_URL}${item.thumbnail}`
+          : false,
+        bannerimage: item?.bannerimage
+          ? `${process.env.APP_URL}${item.bannerimage}`
+          : false,
+      };
+    });
+
+
+
     return res.status(200).json({
       status: true,
       data: convertBigIntToString(tournaments),
@@ -1251,4 +1266,68 @@ exports.getFeaturedTournaments = async (req, res) => {
     });
   }
 };
+
+
+//Listing trending tournaments
+//if enquiry count is more than threshhold(5) then those tournaments are considered trending
+// exports.getTrendingTournaments = async (req, res) => {
+//   try {
+//     const now = new Date();
+
+//     // 🔥 Step 1: group enquiries
+//     const enquiryCounts = await prisma.ask_tournament_enquiries.groupBy({
+//       by: ["tournament_id"],
+//       _count: {
+//         tournament_id: true,
+//       },
+//     });
+
+//     const MIN_ENQUIRIES = 5;
+
+//     const trendingIds = enquiryCounts
+//       .filter((e) => e._count.tournament_id >= MIN_ENQUIRIES)
+//       .map((e) => e.tournament_id);
+
+//     if (trendingIds.length === 0) {
+//       return res.status(200).json({
+//         status: true,
+//         data: [],
+//       });
+//     }
+
+//     // 🔥 Step 2: fetch tournaments
+//     const tournaments = await prisma.ask_tournaments.findMany({
+//       where: {
+//         id: { in: trendingIds },
+//         enddate: { gte: now },
+//         publish_status: 1,
+//         deleted_at: null,
+//       },
+//     });
+
+//     // ✅ STEP 3: SORT HERE (THIS IS YOUR CODE)
+//     const countMap = {};
+
+//     enquiryCounts.forEach((e) => {
+//       countMap[e.tournament_id] = e._count.tournament_id;
+//     });
+
+//     const sorted = tournaments.sort(
+//       (a, b) => countMap[b.id] - countMap[a.id]
+//     );
+
+//     // ✅ STEP 4: return sorted data
+//     return res.status(200).json({
+//       status: true,
+//       data: sorted,
+//     });
+
+//   } catch (error) {
+//     console.error("Trending error:", error);
+//     return res.status(500).json({
+//       status: false,
+//       message: "Internal server error",
+//     });
+//   }
+// };
 
