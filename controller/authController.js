@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
                 }
             });
             await sendOTPEmail(email, name, otp);
-            return res.status(200).json({ status: true, message: "User register successfully. Please verify email", user })
+            return res.status(200).json({ status: true, message: "Please verify email", user })
         }
 
     } catch (error) {
