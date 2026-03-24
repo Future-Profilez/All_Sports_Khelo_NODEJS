@@ -95,7 +95,7 @@ exports.verifyOtp = async (req, res) => {
             return res.status(200).json({ status: false, message: "Invalid OTP" });
         }
 
-        await prisma.ask_users.update({
+        const updatedUser = await prisma.ask_users.update({
             where: { email },
             data: {
                 otp_verified: true,
@@ -104,7 +104,12 @@ exports.verifyOtp = async (req, res) => {
             }
         });
 
-        return res.status(200).json({ status: true, message: "OTP verified successfully" });
+        const token = jwt.sign(
+            {id: user.id},
+            process.env.JWT_SECRET,
+            {expiresIn: "1d"}
+        )
+        return res.status(200).json({ status: true, message: "OTP verified successfully", user: updatedUser, token });
 
     } catch (error) {
         console.log(error);
