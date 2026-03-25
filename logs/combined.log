@@ -1,16 +1,13 @@
 2026-03-24 14:22:17 [INFO]: Server is running on port http://localhost:4000
 2026-03-25 09:43:11 [INFO]: Server is running on port http://localhost:4000
-2026-03-25 10:38:52 [INFO]: Server is running on port http://localhost:4000
-2026-03-25 10:40:11 [INFO]: Server is running on port http://localhost:4000
-2026-03-25 12:00:00 [INFO]: ⏰ Cron triggered at: 2026-03-25T06:30:00.061Z
-2026-03-25 12:00:07 [INFO]: undefined tournament extractions finished.
-2026-03-25 12:00:11 [INFO]: undefined tournament extractions finished.
+2026-03-25 12:00:00 [INFO]: ⏰ Cron triggered at: 2026-03-25T06:30:00.092Z
+2026-03-25 12:00:06 [INFO]: undefined tournament extractions finished.
+2026-03-25 12:00:10 [INFO]: undefined tournament extractions finished.
+2026-03-25 12:00:13 [INFO]: undefined tournament extractions finished.
 2026-03-25 12:00:14 [INFO]: undefined tournament extractions finished.
-2026-03-25 12:00:15 [INFO]: undefined tournament extractions finished.
-2026-03-25 12:00:15 [INFO]: undefined tournament extractions finished.
-2026-03-25 12:00:20 [INFO]: undefined tournament extractions finished.
-2026-03-25 12:00:28 [INFO]: undefined tournament extractions finished.
-2026-03-25 12:00:29 [INFO]: undefined tournament extractions finished.
-2026-03-25 12:00:29 [INFO]: 🎉 All tournament extractions completed
-2026-03-25 12:00:29 [INFO]: ⏰ Cron ended at: 2026-03-25T06:30:29.120Z
-2026-03-25 12:23:47 [INFO]: Server is running on port http://localhost:4000
+2026-03-25 12:00:14 [INFO]: undefined tournament extractions finished.
+2026-03-25 12:00:18 [INFO]: undefined tournament extractions finished.
+2026-03-25 12:00:26 [INFO]: undefined tournament extractions finished.
+2026-03-25 12:00:27 [INFO]: undefined tournament extractions finished.
+2026-03-25 12:00:27 [INFO]: 🎉 All tournament extractions completed
+2026-03-25 12:00:27 [INFO]: ⏰ Cron ended at: 2026-03-25T06:30:27.341Z
