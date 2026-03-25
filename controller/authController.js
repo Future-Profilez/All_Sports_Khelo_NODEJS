@@ -39,7 +39,7 @@ exports.register = async (req, res) => {
 
         return res.status(200).json({
             status: true,
-            message: "OTP sent",
+            message: "OTP sent on your email.",
             tempToken
         });
 
