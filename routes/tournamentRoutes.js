@@ -70,7 +70,7 @@ router.post("/tennis/extraction",extractTennisTournament);
 //featured routes
 router.post("/featured/:id",toggleFeatured);
 router.get("/featured/list",getFeaturedTournaments);
-// router.get("/trending/list",getTrendingTournaments);
+router.get("/trending/list",getTrendingTournaments);
 
 
 module.exports = router
