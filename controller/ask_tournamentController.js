@@ -1336,7 +1336,7 @@ exports.getTrendingTournaments = async (req, res) => {
     // ✅ STEP 4: return sorted data
     return res.status(200).json({
       status: true,
-      data: updateddata,
+      data: convertBigIntToString(updateddata),
     });
 
   } catch (error) {
