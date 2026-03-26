@@ -547,7 +547,7 @@ exports.list_ask_tournaments = async (req, res) => {
 
     let where = {};
     // Sports ID filter
-    if (sports_id !== '' || sports_id !== undefined) {
+    if (sports_id && sports_id !== '') {
       where.sport_id = sports_id;
     }
     // if (country_id && country_id !== undefined) {
