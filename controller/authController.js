@@ -7,34 +7,46 @@ const prisma = require('../lib/prisma.js');
 exports.register = async (req, res) => {
     try {
         const { name, phone, email, password, country_code } = req.body;
+
         const isEmailExist = await prisma.ask_users.findUnique({ where: { email } });
-        if (isEmailExist && isEmailExist.otp_verified) {
-            return res.status(200).json({ status: false, message: "Email already register" })
+        if (isEmailExist) {
+            return res.status(200).json({ status: false, message: "Email already exists" });
         }
 
         const isPhoneExist = await prisma.ask_users.findUnique({ where: { phone } });
         if (isPhoneExist) {
-            return res.status(200).json({ status: false, message: "Phone already exists." })
+            return res.status(200).json({ status: false, message: "Phone already exists" });
         }
 
-        if (!isEmailExist) {
-            const hashedPassword = await bcrypt.hash(password, 10);
-            const user = await prisma.ask_users.create({
-                data: {
-                    name,
-                    phone,
-                    email,
-                    country_code,
-                    password: hashedPassword,
-                }
-            });
-            return res.status(200).json({ status: true, message: "User register successfully. Please veriy email", user })
-        }
+        const otp = generateOTP();
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // TEMP TOKEN (store user data inside JWT)
+        const tempToken = jwt.sign(
+            {
+                name,
+                phone,
+                email,
+                password: hashedPassword,
+                country_code,
+                otp
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: "10m" }
+        );
+
+        await sendOTPEmail(email, name, otp);
+
+        return res.status(200).json({
+            status: true,
+            message: "OTP sent on your email.",
+            tempToken
+        });
+
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({ status: false, message: "Internal server error", error })
+        return res.status(500).json({ status: false, message: "Internal server error" });
     }
-}
+};
 
 exports.sendOtp = async (req, res) => {
     try {
@@ -68,42 +80,57 @@ exports.sendOtp = async (req, res) => {
 }
 
 exports.verifyOtp = async (req, res) => {
-  try {
-    const { email, otp } = req.body;
+    try {
+        const { otp, tempToken } = req.body;
 
-    const user = await prisma.ask_users.findUnique({ where: { email } });
+        if (!tempToken) {
+            return res.status(200).json({ status: false, message: "Token missing" });
+        }
 
-    if (!user) {
-      return res.json({ status: false, message: "User not found" });
+        let decoded;
+
+        try {
+            decoded = jwt.verify(tempToken, process.env.JWT_SECRET);
+        } catch (err) {
+            if (err.name === "TokenExpiredError") {
+                return res.status(200).json({ status: false, message: "OTP expired" });
+            }
+            return res.status(200).json({ status: false, message: "Invalid token" });
+        }
+
+        if (decoded.otp !== otp) {
+            return res.status(200).json({ status: false, message: "Invalid OTP" });
+        }
+
+        // ✅ Save user
+        const user = await prisma.ask_users.create({
+            data: {
+                name: decoded.name,
+                phone: decoded.phone,
+                email: decoded.email,
+                password: decoded.password,
+                country_code: decoded.country_code,
+                otp_verified: true
+            }
+        });
+
+        const token = jwt.sign(
+            { id: user.id },
+            process.env.JWT_SECRET,
+            { expiresIn: "1d" }
+        );
+
+        return res.status(200).json({
+            status: true,
+            message: "Account created successfully",
+            user,
+            token
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: "Internal server error" });
     }
-
-    if (!user.otp) {
-      return res.json({ status: false, message: "Otp not generated" });
-    }
-
-    if (user.otp_expires_at < new Date()) {
-      return res.json({ status: false, message: "Otp expired" });
-    }
-
-    if (user.otp !== otp) {
-      return res.json({ status: false, message: "Invalid OTP" });
-    }
-
-    await prisma.ask_users.update({
-      where: { email },
-      data: {
-        otp_verified: true,
-        otp: null,
-        otp_expires_at: null
-      }
-    });
-
-    return res.json({ status: true, message: "OTP verified successfully" });
-
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ status: false, message: "Internal server error" });
-  }
 };
 
 // exports.checkIsloggedIn = async (req, res) => {
@@ -139,9 +166,9 @@ exports.checkIsloggedIn = async (req, res) => {
         return res.status(200).json({ status: true, message: "You are logged in", user });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ 
-            status: false, 
-            error:error,
+        return res.status(500).json({
+            status: false,
+            error: error,
             message: "Internal server error"
         });
     }
@@ -195,7 +222,7 @@ exports.fetchUser = async (req, res) => {
 exports.updateProfile = async (req, res) => {
     try {
         const id = Number(req.params.id);
-        const { name, phone, email,country_code, oldpassword, newpassword } = req.body;
+        const { name, phone, email, country_code, oldpassword, newpassword } = req.body;
         const user = await prisma.ask_users.findUnique({ where: { id: id } });
         if (!user) {
             return res.status(200).json({ status: false, message: "User not found." });
