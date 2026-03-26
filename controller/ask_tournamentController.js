@@ -645,21 +645,16 @@ exports.list_ask_tournaments = async (req, res) => {
 
 
     const data = convertBigIntToString(tournaments);
-    const updateddata = await Promise.all(
-      data.map(async (item) => {
-        const city = await getCityData(item.city_id);
-        return {
-          ...item,
-          city: city, // full city object or null
-          thumbnail: item?.thumbnail
-            ? `${process.env.APP_URL}${item.thumbnail}`
-            : false,
-          bannerimage: item?.bannerimage
-            ? `${process.env.APP_URL}${item.bannerimage}`
-            : false,
-        };
-      })
-    );
+
+    const updateddata = data.map((item) => ({
+      ...item,
+      thumbnail: item?.thumbnail
+        ? `${process.env.APP_URL}${item.thumbnail}`
+        : false,
+      bannerimage: item?.bannerimage
+        ? `${process.env.APP_URL}${item.bannerimage}`
+        : false,
+    }));
 
     return res.status(200).json({
       status: true,
