@@ -25,12 +25,8 @@ async function readExcelFile(excelFile) {
   const filepath = excelFile.path;
   console.log("filepath ", filepath);
   const workbook = XLSX.readFile(filepath);   //read the excel file
-  // console.log("workbook ",workbook);
   const sheetName = workbook.SheetNames[0];
-  // console.log("sheetname",sheetName)   //find the first sheet
   const sheet = workbook.Sheets[sheetName];   //extract first sheet content
-  // console.log("sheet ",sheet);
-  // const rows = XLSX.utils.sheet_to_json(sheet);   //converts excel to json
   const rows = XLSX.utils.sheet_to_json(sheet, {
     raw: false,
     dateNF: "yyyy-mm-dd"
@@ -576,11 +572,6 @@ exports.list_ask_tournaments = async (req, res) => {
       ];
     }
 
-    // extracted filter
-    if (extracted !== undefined) {
-      where.extracted = Number(extracted);
-    }
-
     if (search && search.trim() !== "") {
       where.OR = [
         {
@@ -645,16 +636,21 @@ exports.list_ask_tournaments = async (req, res) => {
 
 
     const data = convertBigIntToString(tournaments);
-
-    const updateddata = data.map((item) => ({
-      ...item,
-      thumbnail: item?.thumbnail
-        ? `${process.env.APP_URL}${item.thumbnail}`
-        : false,
-      bannerimage: item?.bannerimage
-        ? `${process.env.APP_URL}${item.bannerimage}`
-        : false,
-    }));
+    const updateddata = await Promise.all(
+      data.map(async (item) => {
+        const city = await getCityData(item.city_id);
+        return {
+          ...item,
+          city: city, // full city object or null
+          thumbnail: item?.thumbnail
+            ? `${process.env.APP_URL}${item.thumbnail}`
+            : false,
+          bannerimage: item?.bannerimage
+            ? `${process.env.APP_URL}${item.bannerimage}`
+            : false,
+        };
+      })
+    );
 
     return res.status(200).json({
       status: true,
@@ -674,57 +670,26 @@ exports.list_ask_tournaments = async (req, res) => {
 
 
 // All sports listing that are included in tournaments
-// exports.all_tournaments_sports = async (req, res) => {
-//   try {
-//     const tournaments = await prisma.ask_tournaments.findMany({
-//       select: {
-//         sport_id: true,
-//       },
-//       orderBy: {
-//         startdate: "desc",
-//       },
-//     });
-
-//     // Convert BigInt → string if needed
-//     const data = convertBigIntToString(tournaments);
-
-//     // Get unique sport IDs
-//     const activeSportIds = [...new Set(data.map(t => t.sport_id))];
-
-//     return res.status(200).json({
-//       status: true,
-//       message: "All active sports tournaments fetched successfully!",
-//       activeSports: activeSportIds,
-//     });
-
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({
-//       status: false,
-//       message: "Internal server error",
-//       error,
-//     });
-//   }
-// };
-
 exports.all_tournaments_sports = async (req, res) => {
   try {
-
-    const includeExtracted = req.query.includeExtracted === "true";
-
-    const where = includeExtracted ? {} : { extracted: 0 };
-
     const tournaments = await prisma.ask_tournaments.findMany({
-      where,
       select: {
         sport_id: true,
-      }
+      },
+      orderBy: {
+        startdate: "desc",
+      },
     });
 
-    const activeSportIds = [...new Set(tournaments.map(t => t.sport_id))];
+    // Convert BigInt → string if needed
+    const data = convertBigIntToString(tournaments);
+
+    // Get unique sport IDs
+    const activeSportIds = [...new Set(data.map(t => t.sport_id))];
 
     return res.status(200).json({
       status: true,
+      message: "All active sports tournaments fetched successfully!",
       activeSports: activeSportIds,
     });
 
@@ -733,9 +698,40 @@ exports.all_tournaments_sports = async (req, res) => {
     return res.status(500).json({
       status: false,
       message: "Internal server error",
+      error,
     });
   }
 };
+
+// exports.all_tournaments_sports = async (req, res) => {
+//   try {
+
+//     const includeExtracted = req.query.includeExtracted === "true";
+
+//     const where = includeExtracted ? {} : { extracted: 0 };
+
+//     const tournaments = await prisma.ask_tournaments.findMany({
+//       where,
+//       select: {
+//         sport_id: true,
+//       }
+//     });
+
+//     const activeSportIds = [...new Set(tournaments.map(t => t.sport_id))];
+
+//     return res.status(200).json({
+//       status: true,
+//       activeSports: activeSportIds,
+//     });
+
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({
+//       status: false,
+//       message: "Internal server error",
+//     });
+//   }
+// };
 
 
 
