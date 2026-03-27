@@ -389,141 +389,6 @@ exports.add_ask_tournament = async (req, res) => {
 }
 
 
-
-// exports.list_ask_tournaments = async (req, res) => {
-//   try {
-//     const typeParam = req.params.type;
-//     const sports_id = req.query?.sports_id; 
-//     let list_ask_tournaments_whereClause;
-
-//     if(sports_id){
-//       list_ask_tournaments_whereClause = await prisma.ask_tournaments.findMany({
-//         where: { sport_id: sports_id},
-//         include: {
-//           country: true,
-//           state: true,
-//           city: true,
-//         },
-//         orderBy: {
-//           id: "desc",
-//         }
-//       });
-//     } else { 
-//       if (Number(typeParam) !== 0) {
-//         list_ask_tournaments_whereClause = await prisma.ask_tournaments.findMany({
-//           where: {
-//             user_id: Number(typeParam)
-//           },
-//           include: {
-//             country: true,
-//             state: true,
-//             city: true,
-//           },
-//           orderBy: {
-//             id: "desc",
-//           }
-//         });
-//       } else {
-//         list_ask_tournaments_whereClause = await prisma.ask_tournaments.findMany({
-//           include: {
-//             country: true,
-//             state: true,
-//             city: true,
-//           },
-//           orderBy: {
-//             id: "desc",
-//           }
-//         });
-//       }
-//     }
-
-
-
-//     const data = convertBigIntToString(list_ask_tournaments_whereClause);
-
-//     const updateddata = data.map((item, i) => {
-//       return {
-//         ...item,
-//         thumbnail: item?.thumbnail ? `${process.env.APP_URL}${item?.thumbnail}` : false,
-//         bannerimage: item?.bannerimage ? `${process.env.APP_URL}${item?.bannerimage}` : false
-//       }
-//     })
-
-//     return res.status(200).json({
-//       message: "All tournaments fetched successfully!",
-//       status: false,
-//       data: updateddata
-//     })
-//   } catch (error) {
-//     console.log(error)
-//     return res.status(500).json(
-//       {
-//         status: false,
-//         message: "Internal server error",
-//         error: error
-//       })
-//   }
-// };
-
-// exports.list_ask_tournaments = async (req, res) => {
-//   try {
-//     const typeParam = req.params.type;
-
-//     // ✅ validate param first
-//     if (!typeParam || isNaN(typeParam)) {
-//       return res.status(400).json({
-//         status: false,
-//         message: "Invalid type parameter",
-//       });
-//     }
-
-//     const isAll = typeParam === "0";
-
-//     const whereClause = isAll
-//       ? {}
-//       : { user_id: BigInt(typeParam) };
-
-//     const all_ask_tournaments = await prisma.ask_tournaments.findMany({
-//       where: whereClause,
-//       include: {
-//         country: true,
-//         state: true,
-//         city: true,
-//       },
-//       orderBy: {
-//         id: "desc",
-//       },
-//     });
-
-//     const data = convertBigIntToString(all_ask_tournaments);
-
-//     const updateddata = data.map((item) => ({
-//       ...item,
-//       thumbnail: item.thumbnail
-//         ? `${process.env.APP_URL}${item.thumbnail}`
-//         : false,
-//       bannerimage: item.bannerimage
-//         ? `${process.env.APP_URL}${item.bannerimage}`
-//         : false,
-//     }));
-
-//     return res.status(200).json({
-//       status: true,
-//       message: "All tournaments fetched successfully!",
-//       data: updateddata,
-//     });
-
-//   } catch (error) {
-//     console.error("Prisma error:", error);
-//     return res.status(500).json({
-//       status: false,
-//       message: "Internal server error",
-//       error: error.message,
-//     });
-//   }
-// };
-
-
 exports.list_ask_tournaments = async (req, res) => {
   try {
     const typeParam = Number(req?.params?.type);
@@ -560,11 +425,11 @@ exports.list_ask_tournaments = async (req, res) => {
     //   where.city_id = Number(city_id);
     // }
     if (type === "trending") {
-      return this.getTrendingTournaments(req, res);
+      return exports.getTrendingTournaments(req, res);
     }
 
     if (type === "featured") {
-      return this.getFeaturedTournaments(req, res);
+      return exports.getFeaturedTournaments(req, res);
     }
     if (startdate && enddate) {
       const start = new Date(startdate);
