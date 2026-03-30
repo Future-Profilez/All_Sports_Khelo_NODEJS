@@ -1131,7 +1131,7 @@ exports.getFeaturedTournaments = async (req, res) => {
           gte: now,
         },
         publish_status: 1,
-        deleted_at: null,
+        
       },
       orderBy: {
         featured: "desc", // latest featured first
