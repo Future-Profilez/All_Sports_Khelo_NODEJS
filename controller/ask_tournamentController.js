@@ -555,6 +555,11 @@ exports.list_ask_tournaments = async (req, res) => {
     // if (city_id && city_id != undefined) {
     //   where.city_id = Number(city_id);
     // }
+
+    if (extracted !== undefined && extracted !== '') {
+      where.extracted = Number(extracted);
+    }
+
     if (type === "trending") {
       return this.getTrendingTournaments(req, res);
     }
@@ -673,6 +678,10 @@ exports.list_ask_tournaments = async (req, res) => {
 exports.all_tournaments_sports = async (req, res) => {
   try {
     const tournaments = await prisma.ask_tournaments.findMany({
+      where: {
+        extracted: 0,
+        deleted_at: null
+      },
       select: {
         sport_id: true,
       },
