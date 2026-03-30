@@ -4,7 +4,7 @@ const express = require("express")
 // const { tournament } = require("../validation/tournamentValidation.js")
 const router = express.Router()
 const upload = require('../middleware/uploadMiddleware');
-const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament, all_tournaments_sports, toggleFeatured, getFeaturedTournaments, getTrendingTournaments } = require("../controller/ask_tournamentController");
+const { list_ask_tournaments, asktournamentOverview, add_ask_tournament, send_enquiry, list_enquiries, delete_enquiries, mark_Enquiry, mark_AllEnquiry, delete_ask_tournament, tournamentCountriesList, tournamentStatesList, tournamentCitiesList, editTournament, all_tournaments_sports, toggleFeatured, getFeaturedTournaments, getTrendingTournaments, getNonExtractedTournaments, organizers_tournaments_sports } = require("../controller/ask_tournamentController");
 const { protect } = require("../middleware/authMiddleware");
 const { extractChessTournaments, extractTableTennisTournament, extractSquashTournament, extractHandballTournament, extractpickleballTournament, extractbasketballTournament, extractBadmintonTournament, extractTennisTournament } = require("../controller/extractController");
 
@@ -71,6 +71,8 @@ router.post("/tennis/extraction",extractTennisTournament);
 router.post("/featured/:id",toggleFeatured);
 router.get("/featured/list",getFeaturedTournaments);
 router.get("/trending/list",getTrendingTournaments);
+router.get("/non-extracted/list",getNonExtractedTournaments);
+router.get('/non_extracted/active/sports',organizers_tournaments_sports);
 
 
 module.exports = router
