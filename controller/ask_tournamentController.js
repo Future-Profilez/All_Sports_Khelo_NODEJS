@@ -431,6 +431,9 @@ exports.list_ask_tournaments = async (req, res) => {
     if (type === "featured") {
       return exports.getFeaturedTournaments(req, res);
     }
+    if (extracted === 0 || extracted === '0') {
+      return exports.getNonExtractedTournaments(req, res);
+    }
     if (startdate && enddate) {
       const start = new Date(startdate);
       const end = new Date(enddate);
@@ -538,27 +541,24 @@ exports.list_ask_tournaments = async (req, res) => {
 };
 
 
-// All sports listing that are included in tournaments
 // exports.all_tournaments_sports = async (req, res) => {
 //   try {
+
+//     const includeExtracted = req.query.includeExtracted === "true";
+
+//     const where = includeExtracted ? {} : { extracted: 0 };
+
 //     const tournaments = await prisma.ask_tournaments.findMany({
+//       where,
 //       select: {
 //         sport_id: true,
-//       },
-//       orderBy: {
-//         startdate: "desc",
-//       },
+//       }
 //     });
 
-//     // Convert BigInt → string if needed
-//     const data = convertBigIntToString(tournaments);
-
-//     // Get unique sport IDs
-//     const activeSportIds = [...new Set(data.map(t => t.sport_id))];
+//     const activeSportIds = [...new Set(tournaments.map(t => t.sport_id))];
 
 //     return res.status(200).json({
 //       status: true,
-//       message: "All active sports tournaments fetched successfully!",
 //       activeSports: activeSportIds,
 //     });
 
@@ -567,29 +567,30 @@ exports.list_ask_tournaments = async (req, res) => {
 //     return res.status(500).json({
 //       status: false,
 //       message: "Internal server error",
-//       error,
 //     });
 //   }
 // };
 
 exports.all_tournaments_sports = async (req, res) => {
   try {
-
-    const includeExtracted = req.query.includeExtracted === "true";
-
-    const where = includeExtracted ? {} : { extracted: 0 };
-
     const tournaments = await prisma.ask_tournaments.findMany({
-      where,
       select: {
         sport_id: true,
-      }
+      },
+      orderBy: {
+        startdate: "desc",
+      },
     });
 
-    const activeSportIds = [...new Set(tournaments.map(t => t.sport_id))];
+    // Convert BigInt → string if needed
+    const data = convertBigIntToString(tournaments);
+
+    // Get unique sport IDs
+    const activeSportIds = [...new Set(data.map(t => t.sport_id))];
 
     return res.status(200).json({
       status: true,
+      message: "All active sports tournaments fetched successfully!",
       activeSports: activeSportIds,
     });
 
@@ -598,10 +599,10 @@ exports.all_tournaments_sports = async (req, res) => {
     return res.status(500).json({
       status: false,
       message: "Internal server error",
+      error,
     });
   }
 };
-
 
 
 exports.delete_ask_tournament = async (req, res) => {
@@ -1208,3 +1209,83 @@ exports.getTrendingTournaments = async (req, res) => {
   }
 };
 
+exports.getNonExtractedTournaments = async (req, res) => {
+  try {
+
+    const tournaments = await prisma.ask_tournaments.findMany({
+      where: {
+        // extracted: 0,
+        user_id: {
+          not: 1
+        },
+        enddate: {
+          gte: new Date()
+        }
+      },
+      orderBy: {
+        created_at: "desc"
+      }
+    });
+
+    const data = convertBigIntToString(tournaments);
+
+    const updateddata = data.map((item) => ({
+      ...item,
+      thumbnail: item?.thumbnail
+        ? `${process.env.APP_URL}${item.thumbnail}`
+        : false,
+      bannerimage: item?.bannerimage
+        ? `${process.env.APP_URL}${item.bannerimage}`
+        : false,
+    }));
+
+    return res.status(200).json({
+      status: true,
+      message: "Organizer's tournaments fetched successfully",
+      data: updateddata
+    });
+
+  } catch (error) {
+    console.error("Non-extracted tournaments error:", error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error"
+    });
+  }
+};
+
+exports.organizers_tournaments_sports = async (req, res) => {
+  try {
+    const tournaments = await prisma.ask_tournaments.findMany({
+      where:{
+        user_id:{not : 1}
+      },
+      select: {
+        sport_id: true,
+      },
+      orderBy: {
+        startdate: "desc",
+      },
+    });
+
+    // Convert BigInt → string if needed
+    const data = convertBigIntToString(tournaments);
+
+    // Get unique sport IDs
+    const activeSportIds = [...new Set(data.map(t => t.sport_id))];
+
+    return res.status(200).json({
+      status: true,
+      message: "All active sports tournaments fetched successfully!",
+      activeSports: activeSportIds,
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error",
+      error,
+    });
+  }
+};
