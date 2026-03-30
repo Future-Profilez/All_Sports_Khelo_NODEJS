@@ -678,10 +678,6 @@ exports.list_ask_tournaments = async (req, res) => {
 exports.all_tournaments_sports = async (req, res) => {
   try {
     const tournaments = await prisma.ask_tournaments.findMany({
-      where: {
-        extracted: 0,
-        deleted_at: null
-      },
       select: {
         sport_id: true,
       },
