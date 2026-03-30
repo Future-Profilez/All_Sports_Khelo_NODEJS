@@ -1115,6 +1115,7 @@ exports.toggleFeatured = async (req, res) => {
     return res.status(500).json({
       status: false,
       message: "Internal server error",
+      error:error
     });
   }
 };
@@ -1242,17 +1243,24 @@ exports.getTrendingTournaments = async (req, res) => {
 
 exports.getNonExtractedTournaments = async (req, res) => {
   try {
+    const sport = req.query?.sport;
+
+    let where = {
+      user_id: {
+        not: 1
+      },
+      enddate: {
+        gte: new Date()
+      }
+    };
+
+    // ✅ APPLY SPORT FILTER ONLY IF PRESENT
+    if (sport) {
+      where.sport_id = sport;
+    }
 
     const tournaments = await prisma.ask_tournaments.findMany({
-      where: {
-        // extracted: 0,
-        user_id: {
-          not: 1
-        },
-        enddate: {
-          gte: new Date()
-        }
-      },
+      where,
       orderBy: {
         created_at: "desc"
       }
@@ -1287,10 +1295,17 @@ exports.getNonExtractedTournaments = async (req, res) => {
 
 exports.organizers_tournaments_sports = async (req, res) => {
   try {
+
     const tournaments = await prisma.ask_tournaments.findMany({
-      where:{
-        user_id:{not : 1}
+      where: {
+        user_id: { not: 1 },
+        extracted: 0, // ✅ only organizer tournaments
+        publish_status: 1, // ✅ only published
+        enddate: {
+          gte: new Date() // ✅ only active
+        }
       },
+      distinct: ['sport_id'], // ✅ removes duplicates (better than Set)
       select: {
         sport_id: true,
       },
@@ -1299,15 +1314,13 @@ exports.organizers_tournaments_sports = async (req, res) => {
       },
     });
 
-    // Convert BigInt → string if needed
     const data = convertBigIntToString(tournaments);
 
-    // Get unique sport IDs
-    const activeSportIds = [...new Set(data.map(t => t.sport_id))];
+    const activeSportIds = data.map(t => t.sport_id);
 
     return res.status(200).json({
       status: true,
-      message: "All active sports tournaments fetched successfully!",
+      message: "Active organizer sports fetched successfully!",
       activeSports: activeSportIds,
     });
 
