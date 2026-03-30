@@ -71,7 +71,7 @@ router.post("/tennis/extraction",extractTennisTournament);
 router.post("/featured/:id",toggleFeatured);
 router.get("/featured/list",getFeaturedTournaments);
 router.get("/trending/list",getTrendingTournaments);
-router.get("/non-extracted/list",getNonExtractedTournaments);
+router.get("/non-extracted/list/:sport",getNonExtractedTournaments);
 router.get('/non_extracted/active/sports',organizers_tournaments_sports);
 
 
