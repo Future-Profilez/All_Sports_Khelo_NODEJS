@@ -1115,6 +1115,7 @@ exports.toggleFeatured = async (req, res) => {
     return res.status(500).json({
       status: false,
       message: "Internal server error",
+      error:error
     });
   }
 };
