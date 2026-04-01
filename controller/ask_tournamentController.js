@@ -1101,6 +1101,7 @@ exports.toggleFeatured = async (req, res) => {
           ),
         },
     });
+    con
 
     return res.status(200).json({
       status: true,
