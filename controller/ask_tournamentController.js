@@ -1101,6 +1101,7 @@ exports.toggleFeatured = async (req, res) => {
           ),
         },
     });
+    
 
     return res.status(200).json({
       status: true,
@@ -1243,20 +1244,21 @@ exports.getTrendingTournaments = async (req, res) => {
 
 exports.getNonExtractedTournaments = async (req, res) => {
   try {
-    const sport = req.query?.sport;
-
+    const { sports_id } = req.query;
     let where = {
       user_id: {
         not: 1
       },
+      extracted: 0,
+      publish_status: 1,
       enddate: {
         gte: new Date()
       }
     };
 
     // ✅ APPLY SPORT FILTER ONLY IF PRESENT
-    if (sport) {
-      where.sport_id = sport;
+    if (sports_id && sports_id !== 'undefined' && sports_id !== 'null') {
+      where.sport_id = sports_id;
     }
 
     const tournaments = await prisma.ask_tournaments.findMany({
