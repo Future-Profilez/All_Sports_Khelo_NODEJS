@@ -1,0 +1,22 @@
+# put this in root folder of your project
+services:
+
+  backend:
+    build: ./All_Sports_Khelo_NODEJS
+    ports:
+      - "5000:5000"
+
+    env_file:
+      - ./All_Sports_Khelo_NODEJS/.env
+
+  frontend:
+    build: ./all_sports_khelo_nextjs
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - ./all_sports_khelo_nextjs/.env
+
+    depends_on:
+      - backend

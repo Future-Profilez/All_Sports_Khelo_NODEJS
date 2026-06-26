@@ -11,6 +11,7 @@ async function main() {
     console.log('✅ [Prisma] Query Result:', result);
     await prisma.$disconnect(); 
   } catch (e) {
+    console.error('error ', e);
     console.error('❌ [Prisma] Connection failed:', e);
   }
 }
